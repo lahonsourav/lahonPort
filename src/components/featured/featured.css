@@ -1,0 +1,19 @@
+.art__container {
+  display: flex;
+  margin-right: 30%;
+  margin-left: 30%;
+  box-shadow: var(--color-light) 0px 50px 100px -20px,
+    var(--color-light) 0px 30px 60px -30px,
+    var(--color-light) 0px -2px 6px 0px inset;
+}
+
+/* .art__img{
+  
+} */
+@media screen and (max-width: 600px) {
+  .art__container {
+    display: flex;
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+}

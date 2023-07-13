@@ -1,0 +1,102 @@
+header {
+  background-image: linear-gradient(
+      to bottom,
+      black,
+      var(--color-bg),
+      transparent
+    ),
+    url("../../assets/bg-texture.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  height: 135vh;
+  padding-top: 2rem;
+  overflow: hidden;
+}
+
+.wrapper2 {
+  display: grid;
+  place-items: center;
+}
+
+.typing-demo {
+  width: 26ch;
+  animation: typing 6s steps(22), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.header__containerpc {
+  text-align: center;
+  height: 100vh;
+}
+
+.h {
+  color: red;
+}
+
+/* CTA */
+.cta {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.clock {
+  backdrop-filter: blur(10px);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: 300;
+}
+
+.clock h4 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--color-primary);
+}
+
+.clock p {
+  text-align: center;
+  font-size: 12px;
+}
+
+.h1 {
+  font-family: "Courier New", Courier, monospace;
+  color: antiquewhite;
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    height: 145vh;
+    padding-top: 6rem;
+  }
+
+  .me {
+    width: 24rem;
+    height: 28rem;
+    position: absolute;
+    left: calc(50% - 12rem);
+    margin-top: 1rem;
+    border-radius: 5rem 5rem 1rem 1rem;
+    overflow: hidden;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+}
