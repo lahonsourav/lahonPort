@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./testimonial.css";
-import AVTR1 from "../../assets/avatar1.jpg";
+import AVTR1 from "../../assets/mejpg.jpg";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,7 +21,6 @@ const Testimonial = () => {
   }, []);
   return (
     <section id="testimonials">
-
       <h5 data-aos="fade-down">
         Till I get some testimonials to feature here, read tales
       </h5>
