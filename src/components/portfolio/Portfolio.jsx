@@ -28,7 +28,7 @@ const Portfolio = () => {
 
       <h5 data-aos="fade-down">Some of my</h5>
       <h2>Projects</h2>
-      {/* <div className="container portfolio__container">
+      <div className="container portfolio__container">
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
             <Tilt>
@@ -48,7 +48,7 @@ const Portfolio = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Swipe on web
+                Swipe (web)
               </a>
               <a
                 // href="https://drive.google.com/file/d/1uCxXe7biCmFA_i6s9p7n2Y-S4xVwL_Hx/view?usp=drivesdk"
@@ -58,7 +58,7 @@ const Portfolio = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Download app
+                Download
               </a>
             </div>
           </article>
@@ -149,126 +149,6 @@ const Portfolio = () => {
               A fashion E-commerce websites for your favorite outfit - You know?
               The Drip! (MERN stack, ongoing...)
             </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://github.com/lahonsourav/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Coming soon
-              </a>
-            </div>
-          </article>
-        </Tilt>
-      </div> */}
-
-      <div className="container portfolio__container">
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <Tilt>
-              <div className="portfolio__item-image">
-                <img src={PRO4} alt="" />
-              </div>
-            </Tilt>
-            <h3>Doggies</h3>
-
-            <div className="portfolio__item-cta">
-              <a
-                href="https://lahonsourav.github.io/doggies/#/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Swipe on web
-              </a>
-              <a
-                // href="https://drive.google.com/file/d/1uCxXe7biCmFA_i6s9p7n2Y-S4xVwL_Hx/view?usp=drivesdk"
-                href="https://drive.google.com/file/d/1uCxXe7biCmFA_i6s9p7n2Y-S4xVwL_Hx/view?usp=drivesdk"
-                className="btn btn-primary"
-                download="Doggies"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Download
-              </a>
-            </div>
-          </article>
-        </Tilt>
-
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <Tilt>
-              <div className="portfolio__item-image">
-                <img src={PRO5} alt="" />
-              </div>
-            </Tilt>
-            <h3>The Computer</h3>
-
-            <div className="portfolio__item-cta">
-              <a
-                href="https://pclahon.netlify.app/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Explore
-              </a>
-            </div>
-          </article>
-        </Tilt>
-
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <Tilt>
-              <div className="portfolio__item-image">
-                <img src={PRO2} alt="" />
-              </div>
-            </Tilt>
-            <h3>Mujhe Books Do</h3>
-
-            <div className="portfolio__item-cta">
-              <a
-                href="https://mujhebooksdo.netlify.app"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Visit Now
-              </a>
-            </div>
-          </article>
-        </Tilt>
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <Tilt>
-              <div className="portfolio__item-image">
-                <img src={PRO3} alt="" />
-              </div>
-            </Tilt>
-            <h3>Infinity Education</h3>
-
-            <div className="portfolio__item-cta">
-              <a
-                href="https://infinityeducation.netlify.app/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Inspect
-              </a>
-            </div>
-          </article>
-        </Tilt>
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <Tilt>
-              <div className="portfolio__item-image">
-                <img src={PRO1} alt="" />
-              </div>
-            </Tilt>
-            <h3>Moksha</h3>
-
             <div className="portfolio__item-cta">
               <a
                 href="https://github.com/lahonsourav/"
