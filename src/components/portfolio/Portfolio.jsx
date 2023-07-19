@@ -13,6 +13,8 @@ import PRO2 from "../../images/logojpg.png";
 import PRO3 from "../../images/infinity.jpg";
 import PRO4 from "../../images/doggo.png";
 import PRO5 from "../../images/pc.png";
+import PRO6 from "../../images/gamusawhitelow.png";
+import PRO7 from "../../images/clock.png";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -33,6 +35,31 @@ const Portfolio = () => {
           <article data-aos="zoom-in-up" className="portfolio__items">
             <Tilt>
               <div className="portfolio__item-image">
+                <img src={PRO6} alt="" />
+              </div>
+            </Tilt>
+            <h3>Gamusa Gogamukh</h3>
+            <small>
+              A fashion E-commerce websites for Assamese Traditional Attire,
+              bringing out the tradition (MERN stack)
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://youtu.be/KGK4eelpi5Y"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sneak peek
+              </a>
+            </div>
+          </article>
+        </Tilt>
+
+        <Tilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <Tilt>
+              <div className="portfolio__item-image">
                 <img src={PRO4} alt="" />
               </div>
             </Tilt>
@@ -48,7 +75,7 @@ const Portfolio = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Swipe (web)
+                Swipe now
               </a>
               <a
                 // href="https://drive.google.com/file/d/1uCxXe7biCmFA_i6s9p7n2Y-S4xVwL_Hx/view?usp=drivesdk"
@@ -141,22 +168,31 @@ const Portfolio = () => {
           <article data-aos="zoom-in-up" className="portfolio__items">
             <Tilt>
               <div className="portfolio__item-image">
-                <img src={PRO1} alt="" />
+                <img src={PRO7} alt="" />
               </div>
             </Tilt>
-            <h3>Moksha</h3>
+            <h3>25 Hour clock</h3>
             <small>
-              A fashion E-commerce websites for your favorite outfit - You know?
-              The Drip! (MERN stack, ongoing...)
+              A simple clock, but this has 24 hours in a day, using python and
+              tkinter module. (Python- Tkinter)
             </small>
             <div className="portfolio__item-cta">
               <a
-                href="https://github.com/lahonsourav/"
+                href="https://youtu.be/w02_4Ryra8E"
                 className="btn btn-primary"
                 target="_blank"
                 rel="noreferrer"
               >
-                Coming soon
+                Watch
+              </a>
+
+              <a
+                href="https://github.com/lahonsourav/25-hours-in-a-day"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Code
               </a>
             </div>
           </article>
