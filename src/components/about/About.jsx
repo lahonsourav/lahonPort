@@ -77,16 +77,16 @@ const About = () => {
           </div>
 
           <p className="para">
-            I am a Computer Science and Engineering student of National
-            Institute of Technology{" "}
+            I am a CSE student of&nbsp;
             <a href="https://www.nits.ac.in/" target="_blank" rel="noreferrer">
-              (NIT Silchar)&nbsp;
+              NIT Silchar&nbsp;
             </a>
+            and a Web developer with a little backend skills.
             <br />
             <br />
-            Along with my study I love to make Rap (Hip Hop) Music, write songs;
             I love thinking about the Universe and Space, The huge stars, the
-            gas giant Jupiter
+            gas giant Jupiter. Earlier I made music, now I make maggi, omlet and
+            Websites.
             <br />
             <br />I love{" "}
             <a
