@@ -173,7 +173,7 @@ const Portfolio = () => {
             </Tilt>
             <h3>25 Hour clock</h3>
             <small>
-              A simple clock, but this has 24 hours in a day, using python and
+              A simple clock, but this has 25 hours in a day, using python and
               tkinter module. (Python- Tkinter)
             </small>
             <div className="portfolio__item-cta">
