@@ -9,7 +9,7 @@ header {
   background-repeat: no-repeat;
   background-size: contain;
 
-  height: 135vh;
+  height: 138vh;
   padding-top: 2rem;
   overflow: hidden;
 }
@@ -20,7 +20,7 @@ header {
 }
 
 .typing-demo {
-  width: 26ch;
+  width: 28ch;
   animation: typing 6s steps(22), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;

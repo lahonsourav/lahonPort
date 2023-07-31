@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 // import CV from "F:lahonportfoliolahon-portfoliosrcassetspic.jpg";
 
-
 const CTA = () => {
   let time = new Date().toLocaleTimeString();
   const [currentTime, setCurrentTime] = useState(time);
@@ -14,11 +13,11 @@ const CTA = () => {
   setInterval(updateTime, 1000);
   return (
     <div className="cta">
-      <div className="btn">Time is</div>
+      <a className="btn">Resume</a>
 
-      <div href="#contact" className="btn btn-primary">
-        {currentTime}
-      </div>
+      <a href="#portfolio" className="btn btn-primary">
+        Projects
+      </a>
     </div>
   );
 };

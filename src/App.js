@@ -11,6 +11,7 @@ import Footer from "./components/footer/Footer";
 import Featured from "./components/featured/Featured";
 import AnimatedCursor from "react-animated-cursor";
 import HeaderSocials from "./components/contact/HeaderSocials";
+import Songs from "./components/portfolio/Songs";
 
 function App() {
   return (
@@ -50,13 +51,15 @@ function App() {
 
       <Nav />
       <About />
-      <Featured />
-
-      <Services />
-
       <Experience />
 
       <Portfolio />
+
+      <Services />
+
+      <Featured />
+
+      <Songs />
 
       <Testimonials />
 

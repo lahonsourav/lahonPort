@@ -1,19 +1,8 @@
 import "./header.css";
 import CTA from "./CTA";
 import Solar from "../solar/Solar";
-import { useState } from "react";
 
 const Header = () => {
-  let time = new Date().toLocaleTimeString();
-  const [currentTime, setCurrentTime] = useState(time);
-
-  const updateTime = () => {
-    let time = new Date().toLocaleTimeString();
-    setCurrentTime(time);
-  };
-
-  setInterval(updateTime, 1000);
-
   return (
     <header>
       <div className="header__containerpc">
@@ -22,7 +11,7 @@ const Header = () => {
           LA<span className="h">H</span>ON
         </h1>
         <div className="wrapper2">
-          <div className="typing-demo">an engineer who loves rap</div>
+          <div className="typing-demo">an engineer who loves Space</div>
         </div>
         <CTA />
         <Solar />

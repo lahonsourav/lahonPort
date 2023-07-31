@@ -178,7 +178,7 @@ const Services = () => {
                 </li>
                 <li>
                   <BsCheck2 className="service__list-icon" />
-                  <p>Worked as a publicity member for Tecnoesis 2022</p>
+                  <p>Moderator of Music Club, Symphonits, NIT Silchar</p>
                 </li>
               </ul>
             </Tilt>

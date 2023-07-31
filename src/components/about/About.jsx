@@ -57,50 +57,54 @@ const About = () => {
 
         <div className="about__content">
           <div className="about__cards">
-            <article data-aos="fade-up-right" className="about__card">
-              <GiPiercedHeart className="about__icon" />
-              <h5>Creative</h5>
-              <small>being artistic </small>
-            </article>
-
             <article data-aos="fade-up" className="about__card">
               <GiBurningPassion className="about__icon" />
-              <h5>Passionate</h5>
-              <small>to learn new</small>
+              <h5>Student of</h5>
+              <small>NIT Silchar</small>
             </article>
+
+            <a
+              href="https://www.gamusagogamukh.in/"
+              data-aos="fade-up-right"
+              className="about__card"
+            >
+              <GiPiercedHeart className="about__icon" />
+              <h5>Founder of</h5>
+              <small>Gamusa Gogamukh </small>
+            </a>
 
             <article data-aos="fade-up-left" className="about__card">
               <FaWpexplorer className="about__icon" />
-              <h5>Explorer</h5>
-              <small>love exploring</small>
+              <h5>Symphonits</h5>
+              <small>Music Club Moderator</small>
             </article>
           </div>
 
           <p className="para">
             I am a CSE student of&nbsp;
             <a href="https://www.nits.ac.in/" target="_blank" rel="noreferrer">
-              NIT Silchar&nbsp;
+              NIT Silchar.&nbsp;
             </a>
-            and a Web developer with a little backend skills.
+            I am a full stack Web developer and constantly learning new things.
             <br />
             <br />
             I love thinking about the Universe and Space, The huge stars, the
             gas giant Jupiter. Earlier I made music, now I make maggi, omlet and
             Websites.
             <br />
-            <br />I love{" "}
+            <br />I love
             <a
               href="https://lahonsourav.github.io/doggies/#/"
               target="_blank"
               rel="noreferrer"
             >
-              Doggies&nbsp;
+              &nbsp;Doggies&nbsp;
             </a>
-            and{" "}
+            and
             <a href="https://tinder4cats.com/" target="_blank" rel="noreferrer">
-              Cats&nbsp;
+              &nbsp;Cats&nbsp;
             </a>
-            , but frog is cute too.
+            , but frogs are cute too.
           </p>
         </div>
       </div>

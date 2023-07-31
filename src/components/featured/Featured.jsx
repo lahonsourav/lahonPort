@@ -6,8 +6,8 @@ import Tilt from "react-parallax-tilt";
 const featured = () => {
   return (
     <section id="featured">
-      <h5 data-aos="fade-down">Let's start </h5>
-      <h2>with a Painting</h2>
+      <h5 data-aos="fade-down">Featuring a </h5>
+      <h2>Water Colour Painting</h2>
       <div className="container__portfolio__container">
         <Tilt>
           <div className="art__container">
