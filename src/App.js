@@ -5,10 +5,10 @@ import About from "./components/about/About";
 import Experience from "./components/experience/Experience";
 import Services from "./components/services/Services";
 import Portfolio from "./components/portfolio/Portfolio";
-import Testimonials from "./components/testimonals/Testimonial";
+// import Testimonials from "./components/testimonals/Testimonial";
 import Contacts from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
-import Featured from "./components/featured/Featured";
+// import Featured from "./components/featured/Featured";
 import AnimatedCursor from "react-animated-cursor";
 import HeaderSocials from "./components/contact/HeaderSocials";
 import Songs from "./components/portfolio/Songs";
@@ -57,11 +57,11 @@ function App() {
 
       <Services />
 
-      <Featured />
+      {/* <Featured /> */}
 
       <Songs />
 
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       <Contacts />
       <HeaderSocials />

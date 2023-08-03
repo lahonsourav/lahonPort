@@ -21,8 +21,8 @@ const Testimonial = () => {
   }, []);
   return (
     <section id="testimonials">
-      <h5 data-aos="fade-down">A note for</h5>
-      <h2>HRs, Clients and Visitors</h2>
+      <h5 data-aos="fade-down">Lastly</h5>
+      <h2>Looking for help</h2>
       <Swiper
         className="container testimonials__container"
         pagination={true}

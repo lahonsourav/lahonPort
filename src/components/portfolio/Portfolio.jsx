@@ -20,7 +20,7 @@ const Portfolio = () => {
     <section id="portfolio">
       {/*partition2*/}
 
-      <h5 data-aos="fade-down">Technical Works</h5>
+      <h5 data-aos="fade-down">I would love to showcase some of</h5>
       <h2>My Projects</h2>
       <div className="container portfolio__container">
         <Tilt>
@@ -116,7 +116,7 @@ const Portfolio = () => {
             <h3>Doggies</h3>
             <small>
               Simple but beautiful UI, swipe left/right to find your favourite
-              Doggo. Swipe now to find doggos. (flutter, android)
+              Dog. Swipe now to find dogs. (flutter, android)
             </small>
             <div className="portfolio__item-cta">
               <a

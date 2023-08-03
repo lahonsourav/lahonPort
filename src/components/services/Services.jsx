@@ -3,7 +3,7 @@ import "./services.css";
 import { BsCheck2 } from "react-icons/bs";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import Education from "../education/Education";
+// import Education from "../education/Education";
 import Tilt from "react-parallax-tilt";
 
 const Services = () => {
@@ -185,13 +185,6 @@ const Services = () => {
           </article>
         </Tilt>
       </div>
-
-      <h5 className="space" data-aos="fade-down">
-        Glance of
-      </h5>
-      <h2 className="space-two">Education Journey</h2>
-
-      <Education />
     </section>
   );
 };

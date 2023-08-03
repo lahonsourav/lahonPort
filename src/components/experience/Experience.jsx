@@ -24,7 +24,7 @@ const Experience = () => {
   }, []);
   return (
     <section id="experience">
-      <h5 data-aos="fade-down">I have</h5>
+      <h5 data-aos="fade-down">I am trying to learn and improve</h5>
       <h2>These Skills</h2>
 
       <div class="snow">

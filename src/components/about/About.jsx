@@ -60,7 +60,7 @@ const About = () => {
             <article data-aos="fade-up" className="about__card">
               <GiBurningPassion className="about__icon" />
               <h5>Student of</h5>
-              <small>NIT Silchar</small>
+              <small>Computer Science</small>
             </article>
 
             <a
@@ -69,7 +69,7 @@ const About = () => {
               className="about__card"
             >
               <GiPiercedHeart className="about__icon" />
-              <h5>Founder of</h5>
+              <h5>Featured Project</h5>
               <small>Gamusa Gogamukh </small>
             </a>
 
@@ -81,16 +81,16 @@ const About = () => {
           </div>
 
           <p className="para">
-            I am a CSE student of&nbsp;
+            I am a Computer Science and Engineering Undergraduate of&nbsp;
             <a href="https://www.nits.ac.in/" target="_blank" rel="noreferrer">
               NIT Silchar.&nbsp;
             </a>
-            I am a full stack Web developer and constantly learning new things.
+            I am learning full stack Web development and also trying to improve
+            my problem solving skill.
             <br />
             <br />
             I love thinking about the Universe and Space, The huge stars, the
-            gas giant Jupiter. Earlier I made music, now I make maggi, omlet and
-            Websites.
+            gas giant Jupiter.
             <br />
             <br />I love
             <a
@@ -98,7 +98,7 @@ const About = () => {
               target="_blank"
               rel="noreferrer"
             >
-              &nbsp;Doggies&nbsp;
+              &nbsp;Dogs&nbsp;
             </a>
             and
             <a href="https://tinder4cats.com/" target="_blank" rel="noreferrer">
