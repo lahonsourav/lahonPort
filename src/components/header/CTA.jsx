@@ -14,7 +14,7 @@ const CTA = () => {
         Resume
       </a>
 
-      <a href="#portfolio" download className="btn btn-primary">
+      <a href="#portfolio" className="btn btn-primary">
         Projects
       </a>
     </div>
