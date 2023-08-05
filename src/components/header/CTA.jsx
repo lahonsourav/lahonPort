@@ -1,16 +1,9 @@
+import cv from "./resume.pdf";
+
 const CTA = () => {
-  // let time = new Date().toLocaleTimeString();
-  // const [currentTime, setCurrentTime] = useState(time);
-
-  // const updateTime = () => {
-  //   let time = new Date().toLocaleTimeString();
-  //   setCurrentTime(time);
-  // };
-
-  // setInterval(updateTime, 1000);
   return (
     <div className="cta">
-      <a href="../../assets/resume.pdf" download className="btn">
+      <a href={cv} download="sourav_lahon_resume" className="btn">
         Resume
       </a>
 
@@ -22,3 +15,13 @@ const CTA = () => {
 };
 
 export default CTA;
+
+// let time = new Date().toLocaleTimeString();
+// const [currentTime, setCurrentTime] = useState(time);
+
+// const updateTime = () => {
+//   let time = new Date().toLocaleTimeString();
+//   setCurrentTime(time);
+// };
+
+// setInterval(updateTime, 1000);
