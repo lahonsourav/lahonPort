@@ -77,11 +77,7 @@ const Footer = () => {
         <div className="footer__copyright__youtube">
           <small>
             <a
-<<<<<<< HEAD
               href="https://github.com/lahonsourav/lahonPort"
-=======
-              href="https://github.com/lahonsourav/lahon"
->>>>>>> origin/main
               target="_blank"
               rel="noreferrer"
             >
@@ -89,11 +85,7 @@ const Footer = () => {
             </a>
             |
             <a
-<<<<<<< HEAD
               href="https://github.com/lahonsourav/lahonPort?tab=readme-ov-file#readme"
-=======
-              href="https://github.com/lahonsourav/lahon#readme"
->>>>>>> origin/main
               target="_blank"
               rel="noreferrer"
             >
