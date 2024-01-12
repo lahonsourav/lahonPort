@@ -61,11 +61,11 @@ const Footer = () => {
         </li>
         <li>
           {" "}
-          <a href="#portfolio">Projects & Songs</a>
+          <a href="#portfolio">Projects</a>
         </li>
         <li>
           {" "}
-          <a href="#testimonials">Read School Tales</a>
+          <a href="https://www.gamusagogamukh.in">Visit my StartUp</a>
         </li>
         <li>
           {" "}

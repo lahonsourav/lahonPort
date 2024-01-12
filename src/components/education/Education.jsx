@@ -5,6 +5,10 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import myLogo from "../../treeicons/one.png";
+import micro from "../../treeicons/micro.png";
+import simp from "../../treeicons/simp.png";
+import css from "../../treeicons/csspng.png";
+
 const Education = () => {
   return (
     <VerticalTimeline>
@@ -12,18 +16,17 @@ const Education = () => {
         className="vertical-timeline-element--work"
         contentStyle={{ background: "#4db5ff", color: "#fff" }}
         contentArrowStyle={{ borderRight: "7px solid  #4db5ff" }}
-        date="2004-2010"
+        date="2023-2024"
         iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={myLogo} alt="myLogo" />}
+        icon={<img src={simp} alt="myLogo" />}
       >
-        <h3 className="vertical-timeline-element-title">Primary Education</h3>
+        <h3 className="vertical-timeline-element-title">Moderator</h3>
         <h4 className="vertical-timeline-element-subtitle">
-          Jatiya Vidyalaya, Gogamukh
+          Symphonits, Music Club NIT Silchar
         </h4>
         <p>
-          Though my primary schooling started in the government school of my
-          village, soon I had to admit in a private school, and my parents chose
-          a regional language school because 'main budhu tha'.
+          As a moderator, worked for the club, arranged various activities in
+          the College, managed events
         </p>
       </VerticalTimelineElement>
 
@@ -31,18 +34,18 @@ const Education = () => {
         className="vertical-timeline-element--work"
         contentStyle={{ background: "#eb4444", color: "#fff" }}
         contentArrowStyle={{ borderRight: "7px solid  #eb4444" }}
-        date="2011-2014"
-        iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={myLogo} alt="myLogo" />}
+        date="2023-2024"
+        iconStyle={{ background: "#fff", color: "#fff" }}
+        icon={<img src={css} alt="myLogo" />}
       >
-        <h3 className="vertical-timeline-element-title">Secondary Education</h3>
+        <h3 className="vertical-timeline-element-title">Design Wing Head</h3>
         <h4 className="vertical-timeline-element-subtitle">
-          JNV, Dhemaji, Assam
+          Computer Science Society, NIT Silchar
         </h4>
         <p>
-          It was my fortune to clear the JNV Entrance exam in class 4, because
-          papa mar marke padhate the, and main v mar khate khate padhaku bann
-          gaya tha.
+          Appointed as the Head of the Design wing of Computer Science Society
+          of NIT Silchar, worked for the betterment of Society in the aspect of
+          digital presence.
         </p>
       </VerticalTimelineElement>
 
@@ -50,61 +53,23 @@ const Education = () => {
         className="vertical-timeline-element--work"
         contentStyle={{ background: "#968b0b", color: "#fff" }}
         contentArrowStyle={{ borderRight: "7px solid  #968b0b" }}
-        date="2015-2017"
+        date="2024 Summer"
         iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={myLogo} alt="myLogo" />}
+        icon={<img src={micro} alt="myLogo" />}
       >
         <h3 className="vertical-timeline-element-title">
-          Senior Secondary Education
+          Software developer Intern (upcoming){" "}
         </h3>
-        <h4 className="vertical-timeline-element-subtitle">
-          Kendriya Vidyalaya, Gerukamukh, Assam
-        </h4>
+        <h4 className="vertical-timeline-element-subtitle">Microsoft</h4>
         <p>
-          I had to leave JNV Dhemaji, for some personal, mechanical, electrical,
-          geographical, economical, technical reasons.
+          Upcoming Software Developer Summer Intern at Microsoft, India. Looking
+          forward to make the world better with my inputs in the technical
+          domain.
         </p>
       </VerticalTimelineElement>
 
       <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ background: "#313ab5", color: "#fff" }}
-        contentArrowStyle={{ borderRight: "7px solid  #313ab5" }}
-        date="2018-2020"
         iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={myLogo} alt="myLogo" />}
-      >
-        <h3 className="vertical-timeline-element-title">
-          Higher Secondary Education
-        </h3>
-        <h4 className="vertical-timeline-element-subtitle">
-          Brilliant Academy, North Lakhimpur
-        </h4>
-        <p>
-          I don't have anything to talk about this, so I'm just writing this
-          'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-          quae.'
-        </p>
-      </VerticalTimelineElement>
-
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ background: "#3cf0ea", color: "#fff" }}
-        contentArrowStyle={{ borderRight: "7px solid  #3cf0ea" }}
-        date="2021-present"
-        iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={myLogo} alt="myLogo" />}
-      >
-        <h3 className="vertical-timeline-element-title">Higher Education</h3>
-        <h4 className="vertical-timeline-element-subtitle">NIT Silchar, CSE</h4>
-        <p>
-          Currently struggling to maintain 75% attendance, and definately
-          becoming an Engineering failure.
-        </p>
-      </VerticalTimelineElement>
-
-      <VerticalTimelineElement
-        iconStyle={{ background: "#fc0505", color: "#fff" }}
         icon={<img src={myLogo} alt="myLogo" />}
       />
     </VerticalTimeline>

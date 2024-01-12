@@ -69,14 +69,14 @@ const About = () => {
               className="about__card"
             >
               <GiPiercedHeart className="about__icon" />
-              <h5>Featured Project</h5>
-              <small>Gamusa Gogamukh </small>
+              <h5>Founder of</h5>
+              <small>Gamusa </small>
             </a>
 
             <article data-aos="fade-up-left" className="about__card">
               <FaWpexplorer className="about__icon" />
-              <h5>Symphonits</h5>
-              <small>Music Club Moderator</small>
+              <h5>Microsoft</h5>
+              <small>aspiring intern</small>
             </article>
           </div>
 

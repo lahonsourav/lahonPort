@@ -1,6 +1,6 @@
 import React from "react";
 import "./featured.css";
-import ART from "../../assets/2018.jpg";
+import ART from "../../assets/startup.png";
 import Tilt from "react-parallax-tilt";
 
 const featured = () => {

@@ -98,8 +98,8 @@ const Services = () => {
                 <li>
                   <BsCheck2 className="service__list-icon" />
                   <p>
-                    Introvert with less communication skills, good at making
-                    friends
+                    Good communication skills, good at making
+                    friends, Team work
                   </p>
                 </li>
                 <li>
@@ -151,8 +151,7 @@ const Services = () => {
                 <li>
                   <BsCheck2 className="service__list-icon" />
                   <p>
-                    Produced Beats, Mixed Mastered audio for Clients, short
-                    films
+                    Taught frontend web development to many Juniors
                   </p>
                 </li>
                 <li>

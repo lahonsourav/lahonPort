@@ -37,14 +37,6 @@ const Portfolio = () => {
             </small>
             <div className="portfolio__item-cta">
               <a
-                href="https://youtu.be/KGK4eelpi5Y"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                SneakPeek
-              </a>
-              <a
                 href="https://www.gamusagogamukh.in/"
                 className="btn btn-primary"
                 target="_blank"

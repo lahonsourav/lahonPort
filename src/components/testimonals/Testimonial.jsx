@@ -22,7 +22,7 @@ const Testimonial = () => {
   return (
     <section id="testimonials">
       <h5 data-aos="fade-down">Lastly</h5>
-      <h2>Looking for help</h2>
+      <h2>I am looking for</h2>
       <Swiper
         className="container testimonials__container"
         pagination={true}
@@ -40,28 +40,13 @@ const Testimonial = () => {
             domains
           </small>
           <small className="client__review__one">
-            Full stack web developer, Frontend Designing with Flutter, Software
+            Full stack web developer, Software
             Engineer
           </small>
 
           <small className="swipe">swipe</small>
         </SwiperSlide>
-        <SwiperSlide className="testimonial">
-          <div className="client__avatar">
-            <img src={AVTR1} alt="Avatar One" />
-          </div>
-          <h5 className="client__name">Why me? </h5>
-          <small className="client__review">
-            I'm Creative, and my Portfolio portrait this.
-          </small>
-          <small className="client__review__one">
-            Not only in the field of Frontend Designing, but in other aspects
-            also, I have several examples of attracting people with my
-            creativity.
-          </small>
-
-          <small className="swipe">swipe</small>
-        </SwiperSlide>
+      
         <SwiperSlide className="testimonial">
           <div className="client__avatar">
             <img src={AVTR1} alt="Avatar One" />
