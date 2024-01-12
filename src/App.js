@@ -8,7 +8,7 @@ import Portfolio from "./components/portfolio/Portfolio";
 import Testimonials from "./components/testimonals/Testimonial";
 import Contacts from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
-// import Featured from "./components/featured/Featured";
+import Featured from "./components/featured/Featured";
 import AnimatedCursor from "react-animated-cursor";
 import HeaderSocials from "./components/contact/HeaderSocials";
 import Songs from "./components/portfolio/Songs";
@@ -54,11 +54,13 @@ function App() {
       <About />
       <Education />
 
-      {/* <Featured /> */}
 
       <Experience />
 
       <Portfolio />
+
+      <Featured />
+
 
       <Services />
 
@@ -66,10 +68,16 @@ function App() {
 
       <Testimonials />
 
+
+
       <Contacts />
       <HeaderSocials />
 
+
+
       <Footer />
+
+
     </>
   );
 }

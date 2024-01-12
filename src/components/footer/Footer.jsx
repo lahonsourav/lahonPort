@@ -65,7 +65,9 @@ const Footer = () => {
         </li>
         <li>
           {" "}
-          <a href="https://www.gamusagogamukh.in">Visit my StartUp</a>
+          <a href="https://www.gamusagogamukh.in" target="_blank">
+            Visit my StartUp
+          </a>
         </li>
         <li>
           {" "}

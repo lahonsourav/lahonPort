@@ -7,6 +7,19 @@
     var(--color-light) 0px -2px 6px 0px inset;
 }
 
+.featured_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gamusa {
+  display: flex;
+  width: 55%;
+  height: 80vh;
+  margin: 0 auto;
+}
+
 /* .art__img{
   
 } */
@@ -15,5 +28,12 @@
     display: flex;
     margin-right: 10%;
     margin-left: 10%;
+  }
+
+  .gamusa {
+    display: flex;
+    width: 70%;
+    height: 80vh;
+    margin: 0 auto;
   }
 }
