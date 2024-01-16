@@ -14,9 +14,9 @@ const Contact = () => {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
-  const handleClick2 = () => {
-    alert("Thanks you, I'll get back to you soon");
-  };
+  // const handleClick2 = () => {
+  //   alert("Thanks you, I'll get back to you soon");
+  // };
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -31,10 +31,11 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          // console.log(result.text);
+          alert("Thank you, I'll get back to you ASAP");
         },
         (error) => {
-          console.log(error.text);
+          alert("Oho, Some error occured, Please try again");
         }
       );
 
@@ -92,7 +93,7 @@ const Contact = () => {
             required
           ></textarea>
           <button
-            onClick={handleClick2}
+            // onClick={handleClick2}
             type="submit"
             className="btn btn-primary"
           >
