@@ -3,7 +3,7 @@ import cv from "./resume.pdf";
 const CTA = () => {
   return (
     <div className="cta">
-      <a href={cv} target="_blank" className="btn">
+      <a href={cv} download="Sourav_Lahon_Resume" className="btn">
         Resume
       </a>
 
