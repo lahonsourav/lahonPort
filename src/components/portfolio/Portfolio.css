@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Digital-7 Mono;
+  src: url(https://drive.google.com/file/d/184we4e_GM5t7_wrY_gpvGDVp91iYwbEl/view?usp=sharing);
+}
+
 .portfolio__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -24,9 +29,38 @@
 }
 
 .portfolio__item-image {
+  display: flex;
   border-radius: 1.5rem;
   overflow: hidden;
   margin-bottom: 0.8rem;
+  object-fit: contain;
+  aspect-ratio: 2/3;
+}
+
+.songs__item-image {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+  aspect-ratio: 4/3;
+}
+
+.gamusaframe {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.time {
+  display: flex;
+
+  align-items: center;
+  margin: 0 auto;
+  font-family: Digital-7 Mono;
+  background: linear-gradient(to bottom, #2980b9, #2c3e50);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-size: 50px;
 }
 
 .portfolio__item-image:hover {
@@ -123,6 +157,8 @@
 }
 
 /* note end */
+
+
 
 .client__link {
   margin-bottom: 5rem;

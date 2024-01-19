@@ -34,7 +34,7 @@ const Songs = () => {
               <div class="noot-4">&#9834;</div>
             </div>
             <Tilt>
-              <div className="portfolio__item-image">
+              <div className="songs__item-image">
                 <img src={IMG2} alt="" />
               </div>
             </Tilt>
@@ -67,7 +67,7 @@ const Songs = () => {
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
             <Tilt>
-              <div className="portfolio__item-image">
+              <div className="songs__item-image">
                 <img src={IMG1} alt="" />
               </div>
             </Tilt>
@@ -100,7 +100,7 @@ const Songs = () => {
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
             <Tilt>
-              <div className="portfolio__item-image">
+              <div className="songs__item-image">
                 <img src={IMG3} alt="" />
               </div>
             </Tilt>
