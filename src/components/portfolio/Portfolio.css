@@ -1,8 +1,3 @@
-@font-face {
-  font-family: Digital-7 Mono;
-  src: url(https://drive.google.com/file/d/184we4e_GM5t7_wrY_gpvGDVp91iYwbEl/view?usp=sharing);
-}
-
 .portfolio__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -53,13 +48,10 @@
 
 .time {
   display: flex;
-
+  color: var(--color-primary-variant);
   align-items: center;
   margin: 0 auto;
-  font-family: Digital-7 Mono;
-  background: linear-gradient(to bottom, #2980b9, #2c3e50);
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
+
   font-size: 50px;
 }
 
@@ -157,8 +149,6 @@
 }
 
 /* note end */
-
-
 
 .client__link {
   margin-bottom: 5rem;

@@ -29,6 +29,7 @@ const Portfolio = () => {
   return (
     <section id="portfolio">
       <h5 data-aos="fade-down">I would love to showcase some of</h5>
+
       <h2>My Projects</h2>
 
       <div className="container portfolio__container">
