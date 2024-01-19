@@ -6,9 +6,8 @@
 }
 
 .portfolio__items {
-  background: transparent;
-  /* border-color: var(--color-primary-variant); */
-  /* backdrop-filter: blur(2px); */
+  /* background: transparent; */
+  backdrop-filter: blur(30px);
 
   padding: 1.2rem;
   border-radius: 2rem;
