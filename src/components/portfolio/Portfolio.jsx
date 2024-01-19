@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./Portfolio.css";
 
 // import PRO2 from "../../images/logojpg.png";
-// import PRO3 from "../../images/infinity.jpg";
+import PRO3 from "../../images/infinity.jpg";
 // import PRO4 from "../../images/doggo.png";
-// import PRO5 from "../../images/pc.png";
+import PRO5 from "../../images/pc.png";
 // import PRO6 from "../../images/gamusawhitelow.png";
 // import PRO7 from "../../images/clock.png";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
-// import Tilt from "react-parallax-tilt";
+import Tilt from "react-parallax-tilt";
 
 const Portfolio = () => {
   let time = new Date().toLocaleTimeString();
@@ -91,34 +91,6 @@ const Portfolio = () => {
 
         <article data-aos="zoom-in-up" className="portfolio__items">
           <div className="portfolio__item-image">
-            {/* <img src={PRO3} alt="" /> */}
-            <iframe
-              className="gamusaframe"
-              title="gamusa"
-              src="https://infinityeducation.netlify.app/"
-            >
-              infinity
-            </iframe>
-          </div>
-          <h3>Infinity Education</h3>
-          <small>
-            A premium coaching institute for one stop solution for Board,
-            JEE-mains & Advanced, NEET etc. (ongoing...)
-          </small>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://infinityeducation.netlify.app/"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Inspect
-            </a>
-          </div>
-        </article>
-
-        <article data-aos="zoom-in-up" className="portfolio__items">
-          <div className="portfolio__item-image">
             {/* <img src={PRO4} alt="" /> */}
             <iframe
               className="gamusaframe"
@@ -153,65 +125,84 @@ const Portfolio = () => {
             </a>
           </div>
         </article>
+        <Tilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="songs__item-image">
+              <img src={PRO3} alt="" />
+            </div>
+            <h3>Infinity Education</h3>
+            <small>
+              A premium coaching institute for one stop solution for Board,
+              JEE-mains & Advanced, NEET etc. (ongoing...)
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://infinityeducation.netlify.app/"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Inspect
+              </a>
+            </div>
+          </article>
+        </Tilt>
 
-        <article data-aos="zoom-in-up" className="portfolio__items">
-          <div className="portfolio__item-image">
-            <div className="time"> {time}</div>
-          </div>
-          <h3>25 Hour clock</h3>
-          <small>
-            A simple clock, but this has 25 hours in a day, using python and
-            tkinter module. Click watch to watch the integration. (Python-
-            Tkinter)
-          </small>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://youtu.be/w02_4Ryra8E"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Watch
-            </a>
+        <Tilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="songs__item-image">
+              <div className="time"> {time}</div>
+            </div>
+            <h3>25 Hour clock</h3>
+            <small>
+              A simple clock, but this has 25 hours in a day, using python and
+              tkinter module. Click watch to watch the integration. (Python-
+              Tkinter)
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://youtu.be/w02_4Ryra8E"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Watch
+              </a>
 
-            <a
-              href="https://github.com/lahonsourav/25-hours-in-a-day"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Code
-            </a>
-          </div>
-        </article>
+              <a
+                href="https://github.com/lahonsourav/25-hours-in-a-day"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Code
+              </a>
+            </div>
+          </article>
+        </Tilt>
 
-        <article data-aos="zoom-in-up" className="portfolio__items">
-          <div className="portfolio__item-image">
-            {/* {<img src={PRO5} alt="" />} */}
-            <iframe
-              className="gamusaframe"
-              title="gamusa"
-              src="https://pclahon.netlify.app/"
-            >
-              pc
-            </iframe>
-          </div>
-          <h3>The Computer</h3>
-          <small>
-            React three.js integration of an existing 3d Model. The model is
-            modified in Maya and integrated with three.js module.
-          </small>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://pclahon.netlify.app/"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Explore
-            </a>
-          </div>
-        </article>
+        <Tilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="songs__item-image">
+              <img src={PRO5} alt="" />
+            </div>
+            <h3>The Computer</h3>
+            <small>
+              React three.js integration of an existing 3d Model. The model is
+              modified in Maya and integrated with three.js module.
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://pclahon.netlify.app/"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Explore
+              </a>
+            </div>
+          </article>
+        </Tilt>
       </div>
     </section>
   );

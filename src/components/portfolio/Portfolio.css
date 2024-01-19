@@ -34,6 +34,7 @@
 }
 
 .songs__item-image {
+  display: flex;
   border-radius: 1.5rem;
   overflow: hidden;
   margin-bottom: 0.8rem;
@@ -51,7 +52,7 @@
   display: flex;
   color: var(--color-primary);
   margin: auto auto;
-
+  align-items: center;
   font-size: 50px;
 }
 .portfolio__item-image:hover {
