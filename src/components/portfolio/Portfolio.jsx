@@ -184,7 +184,17 @@ const Portfolio = () => {
 
         <article data-aos="zoom-in-up" className="portfolio__items">
           <div className="portfolio__item-image">
-            <div className="time"> {time}</div>
+            <div class="globe">
+              <span class="ring"></span>
+              <span class="ring"></span>
+              <span class="ring"></span>
+              <div className="time"> {time}</div>
+
+              <span class="ring"></span>
+              <span class="ring"></span>
+              <span class="ring"></span>
+              <span class="ring"></span>
+            </div>
           </div>
           <h3>25 Hour clock</h3>
           <small>
