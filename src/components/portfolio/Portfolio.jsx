@@ -156,45 +156,7 @@ const Portfolio = () => {
 
         <article data-aos="zoom-in-up" className="portfolio__items">
           <div className="portfolio__item-image">
-            {/* {<img src={PRO5} alt="" />} */}
-            <iframe
-              className="gamusaframe"
-              title="gamusa"
-              src="https://pclahon.netlify.app/"
-            >
-              pc
-            </iframe>
-          </div>
-          <h3>The Computer</h3>
-          <small>
-            React three.js integration of an existing 3d Model. The model is
-            modified in Maya and integrated with three.js module.
-          </small>
-          <div className="portfolio__item-cta">
-            <a
-              href="https://pclahon.netlify.app/"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Explore
-            </a>
-          </div>
-        </article>
-
-        <article data-aos="zoom-in-up" className="portfolio__items">
-          <div className="portfolio__item-image">
-            <div class="globe">
-              <span class="ring"></span>
-              <span class="ring"></span>
-              <span class="ring"></span>
-              <div className="time"> {time}</div>
-
-              <span class="ring"></span>
-              <span class="ring"></span>
-              <span class="ring"></span>
-              <span class="ring"></span>
-            </div>
+            <div className="time"> {time}</div>
           </div>
           <h3>25 Hour clock</h3>
           <small>
@@ -219,6 +181,34 @@ const Portfolio = () => {
               rel="noreferrer"
             >
               Code
+            </a>
+          </div>
+        </article>
+
+        <article data-aos="zoom-in-up" className="portfolio__items">
+          <div className="portfolio__item-image">
+            {/* {<img src={PRO5} alt="" />} */}
+            <iframe
+              className="gamusaframe"
+              title="gamusa"
+              src="https://pclahon.netlify.app/"
+            >
+              pc
+            </iframe>
+          </div>
+          <h3>The Computer</h3>
+          <small>
+            React three.js integration of an existing 3d Model. The model is
+            modified in Maya and integrated with three.js module.
+          </small>
+          <div className="portfolio__item-cta">
+            <a
+              href="https://pclahon.netlify.app/"
+              className="btn btn-primary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Explore
             </a>
           </div>
         </article>
