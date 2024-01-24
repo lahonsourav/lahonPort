@@ -23,7 +23,7 @@ function App() {
         color="255, 0, 0"
         outerAlpha={0.1}
         innerScale={1}
-        outerScale={1.5}
+        outerScale={2}
         outerStyle={{
           border: "2px solid var(--color-cursor)",
           mixBlendMode: "exclusion",
