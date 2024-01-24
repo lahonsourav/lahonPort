@@ -18,8 +18,9 @@ const Header = () => {
         <div className="clock">
           <h4>Welcome to the Portfolio</h4>
           <p>
-            Click on the planets to navigate to the desired sections <br />{" "}
-            Click on the Home button to navigate to Top <br />
+            Click on the planets to navigate to the desired sections <br />
+            Click the Nav Bar icons to navigate to different sections
+            <br />
             This site is best viewed on PC <br />
             Happy Scrolling :)
           </p>
