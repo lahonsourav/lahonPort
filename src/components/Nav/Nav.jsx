@@ -5,8 +5,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { MdOutlineContactPhone } from "react-icons/md";
 
-import { useState, useEffect } from "react";
-// import { useInView } from "react-intersection-observer";
+import { useState } from "react";
 
 import { GiSkills } from "react-icons/gi";
 
