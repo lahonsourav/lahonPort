@@ -56,16 +56,7 @@ const Nav = () => {
         <BsFillJournalBookmarkFill />
       </Link>
 
-      <Link
-        activeClass="active"
-        to="songs"
-        spy={true}
-        smooth={true}
-        offset={-40}
-        duration={20}
-      >
-        <CiMusicNote1 />
-      </Link>
+      
 
       <Link
         activeClass="active"
