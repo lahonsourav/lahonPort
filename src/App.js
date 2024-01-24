@@ -19,11 +19,11 @@ function App() {
     <>
       <AnimatedCursor
         innerSize={8}
-        outerSize={35}
+        outerSize={30}
         color="255, 0, 0"
         outerAlpha={0.1}
         innerScale={1}
-        outerScale={3}
+        outerScale={1.5}
         outerStyle={{
           border: "2px solid var(--color-cursor)",
           mixBlendMode: "exclusion",
@@ -32,7 +32,7 @@ function App() {
           backgroundColor: "#ff0000",
           mixBlendMode: "exclusion",
         }}
-        trailingSpeed={5}
+        trailingSpeed={10}
         clickables={[
           "a",
           'input[type="text"]',
@@ -54,12 +54,9 @@ function App() {
       <About />
       <Education />
 
-
       <Experience />
 
       <Portfolio />
-
-
 
       <Services />
 
@@ -67,16 +64,10 @@ function App() {
 
       <Testimonials />
 
-
-
       <Contacts />
       <HeaderSocials />
 
-
-
       <Footer />
-
-
     </>
   );
 }

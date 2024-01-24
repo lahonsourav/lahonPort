@@ -21,8 +21,8 @@ const Testimonial = () => {
   }, []);
   return (
     <section id="testimonials">
-      <h5 data-aos="fade-down">Lastly</h5>
-      <h2>I am looking for</h2>
+      <h5 data-aos="fade-down">For</h5>
+      <h2>Clients and Learners</h2>
       <Swiper
         className="container testimonials__container"
         pagination={true}
@@ -34,33 +34,32 @@ const Testimonial = () => {
           <div className="client__avatar">
             <img src={AVTR1} alt="Avatar One" />
           </div>
-          <h5 className="client__name">Open for Work</h5>
-          <small className="client__review">
-            I am open for working remote/onsite for the following technical
-            domains
-          </small>
-          <small className="client__review__one">
-            Full stack web developer, Software
-            Engineer
-          </small>
-
-          <small className="swipe">swipe</small>
-        </SwiperSlide>
-      
-        <SwiperSlide className="testimonial">
-          <div className="client__avatar">
-            <img src={AVTR1} alt="Avatar One" />
-          </div>
           <h5 className="client__name">For Clients</h5>
           <small className="client__review">
             If you are looking for someone to make your Website
           </small>
           <small className="client__review__one">
             I can make one for you efficiently. My work examples are featured in
-            the Projects Section
+            the Projects Section.
           </small>
 
           <small className="swipe">swipe</small>
+        </SwiperSlide>
+
+        <SwiperSlide className="testimonial">
+          <div className="client__avatar">
+            <img src={AVTR1} alt="Avatar One" />
+          </div>
+          <h5 className="client__name">For Learners</h5>
+          <small className="client__review">
+            If you are Interested in learning Frontend Web development
+          </small>
+          <small className="client__review__one">
+            I can teach you in the coolest way possible., just drop a message
+            from the contact section below.
+          </small>
+
+          <small className="swipe">scroll</small>
         </SwiperSlide>
       </Swiper>
     </section>

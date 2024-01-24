@@ -3,7 +3,6 @@ import "./services.css";
 import { BsCheck2 } from "react-icons/bs";
 import Aos from "aos";
 import "aos/dist/aos.css";
-// import Education from "../education/Education";
 import Tilt from "react-parallax-tilt";
 
 const Services = () => {
@@ -98,8 +97,7 @@ const Services = () => {
                 <li>
                   <BsCheck2 className="service__list-icon" />
                   <p>
-                    Good communication skills, good at making
-                    friends, Team work
+                    Good communication skills, good at making friends, Team work
                   </p>
                 </li>
                 <li>
@@ -150,7 +148,7 @@ const Services = () => {
                 </li>
                 <li>
                   <BsCheck2 className="service__list-icon" />
-                  <p>
+                  <p className="teach">
                     Taught frontend web development to many Juniors
                   </p>
                 </li>

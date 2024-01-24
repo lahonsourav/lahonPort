@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import "./about.css";
-import { GiPiercedHeart } from "react-icons/gi";
-import { GiBurningPassion } from "react-icons/gi";
-import { FaWpexplorer } from "react-icons/fa";
+import { TfiMicrosoftAlt } from "react-icons/tfi";
+import { GiClothes } from "react-icons/gi";
+import { RiComputerLine } from "react-icons/ri";
+
 import PHOTO from "../../assets/mejpg.jpg";
 
 import Aos from "aos";
@@ -34,7 +35,6 @@ const About = () => {
       </div>
 
       <div className="needspace">
-        {/* <h5>click to scroll</h5> */}
         <svg class="arrows">
           <path className="a1" d="M0 0 L30 32 L60 0"></path>
           <path className="a2" d="M0 20 L30 52 L60 20"></path>
@@ -58,7 +58,7 @@ const About = () => {
         <div className="about__content">
           <div className="about__cards">
             <article data-aos="fade-up" className="about__card">
-              <GiBurningPassion className="about__icon" />
+              <RiComputerLine className="about__icon" />
               <h5>Student of</h5>
               <small>Computer Science</small>
             </article>
@@ -68,13 +68,13 @@ const About = () => {
               data-aos="fade-up-right"
               className="about__card"
             >
-              <GiPiercedHeart className="about__icon" />
+              <GiClothes className="about__icon" />
               <h5>Founder of</h5>
               <small>Gamusa </small>
             </a>
 
             <article data-aos="fade-up-left" className="about__card">
-              <FaWpexplorer className="about__icon" />
+              <TfiMicrosoftAlt className="about__icon" />
               <h5>Microsoft</h5>
               <small>aspiring intern</small>
             </article>

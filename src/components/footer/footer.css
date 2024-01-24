@@ -33,13 +33,6 @@ footer a {
   transition: var(--transition);
 }
 
-.footer__logo:hover {
-  font-size: 3rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-  display: inline-block;
-}
-
 .permalink {
   display: flex;
   flex-wrap: wrap;
