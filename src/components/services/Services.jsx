@@ -132,10 +132,16 @@ const Services = () => {
         <Tilt>
           <article className="service">
             <div className="service__head">
-              <h3>Experiences</h3>
+              <h3>Extra Curricular</h3>
             </div>
 
             <Tilt>
+              <div class="muzieknootjes">
+                <div class="noot-1">&#9835; &#9833;</div>
+                <div class="noot-2">&#9833;</div>
+                <div class="noot-3">&#9839; &#9834;</div>
+                <div class="noot-4">&#9834;</div>
+              </div>
               <ul
                 data-aos="fade-up"
                 data-aos-easing="linear"
@@ -144,34 +150,58 @@ const Services = () => {
               >
                 <li>
                   <BsCheck2 className="service__list-icon" />
-                  <p>Hosted a Freshers Event in Brilliant Academy, Lakhimpur</p>
+                  <p>Hosted and managed Events in different Institutes.</p>
                 </li>
                 <li>
                   <BsCheck2 className="service__list-icon" />
-                  <p className="teach">
-                    Taught frontend web development to many Juniors
+                  <p>Taught frontend web development to many Juniors.</p>
+                </li>
+
+                <li>
+                  <BsCheck2 className="service__list-icon" />
+
+                  <p>
+                    Produced background music for{" "}
+                    <span>
+                      <a
+                        className="service__list-link"
+                        href="https://www.facebook.com/tecnoesis.nits/"
+                      >
+                        Tecnoesis 2022{" "}
+                      </a>
+                    </span>
+                    event teasers.
                   </p>
-                </li>
-                <li>
-                  <BsCheck2 className="service__list-icon" />
-                  <p>Produced background music for event teasers, </p>
-                  <a
-                    className="service__list-link"
-                    href="https://www.facebook.com/tecnoesis.nits/"
-                  >
-                    Tecnoesis 2022
-                  </a>
                 </li>
                 <li>
                   <BsCheck2 className="service__list-icon" />
                   <p>
-                    Painting got featured in National Art Exhibition organised
-                    by ONGC
+                    <span>
+                      <a
+                        className="service__list-link"
+                        href="https://www.facebook.com/113369497254908/posts/406268871298301/?mibextid=98BtzZNkros8nYVe"
+                      >
+                        Painting
+                      </a>
+                    </span>{" "}
+                    got featured in National Art Exhibition organised by ONGC.
                   </p>
                 </li>
+
                 <li>
                   <BsCheck2 className="service__list-icon" />
-                  <p>Performed in many live shows as an Hip-Hop artist</p>
+                  <p>
+                    Released{" "}
+                    <span>
+                      <a
+                        className="service__list-link"
+                        href="https://www.youtube.com/watch?v=-Yzg9fJV8mo&ab_channel=LAHON"
+                      >
+                        Music Videos{" "}
+                      </a>
+                    </span>
+                    and performed in many live shows.
+                  </p>
                 </li>
                 <li>
                   <BsCheck2 className="service__list-icon" />

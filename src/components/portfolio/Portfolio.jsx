@@ -37,7 +37,7 @@ const Portfolio = () => {
             <div className="portfolio__item-image">
               <img src={PRO6} alt="" />
             </div>
-            <h3>Gamusa Gogamukh</h3>
+            <h3>Gamusa</h3>
             <small>
               A fashion E-commerce websites for Assamese Traditional Attire,
               bringing out the tradition (MERN stack)
@@ -112,7 +112,7 @@ const Portfolio = () => {
 
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="songs__item-image">
+            <div className="portfolio__item-image">
               <img src={PRO3} alt="" />
             </div>
             <h3>Infinity Education</h3>
@@ -135,7 +135,7 @@ const Portfolio = () => {
 
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="songs__item-image">
+            <div className="portfolio__item-image">
               <div className="time"> {time}</div>
             </div>
             <h3>25 Hour clock</h3>
@@ -168,7 +168,7 @@ const Portfolio = () => {
 
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="songs__item-image">
+            <div className="portfolio__item-image">
               <img src={PRO5} alt="" />
             </div>
             <h3>The Computer</h3>

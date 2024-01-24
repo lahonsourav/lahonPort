@@ -88,7 +88,14 @@ const About = () => {
             I am learning full stack Web development and also trying to improve
             my problem solving skill.
             <br />
-            <br />
+            <br />I make{" "}
+            <a
+              href="https://www.youtube.com/watch?v=OTNoeba54eo&ab_channel=WildWoodRecords"
+              target="_blank"
+              rel="noreferrer"
+            >
+              &nbsp;music,&nbsp;
+            </a>{" "}
             I love thinking about the Universe and Space, The huge stars, the
             gas giant Jupiter.
             <br />
@@ -100,11 +107,7 @@ const About = () => {
             >
               &nbsp;Dogs&nbsp;
             </a>
-            and
-            <a href="https://tinder4cats.com/" target="_blank" rel="noreferrer">
-              &nbsp;Cats&nbsp;
-            </a>
-            , but frogs are cute too.
+            and cats, but frogs are cute too.
           </p>
         </div>
       </div>
