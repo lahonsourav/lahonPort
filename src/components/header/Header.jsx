@@ -4,7 +4,7 @@ import Solar from "../solar/Solar";
 
 const Header = () => {
   return (
-    <header>
+    <header id="header">
       <div className="header__containerpc">
         <h5>This is</h5>
         <h1>

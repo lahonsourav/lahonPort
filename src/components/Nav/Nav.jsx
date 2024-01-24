@@ -1,58 +1,82 @@
 import React from "react";
 import "./nav.css";
-import { AiOutlineHome } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { MdOutlineContactPhone } from "react-icons/md";
-
-import { useState } from "react";
-
 import { GiSkills } from "react-icons/gi";
+import { FaCode } from "react-icons/fa";
+import { CiMusicNote1 } from "react-icons/ci";
+
+import { Link } from "react-scroll";
 
 const Nav = () => {
-  const [activeNav, setActiveNav] = useState("#");
-
   return (
     <nav>
-      <a
-        href="#about"
-        onClick={() => setActiveNav("#about")}
-        className={activeNav === "#about" ? "active" : ""}
+      <Link
+        activeClass="active"
+        to="about"
+        spy={true}
+        smooth={true}
+        offset={100}
+        duration={20}
       >
         <AiOutlineUser />
-      </a>
+      </Link>
 
-      <a
-        href="#experience"
-        onClick={() => setActiveNav("#experience")}
-        className={activeNav === "#experience" ? "active" : ""}
+      <Link
+        activeClass="active"
+        to="experience"
+        spy={true}
+        smooth={true}
+        offset={-40}
+        duration={20}
       >
         <GiSkills />
-      </a>
+      </Link>
 
-      <a
-        href="#"
-        onClick={() => setActiveNav("#")}
-        className={activeNav === "#" ? "active" : ""}
+      <Link
+        activeClass="active"
+        to="portfolio"
+        spy={true}
+        smooth={true}
+        offset={-40}
+        duration={20}
       >
-        <AiOutlineHome />
-      </a>
+        <FaCode />
+      </Link>
 
-      <a
-        href="#portfolio"
-        onClick={() => setActiveNav("#services")}
-        className={activeNav === "#services" ? "active" : ""}
+      <Link
+        activeClass="active"
+        to="services"
+        spy={true}
+        smooth={true}
+        offset={-40}
+        duration={20}
       >
         <BsFillJournalBookmarkFill />
-      </a>
+      </Link>
 
-      <a
-        href="#contact"
-        onClick={() => setActiveNav("#contact")}
-        className={activeNav === "#contact" ? "active" : ""}
+      <Link
+        activeClass="active"
+        to="songs"
+        spy={true}
+        smooth={true}
+        offset={-40}
+        duration={20}
+      >
+        <CiMusicNote1 />
+      </Link>
+
+      <Link
+        activeClass="active"
+        to="contact"
+        spy={true}
+        smooth={true}
+        offset={-40}
+        duration={20}
       >
         <MdOutlineContactPhone />
-      </a>
+      </Link>
     </nav>
   );
 };
