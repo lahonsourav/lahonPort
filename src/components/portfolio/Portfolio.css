@@ -29,7 +29,7 @@
   overflow: hidden;
   margin-bottom: 0.8rem;
   object-fit: contain;
-  aspect-ratio: 2/3;
+  aspect-ratio: 4/3;
 }
 
 .songs__item-image {

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Portfolio.css";
 
-// import PRO2 from "../../images/logojpg.png";
+import PRO2 from "../../images/logojpg.png";
 import PRO3 from "../../images/infinity.jpg";
-// import PRO4 from "../../images/doggo.png";
+import PRO4 from "../../images/doggo.png";
 import PRO5 from "../../images/pc.png";
-// import PRO6 from "../../images/gamusawhitelow.png";
-// import PRO7 from "../../images/clock.png";
+import PRO6 from "../../images/gamusawhitelow.png";
+import PRO7 from "../../images/clock.png";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -35,14 +35,7 @@ const Portfolio = () => {
       <div className="container portfolio__container">
         <article data-aos="zoom-in-up" className="portfolio__items">
           <div className="portfolio__item-image">
-            {/* <img src={PRO6} alt="" /> */}
-            <iframe
-              className="gamusaframe"
-              title="gamusa"
-              src="https://www.gamusagogamukh.in"
-            >
-              Gamusa - Assamese Traditional Attire - Loading
-            </iframe>
+            <img src={PRO6} alt="" />
           </div>
           <h3>Gamusa Gogamukh</h3>
           <small>
@@ -63,14 +56,7 @@ const Portfolio = () => {
 
         <article data-aos="zoom-in-up" className="portfolio__items">
           <div className="portfolio__item-image">
-            {/* <img src={PRO2} alt="" /> */}
-            <iframe
-              className="gamusaframe"
-              title="gamusa"
-              src="https://mujhebooksdo.netlify.app/"
-            >
-              books
-            </iframe>
+            <img src={PRO2} alt="" />
           </div>
           <h3>Mujhe Books Do</h3>
           <small>
@@ -91,14 +77,7 @@ const Portfolio = () => {
 
         <article data-aos="zoom-in-up" className="portfolio__items">
           <div className="portfolio__item-image">
-            {/* <img src={PRO4} alt="" /> */}
-            <iframe
-              className="gamusaframe"
-              title="gamusa"
-              src="https://lahonsourav.github.io/doggies/#/"
-            >
-              doggies
-            </iframe>
+            <img src={PRO4} alt="" />
           </div>
           <h3>Doggies</h3>
           <small>
