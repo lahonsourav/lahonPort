@@ -128,6 +128,7 @@ const Services = () => {
             </Tilt>
           </article>
         </Tilt>
+        
 
         <Tilt>
           <article className="service">
@@ -136,12 +137,7 @@ const Services = () => {
             </div>
 
             <Tilt>
-              <div class="muzieknootjes">
-                <div class="noot-1">&#9835; &#9833;</div>
-                <div class="noot-2">&#9833;</div>
-                <div class="noot-3">&#9839; &#9834;</div>
-                <div class="noot-4">&#9834;</div>
-              </div>
+             
               <ul
                 data-aos="fade-up"
                 data-aos-easing="linear"
@@ -149,6 +145,8 @@ const Services = () => {
                 className="service__list"
               >
                 <li>
+
+                
                   <BsCheck2 className="service__list-icon" />
                   <p>Hosted and managed Events in different Institutes.</p>
                 </li>

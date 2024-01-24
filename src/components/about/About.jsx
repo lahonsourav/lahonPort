@@ -95,7 +95,13 @@ const About = () => {
               rel="noreferrer"
             >
               &nbsp;music,&nbsp;
-            </a>{" "}
+            </a>
+            <div class="muzieknootjes">
+              <div class="noot-1">&#9835; &#9833;</div>
+              <div class="noot-2">&#9833;</div>
+              <div class="noot-3">&#9839; &#9834;</div>
+              <div class="noot-4">&#9834;</div>
+            </div>{" "}
             I love thinking about the Universe and Space, The huge stars, the
             gas giant Jupiter.
             <br />
