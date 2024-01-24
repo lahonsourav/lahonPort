@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Portfolio.css";
 
-import PRO2 from "../../images/logojpg.png";
+import PRO2 from "../../images/logojpg.jpg";
 import PRO3 from "../../images/infinity.jpg";
-import PRO4 from "../../images/doggo.png";
+import PRO4 from "../../images/doggo.jpg";
 import PRO5 from "../../images/pc.png";
-import PRO6 from "../../images/gamusawhitelow.png";
+import PRO6 from "../../images/gamusawhitelow.jpg";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
