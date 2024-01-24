@@ -5,12 +5,14 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { MdOutlineContactPhone } from "react-icons/md";
 
-import { GiSkills } from "react-icons/gi";
+import { useState, useEffect } from "react";
+// import { useInView } from "react-intersection-observer";
 
-import { useState } from "react";
+import { GiSkills } from "react-icons/gi";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
+
   return (
     <nav>
       <a
