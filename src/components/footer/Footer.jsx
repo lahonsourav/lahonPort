@@ -46,7 +46,7 @@ const Footer = () => {
 
       <ul className="permalinks">
         <li>
-          <a href="#">Back to Top</a>
+          <a href="#header">Back to Top</a>
         </li>
         <li>
           <a href="#about">About me</a>

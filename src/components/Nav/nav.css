@@ -14,13 +14,17 @@ nav {
   backdrop-filter: blur(15px);
 }
 
+.sizeUp {
+  font-size: x-large;
+}
+
 nav a {
   background: transparent;
   padding: 0.9rem;
   border-radius: 50%;
   display: flex;
   color: var(--color-light);
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 
 nav a.active {

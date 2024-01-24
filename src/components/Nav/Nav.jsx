@@ -5,7 +5,6 @@ import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { GiSkills } from "react-icons/gi";
 import { FaCode } from "react-icons/fa";
-import { CiMusicNote1 } from "react-icons/ci";
 
 import { Link } from "react-scroll";
 
@@ -55,8 +54,6 @@ const Nav = () => {
       >
         <BsFillJournalBookmarkFill />
       </Link>
-
-      
 
       <Link
         activeClass="active"
