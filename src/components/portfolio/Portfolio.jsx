@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Portfolio.css";
+import Pt from './Partnership.pdf'
 
 import PRO2 from "../../images/logojpg.jpg";
 import PRO3 from "../../images/infinity.jpg";
@@ -49,7 +50,16 @@ const Portfolio = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Shop Now
+                Visit 
+              </a>
+
+              <a
+                href={Pt} download="Gamusa_Partnership"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Partnership
               </a>
             </div>
           </article>{" "}
