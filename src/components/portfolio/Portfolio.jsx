@@ -38,14 +38,14 @@ const Portfolio = () => {
             <div className="portfolio__item-image">
               <img src={PRO6} alt="" />
             </div>
-            <h3>Gamusa</h3>
+            <h3>Assamesedress.shop</h3>
             <small>
               A fashion E-commerce websites for Assamese Traditional Attire,
               bringing out the tradition (MERN stack)
             </small>
             <div className="portfolio__item-cta">
               <a
-                href="https://www.gamusagogamukh.in/"
+                href="https://www.assamesedress.shop/"
                 className="btn btn-primary"
                 target="_blank"
                 rel="noreferrer"
