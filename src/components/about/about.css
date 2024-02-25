@@ -21,20 +21,13 @@
   transition: var(--transition);
 }
 
-.small__hole {
-  height: 20px;
-  width: 20px;
-  border-radius: 50px;
-  background: var(--color-bg);
-  position: absolute;
-  top: 7%;
-  right: 90%;
-}
+
 .about__me-image {
   border-radius: 2rem;
   overflow: hidden;
   transform: rotate(-20deg);
   transition: var(--transition);
+  /* border: 1px solid red; */
 }
 
 .about__me-image:hover {

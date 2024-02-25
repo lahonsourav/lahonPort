@@ -48,10 +48,8 @@ const About = () => {
 
       <div className="container about__container">
         <div data-aos="zoom-in" className="about__me">
-          <div className="small__hole"></div>
-          <div className="about__me-image">
-            <div className="small__hole"></div>
-            <img src={PHOTO} alt="AboutImage" />
+          <div >
+            <img className="about__me-image" src={PHOTO} alt="AboutImage" />
           </div>
         </div>
 
@@ -59,18 +57,18 @@ const About = () => {
           <div className="about__cards">
             <article data-aos="fade-up" className="about__card">
               <RiComputerLine className="about__icon" />
-              <h5>Student of</h5>
-              <small>Computer Science</small>
+              <h5>Passionate</h5>
+              <small>Web Developer</small>
             </article>
 
             <a
-              href="https://www.gamusagogamukh.in/"
+              href="https://www.assamesedress.shop/"
               data-aos="fade-up-right"
               className="about__card"
             >
               <GiClothes className="about__icon" />
               <h5>Founder of</h5>
-              <small>Gamusa </small>
+              <small>Assamesedress.shop </small>
             </a>
 
             <article data-aos="fade-up-left" className="about__card">
