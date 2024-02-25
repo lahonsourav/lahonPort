@@ -98,7 +98,7 @@ const Footer = () => {
               &nbsp; Credits
             </a>
           </small>
-          <small>&copy;&nbsp; www.lahon.in 2023</small>
+        <small>&copy;&nbsp; www.lahon.in 2024</small>
         </div>
       </div>
     </footer>
