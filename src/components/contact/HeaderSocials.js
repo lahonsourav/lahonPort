@@ -36,7 +36,7 @@ const HeaderSocials = () => {
             <BsInstagram />
           </a>
           <a
-            href="https://www.youtube.com/c/LAHON"
+            href="https://www.youtube.com/@sforlahon5190"
             target="_blank"
             rel="noreferrer"
           >
