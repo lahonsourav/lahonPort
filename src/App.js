@@ -13,7 +13,7 @@ import HeaderSocials from "./components/contact/HeaderSocials";
 import Education from "./components/education/Education";
 
 function App() {
-  window.addEventListener("contextmenu", (e) => e.preventDefault());
+  // window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
     <>

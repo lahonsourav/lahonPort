@@ -48,9 +48,9 @@ const About = () => {
 
       <div className="container about__container">
         <div data-aos="zoom-in" className="about__me">
-          <div >
-            <img className="about__me-image" src={PHOTO} alt="AboutImage" />
-          </div>
+         
+            <img className="about__me_image" src={PHOTO} alt="AboutImage" />
+          
         </div>
 
         <div className="about__content">

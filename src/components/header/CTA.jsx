@@ -7,7 +7,7 @@ const CTA = () => {
         Resume
       </a>
 
-      <a href="#portfolio" className="btn btn-primary">
+      <a href="#portfolio" className="btn ">
         Projects
       </a>
     </div>

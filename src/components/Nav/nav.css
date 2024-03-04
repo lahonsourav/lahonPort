@@ -18,6 +18,17 @@ nav {
   font-size: x-large;
 }
 
+@keyframes circle {
+  from {
+    transform: rotate(-75deg);
+  }
+
+  to {
+    transform: rotate(75deg);
+  }
+
+}
+
 nav a {
   background: transparent;
   padding: 0.9rem;
@@ -30,4 +41,5 @@ nav a {
 nav a.active {
   background: var(--color-primary);
   color: var(--color-bg);
+  animation: circle 2s linear infinite alternate;
 }

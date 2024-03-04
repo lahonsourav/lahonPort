@@ -21,7 +21,6 @@ const Header = () => {
             Click on the planets to navigate to the desired sections <br />
             Click the Nav Bar icons to navigate to different sections
             <br />
-            This site is best viewed on PC <br />
             Happy Scrolling :)
           </p>
         </div>
