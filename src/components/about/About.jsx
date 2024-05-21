@@ -67,14 +67,14 @@ const About = () => {
               className="about__card"
             >
               <GiClothes className="about__icon" />
-              <h5>Founder of</h5>
+              <h5>Building</h5>
               <small>Assamesedress.shop </small>
             </a>
 
             <article data-aos="fade-up-left" className="about__card">
               <TfiMicrosoftAlt className="about__icon" />
               <h5>Microsoft</h5>
-              <small>aspiring intern</small>
+              <small>summer intern</small>
             </article>
           </div>
 

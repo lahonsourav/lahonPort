@@ -58,13 +58,11 @@ const Education = () => {
         icon={<img src={micro} alt="myLogo" />}
       >
         <h3 className="vertical-timeline-element-title">
-          Software developer Intern (upcoming){" "}
+          Software developer Intern{" "}
         </h3>
         <h4 className="vertical-timeline-element-subtitle">Microsoft</h4>
         <p>
-          Upcoming Software Developer Summer Intern at Microsoft, India. Looking
-          forward to make the world better with my inputs in the technical
-          domain.
+          Software Developer Summer Intern at Microsoft, India. 
         </p>
       </VerticalTimelineElement>
 
