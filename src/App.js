@@ -11,9 +11,10 @@ import Footer from "./components/footer/Footer";
 import AnimatedCursor from "react-animated-cursor";
 import HeaderSocials from "./components/contact/HeaderSocials";
 import Education from "./components/education/Education";
+import Flag from "./components/india/Flag";
 
 function App() {
-  // window.addEventListener("contextmenu", (e) => e.preventDefault());
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
     <>
@@ -48,7 +49,11 @@ function App() {
         ]}
       />
 
+
       <Header />
+
+<Flag/>
+
 
       <Nav />
       <About />
