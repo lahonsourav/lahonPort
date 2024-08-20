@@ -52,7 +52,6 @@ function App() {
 
       <Header />
 
-<Flag/>
 
 
       <Nav />
