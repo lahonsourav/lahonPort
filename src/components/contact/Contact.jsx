@@ -14,9 +14,7 @@ const Contact = () => {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
-  // const handleClick2 = () => {
-  //   alert("Thanks you, I'll get back to you soon");
-  // };
+
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -93,11 +91,10 @@ const Contact = () => {
             required
           ></textarea>
           <button
-            // onClick={handleClick2}
             type="submit"
             className="btn btn-primary"
           >
-            Submit
+            Send
           </button>
         </form>
       </div>

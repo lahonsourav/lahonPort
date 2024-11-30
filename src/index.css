@@ -79,7 +79,7 @@ html {
 .container {
   width: var(--container-width-lg);
   margin: 0 auto;
-  backdrop-filter: blur(15px);
+  /* backdrop-filter: blur(15px); */
 }
 
 h1,

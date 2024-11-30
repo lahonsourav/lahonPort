@@ -8,16 +8,33 @@ import myLogo from "../../treeicons/one.png";
 import micro from "../../treeicons/micro.png";
 import simp from "../../treeicons/simp.png";
 import css from "../../treeicons/csspng.png";
+import blackrock from "../../treeicons/blackrock.png";
 
 const Education = () => {
   return (
     <VerticalTimeline>
+      <VerticalTimelineElement
+        className="vertical-timeline-element--work"
+        contentStyle={{ background: "#eb4444", color: "#fff" }}
+        contentArrowStyle={{ borderRight: "7px solid  #eb4444" }}
+        date="2024 May - 2024 July"
+        iconStyle={{ background: "#080707", color: "#fff" }}
+        icon={<img src={blackrock} alt="myLogo" />}
+      >
+        <h3 className="vertical-timeline-element-title">
+         Upcoming Analyst 6M intern
+        </h3>
+        <h4 className="vertical-timeline-element-subtitle">BlackRock</h4>
+        <p>
+         Upcming 6 month intern at BlackRock, Gurgaon, India
+        </p>
+      </VerticalTimelineElement>
       
        <VerticalTimelineElement
         className="vertical-timeline-element--work"
         contentStyle={{ background: "#968b0b", color: "#fff" }}
         contentArrowStyle={{ borderRight: "7px solid  #968b0b" }}
-        date="2024 May - 2024 July"
+        date="2025 Jan - 2025 June"
         iconStyle={{ background: "#080707", color: "#fff" }}
         icon={<img src={micro} alt="myLogo" />}
       >
