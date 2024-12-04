@@ -7,18 +7,21 @@ import AskmeHelper from './AskmeHelper';
 
 const Home = () => {
   return (
-      <>
+    <>
+
+      <AskmeHelper />
+
+    </>
 
 
 
 
   
 
-      <AskmeHelper />
      
 
   
-    </>
+    
   )
 }
 

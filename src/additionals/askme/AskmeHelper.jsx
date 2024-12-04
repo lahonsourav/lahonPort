@@ -1,13 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./askme.css";
 import emailjs from "@emailjs/browser";
+import ReactAlert from "../customAlerts/CustomAlert";
 
 const AskmeHelper = () => {
   const form = useRef();
 
+  const [alertMessage, setAlertMessage] = useState(""); 
+  const [alertType, setAlertType] = useState(""); 
+  const [showAlert, setShowAlert] = useState(false); 
+
   const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs
       .sendForm(
         "service_afksea8",
@@ -17,18 +21,32 @@ const AskmeHelper = () => {
       )
       .then(
         (result) => {
-          alert("Thank you, I'll get back to you ASAP");
+          setAlertMessage("Got your Message, You're such a beautiful human");
+          setAlertType("success");
+          setShowAlert(true);
         },
         (error) => {
-          alert("Oho, Some error occurred, Please try again");
+          setAlertMessage("Oho, The message couldn't be sent, I'll fix it");
+          setAlertType("error");
+          setShowAlert(true);
         }
       );
-
-    e.target.reset(); // Reset the form after submission
+    e.target.reset(); 
+  };
+  const closeAlert = () => {
+    setShowAlert(false);
   };
 
   return (
     <div className="askme_container">
+
+      {showAlert && (
+        <ReactAlert
+          message={alertMessage}
+          onClose={closeAlert}
+          type={alertType}
+        />
+      )}
       <div className="askme_form_container">
         <h2>Ask Me Anything</h2>
         <form ref={form} onSubmit={sendEmail} className="askme_form">
@@ -39,7 +57,7 @@ const AskmeHelper = () => {
             placeholder="Your Name (leave if you don't want to disclose)"
             className="askme-control-input"
           />
-          
+
           <input
             type="text"
             id="email"
@@ -47,8 +65,8 @@ const AskmeHelper = () => {
             placeholder="Do you want me to display this message publicly?"
             className="askme-control-input"
           />
-          
-        
+
+
           <textarea
             id="message"
             name="message"

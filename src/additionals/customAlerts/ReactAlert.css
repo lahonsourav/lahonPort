@@ -1,0 +1,45 @@
+.alert_container {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    border: 1px solid var(--color-primary-variant);
+    border-radius: 1rem;
+    padding-bottom: 1rem;
+    width: 30%;
+    backdrop-filter: blur(30px);
+}
+
+.react-alert {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    color: var(--color-white);
+    justify-items: center;
+
+}
+
+.alertbtn {
+    width: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    ;
+}
+
+.alertmessage {
+    padding: 3rem;
+
+}
+
+@media screen and (max-width: 600px) {
+    .alert_container {
+        width: var(--container-width-sm);
+    }
+
+
+
+}

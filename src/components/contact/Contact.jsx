@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./contact.css";
 import { BiMailSend } from "react-icons/bi";
 import { FiPhoneCall } from "react-icons/fi";
@@ -9,6 +9,7 @@ import emailjs from "@emailjs/browser";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import ReactAlert from "../../additionals/customAlerts/CustomAlert";
 
 const Contact = () => {
   useEffect(() => {
@@ -17,9 +18,12 @@ const Contact = () => {
 
   const form = useRef();
 
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
   const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs
       .sendForm(
         "service_afksea8",
@@ -29,18 +33,31 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          // console.log(result.text);
-          alert("Thank you, I'll get back to you ASAP");
+          setAlertMessage("Got your Message, You're such a beautiful human");
+          setAlertType("success");
+          setShowAlert(true);
         },
         (error) => {
-          alert("Oho, Some error occured, Please try again");
+          setAlertMessage("Oho, The message couldn't be sent, I'll fix it");
+          setAlertType("error");
+          setShowAlert(true);
         }
       );
-
     e.target.reset();
   };
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
+
   return (
     <section id="contact">
+      {showAlert && (
+        <ReactAlert
+          message={alertMessage}
+          onClose={closeAlert}
+          type={alertType}
+        />
+      )}
       <h5 data-aos="fade-down">Get in Touch</h5>
       <h2>Contact Me</h2>
 
@@ -84,7 +101,7 @@ const Contact = () => {
             className="form-control-input"
             required
           />
-          <input type="email" name="email" placeholder="Your Email" className="form-control-input"/>
+          <input type="email" name="email" placeholder="Your Email" className="form-control-input" />
           <textarea
             name="message"
             rows="16"
