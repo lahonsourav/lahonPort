@@ -70,8 +70,8 @@ const AskmeHelper = () => {
 
           <input
             type="text"
-            id="email"
-            name="email"
+            id="bool"
+            name="bool"
             placeholder="Do you want me to display this message publicly?"
             className="askme-control-input"
           />

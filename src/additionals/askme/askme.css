@@ -21,6 +21,7 @@
     margin-right: auto;
     backdrop-filter: blur(20px);
     padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 .askme_form {
