@@ -40,14 +40,14 @@
   color: var(--color-light);
 }
 
-form {
+.contact__form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-input,
-textarea {
+.form-control-text,
+.form-control-input {
   width: 100%;
   padding: 1.5rem;
   border-radius: 0.5rem;
