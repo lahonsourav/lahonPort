@@ -1,20 +1,22 @@
 .askme_container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
 
-    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .askme_form_container {
     display: flex;
     flex-direction: column;
-
     margin-top: 2rem;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+    backdrop-filter: blur(20px);
+    padding-bottom: 1rem;
 }
-
 
 .askme_form {
     display: flex;
@@ -22,8 +24,8 @@
     gap: 1.2rem;
     width: 100%;
     margin-top: 1rem;
-}
 
+}
 
 .askme-control-text,
 .askme-control-input {
@@ -38,9 +40,28 @@
 
 
 
+button {
+    padding: 1rem;
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-/* @media screen and (max-width: 600px) {
+button:hover {
+    background-color: var(--color-primary-variant);
+}
+
+@media screen and (max-width: 600px) {
     .askme_form_container {
-        width: 82%;
+        width: var(--container-width-sm);
     }
-} */
+
+    .askme_form {
+        padding: 0 15px;
+    }
+
+
+}
