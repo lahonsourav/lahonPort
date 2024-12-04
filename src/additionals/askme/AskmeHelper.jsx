@@ -2,13 +2,15 @@ import React, { useRef, useState } from "react";
 import "./askme.css";
 import emailjs from "@emailjs/browser";
 import ReactAlert from "../customAlerts/CustomAlert";
+import { useNavigate } from "react-router-dom";
+
 
 const AskmeHelper = () => {
   const form = useRef();
 
-  const [alertMessage, setAlertMessage] = useState(""); 
-  const [alertType, setAlertType] = useState(""); 
-  const [showAlert, setShowAlert] = useState(false); 
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -31,14 +33,21 @@ const AskmeHelper = () => {
           setShowAlert(true);
         }
       );
-    e.target.reset(); 
+    e.target.reset();
   };
+
+  const navigate = useNavigate();
+
   const closeAlert = () => {
     setShowAlert(false);
+    navigate("/");
   };
 
   return (
     <div className="askme_container">
+
+
+
 
       {showAlert && (
         <ReactAlert
@@ -49,6 +58,7 @@ const AskmeHelper = () => {
       )}
       <div className="askme_form_container">
         <h2>Ask Me Anything</h2>
+
         <form ref={form} onSubmit={sendEmail} className="askme_form">
           <input
             type="text"
