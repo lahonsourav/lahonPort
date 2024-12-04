@@ -75,7 +75,7 @@ const Footer = () => {
         </li>
         <li>
           {" "}
-          <a href="#contact">Contact Me</a>
+          <a href="/askme">Ask Me Anything</a>
         </li>
       </ul>
 
