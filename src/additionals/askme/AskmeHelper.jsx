@@ -80,7 +80,7 @@ const AskmeHelper = () => {
           <textarea
             id="message"
             name="message"
-            rows="10"
+            rows="13"
             placeholder="Write Your Message"
             className="askme-control-text"
             required
