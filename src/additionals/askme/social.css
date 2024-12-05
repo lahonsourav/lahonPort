@@ -1,0 +1,24 @@
+.connectSocial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    z-index: 999999;
+}
+
+.headersocials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+    font-size: xx-large;
+}
+
+
+@media screen and (max-width: 600px) {
+    .headersocials {
+        gap: 2rem;
+    }
+}

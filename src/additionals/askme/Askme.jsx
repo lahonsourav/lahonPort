@@ -4,15 +4,11 @@ import React from 'react'
 
 
 import AskmeHelper from './AskmeHelper';
-import HeaderSocials from '../../components/contact/HeaderSocials';
+import Socials from './Social';
 
 const Home = () => {
   return (
     <>
-
-
-      <AskmeHelper />
-      <HeaderSocials />
       <div id="background-wrap">
         <div class="bubble x1">
           <h1>H</h1>
@@ -51,6 +47,10 @@ const Home = () => {
           <h1>Ne</h1>
         </div>
       </div>
+
+      <AskmeHelper />
+      <Socials />
+
 
     </>
 
