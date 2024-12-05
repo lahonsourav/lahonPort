@@ -64,7 +64,7 @@ const AskmeHelper = () => {
             type="text"
             id="name"
             name="name"
-            placeholder="Your Name (leave if you don't want to disclose)"
+            placeholder="Name (optional)"
             className="askme-control-input"
           />
 
@@ -72,7 +72,7 @@ const AskmeHelper = () => {
             type="text"
             id="bool"
             name="bool"
-            placeholder="Do you want me to display this message publicly?"
+            placeholder="Display this publicly (Yes/No)?"
             className="askme-control-input"
           />
 
