@@ -20,8 +20,10 @@
     margin-left: auto;
     margin-right: auto;
     backdrop-filter: blur(20px);
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 4px 4px rgba(77, 181, 255, 0.3);
+    /* Red shadow with 30% opacity */
 }
 
 .askme_form {
