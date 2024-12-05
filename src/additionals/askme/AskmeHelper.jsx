@@ -23,12 +23,12 @@ const AskmeHelper = () => {
       )
       .then(
         (result) => {
-          setAlertMessage("Got your Message, You're such a beautiful human");
+          setAlertMessage("Got your message! You're truly an amazing and wonderful soul!");
           setAlertType("success");
           setShowAlert(true);
         },
         (error) => {
-          setAlertMessage("Oho, The message couldn't be sent, I'll fix it");
+          setAlertMessage("Oho, the message couldn't be sent—guess I'm not the best coder after all!");
           setAlertType("error");
           setShowAlert(true);
         }
