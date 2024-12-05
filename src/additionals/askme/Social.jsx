@@ -1,7 +1,6 @@
 import React from "react";
 
 import { BsInstagram } from "react-icons/bs";
-import { BsYoutube } from "react-icons/bs";
 
 import { GrFacebook } from "react-icons/gr";
 import './social.css'
@@ -27,15 +26,11 @@ const Socials = () => {
                     >
                         <GrFacebook />
                     </a>
-                    <a
-                        href="https://www.youtube.com/@sforlahon5190"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <BsYoutube />
-                    </a>
+
 
                 </div>
+
+
             </div>
         </>
     );

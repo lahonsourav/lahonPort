@@ -27,7 +27,8 @@
     width: 100px;
     margin-right: auto;
     margin-left: auto;
-    ;
+    color: rgb(61, 59, 59);
+    font-weight: bold;
 }
 
 .alertmessage {

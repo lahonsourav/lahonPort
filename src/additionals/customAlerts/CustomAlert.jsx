@@ -6,7 +6,7 @@ const ReactAlert = ({ message, onClose, type }) => {
             <div className={`react-alert ${type}`} >
                 <p className="alertmessage">{message}</p>
                 <button onClick={onClose} className="alertbtn">
-                    OK
+                    🖤K
                 </button>
             </div>
 

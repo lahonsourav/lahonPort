@@ -3,6 +3,7 @@ import "./askme.css";
 import emailjs from "@emailjs/browser";
 import ReactAlert from "../customAlerts/CustomAlert";
 import { useNavigate } from "react-router-dom";
+import Socials from "./Social";
 
 
 const AskmeHelper = () => {
@@ -48,7 +49,6 @@ const AskmeHelper = () => {
 
 
 
-
       {showAlert && (
         <ReactAlert
           message={alertMessage}
@@ -58,6 +58,8 @@ const AskmeHelper = () => {
       )}
       <div className="askme_form_container">
         <h2>Ask Me Anything</h2>
+
+
 
         <form ref={form} onSubmit={sendEmail} className="askme_form">
           <input
@@ -72,8 +74,9 @@ const AskmeHelper = () => {
             type="text"
             id="bool"
             name="bool"
-            placeholder="Display this publicly (Yes/No)?"
+            placeholder="Display this publicly? (Yes/No)"
             className="askme-control-input"
+            required
           />
 
 
@@ -90,7 +93,9 @@ const AskmeHelper = () => {
             Send
           </button>
         </form>
+        <Socials />
       </div>
+
     </div>
   );
 };
