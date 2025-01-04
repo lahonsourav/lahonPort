@@ -10,7 +10,7 @@ const HomeMenu = () => {
 
   return (
     <div className="homePage">
-
+      <Header />
       <CTA />
 
       <div className="footer__copyright_home">
