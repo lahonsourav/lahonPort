@@ -1,61 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import "./solar.css";
 
 const Solar = () => {
+  // State to track the selected planet and visibility of the popup
+  const [selectedPlanet, setSelectedPlanet] = useState(null);
+
+  // Function to handle planet clicks
+  const handlePlanetClick = (planet) => {
+    if (planet !== "sun" && planet !== "asteroids_meteorids" && planet !== "pluto") {
+      setSelectedPlanet(planet);  // Only show pop-up for labeled planets
+    }
+  };
+
+  // Function to close the popup
+  const closePopup = () => {
+    setSelectedPlanet(null);  // Reset the selected planet to hide the pop-up
+  };
+
+  // Map of labeled planets and their content
+  const planetInfo = {
+    mercury: "Mercury: The closest planet to the Sun.",
+    venus: "All credits and acknowledgments are available in the README.md file of the GitHub repository.",
+    earth: "Earth: Our home planet, the only known planet with life.",
+    mars: "Got a question? Don’t just sit there – dial +91 60010 98923 and let the fun begin!",
+    jupiter: "Ex-Software Sorcerer for a summer at Microsoft (2024) – Conjured up code, debugged dragons, and tamed tech beasts!",
+    saturn: "Currently rocking the Software Engineer Intern gig (2025) at Blackrock – where the code flows as smoothly as coffee!",
+    uranus: "Currently wrangling code and acing algorithms as a final-year CSE student at NIT Silchar – the campus hero by day, debugger by night!",
+    neptune: "I'm a Computer Science and Engineering Undergrad at NIT Silchar! 💻 Currently leveling up my full stack web dev skills and sharpening my problem-solving powers! 💪 Oh, and did I mention I make music? 🎶 ♫ I’m on a mission to explore the universe 🌌, get lost in the stars ✨, and wonder about Jupiter – that gas giant with so much personality! 🪐 By the way, I adore dogs and cats 🐕🐈, but frogs? 😍 They're kinda the hidden cuties in the animal kingdom! 🐸💚",
+  };
+
   return (
-    <div class="clearfix">
-      <ul class="solarsystem">
-        <li class="sun">
-         
-        </li>
-        <li class="mercury">
+    <div className="clearfix">
+      {/* Solar system UI */}
+      <ul className="solarsystem">
+        <li className="sun"></li>
+        <li className="mercury" onClick={() => handlePlanetClick("mercury")}>
           <span></span>
         </li>
-        <li class="venus">
+        <li className="venus" onClick={() => handlePlanetClick("venus")}>
           <span>credits</span>
         </li>
-        <li class="earth">
+        <li className="earth" onClick={() => handlePlanetClick("earth")}>
           <span>
-            <span class="moon"></span>
+            <span className="moon"></span>
           </span>
         </li>
-        <li class="mars">
-         
-            <span>contact</span>
-     
+        <li className="mars" onClick={() => handlePlanetClick("mars")}>
+          <span>contact</span>
         </li>
-        <li class="asteroids_meteorids">
-          <span></span>
+        <li className="asteroids_meteorids"></li>
+        <li className="jupiter" onClick={() => handlePlanetClick("jupiter")}>
+          <span>experience</span>
         </li>
-        <li class="jupiter">
-         
-            <span>experience</span>
- 
-        </li>
-        <li class="saturn">
-        
+        <li className="saturn" onClick={() => handlePlanetClick("saturn")}>
           <span>
-            current
-               <span class="ring"></span>
-            </span>
-        
+            profession
+            <span className="ring"></span>
+          </span>
         </li>
-        <li class="uranus">
-         
-            <span>education</span>
-         
+        <li className="uranus" onClick={() => handlePlanetClick("uranus")}>
+          <span>education</span>
         </li>
-        <li class="neptune">
-         
-            <span>about</span>
-
+        <li className="neptune" onClick={() => handlePlanetClick("neptune")}>
+          <span>about</span>
         </li>
-        <li class="pluto">
-        
-            <span></span>
-
-        </li>
+        <li className="pluto"></li>
       </ul>
+
+      {/* Pop-up Modal */}
+      {selectedPlanet && (
+        <div className="popup">
+          <div className="popup-content">
+          
+            <p>{planetInfo[selectedPlanet]}</p>
+            <button onClick={closePopup}>
+              Close this damn thing
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

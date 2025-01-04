@@ -24,7 +24,7 @@ const Portfolio = () => {
   setInterval(updateTime, 1000);
 
   useEffect(() => {
-  Aos.init({ duration: 2000 });<nav></nav>
+    Aos.init({ duration: 2000 }); <nav></nav>
   }, []);
   return (
     <section id="portfolio">
@@ -50,7 +50,7 @@ const Portfolio = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Visit 
+                Visit
               </a>
 
               <a
