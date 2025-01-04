@@ -49,6 +49,7 @@
 
 .portfolio__item h3 {
   margin: 1.2rem 0 2rem;
+  align-items: flex-start;
 }
 
 .portfolio__item-cta {

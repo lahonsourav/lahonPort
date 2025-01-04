@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./Portfolio.css";
 import Pt from './Partnership.pdf'
 
-import PRO2 from "../../images/logojpg.jpg";
+import PRO2 from "../../images/boijaa.jpg";
 import PRO3 from "../../images/infinity.jpg";
-import PRO4 from "../../images/doggo.jpg";
+import PRO4 from "../../images/adhorua.jpg";
 import PRO5 from "../../images/pc.png";
 import PRO6 from "../../images/gamusawhitelow.jpg";
 
@@ -40,33 +40,56 @@ const Music = () => {
                         <div className="portfolio__item-image">
                             <img src={PRO4} alt="" />
                         </div>
-                        <h3>Doggies</h3>
+                        <h3>Adhorua Xopun (Assamese)</h3>
                         <small>
-                            Simple but beautiful UI, swipe left/right to find your favourite
-                            Dog. Swipe now to find dogs. (flutter, android)
+                            It's a story about the insecurities we face while dreaming big, losing hope but still pushing forward. We lose friends, miss our childhood, yet never look back.
                         </small>
                         <div className="portfolio__item-cta">
                             <a
-                                href="https://lahonsourav.github.io/doggies/#/"
+                                href="https://youtu.be/OTNoeba54eo?si=f0UPoD8-KXVGrcyZ"
                                 className="btn btn-primary"
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                Swipe now
+                                Youtube
                             </a>
-                            <a
-                                href="https://drive.google.com/file/d/1uCxXe7biCmFA_i6s9p7n2Y-S4xVwL_Hx/view?usp=drivesdk"
-                                className="btn btn-primary"
-                                download="Doggies"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Android
-                            </a>
+
                         </div>
                     </article>
                 </Tilt>
 
+
+                <Tilt>
+                    <article data-aos="zoom-in-up" className="portfolio__items">
+                        <div className="portfolio__item-image">
+                            <img src={PRO2} alt="" />
+                        </div>
+                        <h3>Boi Jaa (Assamese)</h3>
+                        <small>
+                            This love song, written and composed by me, holds a special place in my heart. It reflects my deepest emotions and is a true expression of my feelings.
+                        </small>
+                        <div className="portfolio__item-cta">
+                            <a
+                                href="https://youtu.be/SEE6_nwq43E?si=plljPf77qVS_RrSQ"
+                                className="btn btn-primary"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Youtube
+                            </a>
+
+                            <a
+                                href="https://open.spotify.com/track/62iWw8RvtUt99LrT2XRPAF?si=7f19cd4cd6904d35"
+                                className="btn btn-primary"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Spotify
+                            </a>
+
+                        </div>
+                    </article>
+                </Tilt>
 
 
 

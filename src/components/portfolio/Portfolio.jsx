@@ -62,7 +62,7 @@ const Portfolio = () => {
                 Partnership
               </a>
             </div>
-          </article>{" "}
+          </article>
         </Tilt>
 
         <Tilt>
