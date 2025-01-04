@@ -10,11 +10,11 @@ const HomeMenu = () => {
 
   return (
     <div className="homePage">
-      <Header />
-      <CTA/>
+
+      <CTA />
 
       <div className="footer__copyright_home">
-       
+
         <div className="footer__copyright__youtube">
           <small>
             <a
@@ -33,7 +33,7 @@ const HomeMenu = () => {
               &nbsp; Credits
             </a>
           </small>
-          
+
           <small>&copy;&nbsp; www.lahon.in 2025</small>
         </div>
       </div>

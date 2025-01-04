@@ -7,6 +7,7 @@
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
   color-scheme: dark;
+
 }
 
 body {
@@ -38,6 +39,7 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
+
 
 }
 
@@ -96,6 +98,7 @@ h1 {
 
 section {
   margin-top: 8rem;
+  text-align: start;
 }
 
 section>h2,
@@ -109,6 +112,8 @@ section>h2 {
   color: var(--color-primary);
   margin-bottom: 3rem;
 }
+
+
 
 .text-light {
   color: var(--color-light);

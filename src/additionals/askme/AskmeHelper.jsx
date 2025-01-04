@@ -66,17 +66,17 @@ const AskmeHelper = () => {
             type="text"
             id="name"
             name="name"
-            placeholder="Name (optional)"
+            placeholder="Name"
             className="askme-control-input"
+            required
           />
 
           <input
             type="text"
             id="bool"
             name="bool"
-            placeholder="Display this publicly? (Yes/No)"
+            placeholder="mail/phone no? (optional)"
             className="askme-control-input"
-            required
           />
 
 

@@ -16,6 +16,7 @@
         url("../assets/bg-texture.png");
     background-size: cover;
     background-repeat: no-repeat;
+    padding-top: 20vh;
 }
 
 .wrapper3 {
