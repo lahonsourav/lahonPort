@@ -16,10 +16,6 @@ import Education from "../education/Education";
 const Home = () => {
   return (
       <>
-    <Header />
-
-
-
       <Nav />
       <About />
       <Education />

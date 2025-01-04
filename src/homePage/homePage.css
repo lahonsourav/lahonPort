@@ -1,0 +1,39 @@
+.homePage {
+    background-image: linear-gradient(to bottom,
+            black,
+            var(--color-bg),
+            transparent),
+        url("../assets/bg-texture.png");
+
+
+    height: 100vh;
+    overflow: hidden;
+
+    background-image: linear-gradient(to top,
+            rgb(0, 4, 15),
+            var(--color-bg),
+            transparent),
+        url("../assets/bg-texture.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.wrapper3 {
+    display: grid;
+    place-items: center;
+    padding-bottom: 2rem;
+}
+
+.wrapper3>small>span {
+    color: red;
+}
+
+.footer__copyright_home {
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -1,12 +1,15 @@
 import "./App.css";
 import AnimatedCursor from "react-animated-cursor";
+import HomePage from "./homePage/HomePage.jsx";
 import Home from "./components/home/Home";
 import Askme from "./additionals/askme/Askme.jsx";
+import SolarMenu from "./additionals/solar/SolarMenu.jsx";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
 } from "react-router-dom";
+import HomeMenu from "./homePage/HomeMenu.jsx";
 
 function App() {
   window.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -46,7 +49,10 @@ function App() {
         />
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/homemenu" element={<HomeMenu />} />
+           <Route path="/solar" element={<SolarMenu />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/askme" element={<Askme />} />
         </Routes>
       </div>

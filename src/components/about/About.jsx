@@ -16,35 +16,13 @@ const About = () => {
   }, []);
   return (
     <section id="about">
-      <div>
-        <a href="#about">
-          <div>
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className="scroll-down"
-            />
-          </div>
-        </a>
-      </div>
+    
 
-      <div className="needspace">
-        <svg class="arrows">
-          <path className="a1" d="M0 0 L30 32 L60 0"></path>
-          <path className="a2" d="M0 20 L30 52 L60 20"></path>
-          <path className="a3" d="M0 40 L30 72 L60 40"></path>
-        </svg>
-      </div>
+      
 
-      <h5 data-aos="fade-down">Get To Know</h5>
+      <h5 data-aos="fade-down">I go by the name</h5>
 
-      <h2>About Me</h2>
+      <h2>Sourav Lahon</h2>
 
       <div className="container about__container">
         <div data-aos="zoom-in" className="about__me">
@@ -114,6 +92,27 @@ const About = () => {
             and cats, but frogs are cute too.
           </p>
         </div>
+      </div>
+
+      <div>
+            <motion.div
+              animate={{
+                y: [0, 24, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+              className="scroll-down"
+            />
+      </div>
+      <div className="needspace">
+        <svg class="arrows">
+          <path className="a1" d="M0 0 L30 32 L60 0"></path>
+          <path className="a2" d="M0 20 L30 52 L60 20"></path>
+          <path className="a3" d="M0 40 L30 72 L60 40"></path>
+        </svg>
       </div>
     </section>
   );

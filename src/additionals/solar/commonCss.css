@@ -1,0 +1,19 @@
+.shadow_bg {
+    background-image: linear-gradient(to bottom,
+            black,
+            var(--color-bg),
+            transparent),
+        url("../../assets/bg-texture.png");
+
+
+    height: 100vh;
+    overflow: hidden;
+
+    background-image: linear-gradient(to top,
+            rgb(0, 4, 15),
+            var(--color-bg),
+            transparent),
+        url("../../assets/bg-texture.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}

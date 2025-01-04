@@ -1,0 +1,13 @@
+.cta {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+
+}
+
+.spbtn{
+    color: white;
+    border-color: white;
+    background-color: var(--color-bg-variant);
+}

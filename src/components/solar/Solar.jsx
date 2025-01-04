@@ -5,12 +5,14 @@ const Solar = () => {
   return (
     <div class="clearfix">
       <ul class="solarsystem">
-        <li class="sun"></li>
+        <li class="sun">
+         
+        </li>
         <li class="mercury">
           <span></span>
         </li>
         <li class="venus">
-          <span></span>
+          <span>credits</span>
         </li>
         <li class="earth">
           <span>
@@ -18,39 +20,40 @@ const Solar = () => {
           </span>
         </li>
         <li class="mars">
-          <a href="#about">
-            <span>about</span>
-          </a>
+         
+            <span>contact</span>
+     
         </li>
         <li class="asteroids_meteorids">
           <span></span>
         </li>
         <li class="jupiter">
-          <a href="#services">
-            <span>bioData</span>
-          </a>
+         
+            <span>experience</span>
+ 
         </li>
         <li class="saturn">
-          <a href="#services">
-            <span>
-              education <span class="ring"></span>
+        
+          <span>
+            current
+               <span class="ring"></span>
             </span>
-          </a>
+        
         </li>
         <li class="uranus">
-          <a href="#experience">
-            <span>skills</span>
-          </a>
+         
+            <span>education</span>
+         
         </li>
         <li class="neptune">
-          <a href="#portfolio">
-            <span>projects</span>
-          </a>
+         
+            <span>about</span>
+
         </li>
         <li class="pluto">
-          <a href="#contact">
-            <span>contact</span>
-          </a>
+        
+            <span></span>
+
         </li>
       </ul>
     </div>
