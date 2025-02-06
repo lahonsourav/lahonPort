@@ -45,7 +45,7 @@ const Portfolio = () => {
             </small>
             <div className="portfolio__item-cta">
               <a
-                href="https://www.assamesedress.shop/"
+                href="https://gamusatogether.onrender.com"
                 className="btn btn-primary"
                 target="_blank"
                 rel="noreferrer"
