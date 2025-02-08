@@ -12,7 +12,7 @@ const CTA = () => {
         Resume
       </a>
 
-      <div className="btn" onClick={() => navigate("/music")} >
+      <div className="btn btn-primary" onClick={() => navigate("/music")} >
         Creative
       </div>
 

@@ -9,6 +9,17 @@
   margin-top: 2rem;
 }
 
+.hint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hint>span {
+  color: yellow;
+}
+
 ul.solarsystem {
   position: absolute;
   display: flex;

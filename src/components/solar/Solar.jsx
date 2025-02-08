@@ -106,8 +106,8 @@ const Solar = () => {
       </div>
 
 
-      <small>
-        hint: your'e my Sunshine 🌞
+      <small className="hint">
+        hint : your'e my <span>Sun</span>shine 🌞
       </small>
 
 
