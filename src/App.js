@@ -9,7 +9,6 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import HomeMenu from "./homePage/HomeMenu.jsx";
 import Music from "./components/portfolio/Music.jsx";
 
 function App() {
@@ -51,7 +50,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/homemenu" element={<HomeMenu />} />
+
           <Route path="/solar" element={<SolarMenu />} />
           <Route path="/home" element={<Home />} />
           <Route path="/askme" element={<Askme />} />

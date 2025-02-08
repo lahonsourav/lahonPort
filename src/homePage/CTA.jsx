@@ -1,48 +1,29 @@
-import { Link } from "react-router-dom";
-import cv from "./resume.pdf";
 import './cts.css';
+import cv from "../assets/resume.pdf";
+import { useNavigate } from 'react-router-dom';
+
 
 const CTA = () => {
+
+  const navigate = useNavigate();
   return (<>
     <div className="cta">
       <a href={cv} target="_blank" rel="noopener noreferrer" className="btn">
         Resume
       </a>
 
-
-      <Link to="/home" className="btn spbtn">
-        Portfolio
-      </Link>
-    </div>
-
-    <div className="cta">
-      <Link to="/solar" className="btn">
-        Solar navigate
-      </Link>
-
-      <Link to="/askme" className="btn">
-        Ask anything
-      </Link>
+      <div className="btn" onClick={() => navigate("/music")} >
+        Creative
+      </div>
 
 
-    </div>
 
-    <div className="cta">
-
-
-      <a href="https://www.assamesedress.shop" target="_blank" rel="noopener noreferrer" className="btn">
-        assamesedress.shop
-      </a>
-    </div>
+    </div >
 
 
-    <div className="cta">
 
 
-      <Link to="/music" className="btn">
-        Music
-      </Link>
-    </div>
+
   </>
 
   );

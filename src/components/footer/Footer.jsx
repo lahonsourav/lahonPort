@@ -4,7 +4,7 @@ import "./footer.css";
 const Footer = () => {
   return (
     <footer>
-     
+
       <strong className="footer__logo">THANKS FOR VISITING</strong>
 
       <ul className="permalinks">
@@ -26,19 +26,10 @@ const Footer = () => {
           {" "}
           <a href="#portfolio">Projects</a>
         </li>
+
         <li>
           {" "}
-          <a
-            href="https://www.gamusagogamukh.in"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Visit my StartUp
-          </a>
-        </li>
-        <li>
-          {" "}
-          <a href="/askme">Ask Me Anything</a>
+          <a href="/askme">Ask me</a>
         </li>
       </ul>
 
@@ -61,7 +52,7 @@ const Footer = () => {
               &nbsp; Credits
             </a>
           </small>
-        <small>&copy;&nbsp; www.lahon.in 2025</small>
+          <small>&copy;&nbsp; www.lahon.in 2025</small>
         </div>
       </div>
     </footer>

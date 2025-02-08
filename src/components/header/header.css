@@ -6,7 +6,7 @@ header {
     url("../../assets/bg-texture.png");
   background-repeat: no-repeat;
   background-size: contain;
-  height: 30vh;
+  height: 20vh;
   padding-top: 2rem;
   overflow: scroll;
 }

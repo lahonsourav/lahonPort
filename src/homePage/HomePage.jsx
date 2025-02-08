@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
+import { useNavigate } from 'react-router-dom';
 import './homePage.css';
 import Header from '../components/header/Header';
 
@@ -19,11 +19,11 @@ const HomePage = () => {
       setTimeout(() => {
         setHidden(true); // Hide the #background-wrap
         setClickedBubble(null); // Reset the clicked bubble state
-       
+
         setHideWrapper3(true); // Hide wrapper3 after clicking O2
-        
+
         // Redirect to the /homemenu page after a delay
-        navigate('/homemenu'); // Redirect to /homemenu
+        navigate('/solar'); // Redirect to /homemenu
       }, 1000);
     } else {
       setAllRed(true); // Turn all bubbles red
@@ -34,15 +34,14 @@ const HomePage = () => {
   return (
     <div className="homePage">
       <Header />
-      
+
       {!hidden && (
         <div id="background-wrap">
           {["H", "He", "N2", "Cl", "Ar", "O2", "O2", "Kr", "O2", "Ne"].map((label, index) => (
             <div
               key={index}
-              className={`bubble x${index + 1} ${allRed ? "red" : ""} ${
-                clickedBubble === index ? "blue" : ""
-              }`}
+              className={`bubble x${index + 1} ${allRed ? "red" : ""} ${clickedBubble === index ? "blue" : ""
+                }`}
               onClick={() => handleClick(label, index)}
             >
               <h1>
@@ -60,10 +59,10 @@ const HomePage = () => {
         </div>
       )}
 
- 
+
 
       <div className="footer__copyright_home">
-        {!hideWrapper3 && ( 
+        {!hideWrapper3 && (
           <div className="wrapper3">
             <small>if you're not an alien</small>
             <small>press the <span>Oxygen</span> bubble</small>
@@ -87,7 +86,7 @@ const HomePage = () => {
               &nbsp; Credits
             </a>
           </small>
-          
+
           <small>&copy;&nbsp; www.lahon.in 2025</small>
         </div>
       </div>
