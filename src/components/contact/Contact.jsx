@@ -66,8 +66,8 @@ const Contact = () => {
           <article className="contact__option">
             <BiMailSend className="contact__option-icon" />
             <h4>Email</h4>
-            <h5>lahoncs@gmail.com</h5>
-            <a href="mailto:lahoncs@gmail.com" target="_blank" rel="noreferrer">
+            <h5>sourav@lahon.in</h5>
+            <a href="mailto:sourav@lahon.in" target="_blank" rel="noreferrer">
               Send a Mail
             </a>
           </article>
