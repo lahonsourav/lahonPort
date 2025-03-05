@@ -9,11 +9,11 @@ const CTA = () => {
   return (<>
     <div className="cta">
       <a href={cv} target="_blank" rel="noopener noreferrer" className="btn">
-        Resume
+        Resume : pdf
       </a>
 
-      <div className="btn btn-primary" onClick={() => navigate("/alien")} >
-        Creative
+      <div className="btn btn-primary" onClick={() => navigate("/professional")} >
+        Professional
       </div>
     </div >
   </>

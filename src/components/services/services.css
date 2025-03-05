@@ -22,11 +22,9 @@
 }
 
 .service:hover {
-  background: linear-gradient(
-    transparent,
-    var(--color-primary-variant),
-    transparent
-  );
+  background: linear-gradient(transparent,
+      var(--color-primary-variant),
+      transparent);
   border-color: var(--color-primary);
   cursor: text;
 }
@@ -45,14 +43,17 @@
 }
 
 .service__list {
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
   overflow: hidden;
+  align-items: center;
 }
 
 .service__list li {
   display: flex;
+  align-items: center;
   gap: 1rem;
-  margin-bottom: 0.8rem;
 }
 
 .service__list-icon {
@@ -62,6 +63,7 @@
 
 .service__list p {
   font-size: 0.9rem;
+  color: white;
 }
 
 .service__list-link {
@@ -90,11 +92,9 @@
   }
 
   .service {
-    background: linear-gradient(
-      transparent,
-      var(--color-primary-variant),
-      transparent
-    );
+    background: linear-gradient(transparent,
+        var(--color-primary-variant),
+        transparent);
 
     border-radius: 0 0 2rem 2rem;
     border: 1px solid var(--color-primary);

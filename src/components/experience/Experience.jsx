@@ -216,7 +216,7 @@ const Experience = () => {
                   <AiOutlineVideoCameraAdd className="experience__details-icon" />
                   <div>
                     <h4>Video Editing</h4>
-                    <small className="text-light">Premier Pro, Filmora</small>
+                    <small className="text-light">Premier Pro, daVinvi Resolve, Filmora</small>
                   </div>
                 </article>
               </Tilt>
@@ -235,7 +235,7 @@ const Experience = () => {
                 <article className="experience__details">
                   <FaGuitar className="experience__details-icon" />
                   <div>
-                    <h4>Music, Instrument</h4>
+                    <h4>Music</h4>
                     <small className="text-light">Hip-Hop, Ukulele</small>
                   </div>
                 </article>

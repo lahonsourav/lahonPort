@@ -5,7 +5,7 @@ const Professional = () => {
     return (
         <div className='pro-container'>
 
-            <p>            Professional Dashboard is Coming soon
+            <p>            Professional Dashboard is under development
             </p>
         </div>
     )

@@ -22,7 +22,7 @@ const Education = () => {
         icon={<img src={blackrock} alt="myLogo" />}
       >
         <h3 className="vertical-timeline-element-title">
-          Upcoming Analyst 6M intern
+          Analyst intern
         </h3>
         <h4 className="vertical-timeline-element-subtitle">BlackRock</h4>
         <p>
