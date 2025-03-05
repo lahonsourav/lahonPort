@@ -8,7 +8,8 @@ import {
 import React, { Suspense, lazy } from "react";
 import Loading from "./additionals/loading/Loading.jsx";
 
-import HomePage from "./homePage/HomePage.jsx"; // Import HomePage normally
+import HomePage from "./homePage/HomePage.jsx";
+const Professional = lazy(() => import("./professional/Professional.jsx"));
 const Home = lazy(() => import("./components/home/Home"));
 const Askme = lazy(() => import("./additionals/askme/Askme.jsx"));
 const SolarMenu = lazy(() => import("./additionals/solar/SolarMenu.jsx"));
@@ -58,6 +59,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/askme" element={<Askme />} />
             <Route path="/music" element={<Music />} />
+            <Route path="/professional" element={<Professional />} />
           </Routes>
         </Suspense>
 

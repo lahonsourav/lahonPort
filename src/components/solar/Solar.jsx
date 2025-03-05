@@ -39,12 +39,12 @@ const Solar = () => {
   const planetInfo = {
     mercury: "Mercury: The closest planet to the Sun.",
     venus: "All credits and acknowledgments are available in the README.md file of the GitHub repository.",
-    earth: "Earth: Our home planet, the only known planet with life.",
+    earth: "I'm a Computer Science and Engineering Undergrad at NIT Silchar! 💻 Currently leveling up my full stack web dev skills and sharpening my problem-solving powers! 💪 Oh, and did I mention I make music? 🎶 ♫ I’m on a mission to explore the universe 🌌, get lost in the stars ✨, and wonder about Jupiter – that gas giant with so much personality! 🪐 By the way, I adore dogs and cats 🐕🐈, but frogs? 😍 They're kinda the hidden cuties in the animal kingdom! 🐸💚",
     mars: "Got a question? Don’t just sit there – dial +91 60010 98923 and let the fun begin!",
     jupiter: "Ex-Software Sorcerer for a summer at Microsoft (2024) – Conjured up code, debugged dragons, and tamed tech beasts!",
     saturn: "Currently rocking the Software Engineer Intern gig (2025) at Blackrock – where the code flows as smoothly as coffee!",
     uranus: "Currently wrangling code and acing algorithms as a final-year CSE student at NIT Silchar – the campus hero by day, debugger by night!",
-    neptune: "I'm a Computer Science and Engineering Undergrad at NIT Silchar! 💻 Currently leveling up my full stack web dev skills and sharpening my problem-solving powers! 💪 Oh, and did I mention I make music? 🎶 ♫ I’m on a mission to explore the universe 🌌, get lost in the stars ✨, and wonder about Jupiter – that gas giant with so much personality! 🪐 By the way, I adore dogs and cats 🐕🐈, but frogs? 😍 They're kinda the hidden cuties in the animal kingdom! 🐸💚",
+    neptune: "oho! it's blank"
   };
 
 
@@ -85,8 +85,8 @@ const Solar = () => {
           <li className="uranus" onClick={() => navigate("/home")}>
             <span>portfolio</span>
           </li>
-          <li className="neptune" onClick={() => handlePlanetClick("neptune")}>
-            <span></span>
+          <li className="neptune" onClick={() => navigate("/professional")}>
+            <span>professional</span>
           </li>
           <li className="pluto"></li>
         </ul>

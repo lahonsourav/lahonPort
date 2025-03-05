@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     padding: 2rem 0;
-    margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -11,15 +10,12 @@
 .askme_form_container {
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     backdrop-filter: blur(7px);
     padding: 1rem;
     border-radius: 1rem;
-
-    /* Red shadow with 30% opacity */
 }
 
 .askme_form {
