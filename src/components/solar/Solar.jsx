@@ -41,7 +41,7 @@ const Solar = () => {
     venus: "All credits and acknowledgments are available in the README.md file of the GitHub repository.",
     earth: "I'm a Computer Science and Engineering Undergrad at NIT Silchar! 💻 Currently leveling up my full stack web dev skills and sharpening my problem-solving powers! 💪 Oh, and did I mention I make music? 🎶 ♫ I’m on a mission to explore the universe 🌌, get lost in the stars ✨, and wonder about Jupiter – that gas giant with so much personality! 🪐 By the way, I adore dogs and cats 🐕🐈, but frogs? 😍 They're kinda the hidden cuties in the animal kingdom! 🐸💚",
     mars: "Got a question? Don’t just sit there – dial +91 60010 98923 and let the fun begin!",
-    jupiter: "Ex-Software Sorcerer for a summer at Microsoft (2024) – Conjured up code, debugged dragons, and tamed tech beasts!",
+    jupiter: "oho! it's blank",
     saturn: "Currently rocking the Software Engineer Intern gig (2025) at Blackrock – where the code flows as smoothly as coffee!",
     uranus: "Currently wrangling code and acing algorithms as a final-year CSE student at NIT Silchar – the campus hero by day, debugger by night!",
     neptune: "oho! it's blank"
@@ -73,8 +73,8 @@ const Solar = () => {
             <span>creative</span>
           </li>
           <li className="asteroids_meteorids"></li>
-          <li className="jupiter" onClick={() => handlePlanetClick("jupiter")}>
-            <span></span>
+          <li className="jupiter" onClick={() => navigate("/contactout")}>
+            <span>contact</span>
           </li>
           <li className="saturn" onClick={() => navigate("/askme")}>
             <span>

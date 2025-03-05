@@ -14,6 +14,8 @@ const Home = lazy(() => import("./components/home/Home"));
 const Askme = lazy(() => import("./additionals/askme/Askme.jsx"));
 const SolarMenu = lazy(() => import("./additionals/solar/SolarMenu.jsx"));
 const Music = lazy(() => import("./components/portfolio/Music.jsx"));
+const ContactOut = lazy(() => import("./components/contact/Contact"));
+
 
 function App() {
   window.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -60,6 +62,7 @@ function App() {
             <Route path="/askme" element={<Askme />} />
             <Route path="/music" element={<Music />} />
             <Route path="/professional" element={<Professional />} />
+            <Route path="/contactout" element={<ContactOut />} />
           </Routes>
         </Suspense>
 
