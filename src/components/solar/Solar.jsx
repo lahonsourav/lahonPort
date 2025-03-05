@@ -107,7 +107,7 @@ const Solar = () => {
 
 
       <small className="hint">
-        hint : your'e my <span>Sun</span>shine 🌞
+        hint : The <span>Sun</span> is the truth 🌞
       </small>
 
 
