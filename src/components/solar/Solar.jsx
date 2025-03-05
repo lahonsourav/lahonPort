@@ -97,7 +97,7 @@ const Solar = () => {
             <div className="popup-content">
 
               <p>{planetInfo[selectedPlanet]}</p>
-              <button onClick={closePopup}>
+              <button className="btn btn-primary" onClick={closePopup}>
                 Close this damn thing
               </button>
             </div>
