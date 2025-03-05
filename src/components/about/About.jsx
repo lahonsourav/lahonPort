@@ -61,7 +61,7 @@ const About = () => {
             </article>
 
             <a
-              href="https://gamusatogether.onrender.com"
+              href="https://gamusatogether.onrender.com" target="_blank" rel="noreferrer"
               data-aos="fade-up-right"
               className="about__card"
             >

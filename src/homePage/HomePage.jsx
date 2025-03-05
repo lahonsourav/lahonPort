@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './homePage.css';
-import Header from '../components/header/Header';
 
 
 const HomePage = () => {
@@ -23,7 +22,7 @@ const HomePage = () => {
         setHideWrapper3(true); // Hide wrapper3 after clicking O2
 
         // Redirect to the /homemenu page after a delay
-        navigate('/solar'); // Redirect to /homemenu
+        navigate('/music'); // Redirect to /homemenu
       }, 1000);
     } else {
       setAllRed(true); // Turn all bubbles red
@@ -33,7 +32,7 @@ const HomePage = () => {
 
   return (
     <div className="homePage">
-      <Header />
+
 
       {!hidden && (
         <div id="background-wrap">

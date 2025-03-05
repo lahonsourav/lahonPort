@@ -8,7 +8,7 @@ header {
   background-size: contain;
   height: 30vh;
   padding-top: 2rem;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .wrapper2 {

@@ -128,7 +128,7 @@ const Services = () => {
             </Tilt>
           </article>
         </Tilt>
-        
+
 
         <Tilt>
           <article className="service">
@@ -137,7 +137,7 @@ const Services = () => {
             </div>
 
             <Tilt>
-             
+
               <ul
                 data-aos="fade-up"
                 data-aos-easing="linear"
@@ -146,7 +146,7 @@ const Services = () => {
               >
                 <li>
 
-                
+
                   <BsCheck2 className="service__list-icon" />
                   <p>Hosted and managed Events in different Institutes.</p>
                 </li>
@@ -164,6 +164,7 @@ const Services = () => {
                       <a
                         className="service__list-link"
                         href="https://www.facebook.com/tecnoesis.nits/"
+                        target="_blank" rel="noreferrer"
                       >
                         Tecnoesis 2022{" "}
                       </a>
@@ -178,6 +179,7 @@ const Services = () => {
                       <a
                         className="service__list-link"
                         href="https://www.facebook.com/113369497254908/posts/406268871298301/?mibextid=98BtzZNkros8nYVe"
+                        target="_blank" rel="noreferrer"
                       >
                         Painting
                       </a>
@@ -193,7 +195,8 @@ const Services = () => {
                     <span>
                       <a
                         className="service__list-link"
-                        href="https://www.youtube.com/watch?v=-Yzg9fJV8mo&ab_channel=LAHON"
+                        href="https://www.youtube.com/@LAHON"
+                        target="_blank" rel="noreferrer"
                       >
                         Music Videos{" "}
                       </a>
@@ -203,7 +206,7 @@ const Services = () => {
                 </li>
                 <li>
                   <BsCheck2 className="service__list-icon" />
-                  <p>Moderator of Music Club, Symphonits, NIT Silchar</p>
+                  <p>Head of Music Club, Symphonits, NIT Silchar</p>
                 </li>
               </ul>
             </Tilt>

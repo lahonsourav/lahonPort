@@ -19,7 +19,7 @@ const Home = () => {
     <>
       <Nav />
 
-      {/* <Header /> */}
+      <Header />
       <CTA />
       <About />
       <Education />

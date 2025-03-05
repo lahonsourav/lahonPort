@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Portfolio.css";
-import Pt from './Partnership.pdf'
+// import Pt from './Partnership.pdf'
 
 import PRO2 from "../../images/boijaa.jpg";
-import PRO3 from "../../images/infinity.jpg";
+// import PRO3 from "../../images/infinity.jpg";
 import PRO4 from "../../images/adhorua.jpg";
-import PRO5 from "../../images/pc.png";
-import PRO6 from "../../images/gamusawhitelow.jpg";
+// import PRO5 from "../../images/pc.png";
+// import PRO6 from "../../images/gamusawhitelow.jpg";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Tilt from "react-parallax-tilt";
+import { useNavigate } from "react-router-dom";
 
 const Music = () => {
-    let time = new Date().toLocaleTimeString();
-    const [currentTime, setCurrentTime] = useState(time);
 
-    const updateTime = () => {
-        let time = new Date().toLocaleTimeString();
-        setCurrentTime(time);
-    };
-
-    setInterval(updateTime, 1000);
+    const navigate = useNavigate()
 
     useEffect(() => {
-        Aos.init({ duration: 2000 }); <nav></nav>
+        const handleBack = () => {
+            navigate("/solar");
+        };
+
+        window.history.pushState(null, "", window.location.href);
+        window.addEventListener("popstate", handleBack);
+
+        return () => {
+            window.removeEventListener("popstate", handleBack);
+        };
+    }, [navigate]);
+
+    useEffect(() => {
+        Aos.init({ duration: 2000 });
     }, []);
     return (
         <section id="portfolio">

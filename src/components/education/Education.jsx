@@ -55,12 +55,12 @@ const Education = () => {
         iconStyle={{ background: "#080707", color: "#fff" }}
         icon={<img src={simp} alt="myLogo" />}
       >
-        <h3 className="vertical-timeline-element-title">Moderator</h3>
+        <h3 className="vertical-timeline-element-title">Head</h3>
         <h4 className="vertical-timeline-element-subtitle">
           Symphonits, Music Club NIT Silchar
         </h4>
         <p>
-          As a moderator, worked for the club, arranged various activities in
+          As a head, worked for the club, arranged various activities in
           the College, managed events
         </p>
       </VerticalTimelineElement>

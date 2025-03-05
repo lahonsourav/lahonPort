@@ -11,7 +11,7 @@ const Solar = () => {
 
   useEffect(() => {
     const handleBack = () => {
-      navigate(1); // Moves the user forward to the same page
+      navigate(1);
     };
 
     window.history.pushState(null, "", window.location.href);
@@ -69,7 +69,7 @@ const Solar = () => {
               <span className="moon"></span>
             </span>
           </li>
-          <li className="mars" onClick={() => navigate("/music")}>
+          <li className="mars" onClick={() => navigate("/alien")}>
             <span>creative</span>
           </li>
           <li className="asteroids_meteorids"></li>
