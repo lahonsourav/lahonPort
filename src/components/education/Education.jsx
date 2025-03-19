@@ -43,7 +43,7 @@ const Education = () => {
         </h3>
         <h4 className="vertical-timeline-element-subtitle">Microsoft</h4>
         <p>
-          Former Software Enginner Intern at Microsoft Seach and Assistant team, Microsoft, India
+          Former Software Enginner Intern at Microsoft Search and Assistant team, Microsoft, India
         </p>
       </VerticalTimelineElement>
 

@@ -6,16 +6,16 @@ import {
   Routes,
 } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
-import Loading from "./additionals/loading/Loading.jsx";
 
+import Loading from "./additionals/loading/Loading.jsx";
 import HomePage from "./homePage/HomePage.jsx";
+
 const Professional = lazy(() => import("./professional/Professional.jsx"));
 const Home = lazy(() => import("./components/home/Home"));
 const Askme = lazy(() => import("./additionals/askme/Askme.jsx"));
 const SolarMenu = lazy(() => import("./additionals/solar/SolarMenu.jsx"));
 const Music = lazy(() => import("./components/portfolio/Music.jsx"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
-
 
 function App() {
   window.addEventListener("contextmenu", (e) => e.preventDefault());
