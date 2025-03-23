@@ -12,8 +12,8 @@ const CTA = () => {
         Resume : pdf
       </a>
 
-      <div className="btn btn-primary" onClick={() => navigate("/professional")} >
-        Professional
+      <div className="btn btn-primary" onClick={() => navigate("/creative")} >
+        Creative
       </div>
     </div >
   </>

@@ -22,7 +22,7 @@ const HomePage = () => {
         setHideWrapper3(true); // Hide wrapper3 after clicking O2
 
         // Redirect to the /homemenu page after a delay
-        navigate('/music'); // Redirect to /homemenu
+        navigate('/creative'); // Redirect to /homemenu
       }, 1000);
     } else {
       setAllRed(true); // Turn all bubbles red

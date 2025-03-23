@@ -69,24 +69,24 @@ const Solar = () => {
               <span className="moon"></span>
             </span>
           </li>
-          <li className="mars" onClick={() => navigate("/alien")}>
+          <li className="mars" onClick={() => navigate("/creative")}>
             <span>creative</span>
           </li>
           <li className="asteroids_meteorids"></li>
           <li className="jupiter" onClick={() => navigate("/contactout")}>
             <span>contact</span>
           </li>
-          <li className="saturn" onClick={() => navigate("/askme")}>
+          <li className="saturn" >
             <span>
-              ask
+
               <span className="ring"></span>
             </span>
           </li>
           <li className="uranus" onClick={() => navigate("/home")}>
             <span>portfolio</span>
           </li>
-          <li className="neptune" onClick={() => navigate("/professional")}>
-            <span>professional</span>
+          <li className="neptune">
+            <span></span>
           </li>
           <li className="pluto"></li>
         </ul>
@@ -107,7 +107,8 @@ const Solar = () => {
 
 
       <small className="hint">
-        hint : The <span>Sun</span> is the truth 🌞
+        The <span>Creative</span> is the truth 🌞
+
       </small>
 
 

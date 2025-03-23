@@ -9,12 +9,10 @@ import React, { Suspense, lazy } from "react";
 
 import Loading from "./additionals/loading/Loading.jsx";
 import HomePage from "./homePage/HomePage.jsx";
+import Creative from "./components/portfolio/Creative.jsx";
 
-const Professional = lazy(() => import("./professional/Professional.jsx"));
 const Home = lazy(() => import("./components/home/Home"));
-const Askme = lazy(() => import("./additionals/askme/Askme.jsx"));
 const SolarMenu = lazy(() => import("./additionals/solar/SolarMenu.jsx"));
-const Music = lazy(() => import("./components/portfolio/Music.jsx"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
 
 function App() {
@@ -59,9 +57,7 @@ function App() {
             <Route path="/" element={<SolarMenu />} />
             <Route path="/solar" element={<SolarMenu />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/askme" element={<Askme />} />
-            <Route path="/music" element={<Music />} />
-            <Route path="/professional" element={<Professional />} />
+            <Route path="/creative" element={<Creative />} />
             <Route path="/contactout" element={<ContactOut />} />
           </Routes>
         </Suspense>
