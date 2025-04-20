@@ -9,7 +9,7 @@ const Post = ({ videoUrl }) => {
         script.async = true;
         script.onload = () => {
             if (window.instgrm) {
-                window.instgrm.Embeds.process(); // Process Instagram embeds after the script loads
+                window.instgrm.Embeds.process();
             }
         };
         document.body.appendChild(script);
@@ -45,6 +45,9 @@ const Post = ({ videoUrl }) => {
 const Reels = () => {
     return (
         <div className="post-section">
+            <Post
+                videoUrl="https://www.instagram.com/reel/DIbyPR5SFaN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            />
             <Post
                 videoUrl="https://www.instagram.com/reel/DHKa6GUSPBD/?utm_source=ig_embed&amp;utm_campaign=loading"
             />

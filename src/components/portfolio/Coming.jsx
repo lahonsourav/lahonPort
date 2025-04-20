@@ -11,7 +11,7 @@ const Coming = () => {
                 <div className="post-header">
                     <div className="post-user">
                         <img
-                            src={PHOTO}
+                            src={Mok}
                             alt="img"
                         />
                         <span>Moksha</span>
