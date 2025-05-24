@@ -107,7 +107,7 @@ const Solar = () => {
 
 
       <small className="hint">
-        The <span>Creative</span> is the truth 🌞
+        No Clue? Click the <span>Sun</span> 🌞
 
       </small>
 
