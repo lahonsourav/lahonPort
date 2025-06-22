@@ -78,12 +78,11 @@ const About = () => {
           </div>
 
           <p className="para">
-            I am a Computer Science and Engineering Undergraduate of&nbsp;
+            I am a Computer Science and Engineering Graduate of&nbsp;
             <a href="https://www.nits.ac.in/" target="_blank" rel="noreferrer">
               NIT Silchar.&nbsp;
             </a>
-            I am learning full stack Web development and also trying to improve
-            my problem solving skill.
+            Ex Microsoft SDE intern and currently SDE at Blackrock | Full stack web dev, React Native, Python
             <br />
             <br />I make{" "}
             <a

@@ -125,19 +125,18 @@ const Portfolio = () => {
             <div className="portfolio__item-image">
               <img src={PRO3} alt="" />
             </div>
-            <h3>Infinity Education</h3>
+            <h3>Mood Diary</h3>
             <small>
-              A premium coaching institute for one stop solution for Board,
-              JEE-mains & Advanced, NEET etc. (ongoing...)
+              Just write two lines of your mood, AI will write the diary for you, all saved in calendar. (ongoing...)
             </small>
             <div className="portfolio__item-cta">
               <a
-                href="https://infinityeducation.netlify.app/"
+                href=""
                 className="btn btn-primary"
                 target="_blank"
                 rel="noreferrer"
               >
-                Inspect
+                Soon..
               </a>
             </div>
           </article>

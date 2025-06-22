@@ -10,6 +10,7 @@ import React, { Suspense, lazy } from "react";
 import Loading from "./additionals/loading/Loading.jsx";
 import HomePage from "./homePage/HomePage.jsx";
 import Creative from "./components/portfolio/Creative.jsx";
+import Admin from "./admin/Admin.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
 const SolarMenu = lazy(() => import("./additionals/solar/SolarMenu.jsx"));
@@ -64,6 +65,7 @@ function App() {
 
         <Routes>
           <Route path="/alien" element={<HomePage />} />
+          <Route path="/adminsecret" element={<Admin />} />
         </Routes>
       </div>
     </Router>

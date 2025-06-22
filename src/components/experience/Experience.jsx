@@ -134,8 +134,8 @@ const Experience = () => {
               <article className="experience__details">
                 <AiOutlineHtml5 className="experience__details-icon" />
                 <div>
-                  <h4>HTML, CSS</h4>
-                  <small className="text-light">Intermediate</small>
+                  <h4>Full stack web</h4>
+                  <small className="text-light">MERN</small>
                 </div>
               </article>
             </Tilt>
@@ -145,8 +145,8 @@ const Experience = () => {
                 <DiJavascript1 className="experience__details-icon" />
                 <dir>
                   {" "}
-                  <h4>Java Script</h4>
-                  <small className="text-light">Basic</small>
+                  <h4>Android/Mobile</h4>
+                  <small className="text-light">React Native</small>
                 </dir>
               </article>
             </Tilt>
@@ -154,8 +154,8 @@ const Experience = () => {
               <article className="experience__details">
                 <CgCPlusPlus className="experience__details-icon" />
                 <div>
-                  <h4>Python, C, C++</h4>
-                  <small className="text-light">Intermediate</small>
+                  <h4>Backend Dev</h4>
+                  <small className="text-light">Python Flask</small>
                 </div>
               </article>
             </Tilt>
@@ -163,8 +163,8 @@ const Experience = () => {
               <article className="experience__details">
                 <FaCss3Alt className="experience__details-icon" />
                 <div>
-                  <h4>BS-CSS, TW-CSS</h4>
-                  <small className="text-light">Intermediate</small>
+                  <h4>Frontend</h4>
+                  <small className="text-light">HTML, CSS, React</small>
                 </div>
               </article>
             </Tilt>
@@ -172,8 +172,8 @@ const Experience = () => {
               <article className="experience__details">
                 <FaReact className="experience__details-icon" />
                 <div>
-                  <h4>MERN Stack</h4>
-                  <small className="text-light">Intermediate</small>
+                  <h4>Database</h4>
+                  <small className="text-light">SQL, MongoDB</small>
                 </div>
               </article>
             </Tilt>
