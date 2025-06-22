@@ -11,7 +11,7 @@ const Admin = () => {
         setResponseMsg('');
 
         try {
-            const res = await fetch('http://192.168.101.248:5000/api/send_notifications', {
+            const res = await fetch('https://flask-mood-diary.onrender.com/api/send_notifications', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
