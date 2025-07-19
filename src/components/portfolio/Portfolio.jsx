@@ -127,7 +127,7 @@ const Portfolio = () => {
             </div>
             <h3>Mood Diary</h3>
             <small>
-              Just write two lines of your mood, AI will write the diary for you, all saved in calendar. (ongoing...)
+              Just write two lines of your mood, We will write the journal for you, all saved in calendar filled with your mood emojis, add friends and share journal.
             </small>
             <div className="portfolio__item-cta">
               <a
@@ -136,7 +136,7 @@ const Portfolio = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Soon..
+                Get Mood
               </a>
             </div>
           </article>

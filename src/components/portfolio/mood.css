@@ -1,0 +1,148 @@
+/* Container Styling */
+.mood_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #f8f9fa, #e0e0e0);
+    color: #333;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    gap: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Text + Image Section */
+.img_txt_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    justify-content: center;
+    width: 85%;
+    margin: 0 auto 2rem auto;
+    font-size: 14px;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Title Styling */
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2e2e2e;
+}
+
+/* Subtitle Styling */
+.subTitle {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: #444;
+    text-decoration: underline;
+}
+
+/* Paragraph Container */
+.para {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    width: 85%;
+    font-size: 14px;
+    color: #444;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Image & Download Buttons Container */
+.img_left_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    width: 85%;
+    margin: 1rem auto 0 auto;
+}
+
+/* Image Styling */
+.image {
+    width: 280px;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Download Button Base */
+.download-button {
+    padding: 14px 28px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Hover State */
+.download-button:hover {
+    background-color: #43a047;
+    transform: translateY(-2px);
+}
+
+/* iOS Button Styling (Second Child) */
+.img_left_right .download-button:nth-of-type(2) {
+    background-color: #007aff;
+}
+
+.img_left_right .download-button:nth-of-type(2):hover {
+    background-color: #0061d0;
+}
+
+
+
+/* -------------------- Responsive Styling -------------------- */
+@media screen and (max-width: 600px) {
+    .img_left_right {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .download-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .image {
+        width: 100%;
+    }
+
+    .img_txt_container,
+    .para {
+        width: 95%;
+        padding: 1rem;
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .subTitle {
+        font-size: 16px;
+    }
+
+    .download-button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}
