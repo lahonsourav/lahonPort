@@ -31,20 +31,7 @@ const Mood = () => {
             </div>
 
             <div className='img_txt_container'>
-                <small>Click Android button to download the apk</small>
-
-                <div className='img_left_right'>
-                    <a
-                        href="https://github.com/lahonsourav/flask-mood-diary/releases/download/v1.0.0-beta/application-1b6be896-ad4b-449c-a9a9-979c627b5986.apk"
-                        download="mood-summary-beta.apk"
-                    >
-                        <div className='download-button'>Android (Beta Test)</div>
-                    </a>
-                    <div className='download-button'>iOS (Coming Soon)</div>
-                </div>
-
-
-
+                <small>Scroll down of the page to download</small>
             </div>
             <h4 className='subTitle'>Please take a moment to read our Privacy Policy</h4>
 
