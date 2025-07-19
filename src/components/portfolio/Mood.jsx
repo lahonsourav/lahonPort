@@ -19,6 +19,8 @@ const Mood = () => {
             <h3 className='title'>Mood Journal</h3>
 
 
+
+
             <div className='para'>
                 <h4 className='subTitle'>A Journal of Your Feelings</h4>
                 <p>Mood Journal is your personal space to track emotions and capture daily reflections with ease. Whether through timely notifications or at your own pace, you can log how you're feeling in just a few lines. At the end of the day, the app automatically compiles your entries into a thoughtful journal—just tap “Write Mood Journal”, or let the app do it for you. Even if you forget, don't worry—we've already saved your moods. Simply visit the calendar anytime to read your journal entries.
@@ -26,6 +28,23 @@ const Mood = () => {
                     But there’s more—Mood Journal lets you connect with friends. Just add their Journal ID and you can read their mood journals in real time. It’s simple, personal, and beautifully human.
 
                 </p>
+            </div>
+
+            <div className='img_txt_container'>
+                <small>Click Android button to download the apk</small>
+
+                <div className='img_left_right'>
+                    <a
+                        href="https://github.com/lahonsourav/flask-mood-diary/releases/download/v1.0.0-beta/application-1b6be896-ad4b-449c-a9a9-979c627b5986.apk"
+                        download="mood-summary-beta.apk"
+                    >
+                        <div className='download-button'>Android (Beta Test)</div>
+                    </a>
+                    <div className='download-button'>iOS (Coming Soon)</div>
+                </div>
+
+
+
             </div>
             <h4 className='subTitle'>Please take a moment to read our Privacy Policy</h4>
 

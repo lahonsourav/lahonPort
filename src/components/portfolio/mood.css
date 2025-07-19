@@ -118,8 +118,11 @@
     }
 
     .download-button {
-        width: 100%;
+        width: 300px;
         text-align: center;
+        font-size: 16px;
+        padding: 12px 20px;
+        box-sizing: border-box;
     }
 
     .image {
@@ -141,8 +144,4 @@
         font-size: 16px;
     }
 
-    .download-button {
-        font-size: 16px;
-        padding: 12px 20px;
-    }
 }

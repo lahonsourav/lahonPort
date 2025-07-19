@@ -11,10 +11,12 @@ import PRO6 from "../../images/gamusawhitelow.jpg";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Tilt from "react-parallax-tilt";
+import { useNavigate } from "react-router-dom";
 
 const Portfolio = () => {
   let time = new Date().toLocaleTimeString();
   const [currentTime, setCurrentTime] = useState(time);
+  const navigate = useNavigate();
 
   const updateTime = () => {
     let time = new Date().toLocaleTimeString();
@@ -130,14 +132,14 @@ const Portfolio = () => {
               Just write two lines of your mood, We will write the journal for you, all saved in calendar filled with your mood emojis, add friends and share journal.
             </small>
             <div className="portfolio__item-cta">
-              <a
-                href=""
+              <div
+                onClick={() => navigate("/mood")}
                 className="btn btn-primary"
                 target="_blank"
                 rel="noreferrer"
               >
                 Get Mood
-              </a>
+              </div>
             </div>
           </article>
         </Tilt>
