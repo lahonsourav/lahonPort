@@ -32,6 +32,7 @@ const Mood = () => {
 
             <div className='img_txt_container'>
                 <small>Scroll down of the page to download</small>
+
             </div>
             <h4 className='subTitle'>Please take a moment to read our Privacy Policy</h4>
 
