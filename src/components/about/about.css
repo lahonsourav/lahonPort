@@ -83,11 +83,25 @@
 
 .para {
   backdrop-filter: blur(15px);
+  white-space: normal;
+  word-break: normal;
+  display: inline-block;
+  width: 100%;
 }
 
 .about__content p {
   margin: 2rem 0 2.6rem;
   color: var(--color-light);
+}
+
+.para a {
+  display: inline;
+  white-space: normal;
+}
+
+.para .muzieknootjes {
+  display: inline;
+  white-space: nowrap;
 }
 
 .scroll-down {

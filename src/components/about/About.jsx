@@ -77,40 +77,13 @@ const About = () => {
             </article>
           </div>
 
-          <p className="para">
-            I am a Computer Science and Engineering Graduate of&nbsp;
-            <a href="https://www.nits.ac.in/" target="_blank" rel="noreferrer">
-              NIT Silchar.&nbsp;
-            </a>
-            Ex Microsoft SDE intern and currently SDE at Blackrock | Full stack web dev, React Native, Python
-            <br />
-            <br />I make{" "}
-            <a
-              href="https://www.youtube.com/watch?v=OTNoeba54eo&ab_channel=WildWoodRecords"
-              target="_blank"
-              rel="noreferrer"
-            >
-              &nbsp;music,&nbsp;
-            </a>
-            <div class="muzieknootjes">
-              <div class="noot-1">&#9835; &#9833;</div>
-              <div class="noot-2">&#9833;</div>
-              <div class="noot-3">&#9839; &#9834;</div>
-              <div class="noot-4">&#9834;</div>
-            </div>{" "}
-            I love thinking about the Universe and Space, The huge stars, the
-            gas giant Jupiter.
-            <br />
-            <br />I love
-            <a
-              href="https://lahonsourav.github.io/doggies/#/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              &nbsp;Dogs&nbsp;
-            </a>
-            and cats, but frogs are cute too.
-          </p>
+          <div className="para">
+            <p>I am a Computer Science and Engineering Graduate of <a href="https://www.nits.ac.in/" target="_blank" rel="noreferrer">NIT Silchar</a>. Ex Microsoft SDE intern and currently SDE at Blackrock | Full stack web dev, React Native, Python.</p>
+
+            <p>I make <a href="https://www.youtube.com/watch?v=OTNoeba54eo&ab_channel=WildWoodRecords" target="_blank" rel="noreferrer">music</a><span className="muzieknootjes" style={{ display: "inline-block", marginLeft: "4px", verticalAlign: "middle" }}><span className="noot-1">&#9835; &#9833;</span><span className="noot-2">&#9833;</span><span className="noot-3">&#9839; &#9834;</span><span className="noot-4">&#9834;</span></span>, I love thinking about the Universe and Space, the huge stars, the gas giant Jupiter.</p>
+
+            <p>I love <a href="https://lahonsourav.github.io/doggies/#/" target="_blank" rel="noreferrer">Dogs</a> and cats, but frogs are cute too.</p>
+          </div>
         </div>
       </div>
 
