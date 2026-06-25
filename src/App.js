@@ -12,6 +12,7 @@ import HomePage from "./homePage/HomePage.jsx";
 import Creative from "./components/portfolio/Creative.jsx";
 import Admin from "./admin/Admin.jsx";
 import Mood from "./components/portfolio/Mood.jsx";
+import LazyKit from "./components/portfolio/LazyKit.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
 const SolarMenu = lazy(() => import("./additionals/solar/SolarMenu.jsx"));
@@ -62,6 +63,7 @@ function App() {
             <Route path="/creative" element={<Creative />} />
             <Route path="/contactout" element={<ContactOut />} />
             <Route path="/mood" element={<Mood />} />
+            <Route path="/lazykit" element={<LazyKit />} />
           </Routes>
         </Suspense>
 

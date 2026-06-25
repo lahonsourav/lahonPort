@@ -85,8 +85,8 @@ const Solar = () => {
           <li className="uranus" onClick={() => navigate("/home")}>
             <span>portfolio</span>
           </li>
-          <li className="neptune" onClick={() => navigate("/mood")}>
-            <span>mood</span>
+          <li className="neptune" onClick={() => navigate("/lazykit")}>
+            <span>lazykit</span>
           </li>
           <li className="pluto"></li>
         </ul>

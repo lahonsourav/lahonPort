@@ -42,6 +42,17 @@
   align-items: center;
   font-size: 50px;
 }
+
+.lazykit-preview {
+  background: #0d1117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lazykit-preview-emoji {
+  font-size: 5rem;
+}
 .portfolio__item-image:hover {
   overflow: hidden;
   margin-bottom: 0.6rem;

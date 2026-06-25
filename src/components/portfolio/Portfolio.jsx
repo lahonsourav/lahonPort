@@ -37,6 +37,34 @@ const Portfolio = () => {
       <div className="container portfolio__container">
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="portfolio__item-image lazykit-preview">
+              <span className="lazykit-preview-emoji">🦥</span>
+            </div>
+            <h3>LazyKit</h3>
+            <small>
+              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a PR. No laptop needed. (Node.js, GitHub Actions, Claude AI)
+            </small>
+            <div className="portfolio__item-cta">
+              <div
+                onClick={() => navigate("/lazykit")}
+                className="btn btn-primary"
+              >
+                Learn More
+              </div>
+              <a
+                href="https://www.npmjs.com/package/@slahon/lazykit"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                npm
+              </a>
+            </div>
+          </article>
+        </Tilt>
+
+        <Tilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
             <div className="portfolio__item-image">
               <img src={PRO6} alt="" />
             </div>
