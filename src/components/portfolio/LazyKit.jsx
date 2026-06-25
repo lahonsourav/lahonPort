@@ -30,7 +30,9 @@ const LazyKit = () => {
                 <div className="lk_code_block">
                     <code>npx @slahon/lazykit@latest init</code>
                 </div>
-                <p className="lk_note">Run this inside your project folder. That's it. LazyKit handles everything else automatically.</p>
+                <p className="lk_note">
+                    Run this from your <strong>project's root directory</strong> — the same folder that contains your <code className="lk_inline_code">.git</code> folder and has a GitHub remote configured. That's it. LazyKit handles everything else automatically.
+                </p>
             </div>
 
             {/* ── Requirements ── */}
@@ -38,20 +40,46 @@ const LazyKit = () => {
                 <h2 className="lk_section_title">Requirements</h2>
                 <ul className="lk_req_list">
                     <li><span className="lk_req_icon">✓</span><span>Node.js 18+</span></li>
-                    <li><span className="lk_req_icon">✓</span><span>A GitHub repository with a remote set up</span></li>
+                    <li>
+                        <span className="lk_req_icon">✓</span>
+                        <span>A GitHub repository with a remote set up — <code className="lk_inline_code">git remote -v</code> should show a GitHub URL</span>
+                    </li>
                     <li>
                         <span className="lk_req_icon">✓</span>
                         <span>A Claude Pro or Max subscription — <a href="https://claude.ai" target="_blank" rel="noreferrer" className="lk_link">claude.ai</a></span>
                     </li>
                     <li>
                         <span className="lk_req_icon">✓</span>
-                        <span>Claude Code installed locally — <code className="lk_inline_code">npm install -g @anthropic-ai/claude-code</code></span>
+                        <span><strong>Claude Code CLI</strong> — <code className="lk_inline_code">npm install -g @anthropic-ai/claude-code</code></span>
                     </li>
                     <li>
                         <span className="lk_req_icon">✓</span>
-                        <span>GitHub CLI (<code className="lk_inline_code">gh</code>) — required for full automation. <code className="lk_inline_code">brew install gh</code> or <a href="https://cli.github.com" target="_blank" rel="noreferrer" className="lk_link">cli.github.com</a></span>
+                        <span>
+                            <strong>GitHub CLI (<code className="lk_inline_code">gh</code>)</strong> — <code className="lk_inline_code">brew install gh</code> or{' '}
+                            <a href="https://cli.github.com" target="_blank" rel="noreferrer" className="lk_link">cli.github.com</a>, then <code className="lk_inline_code">gh auth login</code>
+                        </span>
+                    </li>
+                    <li>
+                        <span className="lk_req_icon">✓</span>
+                        <span>
+                            <strong>Claude Code GitHub App</strong> installed on your repo —{' '}
+                            <a href="https://github.com/apps/claude" target="_blank" rel="noreferrer" className="lk_link">github.com/apps/claude</a>
+                            <span className="lk_req_tag">required for the Actions workflow to run</span>
+                        </span>
                     </li>
                 </ul>
+                <div className="lk_callout" style={{ marginTop: '1.25rem' }}>
+                    <span className="lk_callout_icon">📁</span>
+                    <span>
+                        <strong>All <code className="lk_inline_code">npx @slahon/lazykit</code> commands must be run from your project's root directory</strong> — the folder where your <code className="lk_inline_code">.git</code> directory lives and your GitHub remote is configured.
+                    </span>
+                </div>
+                <div className="lk_callout" style={{ marginTop: '0.75rem' }}>
+                    <span className="lk_callout_icon">💡</span>
+                    <span>
+                        <code className="lk_inline_code">init</code> checks for <code className="lk_inline_code">gh</code> and <code className="lk_inline_code">claude</code> before proceeding. If either is missing or not authenticated, it will show you exactly what to install and wait for you to confirm before continuing — no need to restart.
+                    </span>
+                </div>
             </div>
 
             {/* ── How it works ── */}
@@ -130,6 +158,7 @@ const LazyKit = () => {
                         ["Creates label", "Creates the trigger label on GitHub"],
                         ["Enables PR creation", "Grants Actions permission to open pull requests"],
                         ["Sets token", "Runs claude setup-token and stores it as CLAUDE_CODE_OAUTH_TOKEN in your repo secrets"],
+                        ["GitHub App", "Prompts you to install the Claude Code GitHub App on your repo"],
                         ["Commits and pushes", "Commits all generated files and pushes to GitHub"],
                     ].map(([step, desc]) => (
                         <div className="lk_init_row" key={step}>
@@ -151,7 +180,6 @@ const LazyKit = () => {
                         <span className="lk_init_step">Description</span>
                     </div>
                     {[
-                        ["Label name", "lazykit", "The GitHub label that triggers Claude"],
                         ["Auto-trigger", "Yes", "Trigger Claude on every new issue, or only when you apply the label"],
                         ["Generate CLAUDE.md", "Yes", "Create a project guide for Claude"],
                     ].map(([opt, def, desc]) => (
@@ -232,12 +260,21 @@ const LazyKit = () => {
                 </p>
                 <div className="lk_info_card">
                     <p>
-                        <code className="lk_inline_code">init</code> handles this automatically: it runs <code className="lk_inline_code">claude setup-token</code>, captures the token, and stores it as <code className="lk_inline_code">CLAUDE_CODE_OAUTH_TOKEN</code> in your repo secrets via <code className="lk_inline_code">gh secret set</code>.
+                        During <code className="lk_inline_code">init</code>, LazyKit runs <code className="lk_inline_code">claude setup-token</code> and tries to capture the token automatically. On many systems a browser window opens, you approve access, and the token is stored as <code className="lk_inline_code">CLAUDE_CODE_OAUTH_TOKEN</code> in your repo secrets without any extra steps.
                     </p>
                     <p>
-                        If the token can't be set automatically (Claude Code not installed or <code className="lk_inline_code">gh</code> not available), you'll see step-by-step instructions to do it manually.
+                        If the token can't be captured automatically (varies by system), LazyKit falls back and asks you to paste it:
                     </p>
                 </div>
+                <div className="lk_code_block lk_code_multiline" style={{ marginBottom: '1rem' }}>
+                    <code><span className="lk_comment">⚠ Could not capture the token automatically.</span></code>
+                    <code><span className="lk_comment">  If a browser opened, complete the auth and copy the token it shows.</span></code>
+                    <code>&nbsp;</code>
+                    <code>  Paste your token here (or press Enter to skip) ›</code>
+                </div>
+                <p className="lk_note" style={{ marginBottom: '1rem' }}>
+                    Just paste the token from your terminal and LazyKit sets the secret for you. If you skip, you'll get step-by-step instructions to add it manually.
+                </p>
                 <div className="lk_callout lk_callout_warn">
                     <span className="lk_callout_icon">⚠️</span>
                     <span><strong>Token expiry:</strong> OAuth tokens can expire. Run <code className="lk_inline_code">lazykit status</code> to check the age of your token. If it's expired, re-run <code className="lk_inline_code">npx @slahon/lazykit@latest init</code> to generate and store a fresh one.</span>
@@ -272,34 +309,23 @@ const LazyKit = () => {
             <div className="lk_section">
                 <h2 className="lk_section_title">Tips</h2>
                 <div className="lk_tips">
-                    <div className="lk_tip">
-                        <span className="lk_tip_icon">🎯</span>
-                        <div>
-                            <strong>Keep issues small and specific.</strong>
-                            <p>"Add a <code className="lk_inline_code">/health</code> endpoint that returns <code className="lk_inline_code">{'{ status: \'ok\' }'}</code>" works great. "Rewrite the auth system" does not.</p>
+                    {[
+                        ["🎯", "Keep issues small and specific.", <>
+                            "Add a <code className="lk_inline_code">/health</code> endpoint that returns <code className="lk_inline_code">{'{ status: \'ok\' }'}</code>" works great. "Rewrite the auth system" does not.
+                        </>],
+                        ["📝", "Edit CLAUDE.md", "Describe your folder structure, naming conventions, and any rules Claude must follow for best results."],
+                        ["💬", <>Use <code className="lk_inline_code">@claude</code> in comments</>, "Give Claude follow-up instructions or corrections without opening a new issue."],
+                        ["🔍", <>Run <code className="lk_inline_code">lazykit status</code> if something stops working</>, "It pinpoints exactly what's misconfigured so you can fix it fast."],
+                        ["🔁", "Re-run a failed workflow", <>Go to your repo → Actions tab → click the failed run → click <strong>"Re-run failed jobs"</strong>. Or just comment <code className="lk_inline_code">@claude</code> on the issue to trigger a fresh run.</>],
+                    ].map(([icon, title, body], i) => (
+                        <div className="lk_tip" key={i}>
+                            <span className="lk_tip_icon">{icon}</span>
+                            <div>
+                                <strong>{title}</strong>
+                                <p>{body}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="lk_tip">
-                        <span className="lk_tip_icon">📝</span>
-                        <div>
-                            <strong>Edit CLAUDE.md</strong>
-                            <p>Describe your folder structure, naming conventions, and any rules Claude must follow for the best results.</p>
-                        </div>
-                    </div>
-                    <div className="lk_tip">
-                        <span className="lk_tip_icon">💬</span>
-                        <div>
-                            <strong>Use <code className="lk_inline_code">@claude</code> in comments</strong>
-                            <p>Give Claude follow-up instructions or corrections without opening a new issue.</p>
-                        </div>
-                    </div>
-                    <div className="lk_tip">
-                        <span className="lk_tip_icon">🔍</span>
-                        <div>
-                            <strong>Run <code className="lk_inline_code">lazykit status</code> if something stops working</strong>
-                            <p>It pinpoints exactly what's misconfigured so you can fix it fast.</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
 

@@ -226,6 +226,19 @@
     text-decoration: underline;
 }
 
+.lk_req_tag {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+    background: #1f3d2a;
+    color: #7ee787;
+    border: 1px solid #238636;
+    vertical-align: middle;
+}
+
 /* ── Steps ── */
 .lk_steps {
     display: flex;
