@@ -36,11 +36,11 @@ const Testimonial = () => {
           </div>
           <h5 className="client__name">For Clients</h5>
           <small className="client__review">
-            If you are looking for someone to make your Website
+            Have a product idea or need a website built?
           </small>
           <small className="client__review__one">
-            I can make one for you efficiently. My work examples are featured in
-            the Projects Section.
+            I turn concepts into clean, fast, production-ready web apps. Browse
+            the Projects section to see what I ship.
           </small>
 
           <small className="swipe">swipe</small>
@@ -52,11 +52,27 @@ const Testimonial = () => {
           </div>
           <h5 className="client__name">For Learners</h5>
           <small className="client__review">
-            If you are Interested in learning Frontend Web development
+            Want to learn from someone actually in the field?
           </small>
           <small className="client__review__one">
-            I can teach you in the coolest way possible., just drop a message
-            from the contact section below.
+            I mentor across web, mobile, ML, music production, and more —
+            hands-on, project-first, at your pace. Drop a message below.
+          </small>
+
+          <small className="swipe">swipe</small>
+        </SwiperSlide>
+
+        <SwiperSlide className="testimonial">
+          <div className="client__avatar">
+            <img src={AVTR1} alt="Avatar One" />
+          </div>
+          <h5 className="client__name">For Collaborators</h5>
+          <small className="client__review">
+            Building something and need a dev who ships?
+          </small>
+          <small className="client__review__one">
+            I work with early-stage teams on MVPs, product ideas, and quick
+            iterations — from concept to live. Let's build something real.
           </small>
 
           <small className="swipe">scroll</small>

@@ -15,7 +15,6 @@ import Mood from "./components/portfolio/Mood.jsx";
 import LazyKit from "./components/portfolio/LazyKit.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
-const SolarMenu = lazy(() => import("./additionals/solar/SolarMenu.jsx"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
 
 function App() {
@@ -27,8 +26,8 @@ function App() {
         <AnimatedCursor
           innerSize={8}
           outerSize={30}
-          color="255, 0, 0"
-          outerAlpha={0.1}
+          color="126, 231, 135"
+          outerAlpha={0.15}
           innerScale={1}
           outerScale={2}
           outerStyle={{
@@ -36,7 +35,7 @@ function App() {
             mixBlendMode: "exclusion",
           }}
           innerStyle={{
-            backgroundColor: "#ff0000",
+            backgroundColor: "#7ee787",
             mixBlendMode: "exclusion",
           }}
           trailingSpeed={10}
@@ -57,9 +56,7 @@ function App() {
 
         <Suspense fallback={<Loading />}>
           <Routes>
-            <Route path="/" element={<SolarMenu />} />
-            <Route path="/solar" element={<SolarMenu />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/creative" element={<Creative />} />
             <Route path="/contactout" element={<ContactOut />} />
             <Route path="/mood" element={<Mood />} />

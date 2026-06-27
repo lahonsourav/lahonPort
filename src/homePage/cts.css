@@ -1,12 +1,33 @@
 .cta {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
+/* Primary CTA: resume — outlined green */
+.cta .btn {
+  color: var(--ds-green);
+  border: 1px solid var(--ds-green-btn);
+  background: transparent;
+}
+
+.cta .btn:hover {
+  background: var(--ds-green-btn);
+  color: var(--ds-text);
+  border-color: var(--ds-green-btn-hover);
+}
+
+/* Secondary CTA: creative — dark filled */
 .spbtn {
-    color: white;
-    border-color: white;
-    background-color: var(--color-bg-variant);
+  background: var(--ds-surface);
+  color: var(--ds-text);
+  border: 1px solid var(--ds-border);
+}
+
+.spbtn:hover {
+  background: var(--ds-surface-2);
+  border-color: var(--ds-green-btn);
+  color: var(--ds-text);
 }

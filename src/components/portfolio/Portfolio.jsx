@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Portfolio.css";
 import Pt from './Partnership.pdf'
 
-import PRO2 from "../../images/logojpg.jpg";
-import PRO3 from "../../images/infinity.jpg";
 import PRO4 from "../../images/doggo.jpg";
-import PRO5 from "../../images/pc.png";
 import PRO6 from "../../images/gamusawhitelow.jpg";
 
 import Aos from "aos";
@@ -14,16 +11,7 @@ import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
 
 const Portfolio = () => {
-  let time = new Date().toLocaleTimeString();
-  const [currentTime, setCurrentTime] = useState(time);
   const navigate = useNavigate();
-
-  const updateTime = () => {
-    let time = new Date().toLocaleTimeString();
-    setCurrentTime(time);
-  };
-
-  setInterval(updateTime, 1000);
 
   useEffect(() => {
     Aos.init({ duration: 2000 }); <nav></nav>
@@ -42,7 +30,7 @@ const Portfolio = () => {
             </div>
             <h3>LazyKit</h3>
             <small>
-              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a PR. No laptop needed. (Node.js, GitHub Actions, Claude AI)
+              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a pull request. No laptop needed. (Node.js, GitHub Actions, Claude AI)
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -65,13 +53,85 @@ const Portfolio = () => {
 
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="portfolio__item-image mdp">
+              <div className="mdp__inner">
+                <div className="mdp__top">
+                  <span className="mdp__greeting">Good morning ☀️</span>
+                  <span className="mdp__date">Saturday · 27 June</span>
+                </div>
+                <svg className="mdp__gauge" viewBox="0 0 100 53">
+                  <defs>
+                    <linearGradient id="mdp-g" x1="6" y1="0" x2="94" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%"   stopColor="#f85149" />
+                      <stop offset="40%"  stopColor="#e3b341" />
+                      <stop offset="100%" stopColor="#3de081" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M 6 50 A 44 44 0 0 1 94 50"  fill="none" stroke="#21262d" strokeWidth="3"  strokeLinecap="round" />
+                  <path d="M 16 50 A 34 34 0 0 1 84 50" fill="none" stroke="#21262d" strokeWidth="9"  strokeLinecap="round" />
+                  <path d="M 26 50 A 24 24 0 0 1 74 50" fill="none" stroke="#21262d" strokeWidth="14" strokeLinecap="round" />
+                  <path d="M 6 50 A 44 44 0 0 1 87.1 26.4"  fill="none" stroke="url(#mdp-g)" strokeWidth="3"  strokeLinecap="round" />
+                  <path d="M 16 50 A 34 34 0 0 1 74.0 26.0" fill="none" stroke="url(#mdp-g)" strokeWidth="9"  strokeLinecap="round" />
+                  <path d="M 26 50 A 24 24 0 0 1 64.1 30.6" fill="none" stroke="url(#mdp-g)" strokeWidth="14" strokeLinecap="round" />
+                  <text x="50" y="41" textAnchor="middle" fontSize="14" fontFamily="Georgia, serif" fill="#3de081" letterSpacing="-0.5">7.0</text>
+                  <text x="50" y="50" textAnchor="middle" fontSize="5.5" fontFamily="system-ui, sans-serif" fill="#8b949e">calm</text>
+                </svg>
+                <div className="mdp__chips">
+                  <span className="mdp__chip mdp__chip--pos">😄 Joyful</span>
+                  <span className="mdp__chip mdp__chip--pos">🥰 Loved</span>
+                  <span className="mdp__chip mdp__chip--neu">😌 Calm</span>
+                  <span className="mdp__chip mdp__chip--neu">😐 Okay</span>
+                  <span className="mdp__chip mdp__chip--neg">😰 Anxious</span>
+                  <span className="mdp__chip mdp__chip--neg">😢 Sad</span>
+                </div>
+                <div className="mdp__tip">🌿 A gentle suggestion for you</div>
+              </div>
+            </div>
+            <h3>Innercast</h3>
+            <small>
+              Your private mood diary. Check in with 35+ emotions daily, get an AI-written journal each night, and explore patterns across 7, 30, and 90 days. Everything stays encrypted on your device. (React Native, Expo, Claude AI)
+            </small>
+            <div className="portfolio__item-cta">
+              <div
+                onClick={() => navigate("/mood")}
+                className="btn btn-primary"
+              >
+                Learn More
+              </div>
+            </div>
+          </article>
+        </Tilt>
+
+        <Tilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="portfolio__item-image lazykit-preview">
+              <span className="lazykit-preview-emoji">🧠</span>
+            </div>
+            <h3>Audio-Visual Speech Recognition</h3>
+            <small>
+              Multi-modal AVSR system fusing audio (MFCCs) and video (CNNs) — 25% better accuracy in noisy environments vs audio-only. Trained SVM, Random Forest, DNN & LSTM. Real-time under 500ms. (ML, Python — B.Tech Thesis)
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://drive.google.com/file/d/12Yy-KGhU3uN-VXC6uvemQuQSAkR_i6Nl/view"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Thesis
+              </a>
+            </div>
+          </article>
+        </Tilt>
+
+        <Tilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
             <div className="portfolio__item-image">
               <img src={PRO6} alt="" />
             </div>
             <h3>Assamesedress.shop</h3>
             <small>
-              A fashion E-commerce websites for Assamese Traditional Attire,
-              bringing out the tradition (MERN stack)
+              An e-commerce platform for Assamese traditional attire — bringing heritage fashion online with a full catalogue, cart, and checkout. Promotes indigenous craft to a wider audience. (MERN Stack)
             </small>
             <div className="portfolio__item-cta">
               <a
@@ -98,35 +158,11 @@ const Portfolio = () => {
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
             <div className="portfolio__item-image">
-              <img src={PRO2} alt="" />
-            </div>
-            <h3>Mujhe Books Do</h3>
-            <small>
-              You have old books? You can sell those here and buy books from
-              here. A book never lost it's legacy. (react & firebase)
-            </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://mujhebooksdo.netlify.app"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Visit Now
-              </a>
-            </div>
-          </article>
-        </Tilt>
-
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image">
               <img src={PRO4} alt="" />
             </div>
             <h3>Doggies</h3>
             <small>
-              Simple but beautiful UI, swipe left/right to find your favourite
-              Dog. Swipe now to find dogs. (flutter, android)
+              A swipe-based dog discovery app with a delightfully simple UI — browse breeds, swipe left or right, and find your favourite. Built for Android with smooth gesture navigation. (Flutter, Android)
             </small>
             <div className="portfolio__item-cta">
               <a
@@ -145,84 +181,6 @@ const Portfolio = () => {
                 rel="noreferrer"
               >
                 Android
-              </a>
-            </div>
-          </article>
-        </Tilt>
-
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image">
-              <img src={PRO3} alt="" />
-            </div>
-            <h3>Mood Diary</h3>
-            <small>
-              Just write two lines of your mood, We will write the journal for you, all saved in calendar filled with your mood emojis, add friends and share journal.
-            </small>
-            <div className="portfolio__item-cta">
-              <div
-                onClick={() => navigate("/mood")}
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Get Mood
-              </div>
-            </div>
-          </article>
-        </Tilt>
-
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image">
-              <div className="time"> {time}</div>
-            </div>
-            <h3>25 Hour clock</h3>
-            <small>
-              A simple clock, but this has 25 hours in a day, using python and
-              tkinter module. Click watch to watch the integration. (Python-
-              Tkinter)
-            </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://youtu.be/w02_4Ryra8E"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Watch
-              </a>
-
-              <a
-                href="https://github.com/lahonsourav/25-hours-in-a-day"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Code
-              </a>
-            </div>
-          </article>
-        </Tilt>
-
-        <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image">
-              <img src={PRO5} alt="" />
-            </div>
-            <h3>The Computer</h3>
-            <small>
-              React three.js integration of an existing 3d Model. The model is
-              modified in Maya and integrated with three.js module.
-            </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://pclahon.netlify.app/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Explore
               </a>
             </div>
           </article>

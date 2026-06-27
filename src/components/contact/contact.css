@@ -1,67 +1,104 @@
 .container.contact__container {
-  width: 58%;
+  width: 60%;
   display: grid;
   grid-template-columns: 30% 58%;
   gap: 12%;
 }
 
+/* ── Contact option cards ── */
 .contact__options {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .contact__option {
-  background: var(--color-bg-variant);
-  padding: 1.2rem;
-  border-radius: 1.2rem;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  padding: 1.25rem;
   text-align: center;
-  border: 1px solid transparent;
-  transition: var(--transition);
+  transition: var(--ds-transition);
 }
 
 .contact__option:hover {
-  background: transparent;
-  border: var(--color-primary-variant);
+  border-color: var(--ds-green-btn);
+  background: var(--ds-surface-2);
 }
 
 .contact__option-icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  color: var(--ds-green);
   margin-bottom: 0.5rem;
 }
 
-.contact__option a {
-  margin-top: 0.7rem;
-  display: inline-block;
-  font-size: 0.8rem;
+.contact__option h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ds-text);
+  margin-bottom: 0.2rem;
+}
+
+.contact__option h5 {
+  font-size: 0.78rem;
+  color: var(--ds-text-muted);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
 }
 
 .h5 {
-  color: var(--color-light);
+  color: var(--ds-text-muted);
 }
 
+.contact__option a {
+  font-size: 0.8rem;
+  color: var(--ds-blue);
+  font-weight: 500;
+}
+
+.contact__option a:hover {
+  color: var(--ds-text);
+}
+
+/* ── Form ── */
 .contact__form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .form-control-text,
 .form-control-input {
   width: 100%;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  background: transparent;
-  border: 2px solid var(--color-primary-variant);
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--ds-radius-sm);
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
   resize: none;
-  color: var(--color-white);
+  color: var(--ds-text);
+  font-family: var(--ds-font);
+  font-size: 0.9rem;
+  transition: var(--ds-transition);
+  outline: none;
 }
 
+.form-control-text:focus,
+.form-control-input:focus {
+  border-color: var(--ds-green-btn);
+  background: var(--ds-surface-2);
+}
 
+.form-control-text::placeholder,
+.form-control-input::placeholder {
+  color: var(--ds-text-muted);
+}
+
+/* ── Responsive ── */
 @media screen and (max-width: 1024px) {
   .container.contact__container {
     grid-template-columns: 1fr;
     gap: 2rem;
+    width: var(--container-width-md);
   }
 }
 

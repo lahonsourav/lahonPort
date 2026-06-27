@@ -1,0 +1,48 @@
+/*
+ * ── LazyKit Design System ──
+ * Single source of truth for all design tokens.
+ * Import this file first in index.css; never hardcode these values in components.
+ */
+
+:root {
+  /* ── Backgrounds ── */
+  --ds-bg:        #0d1117;
+  --ds-surface:   #161b22;
+  --ds-surface-2: #21262d;
+
+  /* ── Borders ── */
+  --ds-border:        #30363d;
+  --ds-border-subtle: #21262d;
+
+  /* ── Text ── */
+  --ds-text:       #e6edf3;
+  --ds-text-muted: #8b949e;
+  --ds-text-code:  #79c0ff;
+
+  /* ── Accent — green ── */
+  --ds-green:          #7ee787;
+  --ds-green-btn:      #238636;
+  --ds-green-btn-hover:#2ea043;
+  --ds-green-bg:       #1f3d2a;
+
+  /* ── Accent — blue ── */
+  --ds-blue:      #58a6ff;
+  --ds-blue-dark: #1f6feb;
+
+  /* ── Semantic ── */
+  --ds-warning: #e3b341;
+  --ds-error:   #f85149;
+
+  /* ── Typography ── */
+  --ds-font:      'Segoe UI', system-ui, -apple-system, sans-serif;
+  --ds-font-mono: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+
+  /* ── Shape ── */
+  --ds-radius-sm: 6px;
+  --ds-radius:    10px;
+  --ds-radius-lg: 14px;
+  --ds-radius-xl: 20px;
+
+  /* ── Motion ── */
+  --ds-transition: all 0.2s ease;
+}

@@ -1,0 +1,164 @@
+/* ── Timeline wrapper ── */
+.edu__timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+}
+
+/* Center vertical line */
+.edu__timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--ds-border);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* ── Entry row ── */
+.edu__entry {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+/* ── Card ── */
+.edu__card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  padding: 1.5rem;
+  position: relative;
+  text-align: center;
+  transition: var(--ds-transition);
+}
+
+.edu__card:hover {
+  border-color: var(--ds-green-btn);
+}
+
+.edu__card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ds-green);
+  margin-bottom: 0.2rem;
+}
+
+.edu__card h4 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ds-green);
+  margin-bottom: 0.75rem;
+  opacity: 0.75;
+}
+
+.edu__card p {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--ds-text-muted);
+  margin: 0;
+}
+
+/* Arrow: left card points right toward center */
+.edu__entry--left .edu__card::after {
+  content: "";
+  position: absolute;
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 9px solid transparent;
+  border-right-width: 0;
+  border-left-color: var(--ds-surface);
+}
+
+/* Arrow: right card points left toward center */
+.edu__entry--right .edu__card::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 9px solid transparent;
+  border-left-width: 0;
+  border-right-color: var(--ds-surface);
+}
+
+/* ── Center column ── */
+.edu__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.edu__icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #080707;
+  border: 2px solid var(--ds-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.edu__icon-wrap img {
+  width: 62%;
+  height: 62%;
+  object-fit: contain;
+}
+
+/* ── Date ── */
+.edu__date {
+  font-size: 0.82rem;
+  color: #8b949e;
+  padding-left: 1.5rem;
+}
+
+.edu__date--r {
+  text-align: right;
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+/* ── End marker ── */
+.edu__entry--end {
+  margin-bottom: 0;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 768px) {
+  .edu__timeline::before {
+    left: 25px;
+    transform: none;
+  }
+
+  .edu__entry {
+    grid-template-columns: 56px 1fr;
+    grid-template-areas:
+      "icon card"
+      ".    date";
+    grid-template-rows: auto auto;
+    margin-bottom: 2rem;
+  }
+
+  .edu__center         { grid-area: icon; }
+  .edu__card           { grid-area: card; text-align: left; }
+  .edu__date,
+  .edu__date--r        { grid-area: date; text-align: left; padding: 0.3rem 0 0; }
+
+  .edu__entry--left  .edu__card::after,
+  .edu__entry--right .edu__card::before { display: none; }
+
+  .edu__entry--end {
+    grid-template-areas: "icon .";
+  }
+}

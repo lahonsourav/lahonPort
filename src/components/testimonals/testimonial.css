@@ -1,6 +1,22 @@
 .container.testimonials__container {
-  width: 40%;
+  width: 48%;
   padding-bottom: 4rem;
+}
+
+.testimonial {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-top: 3px solid var(--ds-green-btn);
+  border-radius: var(--ds-radius);
+  text-align: center;
+  padding: 2.5rem 2rem;
+  user-select: none;
+  transition: var(--ds-transition);
+}
+
+.testimonial:hover {
+  border-color: var(--ds-green-btn);
+  background: var(--ds-surface-2);
 }
 
 .client__avatar {
@@ -9,55 +25,62 @@
   overflow: hidden;
   border-radius: 50%;
   margin: 0 auto 1rem;
-  border: 0.4rem solid var(--color-primary-variant);
+  border: 2px solid var(--ds-green-btn);
 }
 
 .client__name {
-  text-decoration: underline;
-  color: whitesmoke;
-  font-size: 16px;
-}
-
-.testimonial {
-  background: var(--color-primary);
-  text-align: center;
-  padding: 2rem;
-  border-radius: 2rem;
-  user-select: none;
+  color: var(--ds-text);
+  font-size: 0.97rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
 .client__review {
-  color: white;
-  font-weight: 300;
+  color: var(--ds-text-muted);
+  font-size: 0.9rem;
+  font-weight: 400;
   display: block;
-  width: 80%;
-  margin: 0.8rem auto 0;
-}
-
-.swipe {
-  color: white;
-  font-weight: 100;
-  font-size: 12px;
-  display: block;
-  width: 80%;
-  margin: 0.8rem auto 0;
+  width: 85%;
+  margin: 0.6rem auto 0;
+  line-height: 1.65;
 }
 
 .client__review__one {
-  color: var(--color-bg);
+  color: var(--ds-green);
+  font-size: 0.88rem;
+  display: block;
+  width: 85%;
+  margin: 0.5rem auto 0;
+  line-height: 1.65;
 }
 
 .client__review__one:hover {
-  color: white;
+  color: var(--ds-text);
+}
+
+.swipe {
+  color: var(--ds-text-muted);
+  font-weight: 400;
+  font-size: 0.78rem;
+  display: block;
+  margin: 0.75rem auto 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
-  background: var(--color-primary);
+  background: var(--ds-green-btn);
+  opacity: 0.5;
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet-active {
+  background: var(--ds-green);
+  opacity: 1;
 }
 
 @media screen and (max-width: 1024px) {
   .container.testimonials__container {
-    width: 60%;
+    width: 65%;
   }
 }
 

@@ -7,11 +7,11 @@ import { DiJavascript1 } from "react-icons/di";
 
 import { CgCPlusPlus } from "react-icons/cg";
 
-import { FaGuitar, FaPaintBrush, FaReact } from "react-icons/fa";
+import { FaGuitar, FaPaintBrush, FaReact, FaDocker, FaPython } from "react-icons/fa";
 
-import { FaCss3Alt } from "react-icons/fa";
+import { FaCss3Alt, FaNodeJs } from "react-icons/fa";
 
-import { SiFlutter, SiMicrosoftoffice } from "react-icons/si";
+import { SiFlutter, SiMicrosoftoffice, SiDotnet, SiApachekafka, SiMongodb } from "react-icons/si";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -132,57 +132,56 @@ const Experience = () => {
           <div data-aos="fade-right" className="experience__content">
             <Tilt>
               <article className="experience__details">
-                <AiOutlineHtml5 className="experience__details-icon" />
+                <FaReact className="experience__details-icon" />
                 <div>
-                  <h4>Full stack web</h4>
-                  <small className="text-light">MERN</small>
+                  <h4>Full Stack Web</h4>
+                  <small className="text-light">React, Node.js, Express, NestJS</small>
                 </div>
               </article>
             </Tilt>
 
             <Tilt>
               <article className="experience__details">
+                <SiDotnet className="experience__details-icon" />
+                <div>
+                  <h4>Backend / Systems</h4>
+                  <small className="text-light">C#, .NET, Perl, C++</small>
+                </div>
+              </article>
+            </Tilt>
+            <Tilt>
+              <article className="experience__details">
+                <FaPython className="experience__details-icon" />
+                <div>
+                  <h4>Data, ML & Automation</h4>
+                  <small className="text-light">Python, Pandas, Streamlit, NLP, ML, Deep Learning</small>
+                </div>
+              </article>
+            </Tilt>
+            <Tilt>
+              <article className="experience__details">
                 <DiJavascript1 className="experience__details-icon" />
-                <dir>
-                  {" "}
-                  <h4>Android/Mobile</h4>
-                  <small className="text-light">React Native</small>
-                </dir>
-              </article>
-            </Tilt>
-            <Tilt>
-              <article className="experience__details">
-                <CgCPlusPlus className="experience__details-icon" />
                 <div>
-                  <h4>Backend Dev</h4>
-                  <small className="text-light">Python Flask</small>
+                  <h4>Mobile</h4>
+                  <small className="text-light">React Native, Flutter</small>
                 </div>
               </article>
             </Tilt>
             <Tilt>
               <article className="experience__details">
-                <FaCss3Alt className="experience__details-icon" />
+                <SiApachekafka className="experience__details-icon" />
                 <div>
-                  <h4>Frontend</h4>
-                  <small className="text-light">HTML, CSS, React</small>
+                  <h4>Infra & DevOps</h4>
+                  <small className="text-light">Kafka, Docker, GitHub Actions, Unix</small>
                 </div>
               </article>
             </Tilt>
             <Tilt>
               <article className="experience__details">
-                <FaReact className="experience__details-icon" />
+                <SiMongodb className="experience__details-icon" />
                 <div>
-                  <h4>Database</h4>
-                  <small className="text-light">SQL, MongoDB</small>
-                </div>
-              </article>
-            </Tilt>
-            <Tilt>
-              <article className="experience__details">
-                <SiFlutter className="experience__details-icon" />
-                <div>
-                  <h4>Flutter</h4>
-                  <small className="text-light">Intermediate</small>
+                  <h4>Databases</h4>
+                  <small className="text-light">MongoDB, SQL, Redis, Cloudinary</small>
                 </div>
               </article>
             </Tilt>

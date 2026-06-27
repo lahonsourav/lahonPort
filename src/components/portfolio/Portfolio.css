@@ -1,174 +1,204 @@
 .portfolio__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  gap: 1.5rem;
   margin-bottom: 4rem;
 }
 
 .portfolio__items {
-  backdrop-filter: blur(30px);
-
-  padding: 1.2rem;
-  border-radius: 2rem;
-  border: 1px solid var(--color-primary-variant);
-  transition: var(--transition);
-  box-shadow: var(--color-primary-variant) 0px 4px 19px 0px;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  padding: 1.25rem;
+  transition: var(--ds-transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .portfolio__items:hover {
-  border-color: var(--color-primary-variant);
-
-  background: transparent;
+  border-color: var(--ds-green-btn);
+  background: var(--ds-surface-2);
 }
 
 .portfolio__item-image {
+  border-radius: var(--ds-radius-sm);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  aspect-ratio: 4/3;
+  background: var(--ds-bg);
+  border: 1px solid var(--ds-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio__items h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ds-text);
+  margin-bottom: 0.5rem;
+}
+
+.portfolio__items small {
+  font-size: 0.83rem;
+  color: var(--ds-text-muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.portfolio__item-cta {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── Mood Diary / Innercast preview ── */
+.mdp {
+  background: #0d1117;
+  padding: 0;
+  align-items: stretch;
+}
+
+.mdp__inner {
   display: flex;
   flex-direction: column;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  margin-bottom: 0.8rem;
-  object-fit: contain;
-  aspect-ratio: 4/3;
-}
-
-
-
-
-
-.time {
-  display: flex;
-  color: var(--color-primary);
-  margin: auto auto;
   align-items: center;
-  font-size: 50px;
+  padding: 0.75rem 0.65rem 0.55rem;
+  gap: 0.35rem;
+  width: 100%;
+  height: 100%;
 }
 
+.mdp__top {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 0.08rem;
+}
+
+.mdp__greeting {
+  font-size: 0.6rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #e6edf3;
+  line-height: 1.2;
+}
+
+.mdp__date {
+  font-size: 0.42rem;
+  color: #8b949e;
+}
+
+.mdp__gauge {
+  width: 80%;
+  flex-shrink: 0;
+}
+
+.mdp__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.mdp__chip {
+  font-size: 0.38rem;
+  padding: 0.1rem 0.38rem;
+  border-radius: 100px;
+  border-width: 1px;
+  border-style: solid;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.mdp__chip--pos { background: rgba(61,224,129,0.10); border-color: rgba(61,224,129,0.35); color: rgba(61,224,129,0.88); }
+.mdp__chip--neu { background: rgba(227,179,65,0.10);  border-color: rgba(227,179,65,0.35);  color: rgba(227,179,65,0.88); }
+.mdp__chip--neg { background: rgba(248,81,73,0.10);   border-color: rgba(248,81,73,0.35);   color: rgba(248,81,73,0.88); }
+
+.mdp__tip {
+  font-size: 0.4rem;
+  color: #8b949e;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 4px;
+  padding: 0.18rem 0.4rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* ── LazyKit emoji preview ── */
 .lazykit-preview {
-  background: #0d1117;
+  background: var(--ds-bg);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .lazykit-preview-emoji {
-  font-size: 5rem;
-}
-.portfolio__item-image:hover {
-  overflow: hidden;
-  margin-bottom: 0.6rem;
+  font-size: 4rem;
 }
 
-.portfolio__item h3 {
-  margin: 1.2rem 0 2rem;
-  align-items: flex-start;
-}
-
-.portfolio__item-cta {
+/* ── Live clock in card ── */
+.time {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 0.3rem;
-  margin-top: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--ds-green);
+  font-size: 2.2rem;
+  font-family: var(--ds-font-mono);
+  font-weight: 600;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
 }
 
-/* note start */
-
-.muzieknootjes2 {
+/* ── Floating music notes (scoped to portfolio card only) ── */
+.portfolio__items .muzieknootjes,
+.portfolio__items .muzieknootjes2 {
   display: block;
   margin: auto;
-  /* left: 33rem; */
   position: absolute;
   width: 50%;
   min-width: 300px;
   height: 200px;
-  border: 0px solid #000;
 }
 
-.muzieknootjes {
-  display: block;
-  margin: auto;
-  left: 33rem;
-  position: absolute;
-  width: 50%;
-  min-width: 300px;
-  height: 200px;
-  border: 0px solid #000;
-}
+.portfolio__items .muzieknootjes  { left: 33rem; }
+.portfolio__items .muzieknootjes2 { left: auto; }
 
-.noot-1,
-.noot-2,
-.noot-3,
-.noot-4 {
+.noot-1, .noot-2, .noot-3, .noot-4 {
   position: absolute;
   animation: notes 2s infinite linear;
-  font-size: 35px;
+  font-size: 28px;
   opacity: 0;
+  color: var(--ds-green);
 }
 
-.noot-1 {
-  top: 60px;
-  left: 0;
-  animation-delay: 0.5s;
-}
-
-.noot-2 {
-  top: 30px;
-  left: 30%;
-  animation-delay: 1s;
-}
-
-.noot-3 {
-  top: 90px;
-  left: 60%;
-  animation-delay: 1.5s;
-}
-
-.noot-4 {
-  top: 40px;
-  left: 90%;
-  animation-delay: 2s;
-}
+.noot-1 { top: 60px; left: 0;   animation-delay: 0.5s; }
+.noot-2 { top: 30px; left: 30%; animation-delay: 1s;   }
+.noot-3 { top: 90px; left: 60%; animation-delay: 1.5s; }
+.noot-4 { top: 40px; left: 90%; animation-delay: 2s;   }
 
 @keyframes notes {
-  0% {
-    transform: scale(1) translate(0, 0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.5) translate(50%, -50%);
-  }
-  80% {
-    opacity: 0;
-    transform: scale(1.5) translate(100%, -100%);
-  }
-  100% {
-    transform: scale(1.5) translate(100%, -100%);
-    opacity: 0;
-  }
+  0%   { transform: scale(1)   translate(0, 0);        opacity: 0; }
+  50%  { transform: scale(1.4) translate(50%, -50%);   opacity: 1; }
+  80%  { transform: scale(1.4) translate(100%, -100%); opacity: 0; }
+  100% { transform: scale(1.4) translate(100%, -100%); opacity: 0; }
 }
-
-/* note end */
 
 .client__link {
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
+/* ── Responsive ── */
 @media screen and (max-width: 1024px) {
   .portfolio__container {
     grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
+    gap: 1.25rem;
   }
 
-  .muzieknootjes {
-    display: block;
-    margin: auto;
-    left: 10rem;
-    position: absolute;
-    width: 50%;
-    min-width: 300px;
-    height: 200px;
-    border: 0px solid #000;
-  }
+  .muzieknootjes { left: 10rem; }
 }
 
 @media screen and (max-width: 600px) {
@@ -177,14 +207,5 @@
     gap: 1rem;
   }
 
-  .muzieknootjes {
-    display: block;
-    margin: auto;
-    left: 3rem;
-    position: absolute;
-    width: 50%;
-    min-width: 300px;
-    height: 200px;
-    border: 0px solid #000;
-  }
+  .muzieknootjes { left: 3rem; }
 }

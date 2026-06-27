@@ -1,97 +1,109 @@
-import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
+import "./education.css";
 import myLogo from "../../treeicons/one.png";
 import micro from "../../treeicons/micro.png";
 import simp from "../../treeicons/simp.png";
 import css from "../../treeicons/csspng.png";
 import blackrock from "../../treeicons/blackrock.png";
 
-const Education = () => {
-  return (
-    <VerticalTimeline>
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ background: "#eb4444", color: "#fff" }}
-        contentArrowStyle={{ borderRight: "7px solid  #eb4444" }}
-        date="2025 Jan - 2025 June"
-        iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={blackrock} alt="myLogo" />}
-      >
-        <h3 className="vertical-timeline-element-title">
-          Analyst | SDE
-        </h3>
-        <h4 className="vertical-timeline-element-subtitle">BlackRock</h4>
-        <p>
-          SDE at BlackRock, Gurgaon, India
-        </p>
-      </VerticalTimelineElement>
+const entries = [
+  {
+    side: "left",
+    icon: blackrock,
+    iconAlt: "BlackRock",
+    date: "Jul 2025 – Present",
+    title: "Software Engineer",
+    subtitle: "BlackRock",
+    desc: "Building data transformation tools (Perl, Python, SQL), real-time ingestion pipelines (C#, .NET, Kafka), and automating index creation — cutting build time from 30 min to 5 min.",
+  },
+  {
+    side: "right",
+    icon: blackrock,
+    iconAlt: "BlackRock",
+    date: "Jan 2025 – Jun 2025",
+    title: "Data Analyst Intern",
+    subtitle: "BlackRock",
+    desc: "Built end-to-end automation in Python, Pandas, Unix & Streamlit — reducing deployment time by 90%. Automated QC reporting across market indexes, cutting manual effort by 80%.",
+  },
+  {
+    side: "left",
+    icon: micro,
+    iconAlt: "Microsoft",
+    date: "May 2024 – Jul 2024",
+    title: "Software Engineer Intern",
+    subtitle: "Microsoft",
+    desc: "Built a debug tool for the MSAI-UX team — Response Debugger, Accessibility Debugger, and Performance Analyzer — reducing triage time by 30% and boosting performance by 50%.",
+  },
+  {
+    side: "right",
+    icon: simp,
+    iconAlt: "Symphonits",
+    date: "2023 – 2024",
+    title: "Head",
+    subtitle: "Symphonits, Music Club — NIT Silchar",
+    desc: "Led the music club, arranged college-wide events and activities.",
+  },
+  {
+    side: "left",
+    icon: css,
+    iconAlt: "CS Society",
+    date: "2023 – 2024",
+    title: "Design Wing Head",
+    subtitle: "Computer Science Society — NIT Silchar",
+    desc: "Led the design wing, driving the digital presence of the CS Society.",
+  },
+];
 
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ background: "#968b0b", color: "#fff" }}
-        contentArrowStyle={{ borderRight: "7px solid  #968b0b" }}
-        date="2024 May - 2024 July"
-        iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={micro} alt="myLogo" />}
-      >
-        <h3 className="vertical-timeline-element-title">
-          Former Software developer Intern
-        </h3>
-        <h4 className="vertical-timeline-element-subtitle">Microsoft</h4>
-        <p>
-          Former Software Enginner Intern at Microsoft Search and Assistant team, Microsoft, India
-        </p>
-      </VerticalTimelineElement>
+const Education = () => (
+  <section id="education">
+    <h5>where i&apos;ve been</h5>
+    <h2>Experience &amp; Education</h2>
 
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ background: "#4db5ff", color: "#fff" }}
-        contentArrowStyle={{ borderRight: "7px solid  #4db5ff" }}
-        date="2023-2024"
-        iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={simp} alt="myLogo" />}
-      >
-        <h3 className="vertical-timeline-element-title">Head</h3>
-        <h4 className="vertical-timeline-element-subtitle">
-          Symphonits, Music Club NIT Silchar
-        </h4>
-        <p>
-          As a head, worked for the club, arranged various activities in
-          the College, managed events
-        </p>
-      </VerticalTimelineElement>
+    <div className="edu__timeline">
+      {entries.map((e, i) => (
+        <div key={i} className={`edu__entry edu__entry--${e.side}`}>
+          {e.side === "left" ? (
+            <>
+              <div className="edu__card">
+                <h3>{e.title}</h3>
+                <h4>{e.subtitle}</h4>
+                <p>{e.desc}</p>
+              </div>
+              <div className="edu__center">
+                <div className="edu__icon-wrap">
+                  <img src={e.icon} alt={e.iconAlt} />
+                </div>
+              </div>
+              <div className="edu__date">{e.date}</div>
+            </>
+          ) : (
+            <>
+              <div className="edu__date edu__date--r">{e.date}</div>
+              <div className="edu__center">
+                <div className="edu__icon-wrap">
+                  <img src={e.icon} alt={e.iconAlt} />
+                </div>
+              </div>
+              <div className="edu__card">
+                <h3>{e.title}</h3>
+                <h4>{e.subtitle}</h4>
+                <p>{e.desc}</p>
+              </div>
+            </>
+          )}
+        </div>
+      ))}
 
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ background: "#eb4444", color: "#fff" }}
-        contentArrowStyle={{ borderRight: "7px solid  #eb4444" }}
-        date="2023-2024"
-        iconStyle={{ background: "#fff", color: "#fff" }}
-        icon={<img src={css} alt="myLogo" />}
-      >
-        <h3 className="vertical-timeline-element-title">Design Wing Head</h3>
-        <h4 className="vertical-timeline-element-subtitle">
-          Computer Science Society, NIT Silchar
-        </h4>
-        <p>
-          Appointed as the Head of the Design wing of Computer Science Society
-          of NIT Silchar, worked for the betterment of Society in the aspect of
-          digital presence.
-        </p>
-      </VerticalTimelineElement>
-
-
-
-      <VerticalTimelineElement
-        iconStyle={{ background: "#080707", color: "#fff" }}
-        icon={<img src={myLogo} alt="myLogo" />}
-      />
-    </VerticalTimeline>
-  );
-};
+      <div className="edu__entry edu__entry--end">
+        <div />
+        <div className="edu__center">
+          <div className="edu__icon-wrap">
+            <img src={myLogo} alt="NIT Silchar" />
+          </div>
+        </div>
+        <div />
+      </div>
+    </div>
+  </section>
+);
 
 export default Education;

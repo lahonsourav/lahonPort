@@ -1,19 +1,44 @@
 header {
-  background-image: linear-gradient(to bottom,
-      black,
-      var(--color-bg),
-      transparent),
-    url("../../assets/bg-texture.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 30vh;
-  padding-top: 2rem;
-  overflow: hidden;
+  background: linear-gradient(180deg, var(--ds-surface) 0%, var(--ds-bg) 100%);
+  border-bottom: 1px solid var(--ds-border);
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  text-align: center;
 }
 
+.header__containerpc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header__containerpc h5 {
+  color: var(--ds-text-muted);
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.header__containerpc h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* The red letter — keep it green for design-system accent */
+.h {
+  color: var(--ds-green);
+}
+
+/* Typing animation */
 .wrapper2 {
   display: grid;
   place-items: center;
+  margin-top: 0.75rem;
 }
 
 .typing-demo {
@@ -21,43 +46,32 @@ header {
   animation: typing 6s steps(22), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid;
-  font-family: monospace;
-  font-size: 1.5em;
+  border-right: 2px solid var(--ds-green);
+  font-family: var(--ds-font-mono);
+  font-size: 1.1rem;
+  color: var(--ds-text-muted);
 }
 
 @keyframes typing {
-  from {
-    width: 0;
-  }
+  from { width: 0; }
 }
 
 @keyframes blink {
-  50% {
-    border-color: transparent;
-  }
+  50% { border-color: transparent; }
 }
-
-.header__containerpc {
-  text-align: center;
-  height: 100vh;
-}
-
-.h {
-  color: red;
-}
-
-
-
 
 .h1 {
-  font-family: "Courier New", Courier, monospace;
-  color: antiquewhite;
+  font-family: var(--ds-font-mono);
+  color: var(--ds-text);
 }
 
 @media screen and (max-width: 600px) {
   header {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
 
-    padding-top: 6rem;
+  .header__containerpc h1 {
+    font-size: 2.75rem;
   }
 }

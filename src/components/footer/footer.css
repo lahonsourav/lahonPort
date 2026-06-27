@@ -1,402 +1,125 @@
 footer {
-  background-image: linear-gradient(to top,
-      rgb(0, 4, 15),
-      var(--color-bg),
-      transparent),
-    url("../../assets/bg-texture.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  padding: 2rem 0;
+  background: var(--ds-surface);
+  border-top: 1px solid var(--ds-border);
+  padding: 3.5rem 2rem 2rem;
   text-align: center;
   font-size: 0.9rem;
-  margin-top: 7rem;
-}
-
-.clock h1 {
-  text-align: center;
-  font-weight: 300;
-  color: red;
-}
-
-footer a {
-  color: var(--color-primary);
+  margin-top: 5rem;
 }
 
 .footer__logo {
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
   display: inline-block;
-  transition: var(--transition);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ds-green);
+  margin-bottom: 1.5rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--ds-border);
+  border-radius: 20px;
 }
 
-.permalink {
+.permalinks {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
-  margin: 0 auto 3rem;
+  gap: 0.5rem 2rem;
+  margin: 0 auto 2.5rem;
 }
 
+.permalinks a {
+  color: var(--ds-text-muted);
+  font-size: 0.88rem;
+  transition: var(--ds-transition);
+}
+
+.permalinks a:hover {
+  color: var(--ds-green);
+}
+
+footer a {
+  color: var(--ds-blue);
+}
+
+footer a:hover {
+  color: var(--ds-text);
+}
+
+/* ── Copyright ── */
 .footer__copyright {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  color: var(--color-white);
+  margin-top: 1.5rem;
+  color: var(--ds-text-muted);
+  font-size: 0.8rem;
 }
 
 .footer__copyright__youtube {
   display: flex;
   flex-direction: column;
+  gap: 0.35rem;
+  align-items: center;
 }
 
-.footer__copyright__youtube>small>a {
-  color: red;
+.footer__copyright__youtube > small > a {
+  color: var(--ds-blue);
 }
 
-.footer__copyright {
-  margin-top: 1rem;
-  margin-bottom: 4rem;
-  color: var(--color-white);
+.footer__copyright__youtube > small > a:hover {
+  color: var(--ds-text);
 }
 
-/* bubbles start */
+/* ── Clock (if used) ── */
+.clock h1 {
+  text-align: center;
+  font-weight: 300;
+  color: var(--ds-green);
+}
 
+/* ── Floating bubbles (keep structure, muted) ── */
 #background-wrap {
   bottom: 0;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 99999999;
-  opacity: 0.4;
-}
-
-#background-wrap>div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#background-wrap>div>h1 {
-  font-weight: 100;
-}
-
-/* KEYFRAMES */
-
-@-webkit-keyframes animateBubble {
-  0% {
-    margin-top: 1000px;
-  }
-
-  100% {
-    margin-top: -100%;
-  }
-}
-
-@-moz-keyframes animateBubble {
-  0% {
-    margin-top: 1000px;
-  }
-
-  100% {
-    margin-top: -100%;
-  }
+  z-index: -1;
+  opacity: 0.03;
+  pointer-events: none;
 }
 
 @keyframes animateBubble {
-  0% {
-    margin-top: 1000px;
-  }
-
-  100% {
-    margin-top: -100%;
-  }
-}
-
-@-webkit-keyframes sideWays {
-  0% {
-    margin-left: 0px;
-  }
-
-  100% {
-    margin-left: 50px;
-  }
-}
-
-@-moz-keyframes sideWays {
-  0% {
-    margin-left: 0px;
-  }
-
-  100% {
-    margin-left: 50px;
-  }
+  0%   { margin-top: 1000px; }
+  100% { margin-top: -100%; }
 }
 
 @keyframes sideWays {
-  0% {
-    margin-left: 0px;
-  }
-
-  100% {
-    margin-left: 50px;
-  }
+  0%   { margin-left: 0px; }
+  100% { margin-left: 50px; }
 }
 
-/* ANIMATIONS */
-
-.x1 {
-  -webkit-animation: animateBubble 25s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 25s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  animation: animateBubble 25s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-
-  left: -5%;
-  top: 5%;
-
-  -webkit-transform: scale(0.6);
-  -moz-transform: scale(0.6);
-  transform: scale(0.6);
-}
-
-.x2 {
-  -webkit-animation: animateBubble 20s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 20s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-  animation: animateBubble 20s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-
-  left: 5%;
-  top: 80%;
-
-  -webkit-transform: scale(0.4);
-  -moz-transform: scale(0.4);
-  transform: scale(0.4);
-}
-
-.x3 {
-  -webkit-animation: animateBubble 28s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 28s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  animation: animateBubble 28s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-
-  left: 10%;
-  top: 40%;
-
-  -webkit-transform: scale(0.7);
-  -moz-transform: scale(0.7);
-  transform: scale(0.7);
-}
-
-.x4 {
-  -webkit-animation: animateBubble 22s linear infinite,
-    sideWays 3s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 22s linear infinite,
-    sideWays 3s ease-in-out infinite alternate;
-  animation: animateBubble 22s linear infinite,
-    sideWays 3s ease-in-out infinite alternate;
-
-  left: 20%;
-  top: 0;
-
-  -webkit-transform: scale(0.3);
-  -moz-transform: scale(0.3);
-  transform: scale(0.3);
-}
-
-.x5 {
-  -webkit-animation: animateBubble 29s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 29s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-  animation: animateBubble 29s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-
-  left: 30%;
-  top: 50%;
-
-  -webkit-transform: scale(0.5);
-  -moz-transform: scale(0.5);
-  transform: scale(0.5);
-}
-
-.x6 {
-  -webkit-animation: animateBubble 21s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 21s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  animation: animateBubble 21s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-
-  left: 50%;
-  top: 0;
-
-  -webkit-transform: scale(0.8);
-  -moz-transform: scale(0.8);
-  transform: scale(0.8);
-}
-
-.x7 {
-  -webkit-animation: animateBubble 20s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 20s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  animation: animateBubble 20s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-
-  left: 65%;
-  top: 70%;
-
-  -webkit-transform: scale(0.4);
-  -moz-transform: scale(0.4);
-  transform: scale(0.4);
-}
-
-.x8 {
-  -webkit-animation: animateBubble 22s linear infinite,
-    sideWays 3s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 22s linear infinite,
-    sideWays 3s ease-in-out infinite alternate;
-  animation: animateBubble 22s linear infinite,
-    sideWays 3s ease-in-out infinite alternate;
-
-  left: 80%;
-  top: 10%;
-
-  -webkit-transform: scale(0.3);
-  -moz-transform: scale(0.3);
-  transform: scale(0.3);
-}
-
-.x9 {
-  -webkit-animation: animateBubble 29s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 29s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-  animation: animateBubble 29s linear infinite,
-    sideWays 4s ease-in-out infinite alternate;
-
-  left: 90%;
-  top: 50%;
-
-  -webkit-transform: scale(0.6);
-  -moz-transform: scale(0.6);
-  transform: scale(0.6);
-}
-
-.x10 {
-  -webkit-animation: animateBubble 26s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  -moz-animation: animateBubble 26s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-  animation: animateBubble 26s linear infinite,
-    sideWays 2s ease-in-out infinite alternate;
-
-  left: 80%;
-  top: 80%;
-
-  -webkit-transform: scale(0.3);
-  -moz-transform: scale(0.3);
-  transform: scale(0.3);
-}
-
-/* OBJECTS */
+.x1  { animation: animateBubble 25s linear infinite, sideWays 2s ease-in-out infinite alternate; left: -5%;  top: 5%;  transform: scale(0.6); }
+.x2  { animation: animateBubble 20s linear infinite, sideWays 4s ease-in-out infinite alternate; left: 5%;   top: 80%; transform: scale(0.4); }
+.x3  { animation: animateBubble 28s linear infinite, sideWays 2s ease-in-out infinite alternate; left: 10%;  top: 40%; transform: scale(0.7); }
+.x4  { animation: animateBubble 22s linear infinite, sideWays 3s ease-in-out infinite alternate; left: 20%;  top: 0;   transform: scale(0.3); }
+.x5  { animation: animateBubble 29s linear infinite, sideWays 4s ease-in-out infinite alternate; left: 30%;  top: 50%; transform: scale(0.5); }
+.x6  { animation: animateBubble 21s linear infinite, sideWays 2s ease-in-out infinite alternate; left: 50%;  top: 0;   transform: scale(0.8); }
+.x7  { animation: animateBubble 20s linear infinite, sideWays 2s ease-in-out infinite alternate; left: 65%;  top: 70%; transform: scale(0.4); }
+.x8  { animation: animateBubble 22s linear infinite, sideWays 3s ease-in-out infinite alternate; left: 80%;  top: 10%; transform: scale(0.3); }
+.x9  { animation: animateBubble 29s linear infinite, sideWays 4s ease-in-out infinite alternate; left: 90%;  top: 50%; transform: scale(0.6); }
+.x10 { animation: animateBubble 26s linear infinite, sideWays 2s ease-in-out infinite alternate; left: 80%;  top: 80%; transform: scale(0.3); }
 
 .bubble {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
   border-radius: 50%;
-
-  -webkit-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2),
-    inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
-  -moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2),
-    inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2),
-    inset 0px 10px 30px 5px rgba(255, 255, 255, 1);
-
+  box-shadow: 0 20px 30px rgba(0,0,0,0.4), inset 0 10px 30px 5px rgba(126,231,135,0.15);
   height: 200px;
   position: absolute;
   width: 200px;
 }
 
-.bubble.red {
-  background-color: red;
-}
-
-.bubble.blue {
-  background-color: blue;
-}
-
-
-
-
-.bubble:after {
-  background: -moz-radial-gradient(center,
-      ellipse cover,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0) 70%);
-  /* FF3.6+ */
-  background: -webkit-gradient(radial,
-      center center,
-      0px,
-      center center,
-      100%,
-      color-stop(0%, rgba(255, 255, 255, 0.5)),
-      color-stop(70%, rgba(255, 255, 255, 0)));
-  /* Chrome,Safari4+ */
-  background: -webkit-radial-gradient(center,
-      ellipse cover,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0) 70%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-radial-gradient(center,
-      ellipse cover,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0) 70%);
-  /* Opera 12+ */
-  background: -ms-radial-gradient(center,
-      ellipse cover,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0) 70%);
-  /* IE10+ */
-  background: radial-gradient(ellipse at center,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0) 70%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80ffffff', endColorstr='#00ffffff', GradientType=1);
-  /* IE6-9 fallback on horizontal gradient */
-
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-
-  -webkit-box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.3);
-  -moz-box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.3);
-  box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.3);
-
-  content: "";
-  height: 180px;
-  left: 10px;
-  position: absolute;
-  width: 180px;
-}
-
 @media screen and (max-width: 600px) {
-  .permalink {
+  .permalinks {
     flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .footer__logo {
-    font-size: 1rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-    display: inline-block;
+    align-items: center;
+    gap: 0.75rem;
   }
 }

@@ -24,9 +24,9 @@ const Home = () => {
       <About />
       <Education />
 
-      <Experience />
-
       <Portfolio />
+
+      <Experience />
 
       <Services />
 
