@@ -56,7 +56,7 @@ const entries = [
 const Education = () => (
   <section id="education">
     <h5>where i&apos;ve been</h5>
-    <h2>Experience &amp; Education</h2>
+    <h2>Experience</h2>
 
     <div className="edu__timeline">
       {entries.map((e, i) => (

@@ -26,11 +26,6 @@ const Footer = () => {
           {" "}
           <a href="#portfolio">Projects</a>
         </li>
-
-        <li>
-          {" "}
-          <a href="/askme">Ask me</a>
-        </li>
       </ul>
 
       <div className="footer__copyright">

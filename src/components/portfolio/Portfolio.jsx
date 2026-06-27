@@ -30,7 +30,7 @@ const Portfolio = () => {
             </div>
             <h3>LazyKit</h3>
             <small>
-              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a pull request. No laptop needed. (Node.js, GitHub Actions, Claude AI)
+              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a pull request. No laptop, no IDE, no claude code open, only github.
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -89,7 +89,7 @@ const Portfolio = () => {
             </div>
             <h3>Innercast</h3>
             <small>
-              Your private mood diary. Check in with 35+ emotions daily, get an AI-written journal each night, and explore patterns across 7, 30, and 90 days. Everything stays encrypted on your device. (React Native, Expo, Claude AI)
+              Your private mood diary. Check in with 35+ emotions daily, get an AI-written journal each night, and explore patterns across 7, 30, and 90 days. Everything stays encrypted on your device
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -107,9 +107,9 @@ const Portfolio = () => {
             <div className="portfolio__item-image lazykit-preview">
               <span className="lazykit-preview-emoji">🧠</span>
             </div>
-            <h3>Audio-Visual Speech Recognition</h3>
+            <h3>AVSR</h3>
             <small>
-              Multi-modal AVSR system fusing audio (MFCCs) and video (CNNs) — 25% better accuracy in noisy environments vs audio-only. Trained SVM, Random Forest, DNN & LSTM. Real-time under 500ms. (ML, Python — B.Tech Thesis)
+              Multi-modal AVSR system fusing audio (MFCCs) and video (CNNs) — 25% better accuracy in noisy environments vs audio-only. Trained SVM, Random Forest, DNN & LSTM. Real-time under 500ms.
             </small>
             <div className="portfolio__item-cta">
               <a
