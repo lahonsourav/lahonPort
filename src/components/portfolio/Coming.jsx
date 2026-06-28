@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaHeart, FaRegComment, FaPaperPlane, FaBookmark } from 'react-icons/fa';
 import Mok from '../../assets/mokshaligned.png'
-import PHOTO from "../../assets/mejpg.jpg";
 
 
 const Coming = () => {

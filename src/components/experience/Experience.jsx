@@ -1,17 +1,13 @@
 import React, { useEffect } from "react";
 import "./experience.css";
 import { RxDimensions } from "react-icons/rx";
-import { AiOutlineHtml5, AiOutlineVideoCameraAdd } from "react-icons/ai";
+import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 
 import { DiJavascript1 } from "react-icons/di";
 
-import { CgCPlusPlus } from "react-icons/cg";
+import { FaGuitar, FaPaintBrush, FaReact, FaPython } from "react-icons/fa";
 
-import { FaGuitar, FaPaintBrush, FaReact, FaDocker, FaPython } from "react-icons/fa";
-
-import { FaCss3Alt, FaNodeJs } from "react-icons/fa";
-
-import { SiFlutter, SiMicrosoftoffice, SiDotnet, SiApachekafka, SiMongodb } from "react-icons/si";
+import { SiMicrosoftoffice, SiDotnet, SiApachekafka, SiMongodb } from "react-icons/si";
 
 import Aos from "aos";
 import "aos/dist/aos.css";

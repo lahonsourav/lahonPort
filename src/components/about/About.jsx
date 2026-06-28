@@ -27,7 +27,7 @@ const About = () => {
           <div className="about__me">
             <img className="about__me_image" src={PHOTO} alt="AboutImage" />
           </div>
-          <p className="about__me__caption">// debugging life, one commit at a time</p>
+          <p className="about__me__caption">{"// debugging life, one commit at a time"}</p>
         </div>
 
         <div className="about__content">
