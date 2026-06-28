@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import "./Portfolio.css";
-// import Pt from './Partnership.pdf'
 
 import PRO2 from "../../images/boijaa.jpg";
-// import PRO3 from "../../images/infinity.jpg";
 import PRO4 from "../../images/adhorua.jpg";
-// import PRO5 from "../../images/pc.png";
-// import PRO6 from "../../images/gamusawhitelow.jpg";
 
 import Aos from "aos";
 import "aos/dist/aos.css";

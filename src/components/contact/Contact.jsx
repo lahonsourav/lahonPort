@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./contact.css";
 import { BiMailSend } from "react-icons/bi";
 import { FiPhoneCall } from "react-icons/fi";
 import { BsWhatsapp } from "react-icons/bs";
-
-import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 import Aos from "aos";
@@ -32,7 +30,7 @@ const Contact = () => {
         "0RwgMGfnVh-mwKq1J"
       )
       .then(
-        (result) => {
+        (_result) => {
           setAlertMessage("Got your Message, You're such a beautiful human");
           setAlertType("success");
           setShowAlert(true);
