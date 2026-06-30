@@ -13,6 +13,7 @@ import Creative from "./components/portfolio/Creative.jsx";
 import Admin from "./admin/Admin.jsx";
 import Mood from "./components/portfolio/Mood.jsx";
 import LazyKit from "./components/portfolio/LazyKit.jsx";
+import Lazyperm from "./components/portfolio/Lazyperm.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
@@ -61,6 +62,7 @@ function App() {
             <Route path="/contactout" element={<ContactOut />} />
             <Route path="/mood" element={<Mood />} />
             <Route path="/lazykit" element={<LazyKit />} />
+            <Route path="/lazyperm" element={<Lazyperm />} />
           </Routes>
         </Suspense>
 

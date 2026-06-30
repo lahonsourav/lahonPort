@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# lazyperm
+.claude/hooks/guard.py
+.claude/hooks/safe_patterns.json
+.claude/hooks/deny_patterns.json
+.claude/hooks/cache.json
+.claude/hooks/decisions.log

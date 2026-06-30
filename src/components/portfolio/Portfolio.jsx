@@ -186,6 +186,60 @@ const Portfolio = () => {
           </article>
         </Tilt>
       </div>
+
+      <h2 className="tools__heading">Tools</h2>
+
+      <div className="container tools__container">
+        <Tilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="portfolio__item-image lazyperm-preview">
+              <div className="lazyperm-terminal">
+                <div className="lazyperm-terminal__bar">
+                  <span /><span /><span />
+                </div>
+                <div className="lazyperm-terminal__body">
+                  <span className="lp-dim">$ </span><span className="lp-cmd">git status</span>
+                  <span className="lp-allow"> ✓ auto-allowed</span>
+                  <br />
+                  <span className="lp-dim">$ </span><span className="lp-cmd">rm -rf dist</span>
+                  <span className="lp-deny"> ✗ blocked</span>
+                  <br />
+                  <span className="lp-dim">$ </span><span className="lp-cmd">npm run build</span>
+                  <span className="lp-prompt"> ↳ prompt</span>
+                </div>
+              </div>
+            </div>
+            <h3>lazyperm</h3>
+            <small>
+              Eliminates repetitive permission prompts in Claude Code. Hooks into PreToolUse to auto-allow safe commands and block dangerous ones — so you only get interrupted when it actually matters.
+            </small>
+            <div className="portfolio__item-cta">
+              <div
+                onClick={() => navigate("/lazyperm")}
+                className="btn btn-primary"
+              >
+                Learn More
+              </div>
+              <a
+                href="https://www.npmjs.com/package/lazyperm"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                npm
+              </a>
+              <a
+                href="https://marketplace.visualstudio.com/items?itemName=lahonsourav.lazyperm-claude"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                VS Code
+              </a>
+            </div>
+          </article>
+        </Tilt>
+      </div>
     </section>
   );
 };

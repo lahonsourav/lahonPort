@@ -1,0 +1,291 @@
+/* ── Hero install block ── */
+.lp_hero_install {
+    margin-bottom: 2rem;
+    padding: 0.85rem 2rem;
+    display: inline-block;
+}
+
+.lp_hero_install code {
+    font-size: 1.2rem;
+    color: #7ee787;
+}
+
+/* ── Hero extension note ── */
+.lp_hero_ext_note {
+    font-size: 0.85rem;
+    color: #6e7681;
+    margin-top: 1rem;
+}
+
+.lp_hero_ext_note strong {
+    color: #8b949e;
+}
+
+/* ── Problem prompt example ── */
+.lp_prompt_example {
+    background: #161b22;
+    border-left: 3px solid #e3b341;
+}
+
+.lp_prompt_line {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    color: #e6edf3 !important;
+    font-size: 1rem !important;
+}
+
+.lp_prompt_icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.lp_prompt_cmd {
+    color: #79c0ff;
+    font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+}
+
+/* ── Flow diagram ── */
+.lp_flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 1.5rem 1rem;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+}
+
+.lp_flow_row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.lp_flow_split {
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.lp_flow_node {
+    padding: 0.55rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    text-align: center;
+    min-width: 220px;
+}
+
+.lp_flow_sub {
+    font-size: 0.72rem;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.lp_flow_start {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #e6edf3;
+}
+
+.lp_flow_check {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #79c0ff;
+    font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+    font-size: 0.83rem;
+}
+
+.lp_flow_block {
+    background: rgba(248, 81, 73, 0.12);
+    border: 1px solid rgba(248, 81, 73, 0.4);
+    color: #f85149;
+    min-width: 130px;
+}
+
+.lp_flow_allow {
+    background: rgba(61, 224, 129, 0.1);
+    border: 1px solid rgba(61, 224, 129, 0.35);
+    color: #3de081;
+    min-width: 130px;
+}
+
+.lp_flow_prompt {
+    background: rgba(227, 179, 65, 0.1);
+    border: 1px solid rgba(227, 179, 65, 0.35);
+    color: #e3b341;
+}
+
+.lp_flow_arrow {
+    color: #484f58;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.lp_flow_no_match {
+    color: #484f58;
+    font-size: 0.8rem;
+    padding: 0.15rem 0;
+    align-self: flex-start;
+    padding-left: calc(1rem + 110px);
+}
+
+.lp_flow_side {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lp_flow_label {
+    color: #6e7681;
+    font-size: 0.8rem;
+}
+
+.lp_flow_arrow_right {
+    color: #484f58;
+    font-size: 1rem;
+}
+
+/* ── Install cards ── */
+.lp_install_grid {
+    gap: 1.25rem;
+}
+
+.lp_install_card {
+    border-top: 2px solid #238636;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.lp_install_card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e6edf3;
+    margin: 0;
+}
+
+.lp_install_card p {
+    color: #8b949e;
+    font-size: 0.93rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.lp_install_code {
+    margin-bottom: 0 !important;
+}
+
+.lp_install_code code {
+    font-size: 0.9rem !important;
+}
+
+.lp_install_btn {
+    display: inline-block;
+    text-align: center;
+    margin-top: 0.25rem;
+}
+
+/* ── Editor list ── */
+.lp_editor_list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.lp_editor_row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.9rem;
+    color: #8b949e;
+}
+
+.lp_editor_icon {
+    font-size: 1rem;
+    width: 1.5rem;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.lp_search_callout {
+    margin-top: 0.75rem !important;
+    font-size: 0.88rem;
+}
+
+/* ── Pattern grid ── */
+.lp_pattern_grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.lp_pattern_row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 0.85rem 1.25rem;
+}
+
+.lp_pattern_row strong {
+    display: block;
+    color: #e6edf3;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+.lp_pattern_row p {
+    color: #8b949e;
+    font-size: 0.85rem;
+    margin: 0;
+    font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+}
+
+.lp_pattern_label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    width: 1.2rem;
+    text-align: center;
+}
+
+.lp_label_allow { color: #3de081; }
+.lp_label_deny  { color: #f85149; }
+
+/* ── Responsive ── */
+@media screen and (max-width: 700px) {
+    .lp_flow_split {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 0.5rem;
+    }
+
+    .lp_flow_side {
+        padding-left: 1rem;
+    }
+
+    .lp_flow_no_match {
+        padding-left: 1rem;
+    }
+
+    .lp_flow_node {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .lp_install_grid {
+        grid-template-columns: 1fr;
+    }
+}
