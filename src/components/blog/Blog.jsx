@@ -14,6 +14,7 @@ const readMins = (content) => Math.max(1, Math.round(content.join(' ').split(/\s
 
 const PostCard = ({ slug, title, date, tag, excerpt, content }) => {
   const navigate = useNavigate();
+  const reads = parseInt(localStorage.getItem(`blog_reads_${slug}`) || '0', 10);
   return (
     <div className="blog-card" onClick={() => navigate(`/blog/${slug}`)} role="button" style={{ '--card-accent': TAG_COLORS[tag] ?? '#7ee787' }}>
       <div className="blog-card-meta">
@@ -24,6 +25,7 @@ const PostCard = ({ slug, title, date, tag, excerpt, content }) => {
         )}
         <span className="blog-date">{date}</span>
         <span className="blog-read-time">{readMins(content)} min read</span>
+        {reads > 0 && <span className="blog-reads">{reads} {reads === 1 ? 'read' : 'reads'}</span>}
       </div>
       <h2 className="blog-card-title">{title}</h2>
       <p className="blog-card-excerpt">{excerpt}</p>

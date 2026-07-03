@@ -70,6 +70,17 @@
   transform: translateY(-2px);
 }
 
+.about__card--cta {
+  border-color: color-mix(in srgb, var(--ds-green-btn) 50%, var(--ds-border));
+  cursor: pointer;
+}
+
+.about__card--cta:hover {
+  border-color: var(--ds-green);
+  background: color-mix(in srgb, var(--ds-green) 8%, var(--ds-surface-2));
+  cursor: pointer;
+}
+
 .about__icon {
   color: var(--ds-green);
   font-size: 1.4rem;

@@ -15,6 +15,13 @@ const BlogPost = () => {
   const navigate = useNavigate();
   const post = POSTS.find(p => p.slug === slug);
 
+  React.useEffect(() => {
+    if (!slug) return;
+    const key = `blog_reads_${slug}`;
+    const n = parseInt(localStorage.getItem(key) || '0', 10);
+    localStorage.setItem(key, n + 1);
+  }, [slug]);
+
   if (!post) {
     return (
       <div className="blog-page">

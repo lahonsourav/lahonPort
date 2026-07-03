@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./about.css";
 import { TfiMicrosoftAlt } from "react-icons/tfi";
-import { GiRingedPlanet } from "react-icons/gi";
 
 import PHOTO from "../../assets/mejpg.jpg";
 
@@ -37,10 +36,14 @@ const About = () => {
               <small>SWE, Gurgaon</small>
             </article>
 
-            <article data-aos="fade-up-right" className="about__card">
-              <GiRingedPlanet className="about__icon" />
-              <h5>Space Nerd</h5>
-              <small>obsessed with Jupiter</small>
+            <article
+              data-aos="fade-up-right"
+              className="about__card about__card--cta"
+              onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <span className="about__icon-letter">↗</span>
+              <h5>View Work</h5>
+              <small>projects &amp; builds</small>
             </article>
 
             <article data-aos="fade-up-left" className="about__card">

@@ -6,7 +6,6 @@ import About from "../about/About";
 import Experience from "../experience/Experience";
 import Services from "../services/Services";
 import Portfolio from "../portfolio/Portfolio";
-import Testimonials from "../testimonals/Testimonial";
 import Contacts from "../contact/Contact";
 import Footer from "../footer/Footer";
 
@@ -22,15 +21,14 @@ const Home = () => {
       <Header />
       <CTA />
       <About />
-      <Education />
 
       <Portfolio />
 
       <Experience />
 
-      <Services />
+      <Education />
 
-      <Testimonials />
+      <Services />
 
       <Contacts />
       <HeaderSocials />

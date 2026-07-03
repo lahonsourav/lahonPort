@@ -46,7 +46,7 @@ const Nav = () => {
 
       <Link
         activeClass="active"
-        to="services"
+        to="bio"
         spy={true}
         smooth={true}
         offset={-40}

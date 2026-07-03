@@ -42,7 +42,7 @@ const Header = () => {
   return (
     <header id="header">
       <div className="header__containerpc">
-        <h5>This is</h5>
+        <h5>Hi, I'm</h5>
         <h1>
           LA<span className="h">H</span>ON
         </h1>

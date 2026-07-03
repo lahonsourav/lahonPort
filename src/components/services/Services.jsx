@@ -9,9 +9,9 @@ const Services = () => {
     Aos.init({ duration: 2000 });
   }, []);
   return (
-    <section id="services">
-      <h5 data-aos="fade-down">get to know me</h5>
-      <h2>At A Glance</h2>
+    <section id="bio">
+      <h5 data-aos="fade-down">a little more</h5>
+      <h2>Bio</h2>
       <div className="container services__container">
 
         <Tilt>

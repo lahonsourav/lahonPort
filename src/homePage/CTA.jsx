@@ -12,9 +12,6 @@ const CTA = () => {
       <div className="btn btn-primary" onClick={() => navigate("/blog")}>
         Blog
       </div>
-      <a href="#portfolio" className="btn cta-scroll-hint">
-        View work ↓
-      </a>
     </div>
   );
 };
