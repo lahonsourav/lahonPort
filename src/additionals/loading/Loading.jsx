@@ -4,8 +4,8 @@ import './Loading.css';
 const Loading = () => {
     return (
         <div className="loading-container">
-            <div className="spinner"></div>
-            <p>on your way</p>
+            <div className="loading-spinner" />
+            <span className="loading-text">loading</span>
         </div>
     );
 };

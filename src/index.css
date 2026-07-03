@@ -157,6 +157,26 @@ a:hover {
   color: var(--ds-text-muted);
 }
 
+.page-back-nav {
+  padding: 1.5rem 2rem 0;
+  align-self: stretch;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--ds-text-muted);
+  font-family: var(--ds-font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.back-btn:hover {
+  color: var(--ds-green);
+}
+
 img {
   display: block;
   width: 100%;

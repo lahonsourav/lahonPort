@@ -18,6 +18,7 @@
 .portfolio__items:hover {
   border-color: var(--ds-green-btn);
   background: var(--ds-surface-2);
+  transform: translateY(-2px);
 }
 
 .portfolio__item-image {
@@ -127,16 +128,167 @@
   text-align: center;
 }
 
-/* ── LazyKit emoji preview ── */
-.lazykit-preview {
-  background: var(--ds-bg);
+/* ── LazyKit GitHub flow preview ── */
+.lk-preview {
+  background: #0d1117;
+  padding: 0;
+  align-items: stretch;
+}
+
+.lk-flow {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  width: 100%;
+  height: 100%;
 }
 
-.lazykit-preview-emoji {
-  font-size: 4rem;
+.lk-node {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 0.4rem 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.lk-node-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.lk-node-dot--green  { background: #3de081; }
+.lk-node-dot--purple { background: #8957e5; }
+
+.lk-node-title {
+  font-size: 0.48rem;
+  color: #8b949e;
+  font-family: var(--ds-font-mono, monospace);
+}
+
+.lk-node-body {
+  font-size: 0.55rem;
+  color: #e6edf3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lk-merged-badge {
+  font-size: 0.42rem;
+  background: rgba(137, 87, 229, 0.15);
+  border: 1px solid rgba(137, 87, 229, 0.4);
+  color: #a371f7;
+  border-radius: 100px;
+  padding: 0.1rem 0.35rem;
+  width: fit-content;
+  margin-top: 0.1rem;
+}
+
+.lk-step-arrow {
+  color: #484f58;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.lk-bot {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ── AVSR audio-visual preview ── */
+.avsr-preview {
+  background: #0d1117;
+  padding: 0;
+  align-items: stretch;
+}
+
+.avsr-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.avsr-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avsr-stream {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.avsr-waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 18px;
+}
+
+.avsr-bar {
+  width: 3px;
+  background: #3de081;
+  border-radius: 1px;
+  opacity: 0.85;
+}
+
+.avsr-face {
+  width: 36px;
+  height: 36px;
+  color: #58a6ff;
+}
+
+.avsr-stream-label {
+  font-size: 0.42rem;
+  color: #8b949e;
+  font-family: var(--ds-font-mono, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.avsr-fusion {
+  font-size: 1rem;
+  color: #484f58;
+  margin-top: -0.5rem;
+}
+
+.avsr-chips {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.avsr-chip {
+  font-size: 0.42rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 100px;
+  border: 1px solid rgba(61, 224, 129, 0.35);
+  background: rgba(61, 224, 129, 0.1);
+  color: rgba(61, 224, 129, 0.88);
+  white-space: nowrap;
+}
+
+.avsr-chip--blue {
+  border-color: rgba(88, 166, 255, 0.35);
+  background: rgba(88, 166, 255, 0.1);
+  color: rgba(88, 166, 255, 0.88);
 }
 
 /* ── Live clock in card ── */

@@ -2,21 +2,20 @@ import './cts.css';
 import cv from "../assets/resume.pdf";
 import { useNavigate } from 'react-router-dom';
 
-
 const CTA = () => {
-
   const navigate = useNavigate();
-  return (<>
+  return (
     <div className="cta">
       <a href={cv} target="_blank" rel="noopener noreferrer" className="btn">
-        Resume : pdf
+        Resume
       </a>
-
-      <div className="btn btn-primary" onClick={() => navigate("/creative")} >
-        Creative
+      <div className="btn btn-primary" onClick={() => navigate("/blog")}>
+        Blog
       </div>
-    </div >
-  </>
+      <a href="#portfolio" className="btn cta-scroll-hint">
+        View work ↓
+      </a>
+    </div>
   );
 };
 

@@ -16,6 +16,7 @@
 
 .service:hover {
   border-color: var(--ds-green-btn);
+  transform: translateY(-2px);
 }
 
 .service__head {

@@ -29,21 +29,20 @@ header {
   line-height: 1.1;
 }
 
-/* The red letter — keep it green for design-system accent */
 .h {
   color: var(--ds-green);
 }
 
-/* Typing animation */
 .wrapper2 {
   display: grid;
   place-items: center;
   margin-top: 0.75rem;
+  min-height: 2rem;
 }
 
 .typing-demo {
-  width: 28ch;
-  animation: typing 6s steps(22), blink 0.5s step-end infinite alternate;
+  min-width: 1ch;
+  animation: blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
   border-right: 2px solid var(--ds-green);
@@ -52,12 +51,49 @@ header {
   color: var(--ds-text-muted);
 }
 
-@keyframes typing {
-  from { width: 0; }
-}
-
 @keyframes blink {
   50% { border-color: transparent; }
+}
+
+/* "now shipping" badge */
+.now-shipping {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  color: var(--ds-text-muted);
+  margin-top: 1.25rem;
+  font-family: var(--ds-font-mono);
+  border: 1px solid var(--ds-border);
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  background: var(--ds-surface);
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+
+.now-shipping:hover {
+  border-color: var(--ds-green);
+  background: var(--ds-surface-2);
+}
+
+.now-shipping strong {
+  color: var(--ds-green);
+  font-weight: 500;
+}
+
+.now-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ds-green);
+  flex-shrink: 0;
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(126, 231, 135, 0.4); }
+  50%       { opacity: 0.7; box-shadow: 0 0 0 5px rgba(126, 231, 135, 0); }
 }
 
 .h1 {

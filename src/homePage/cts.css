@@ -19,15 +19,15 @@
   border-color: var(--ds-green-btn-hover);
 }
 
-/* Secondary CTA: creative — dark filled */
-.spbtn {
-  background: var(--ds-surface);
-  color: var(--ds-text);
-  border: 1px solid var(--ds-border);
+.cta-scroll-hint {
+  color: var(--ds-text-muted);
+  border-color: var(--ds-border);
+  background: transparent;
+  font-size: 0.85rem;
 }
 
-.spbtn:hover {
-  background: var(--ds-surface-2);
-  border-color: var(--ds-green-btn);
+.cta-scroll-hint:hover {
   color: var(--ds-text);
+  background: var(--ds-surface);
+  border-color: var(--ds-border);
 }

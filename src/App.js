@@ -9,14 +9,15 @@ import React, { Suspense, lazy } from "react";
 
 import Loading from "./additionals/loading/Loading.jsx";
 import HomePage from "./homePage/HomePage.jsx";
-import Creative from "./components/portfolio/Creative.jsx";
 import Admin from "./admin/Admin.jsx";
-import Mood from "./components/portfolio/Mood.jsx";
-import LazyKit from "./components/portfolio/LazyKit.jsx";
-import Lazyperm from "./components/portfolio/Lazyperm.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
+const Blog = lazy(() => import("./components/blog/Blog"));
+const BlogPost = lazy(() => import("./components/blog/BlogPost"));
+const Mood = lazy(() => import("./components/portfolio/Mood"));
+const LazyKit = lazy(() => import("./components/portfolio/LazyKit"));
+const Lazyperm = lazy(() => import("./components/portfolio/Lazyperm"));
 
 function App() {
   window.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -34,10 +35,12 @@ function App() {
           outerStyle={{
             border: "2px solid var(--color-cursor)",
             mixBlendMode: "exclusion",
+            zIndex: 9999,
           }}
           innerStyle={{
             backgroundColor: "#7ee787",
             mixBlendMode: "exclusion",
+            zIndex: 9999,
           }}
           trailingSpeed={10}
           clickables={[
@@ -58,7 +61,8 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/creative" element={<Creative />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contactout" element={<ContactOut />} />
             <Route path="/mood" element={<Mood />} />
             <Route path="/lazykit" element={<LazyKit />} />

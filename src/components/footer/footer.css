@@ -25,7 +25,7 @@ footer {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem 2rem;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 2rem;
 }
 
 .permalinks a {
@@ -51,21 +51,10 @@ footer a:hover {
   margin-top: 1.5rem;
   color: var(--ds-text-muted);
   font-size: 0.8rem;
-}
-
-.footer__copyright__youtube {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
   align-items: center;
-}
-
-.footer__copyright__youtube > small > a {
-  color: var(--ds-blue);
-}
-
-.footer__copyright__youtube > small > a:hover {
-  color: var(--ds-text);
+  gap: 0.35rem;
 }
 
 /* ── Clock (if used) ── */

@@ -40,6 +40,7 @@
 
 .edu__card:hover {
   border-color: var(--ds-green-btn);
+  transform: translateY(-2px);
 }
 
 .edu__card h3 {
@@ -136,8 +137,13 @@
 
 /* ── Responsive ── */
 @media screen and (max-width: 768px) {
+  .edu__timeline {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .edu__timeline::before {
-    left: 25px;
+    left: calc(25px + 1rem);
     transform: none;
   }
 

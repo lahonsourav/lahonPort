@@ -18,15 +18,30 @@ const Portfolio = () => {
   }, []);
   return (
     <section id="portfolio">
-      <h5 data-aos="fade-down">I would love to showcase some of</h5>
+      <h5 data-aos="fade-down">a selection of</h5>
 
       <h2>My Projects</h2>
 
       <div className="container portfolio__container">
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image lazykit-preview">
-              <span className="lazykit-preview-emoji">🦥</span>
+            <div className="portfolio__item-image lk-preview">
+              <div className="lk-flow">
+                <div className="lk-node">
+                  <span className="lk-node-dot lk-node-dot--green" />
+                  <div className="lk-node-title">issue #42</div>
+                  <div className="lk-node-body">Add dark mode</div>
+                </div>
+                <span className="lk-step-arrow">→</span>
+                <div className="lk-bot">🤖</div>
+                <span className="lk-step-arrow">→</span>
+                <div className="lk-node">
+                  <span className="lk-node-dot lk-node-dot--purple" />
+                  <div className="lk-node-title">PR #43</div>
+                  <div className="lk-node-body">feat: dark mode</div>
+                  <div className="lk-merged-badge">merged</div>
+                </div>
+              </div>
             </div>
             <h3>LazyKit</h3>
             <small>
@@ -104,8 +119,33 @@ const Portfolio = () => {
 
         <Tilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image lazykit-preview">
-              <span className="lazykit-preview-emoji">🧠</span>
+            <div className="portfolio__item-image avsr-preview">
+              <div className="avsr-inner">
+                <div className="avsr-inputs">
+                  <div className="avsr-stream">
+                    <div className="avsr-waveform">
+                      {[3,7,12,5,9,15,6,10,4,8].map((h, i) => (
+                        <span key={i} className="avsr-bar" style={{height: `${h}px`}} />
+                      ))}
+                    </div>
+                    <span className="avsr-stream-label">audio</span>
+                  </div>
+                  <span className="avsr-fusion">⊕</span>
+                  <div className="avsr-stream">
+                    <svg viewBox="0 0 40 40" className="avsr-face">
+                      <circle cx="20" cy="20" r="17" stroke="currentColor" fill="none" strokeWidth="1.5"/>
+                      <circle cx="14" cy="17" r="2" fill="currentColor"/>
+                      <circle cx="26" cy="17" r="2" fill="currentColor"/>
+                      <path d="M 13 26 Q 20 31 27 26" stroke="currentColor" fill="none" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                    <span className="avsr-stream-label">video</span>
+                  </div>
+                </div>
+                <div className="avsr-chips">
+                  <span className="avsr-chip">25% ↑ accuracy</span>
+                  <span className="avsr-chip avsr-chip--blue">{"< 500ms"}</span>
+                </div>
+              </div>
             </div>
             <h3>AVSR</h3>
             <small>

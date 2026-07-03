@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./about.css";
 import { TfiMicrosoftAlt } from "react-icons/tfi";
-import { GiClothes } from "react-icons/gi";
-import { RiComputerLine } from "react-icons/ri";
+import { GiRingedPlanet } from "react-icons/gi";
 
 import PHOTO from "../../assets/mejpg.jpg";
 
@@ -33,20 +32,16 @@ const About = () => {
         <div className="about__content">
           <div className="about__cards">
             <article data-aos="fade-up" className="about__card">
-              <RiComputerLine className="about__icon" />
-              <h5>SWE</h5>
-              <small>BlackRock, Gurgaon</small>
+              <span className="about__icon about__icon-letter">B</span>
+              <h5>BlackRock</h5>
+              <small>SWE, Gurgaon</small>
             </article>
 
-            <a
-              href="https://gamusatogether.onrender.com" target="_blank" rel="noreferrer"
-              data-aos="fade-up-right"
-              className="about__card"
-            >
-              <GiClothes className="about__icon" />
-              <h5>Building</h5>
-              <small>Assamesedress.shop</small>
-            </a>
+            <article data-aos="fade-up-right" className="about__card">
+              <GiRingedPlanet className="about__icon" />
+              <h5>Space Nerd</h5>
+              <small>obsessed with Jupiter</small>
+            </article>
 
             <article data-aos="fade-up-left" className="about__card">
               <TfiMicrosoftAlt className="about__icon" />

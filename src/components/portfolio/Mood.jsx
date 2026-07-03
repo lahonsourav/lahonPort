@@ -384,7 +384,6 @@ const TABS = [
 const Mood = () => {
   const [active, setActive] = useState(0);
   const { Comp } = TABS[active];
-
   return (
     <div className="ic-page">
 

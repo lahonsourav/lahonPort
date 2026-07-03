@@ -1,29 +1,39 @@
 import React, { useEffect } from "react";
 import "./experience.css";
-import { RxDimensions } from "react-icons/rx";
-import { AiOutlineVideoCameraAdd } from "react-icons/ai";
-
-import { DiJavascript1 } from "react-icons/di";
-
-import { FaGuitar, FaPaintBrush, FaReact, FaPython } from "react-icons/fa";
-
-import { SiMicrosoftoffice, SiDotnet, SiApachekafka, SiMongodb } from "react-icons/si";
-
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Tilt from "react-parallax-tilt";
-import { GiMusicalNotes } from "react-icons/gi";
+
+const SKILL_GROUPS = [
+  {
+    category: "Languages & Frameworks",
+    skills: ["React", "Node.js", "Express", "NestJS", "C#", ".NET", "Perl", "C++", "JavaScript", "React Native", "Flutter"],
+  },
+  {
+    category: "Data & ML",
+    skills: ["Python", "Pandas", "Streamlit", "NLP", "Machine Learning", "Deep Learning", "SVM", "LSTM"],
+  },
+  {
+    category: "Infra & Databases",
+    skills: ["Kafka", "Docker", "GitHub Actions", "Unix", "MongoDB", "SQL", "Redis", "Cloudinary"],
+  },
+  {
+    category: "Creative",
+    skills: ["FL Studio", "Audacity", "Premiere Pro", "DaVinci Resolve", "Water Colour", "Graffiti", "Ukulele", "Figma", "Maya 3D", "MS Office"],
+  },
+];
 
 const Experience = () => {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
+
   return (
     <section id="experience">
-      <h5 data-aos="fade-down">I am trying to learn and improve</h5>
-      <h2>These Skills</h2>
+      <h5 data-aos="fade-down">things I work with</h5>
+      <h2>Skills</h2>
 
-      <div class="snow">
+      <div className="snow">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1024 1536"
@@ -73,37 +83,17 @@ const Experience = () => {
               <ellipse cx="887" cy="598.5" rx="6" ry="5.5" />
             </g>
           </g>
-          <g fill="#FFF" fill-opacity=".3" transform="translate(65 63)">
+          <g fill="#FFF" fillOpacity=".3" transform="translate(65 63)">
             <g id="snow-top-layer">
               <circle cx="8" cy="776" r="8" />
               <circle cx="189" cy="925" r="8" />
               <circle cx="548" cy="844" r="8" />
               <circle cx="685" cy="1115" r="8" />
               <circle cx="858" cy="909" r="8" />
-              <circle
-                cx="874"
-                cy="1438"
-                r="8"
-                transform="rotate(180 874 1438)"
-              />
-              <circle
-                cx="657"
-                cy="1256"
-                r="8"
-                transform="rotate(180 657 1256)"
-              />
-              <circle
-                cx="443"
-                cy="1372"
-                r="8"
-                transform="rotate(180 443 1372)"
-              />
-              <circle
-                cx="339"
-                cy="1107"
-                r="8"
-                transform="rotate(180 339 1107)"
-              />
+              <circle cx="874" cy="1438" r="8" transform="rotate(180 874 1438)" />
+              <circle cx="657" cy="1256" r="8" transform="rotate(180 657 1256)" />
+              <circle cx="443" cy="1372" r="8" transform="rotate(180 443 1372)" />
+              <circle cx="339" cy="1107" r="8" transform="rotate(180 339 1107)" />
               <circle cx="24" cy="1305" r="8" transform="rotate(180 24 1305)" />
               <circle cx="8" cy="8" r="8" />
               <circle cx="189" cy="157" r="8" />
@@ -120,132 +110,30 @@ const Experience = () => {
         </svg>
       </div>
 
-      {/* end */}
-
-      <div className="container experience__container">
-        <div data-aos="zoom-in" className="experience__frontend">
-          <h3>Programming Skills</h3>
-          <div data-aos="fade-right" className="experience__content">
-            <Tilt>
-              <article className="experience__details">
-                <FaReact className="experience__details-icon" />
-                <div>
-                  <h4>Full Stack Web</h4>
-                  <small className="text-light">React, Node.js, Express, NestJS</small>
+      <div className="container">
+        <div className="skills__grid" data-aos="fade-up">
+          {SKILL_GROUPS.map(({ category, skills }) => (
+            <Tilt
+              key={category}
+              tiltMaxAngleX={8}
+              tiltMaxAngleY={8}
+              glareEnable={true}
+              glareMaxOpacity={0.04}
+              glareColor="#7ee787"
+              gyroscope={true}
+              scale={1.02}
+              transitionSpeed={600}
+            >
+              <div className="skills__box">
+                <p className="skills__category">{category}</p>
+                <div className="skills__pills">
+                  {skills.map(skill => (
+                    <span key={skill} className="skills__pill">{skill}</span>
+                  ))}
                 </div>
-              </article>
+              </div>
             </Tilt>
-
-            <Tilt>
-              <article className="experience__details">
-                <SiDotnet className="experience__details-icon" />
-                <div>
-                  <h4>Backend / Systems</h4>
-                  <small className="text-light">C#, .NET, Perl, C++</small>
-                </div>
-              </article>
-            </Tilt>
-            <Tilt>
-              <article className="experience__details">
-                <FaPython className="experience__details-icon" />
-                <div>
-                  <h4>Data, ML & Automation</h4>
-                  <small className="text-light">Python, Pandas, Streamlit, NLP, ML, Deep Learning</small>
-                </div>
-              </article>
-            </Tilt>
-            <Tilt>
-              <article className="experience__details">
-                <DiJavascript1 className="experience__details-icon" />
-                <div>
-                  <h4>Mobile</h4>
-                  <small className="text-light">React Native, Flutter</small>
-                </div>
-              </article>
-            </Tilt>
-            <Tilt>
-              <article className="experience__details">
-                <SiApachekafka className="experience__details-icon" />
-                <div>
-                  <h4>Infra & DevOps</h4>
-                  <small className="text-light">Kafka, Docker, GitHub Actions, Unix</small>
-                </div>
-              </article>
-            </Tilt>
-            <Tilt>
-              <article className="experience__details">
-                <SiMongodb className="experience__details-icon" />
-                <div>
-                  <h4>Databases</h4>
-                  <small className="text-light">MongoDB, SQL, Redis, Cloudinary</small>
-                </div>
-              </article>
-            </Tilt>
-          </div>
-        </div>
-        <div data-aos="zoom-in" className="experience backend">
-          <div className="experience__frontend">
-            <h3>Other Skills</h3>
-            <div data-aos="fade-left" className="experience__content">
-              <Tilt>
-                <article className="experience__details">
-                  <GiMusicalNotes className="experience__details-icon" />
-                  <div>
-                    <h4>Beats Prod</h4>
-                    <small className="text-light">FL Studio, Audacity</small>
-                  </div>
-                </article>
-              </Tilt>
-
-              <Tilt>
-                <article className="experience__details">
-                  <FaPaintBrush className="experience__details-icon" />
-                  <div>
-                    <h4>Painting</h4>
-                    <small className="text-light">Water Colour, Graffiti</small>
-                  </div>
-                </article>
-              </Tilt>
-              <Tilt>
-                <article className="experience__details">
-                  <AiOutlineVideoCameraAdd className="experience__details-icon" />
-                  <div>
-                    <h4>Video Editing</h4>
-                    <small className="text-light">Premier Pro, daVinvi Resolve, Filmora</small>
-                  </div>
-                </article>
-              </Tilt>
-              <Tilt>
-                <article className="experience__details">
-                  <SiMicrosoftoffice className="experience__details-icon" />
-                  <div>
-                    <h4>MS Office</h4>
-                    <small className="text-light">
-                      Word, Excel, PowerPoint
-                    </small>
-                  </div>
-                </article>
-              </Tilt>
-              <Tilt>
-                <article className="experience__details">
-                  <FaGuitar className="experience__details-icon" />
-                  <div>
-                    <h4>Music</h4>
-                    <small className="text-light">Hip-Hop, Ukulele</small>
-                  </div>
-                </article>
-              </Tilt>
-              <Tilt>
-                <article className="experience__details">
-                  <RxDimensions className="experience__details-icon" />
-                  <div>
-                    <h4>Designing</h4>
-                    <small className="text-light">Maya 3D, Figma etc</small>
-                  </div>
-                </article>
-              </Tilt>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
