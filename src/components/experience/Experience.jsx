@@ -120,7 +120,6 @@ const Experience = () => {
               glareEnable={true}
               glareMaxOpacity={0.04}
               glareColor="#7ee787"
-              gyroscope={true}
               scale={1.02}
               transitionSpeed={600}
             >
