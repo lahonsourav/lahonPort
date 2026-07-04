@@ -22,9 +22,9 @@ const Home = () => {
       <CTA />
       <About />
 
-      <Portfolio />
-
       <Experience />
+
+      <Portfolio />
 
       <Education />
 
