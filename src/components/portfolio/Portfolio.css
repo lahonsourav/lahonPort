@@ -34,6 +34,14 @@
   justify-content: center;
 }
 
+/* Mobile: project images keep a 3:4 ratio instead of a fixed height */
+@media screen and (max-width: 768px) {
+  .portfolio__item-image {
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+}
+
 .portfolio__item-image img {
   position: absolute;
   inset: 0;

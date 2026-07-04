@@ -14,27 +14,35 @@ import Education from "../education/Education";
 import CTA from '../../homePage/CTA';
 import ScrollProgress from "../ScrollProgress/ScrollProgress";
 import Cursor from "../cursor/Cursor";
+import FlowerVine from "../FlowerVine/FlowerVine";
+import useReveal from "../reveal/useReveal";
 
 const Home = () => {
+  useReveal();
+
   return (
     <>
       <ScrollProgress />
       <Cursor />
       <Nav />
 
-      <Header />
-      <CTA />
-      <About />
+      <div className="vine-flow">
+        <Header />
+        <CTA />
+        <About />
 
-      <Education />
+        <Education />
 
-      <Experience />
+        <Experience />
 
-      <Portfolio />
+        <Portfolio />
 
-      <Services />
+        <Services />
 
-      <Contacts />
+        <Contacts />
+
+        <FlowerVine />
+      </div>
       <HeaderSocials />
 
       <Footer />

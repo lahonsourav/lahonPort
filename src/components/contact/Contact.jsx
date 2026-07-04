@@ -1,19 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./contact.css";
 import { BiMailSend } from "react-icons/bi";
 import { FiPhoneCall } from "react-icons/fi";
 import { BsWhatsapp } from "react-icons/bs";
 import emailjs from "@emailjs/browser";
 
-import Aos from "aos";
-import "aos/dist/aos.css";
 import ReactAlert from "../../additionals/customAlerts/CustomAlert";
 
 const Contact = () => {
-  useEffect(() => {
-    Aos.init({ duration: 2000 });
-  }, []);
-
   const form = useRef();
 
   const [alertMessage, setAlertMessage] = useState("");

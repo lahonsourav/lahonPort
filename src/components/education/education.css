@@ -14,10 +14,16 @@
   bottom: 0;
   left: 50%;
   width: 2px;
-  background: linear-gradient(to bottom, #7ee787, var(--ds-border));
-  transform: translateX(-50%);
+  /* solid color — a gradient would compress with scaleY instead of
+     being revealed, leaving the tip nearly invisible */
+  background: #7ee787;
+  opacity: 0.75;
+  /* scaleY instead of clip-path: transforms are GPU-composited,
+     so scroll updates don't trigger repaints */
+  transform: translateX(-50%) scaleY(var(--line-scale, 0));
+  transform-origin: top;
+  will-change: transform;
   z-index: 0;
-  clip-path: inset(0 0 calc(100% - var(--line-progress, 0%)) 0);
 }
 
 /* ── Entry row ── */
@@ -33,7 +39,7 @@
 .edu__card,
 .edu__date {
   opacity: 0;
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .edu__center {
@@ -50,17 +56,17 @@
   opacity: 1;
 }
 
-/* Card and date follow after ring has drawn */
+/* Card and date follow right after the ring starts drawing */
 .edu__entry--visible .edu__card {
   opacity: 1;
   transform: none;
-  transition-delay: 0.45s;
+  transition-delay: 0.15s;
 }
 
 .edu__entry--visible .edu__date {
   opacity: 1;
   transform: none;
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
 }
 
 /* ── Card ── */
@@ -164,7 +170,7 @@
   stroke-linecap: round;
   stroke-dasharray: 157;
   stroke-dashoffset: 157;
-  transition: stroke-dashoffset 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: stroke-dashoffset 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .edu__entry--visible .edu__ring circle {
@@ -190,11 +196,6 @@
   padding-right: 1.5rem;
 }
 
-/* ── End marker ── */
-.edu__entry--end {
-  margin-bottom: 0;
-}
-
 /* ── Responsive ── */
 @media screen and (max-width: 768px) {
   .edu__timeline {
@@ -204,7 +205,8 @@
 
   .edu__timeline::before {
     left: calc(25px + 1rem);
-    transform: none;
+    /* keep the scroll-driven scaleY draw, just drop the centering shift */
+    transform: scaleY(var(--line-scale, 0));
   }
 
   .edu__entry {
@@ -223,8 +225,4 @@
 
   .edu__entry--left  .edu__card::after,
   .edu__entry--right .edu__card::before { display: none; }
-
-  .edu__entry--end {
-    grid-template-areas: "icon .";
-  }
 }

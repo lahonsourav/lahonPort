@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./about.css";
 import { TfiMicrosoftAlt } from "react-icons/tfi";
 
 import PHOTO from "../../assets/mejpg.jpg";
 
-import Aos from "aos";
-import "aos/dist/aos.css";
 const About = () => {
-  useEffect(() => {
-    Aos.init({ duration: 2000 });
-  }, []);
   return (
 
 

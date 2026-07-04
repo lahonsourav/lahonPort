@@ -5,6 +5,15 @@
   margin-bottom: 3rem;
 }
 
+/* Desktop: keep the about content compact in the middle of the page */
+@media screen and (min-width: 1025px) {
+  .about__container {
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 /* ── Profile image wrapper + caption ── */
 .about__me__wrapper {
   display: flex;

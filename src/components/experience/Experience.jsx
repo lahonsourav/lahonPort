@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./experience.css";
-import Aos from "aos";
-import "aos/dist/aos.css";
 import Tilt from "react-parallax-tilt";
 
 const SKILL_GROUPS = [
@@ -24,10 +22,6 @@ const SKILL_GROUPS = [
 ];
 
 const Experience = () => {
-  useEffect(() => {
-    Aos.init({ duration: 2000 });
-  }, []);
-
   return (
     <section id="skills">
       <h5 data-aos="fade-down">things I work with</h5>

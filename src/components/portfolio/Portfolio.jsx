@@ -1,21 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Portfolio.css";
 import Pt from './Partnership.pdf'
 
 import PRO4 from "../../images/doggo.jpg";
 import PRO6 from "../../images/gamusawhitelow.jpg";
 
-import Aos from "aos";
-import "aos/dist/aos.css";
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
 
 const Portfolio = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    Aos.init({ duration: 2000 }); <nav></nav>
-  }, []);
   return (
     <section id="portfolio">
       <h5 data-aos="fade-down">a selection of</h5>

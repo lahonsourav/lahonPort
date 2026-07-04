@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./testimonial.css";
+import useReveal from "../reveal/useReveal";
 import AVTR1 from "../../assets/mejpg.jpg";
 
 // Import Swiper React components
@@ -12,13 +13,8 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-import Aos from "aos";
-import "aos/dist/aos.css";
-
 const Testimonial = () => {
-  useEffect(() => {
-    Aos.init({ duration: 2000 });
-  }, []);
+  useReveal();
   return (
     <section id="testimonials">
       <h5 data-aos="fade-down">For</h5>

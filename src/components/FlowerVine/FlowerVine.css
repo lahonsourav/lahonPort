@@ -1,0 +1,65 @@
+/* Wrapper around the sections the vine flows through.
+   Bottom padding reserves space for the finale flower + LAHON signature. */
+.vine-flow {
+  position: relative;
+  padding-bottom: 290px;
+}
+
+/* The vine layer sits behind the section content
+   (z-index 0 + sections lifted to 1 — negative z-index would
+   hide it behind the opaque .App background) */
+.flower-vine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Lift content above the vine — except the header: its opaque gradient
+   background would hide the stem's top, so the vine (rendered last in DOM
+   order) draws over it instead, in the gutter away from the hero text */
+.vine-flow > :not(.flower-vine):not(header) {
+  position: relative;
+  z-index: 1;
+}
+
+.flower-vine__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Stem drawn directly by scroll — updated once per frame, no transition
+   (a transition keeps the page-sized SVG repainting after every tick) */
+.vf-stem {
+  opacity: 0.9;
+}
+
+/* Flower stroke draw */
+.vf-path {
+  transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Filled dots fade in after strokes draw */
+.vf-dot {
+  opacity: 0;
+  transition: opacity 0.35s ease 0.7s;
+}
+
+.vf-flower--bloomed .vf-path {
+  stroke-dashoffset: 0 !important;
+}
+
+/* LAHON signature writes itself (one continuous stroke) after the flower */
+.vf-signature {
+  transition: stroke-dashoffset 1.6s ease-in-out;
+}
+.vf-flower--bloomed .vf-signature {
+  transition-delay: 0.5s;
+}
+
+.vf-flower--bloomed .vf-dot {
+  opacity: 1;
+}
+
