@@ -2,6 +2,10 @@ import React from "react";
 import "./services.css";
 import Tilt from "react-parallax-tilt";
 
+const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+const MaybeTilt = ({ children, ...props }) =>
+  isTouch ? <>{children}</> : <Tilt {...props}>{children}</Tilt>;
+
 const Services = () => {
   return (
     <section id="bio">
@@ -9,7 +13,7 @@ const Services = () => {
       <h2>Bio</h2>
       <div className="container services__container">
 
-        <Tilt>
+        <MaybeTilt>
           <article className="service" data-aos="fade-up" data-aos-delay="0">
             <div className="service__head">
               <h3>Academic Trail</h3>
@@ -27,9 +31,9 @@ const Services = () => {
               <li><span className="svc-emoji">⚙️</span><p>B.Tech CSE · National Institute of Technology, Silchar (2021 – 2025)</p></li>
             </ul>
           </article>
-        </Tilt>
+        </MaybeTilt>
 
-        <Tilt>
+        <MaybeTilt>
           <article className="service" data-aos="fade-up" data-aos-delay="100">
             <div className="service__head">
               <h3>Beyond The Terminal</h3>
@@ -49,9 +53,9 @@ const Services = () => {
               <li><span className="svc-emoji">🤝</span><p>Leader, event host, natural team player</p></li>
             </ul>
           </article>
-        </Tilt>
+        </MaybeTilt>
 
-        <Tilt>
+        <MaybeTilt>
           <article className="service" data-aos="fade-up" data-aos-delay="200">
             <div className="service__head">
               <h3>Highlights</h3>
@@ -70,7 +74,7 @@ const Services = () => {
               <li><span className="svc-emoji">🎸</span><p>Head of Symphonits, Music Club — NIT Silchar</p></li>
             </ul>
           </article>
-        </Tilt>
+        </MaybeTilt>
 
       </div>
     </section>

@@ -2,6 +2,10 @@ import React from "react";
 import "./experience.css";
 import Tilt from "react-parallax-tilt";
 
+const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+const MaybeTilt = ({ children, ...props }) =>
+  isTouch ? <>{children}</> : <Tilt {...props}>{children}</Tilt>;
+
 const SKILL_GROUPS = [
   {
     category: "Languages & Frameworks",
@@ -107,7 +111,7 @@ const Experience = () => {
       <div className="container">
         <div className="skills__grid" data-aos="fade-up">
           {SKILL_GROUPS.map(({ category, skills }) => (
-            <Tilt
+            <MaybeTilt
               key={category}
               tiltMaxAngleX={8}
               tiltMaxAngleY={8}
@@ -125,7 +129,7 @@ const Experience = () => {
                   ))}
                 </div>
               </div>
-            </Tilt>
+            </MaybeTilt>
           ))}
         </div>
       </div>

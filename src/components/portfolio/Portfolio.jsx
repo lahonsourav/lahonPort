@@ -8,6 +8,10 @@ import PRO6 from "../../images/gamusawhitelow.jpg";
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
 
+const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+const MaybeTilt = ({ children, ...props }) =>
+  isTouch ? <>{children}</> : <Tilt {...props}>{children}</Tilt>;
+
 const Portfolio = () => {
   const navigate = useNavigate();
 
@@ -18,7 +22,7 @@ const Portfolio = () => {
       <h2>My Projects</h2>
 
       <div className="container portfolio__container">
-        <Tilt>
+        <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="0" className="portfolio__items">
             <div className="portfolio__item-image lk-preview">
               <div className="lk-flow">
@@ -59,9 +63,9 @@ const Portfolio = () => {
               </a>
             </div>
           </article>
-        </Tilt>
+        </MaybeTilt>
 
-        <Tilt>
+        <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="100" className="portfolio__items">
             <div className="portfolio__item-image mdp">
               <div className="mdp__inner">
@@ -110,9 +114,9 @@ const Portfolio = () => {
               </div>
             </div>
           </article>
-        </Tilt>
+        </MaybeTilt>
 
-        <Tilt>
+        <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="200" className="portfolio__items">
             <div className="portfolio__item-image avsr-preview">
               <div className="avsr-inner">
@@ -157,12 +161,12 @@ const Portfolio = () => {
               </a>
             </div>
           </article>
-        </Tilt>
+        </MaybeTilt>
 
-        <Tilt>
+        <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="300" className="portfolio__items">
             <div className="portfolio__item-image">
-              <img src={PRO6} alt="" />
+              <img src={PRO6} alt="" loading="lazy" />
             </div>
             <h3>Assamesedress.shop</h3>
             <small>
@@ -188,12 +192,12 @@ const Portfolio = () => {
               </a>
             </div>
           </article>
-        </Tilt>
+        </MaybeTilt>
 
-        <Tilt>
+        <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="400" className="portfolio__items">
             <div className="portfolio__item-image">
-              <img src={PRO4} alt="" />
+              <img src={PRO4} alt="" loading="lazy" />
             </div>
             <h3>Doggies</h3>
             <small>
@@ -219,13 +223,13 @@ const Portfolio = () => {
               </a>
             </div>
           </article>
-        </Tilt>
+        </MaybeTilt>
       </div>
 
       <h2 className="tools__heading">Tools</h2>
 
       <div className="container tools__container">
-        <Tilt>
+        <MaybeTilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
             <div className="portfolio__item-image lazyperm-preview">
               <div className="lazyperm-terminal">
@@ -273,7 +277,7 @@ const Portfolio = () => {
               </a>
             </div>
           </article>
-        </Tilt>
+        </MaybeTilt>
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ const About = () => {
       <div className="container about__container">
         <div data-aos="zoom-in" className="about__me__wrapper">
           <div className="about__me">
-            <img className="about__me_image" src={PHOTO} alt="AboutImage" />
+            <img className="about__me_image" src={PHOTO} alt="Sourav Lahon — Software Engineer at BlackRock" />
           </div>
           <p className="about__me__caption">{"// debugging life, one commit at a time"}</p>
         </div>
