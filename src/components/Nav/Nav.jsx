@@ -1,7 +1,7 @@
 import React from "react";
 import "./nav.css";
 import { AiOutlineUser } from "react-icons/ai";
-import { BsFillJournalBookmarkFill } from "react-icons/bs";
+import { BsFillJournalBookmarkFill, BsBriefcaseFill } from "react-icons/bs";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { GiSkills } from "react-icons/gi";
 import { FaCode } from "react-icons/fa";
@@ -17,7 +17,7 @@ const Nav = () => {
         spy={true}
         smooth={true}
         offset={100}
-        duration={20}
+        duration={600}
       >
         <AiOutlineUser />
       </Link>
@@ -28,7 +28,18 @@ const Nav = () => {
         spy={true}
         smooth={true}
         offset={-40}
-        duration={20}
+        duration={600}
+      >
+        <BsBriefcaseFill />
+      </Link>
+
+      <Link
+        activeClass="active"
+        to="skills"
+        spy={true}
+        smooth={true}
+        offset={-40}
+        duration={600}
       >
         <GiSkills />
       </Link>
@@ -39,7 +50,7 @@ const Nav = () => {
         spy={true}
         smooth={true}
         offset={-40}
-        duration={20}
+        duration={600}
       >
         <FaCode />
       </Link>
@@ -50,7 +61,7 @@ const Nav = () => {
         spy={true}
         smooth={true}
         offset={-40}
-        duration={20}
+        duration={600}
       >
         <BsFillJournalBookmarkFill />
       </Link>
@@ -61,7 +72,7 @@ const Nav = () => {
         spy={true}
         smooth={true}
         offset={-40}
-        duration={20}
+        duration={600}
       >
         <MdOutlineContactPhone />
       </Link>

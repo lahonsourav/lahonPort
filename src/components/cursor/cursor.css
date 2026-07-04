@@ -1,0 +1,49 @@
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a, button, [role="button"], .btn, input, label {
+    cursor: none !important;
+  }
+
+  .cursor__dot,
+  .cursor__ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .cursor__dot {
+    width: 6px;
+    height: 6px;
+    background: #7ee787;
+    margin: -3px 0 0 -3px;
+    transition: opacity 0.2s;
+  }
+
+  .cursor__ring {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid rgba(126, 231, 135, 0.45);
+    margin: -14px 0 0 -14px;
+    transition: opacity 0.2s, width 0.15s ease, height 0.15s ease, margin 0.15s ease;
+  }
+
+  /* Ring grows on hover over interactive elements */
+  a:hover ~ .cursor__ring,
+  button:hover ~ .cursor__ring,
+  [role="button"]:hover ~ .cursor__ring {
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+  }
+}
+
+@media (hover: none) {
+  .cursor__dot,
+  .cursor__ring {
+    display: none;
+  }
+}

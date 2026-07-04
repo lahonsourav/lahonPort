@@ -6,7 +6,7 @@
   padding: 1rem 0 2rem;
 }
 
-/* Center vertical line */
+/* Center vertical line — scroll-driven draw */
 .edu__timeline::before {
   content: "";
   position: absolute;
@@ -14,9 +14,10 @@
   bottom: 0;
   left: 50%;
   width: 2px;
-  background: var(--ds-border);
+  background: linear-gradient(to bottom, #7ee787, var(--ds-border));
   transform: translateX(-50%);
   z-index: 0;
+  clip-path: inset(0 0 calc(100% - var(--line-progress, 0%)) 0);
 }
 
 /* ── Entry row ── */
@@ -24,7 +25,42 @@
   display: grid;
   grid-template-columns: 1fr 80px 1fr;
   align-items: center;
+  column-gap: 1.25rem;
   margin-bottom: 2.5rem;
+}
+
+/* ── Entry reveal — driven by scroll (line position) ── */
+.edu__card,
+.edu__date {
+  opacity: 0;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.edu__center {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.edu__entry--left  .edu__card  { transform: translateX(-28px); }
+.edu__entry--right .edu__card  { transform: translateX(28px); }
+.edu__date                     { transform: translateY(8px); }
+
+/* Circle appears first so ring can draw */
+.edu__entry--visible .edu__center {
+  opacity: 1;
+}
+
+/* Card and date follow after ring has drawn */
+.edu__entry--visible .edu__card {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.45s;
+}
+
+.edu__entry--visible .edu__date {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.3s;
 }
 
 /* ── Card ── */
@@ -99,16 +135,40 @@
 }
 
 .edu__icon-wrap {
+  position: relative;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background: #080707;
-  border: 2px solid var(--ds-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   flex-shrink: 0;
+}
+
+/* SVG ring that draws around the circle */
+.edu__ring {
+  position: absolute;
+  inset: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  transform: rotate(-90deg);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.edu__ring circle {
+  fill: none;
+  stroke: #7ee787;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  transition: stroke-dashoffset 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.edu__entry--visible .edu__ring circle {
+  stroke-dashoffset: 0;
 }
 
 .edu__icon-wrap img {

@@ -29,7 +29,7 @@ const Experience = () => {
   }, []);
 
   return (
-    <section id="experience">
+    <section id="skills">
       <h5 data-aos="fade-down">things I work with</h5>
       <h2>Skills</h2>
 

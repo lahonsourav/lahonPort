@@ -24,7 +24,7 @@ const Portfolio = () => {
 
       <div className="container portfolio__container">
         <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="0" className="portfolio__items">
             <div className="portfolio__item-image lk-preview">
               <div className="lk-flow">
                 <div className="lk-node">
@@ -67,7 +67,7 @@ const Portfolio = () => {
         </Tilt>
 
         <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="100" className="portfolio__items">
             <div className="portfolio__item-image mdp">
               <div className="mdp__inner">
                 <div className="mdp__top">
@@ -118,7 +118,7 @@ const Portfolio = () => {
         </Tilt>
 
         <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="200" className="portfolio__items">
             <div className="portfolio__item-image avsr-preview">
               <div className="avsr-inner">
                 <div className="avsr-inputs">
@@ -165,7 +165,7 @@ const Portfolio = () => {
         </Tilt>
 
         <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="300" className="portfolio__items">
             <div className="portfolio__item-image">
               <img src={PRO6} alt="" />
             </div>
@@ -196,7 +196,7 @@ const Portfolio = () => {
         </Tilt>
 
         <Tilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="400" className="portfolio__items">
             <div className="portfolio__item-image">
               <img src={PRO4} alt="" />
             </div>

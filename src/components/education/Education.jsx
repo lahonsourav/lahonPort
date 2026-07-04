@@ -1,9 +1,12 @@
+import { useEffect, useRef } from "react";
 import "./education.css";
 import myLogo from "../../treeicons/one.png";
 import micro from "../../treeicons/micro.png";
 import simp from "../../treeicons/simp.png";
 import css from "../../treeicons/csspng.png";
 import blackrock from "../../treeicons/blackrock.png";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const entries = [
   {
@@ -53,57 +56,103 @@ const entries = [
   },
 ];
 
-const Education = () => (
-  <section id="education">
-    <h5>where i&apos;ve been</h5>
-    <h2>Experience</h2>
+const Education = () => {
+  const timelineRef = useRef(null);
 
-    <div className="edu__timeline">
-      {entries.map((e, i) => (
-        <div key={i} className={`edu__entry edu__entry--${e.side}`}>
-          {e.side === "left" ? (
-            <>
-              <div className="edu__card">
-                <h3>{e.title}</h3>
-                <h4>{e.subtitle}</h4>
-                <p>{e.desc}</p>
-              </div>
-              <div className="edu__center">
-                <div className="edu__icon-wrap">
-                  <img src={e.icon} alt={e.iconAlt} />
-                </div>
-              </div>
-              <div className="edu__date">{e.date}</div>
-            </>
-          ) : (
-            <>
-              <div className="edu__date edu__date--r">{e.date}</div>
-              <div className="edu__center">
-                <div className="edu__icon-wrap">
-                  <img src={e.icon} alt={e.iconAlt} />
-                </div>
-              </div>
-              <div className="edu__card">
-                <h3>{e.title}</h3>
-                <h4>{e.subtitle}</h4>
-                <p>{e.desc}</p>
-              </div>
-            </>
-          )}
-        </div>
-      ))}
+  useEffect(() => {
+    Aos.init({ duration: 700, easing: "ease-out-cubic", once: false });
+  }, []);
 
-      <div className="edu__entry edu__entry--end">
-        <div />
-        <div className="edu__center">
-          <div className="edu__icon-wrap">
-            <img src={myLogo} alt="NIT Silchar" />
+  useEffect(() => {
+    const timeline = timelineRef.current;
+    if (!timeline) return;
+
+    const onScroll = () => {
+      const rect = timeline.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      const scrolled = viewH - rect.top;
+      const total = rect.height + viewH / 2;
+      const percent = Math.max(0, Math.min(100, (scrolled / total) * 100));
+      timeline.style.setProperty("--line-progress", `${percent}%`);
+
+      // Reveal/hide each entry based on whether the line has passed its midpoint
+      timeline.querySelectorAll(".edu__entry").forEach((entry) => {
+        const entryMidPercent =
+          ((entry.offsetTop + entry.offsetHeight / 2) / timeline.offsetHeight) * 100;
+        if (percent >= entryMidPercent) {
+          entry.classList.add("edu__entry--visible");
+        } else {
+          entry.classList.remove("edu__entry--visible");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <section id="experience">
+      <h5 data-aos="fade-down">where i&apos;ve been</h5>
+      <h2 data-aos="fade-down" data-aos-delay="100">Experience</h2>
+
+      <div className="edu__timeline" ref={timelineRef}>
+        {entries.map((e, i) => (
+          <div key={i} className={`edu__entry edu__entry--${e.side}`}>
+            {e.side === "left" ? (
+              <>
+                <div className="edu__card">
+                  <h3>{e.title}</h3>
+                  <h4>{e.subtitle}</h4>
+                  <p>{e.desc}</p>
+                </div>
+                <div className="edu__center">
+                  <div className="edu__icon-wrap">
+                    <svg className="edu__ring" viewBox="0 0 54 54" aria-hidden="true">
+                      <circle cx="27" cy="27" r="25" />
+                    </svg>
+                    <img src={e.icon} alt={e.iconAlt} />
+                  </div>
+                </div>
+                <div className="edu__date">{e.date}</div>
+              </>
+            ) : (
+              <>
+                <div className="edu__date edu__date--r">{e.date}</div>
+                <div className="edu__center">
+                  <div className="edu__icon-wrap">
+                    <svg className="edu__ring" viewBox="0 0 54 54" aria-hidden="true">
+                      <circle cx="27" cy="27" r="25" />
+                    </svg>
+                    <img src={e.icon} alt={e.iconAlt} />
+                  </div>
+                </div>
+                <div className="edu__card">
+                  <h3>{e.title}</h3>
+                  <h4>{e.subtitle}</h4>
+                  <p>{e.desc}</p>
+                </div>
+              </>
+            )}
           </div>
+        ))}
+
+        <div className="edu__entry edu__entry--end">
+          <div />
+          <div className="edu__center">
+            <div className="edu__icon-wrap">
+              <svg className="edu__ring" viewBox="0 0 54 54" aria-hidden="true">
+                <circle cx="27" cy="27" r="25" />
+              </svg>
+              <img src={myLogo} alt="NIT Silchar" />
+            </div>
+          </div>
+          <div />
         </div>
-        <div />
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Education;
