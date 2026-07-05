@@ -49,9 +49,9 @@ const Header = () => {
         <div className="wrapper2">
           <div className="typing-demo">{displayed}</div>
         </div>
-        <div className="now-shipping" onClick={() => navigate("/blog/why-im-building-innercast")} role="button">
+        <div className="now-shipping" onClick={() => navigate("/blog")} role="button">
           <span className="now-dot" />
-          the story behind <strong>innercast</strong> →
+          fresh off the keyboard: <strong>the blog</strong> →
         </div>
       </div>
     </header>
