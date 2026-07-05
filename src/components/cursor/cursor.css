@@ -1,6 +1,11 @@
 @media (hover: hover) and (pointer: fine) {
-  body,
-  a, button, [role="button"], .btn, input, label {
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active [role="button"],
+  body.custom-cursor-active .btn,
+  body.custom-cursor-active input,
+  body.custom-cursor-active label {
     cursor: none !important;
   }
 

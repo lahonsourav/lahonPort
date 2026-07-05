@@ -13,6 +13,7 @@ const BlogPost = lazy(() => import("./components/blog/BlogPost"));
 const Mood = lazy(() => import("./components/portfolio/Mood"));
 const LazyKit = lazy(() => import("./components/portfolio/LazyKit"));
 const Lazyperm = lazy(() => import("./components/portfolio/Lazyperm"));
+const Wormhole = lazy(() => import("./components/portfolio/Wormhole"));
 
 function App() {
   useEffect(() => {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/mood" element={<Mood />} />
             <Route path="/lazykit" element={<LazyKit />} />
             <Route path="/lazyperm" element={<Lazyperm />} />
+            <Route path="/wormhole" element={<Wormhole />} />
             <Route path="/alien" element={<HomePage />} />
             <Route path="/adminsecret" element={<Admin />} />
           </Routes>

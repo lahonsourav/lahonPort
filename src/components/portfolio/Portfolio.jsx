@@ -24,43 +24,45 @@ const Portfolio = () => {
       <div className="container portfolio__container">
         <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="0" className="portfolio__items">
-            <div className="portfolio__item-image lk-preview">
-              <div className="lk-flow">
-                <div className="lk-node">
-                  <span className="lk-node-dot lk-node-dot--green" />
-                  <div className="lk-node-title">issue #42</div>
-                  <div className="lk-node-body">Add dark mode</div>
+            <div className="portfolio__item-image whp-preview">
+              <div className="whp-inner">
+                <div className="whp-title-row">
+                  <span className="whp-swirl">🌀</span>
+                  <span className="whp-name">Wormhole</span>
                 </div>
-                <span className="lk-step-arrow">→</span>
-                <div className="lk-bot">🤖</div>
-                <span className="lk-step-arrow">→</span>
-                <div className="lk-node">
-                  <span className="lk-node-dot lk-node-dot--purple" />
-                  <div className="lk-node-title">PR #43</div>
-                  <div className="lk-node-body">feat: dark mode</div>
-                  <div className="lk-merged-badge">merged</div>
+                <div className="whp-tunnel">
+                  <span className="whp-phone">📱</span>
+                  <span className="whp-line"><span className="whp-lock">🔒</span></span>
+                  <span className="whp-phone">📱</span>
+                </div>
+                <div className="whp-bubbles">
+                  <span className="whp-msg">hey, just us here?</span>
+                  <span className="whp-msg whp-msg--me">just us. no servers 🔐</span>
+                </div>
+                <div className="whp-chips">
+                  <span className="whp-chip">E2E encrypted</span>
+                  <span className="whp-chip">P2P</span>
+                  <span className="whp-chip">📞 🎥</span>
                 </div>
               </div>
             </div>
-            <h3>LazyKit</h3>
+            <h3>Wormhole</h3>
             <small>
-              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a pull request. No laptop, no IDE, no claude code open, only github.
+              P2P messaging for exactly two people. Text, photos, and voice/video calls travel phone-to-phone over an end-to-end encrypted WebRTC tunnel — no accounts, no cloud, no servers in between. (React Native, WebRTC, NaCl)
             </small>
             <div className="portfolio__item-cta">
               <div
-                onClick={() => navigate("/lazykit")}
+                onClick={() => navigate("/wormhole")}
                 className="btn btn-primary"
               >
                 Learn More
               </div>
-              <a
-                href="https://www.npmjs.com/package/@slahon/lazykit"
+              <div
+                onClick={() => navigate("/blog/building-wormhole-p2p-messaging")}
                 className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
               >
-                npm
-              </a>
+                Blog
+              </div>
             </div>
           </article>
         </MaybeTilt>
@@ -103,7 +105,7 @@ const Portfolio = () => {
             </div>
             <h3>Innercast</h3>
             <small>
-              Your private mood diary. Check in with 35+ emotions daily, get an AI-written journal each night, and explore patterns across 7, 30, and 90 days. Everything stays encrypted on your device
+              Your private mood diary. Check in with 35+ emotions daily, get an AI-written journal every night, and explore mood patterns across the last 7, 30, and 90 days, fully encrypted on device.
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -148,7 +150,7 @@ const Portfolio = () => {
             </div>
             <h3>AVSR</h3>
             <small>
-              Multi-modal AVSR system fusing audio (MFCCs) and video (CNNs) — 25% better accuracy in noisy environments vs audio-only. Trained SVM, Random Forest, DNN & LSTM. Real-time under 500ms.
+              Multi-modal AVSR system fusing audio features (MFCCs) with video features (CNNs) for 25% better accuracy in noisy environments than audio alone. Trained SVM, Random Forest, DNN, and LSTM models, running under 500ms.
             </small>
             <div className="portfolio__item-cta">
               <a
@@ -170,7 +172,7 @@ const Portfolio = () => {
             </div>
             <h3>Assamesedress.shop</h3>
             <small>
-              An e-commerce platform for Assamese traditional attire — bringing heritage fashion online with a full catalogue, cart, and checkout. Promotes indigenous craft to a wider audience. (MERN Stack)
+              An e-commerce platform for Assamese traditional attire, bringing heritage fashion online with a full product catalogue, shopping cart, and checkout flow that promotes indigenous craft to a much wider audience. (MERN Stack)
             </small>
             <div className="portfolio__item-cta">
               <a
@@ -201,7 +203,7 @@ const Portfolio = () => {
             </div>
             <h3>Doggies</h3>
             <small>
-              A swipe-based dog discovery app with a delightfully simple UI — browse breeds, swipe left or right, and find your favourite. Built for Android with smooth gesture navigation. (Flutter, Android)
+              A swipe-based dog discovery app with a delightfully simple UI — browse breeds, swipe left or right, and save your favourite matches. Built for Android with smooth, native-feeling gesture navigation. (Flutter, Android)
             </small>
             <div className="portfolio__item-cta">
               <a
@@ -229,6 +231,49 @@ const Portfolio = () => {
       <h2 className="tools__heading">Tools</h2>
 
       <div className="container tools__container">
+        <MaybeTilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="portfolio__item-image lk-preview">
+              <div className="lk-flow">
+                <div className="lk-node">
+                  <span className="lk-node-dot lk-node-dot--green" />
+                  <div className="lk-node-title">issue #42</div>
+                  <div className="lk-node-body">Add dark mode</div>
+                </div>
+                <span className="lk-step-arrow">→</span>
+                <div className="lk-bot">🤖</div>
+                <span className="lk-step-arrow">→</span>
+                <div className="lk-node">
+                  <span className="lk-node-dot lk-node-dot--purple" />
+                  <div className="lk-node-title">PR #43</div>
+                  <div className="lk-node-body">feat: dark mode</div>
+                  <div className="lk-merged-badge">merged</div>
+                </div>
+              </div>
+            </div>
+            <h3>LazyKit</h3>
+            <small>
+              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a pull request. No laptop, no IDE, no claude code open, only github.
+            </small>
+            <div className="portfolio__item-cta">
+              <div
+                onClick={() => navigate("/lazykit")}
+                className="btn btn-primary"
+              >
+                Learn More
+              </div>
+              <a
+                href="https://www.npmjs.com/package/@slahon/lazykit"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                npm
+              </a>
+            </div>
+          </article>
+        </MaybeTilt>
+
         <MaybeTilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
             <div className="portfolio__item-image lazyperm-preview">

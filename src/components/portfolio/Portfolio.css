@@ -72,6 +72,105 @@
   flex-wrap: wrap;
 }
 
+/* ── Wormhole preview ── */
+.whp-preview {
+  background: #0d1117;
+}
+
+.whp-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+}
+
+.whp-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.whp-swirl {
+  font-size: 0.9rem;
+}
+
+.whp-name {
+  font-family: var(--ds-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a371f7;
+}
+
+.whp-tunnel {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.whp-phone {
+  font-size: 1.15rem;
+}
+
+.whp-line {
+  position: relative;
+  width: 90px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, #a371f7 0 6px, transparent 6px 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whp-lock {
+  position: absolute;
+  font-size: 0.7rem;
+  background: #0d1117;
+  padding: 0 0.25rem;
+}
+
+.whp-bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 85%;
+}
+
+.whp-msg {
+  align-self: flex-start;
+  font-size: 0.55rem;
+  color: #e6edf3;
+  background: #21262d;
+  border-radius: 8px 8px 8px 3px;
+  padding: 0.26rem 0.5rem;
+}
+
+.whp-msg--me {
+  align-self: flex-end;
+  background: rgba(163, 113, 247, 0.28);
+  border-radius: 8px 8px 3px 8px;
+}
+
+.whp-chips {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.whp-chip {
+  font-family: var(--ds-font-mono);
+  font-size: 0.5rem;
+  color: #a371f7;
+  border: 1px solid rgba(163, 113, 247, 0.4);
+  border-radius: 100px;
+  padding: 0.12rem 0.45rem;
+}
+
 /* ── Mood Diary / Innercast preview ── */
 .mdp {
   background: #0d1117;

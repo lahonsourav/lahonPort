@@ -10,7 +10,12 @@ const TAG_COLORS = {
   travel: '#e3b341',
 };
 
-const readMins = (content) => Math.max(1, Math.round(content.join(' ').split(/\s+/).length / 200));
+const blockText = (b) =>
+  typeof b === 'string'
+    ? b
+    : [b.text, ...(b.items ?? []), ...(b.head ?? []), ...(b.rows ?? []).flat()].filter(Boolean).join(' ');
+
+const readMins = (content) => Math.max(1, Math.round(content.map(blockText).join(' ').split(/\s+/).length / 200));
 
 const PostCard = ({ slug, title, date, tag, excerpt, content }) => {
   const navigate = useNavigate();

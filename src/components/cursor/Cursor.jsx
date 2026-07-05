@@ -29,9 +29,11 @@ const Cursor = () => {
 
     window.addEventListener("mousemove", onMove);
     raf = requestAnimationFrame(tick);
+    document.body.classList.add("custom-cursor-active");
     return () => {
       window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
+      document.body.classList.remove("custom-cursor-active");
     };
   }, []);
 

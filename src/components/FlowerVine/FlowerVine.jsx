@@ -184,12 +184,9 @@ const FlowerVine = () => {
         pts.push([eduAxisX, eduTop + 10], [eduAxisX, eduBottom - 10]);
       } else {
         const nextY = i < flowers.length - 1 ? flowers[i + 1].y : finaleY;
-        if (nextY - f.y > 500) {
-          // Swing sideways quickly after the flower so the stem clears the
-          // next section's centered headings instead of cutting through them
-          pts.push([cx + side * sweepAmp, Math.min(f.y + 170, (f.y + nextY) / 2)]);
-          side = -side;
-        }
+        // Always swing sideways after a flower so the stem clears section headings
+        pts.push([cx + side * sweepAmp, Math.min(f.y + 170, (f.y + nextY) / 2)]);
+        side = -side;
       }
     });
     pts.push([cx, finaleY]);
