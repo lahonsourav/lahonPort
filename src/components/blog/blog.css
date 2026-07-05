@@ -343,10 +343,16 @@
 }
 
 /* ── Project link callout ── */
+.blog-post-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2.5rem;
+}
+
 .blog-project-link {
   display: inline-flex;
   align-items: center;
-  margin-top: 2.5rem;
   padding: 0.6rem 1.25rem;
   border: 1px solid var(--ds-green-btn);
   border-radius: var(--ds-radius);

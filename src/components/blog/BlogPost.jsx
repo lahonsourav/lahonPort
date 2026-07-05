@@ -111,10 +111,24 @@ const BlogPost = () => {
           {post.content.map((block, i) => renderBlock(block, i))}
         </div>
 
-        {post.projectUrl && (
-          <Link to={post.projectUrl} className="blog-project-link">
-            {post.projectLabel ?? 'View project →'}
-          </Link>
+        {(post.projectUrl || post.downloadUrl) && (
+          <div className="blog-post-links">
+            {post.projectUrl && (
+              <Link to={post.projectUrl} className="blog-project-link">
+                {post.projectLabel ?? 'View project →'}
+              </Link>
+            )}
+            {post.downloadUrl && (
+              <a
+                href={post.downloadUrl}
+                className="blog-project-link"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {post.downloadLabel ?? 'Download →'}
+              </a>
+            )}
+          </div>
         )}
       </div>
     </div>

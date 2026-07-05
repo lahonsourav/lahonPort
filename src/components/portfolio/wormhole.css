@@ -63,6 +63,15 @@
   margin-top: 1.25rem;
 }
 
+.wh-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
 .wh-tag {
   font-family: var(--ds-font-mono);
   font-size: 0.72rem;
@@ -489,6 +498,23 @@
   border: 1px dashed var(--ds-border);
   border-radius: 100px;
   padding: 0.4rem 1rem;
+}
+
+.wh-download-btn {
+  font-family: var(--ds-font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0d1117;
+  background: var(--wh-accent);
+  border: 1px solid var(--wh-accent);
+  border-radius: 100px;
+  padding: 0.4rem 1rem;
+  text-decoration: none;
+  transition: var(--ds-transition);
+}
+
+.wh-download-btn:hover {
+  opacity: 0.85;
 }
 
 .wh-page-footer {

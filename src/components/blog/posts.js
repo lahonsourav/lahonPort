@@ -7,6 +7,8 @@ export const POSTS = [
     excerpt: 'A private tunnel between exactly two phones — WebRTC, NaCl encryption, no servers in the middle. Every diagram, flowchart, and hard-won lesson from building it.',
     projectLabel: 'Learn more about Wormhole →',
     projectUrl: '/wormhole',
+    downloadLabel: '🤖 Download APK for Android →',
+    downloadUrl: 'https://drive.google.com/file/d/1B8697BYuBhqrzr1ymNnPD0rNbEFtFb_F/view?usp=drive_link',
     content: [
       'Wormhole is a messaging app for exactly two people. No accounts, no phone numbers, no cloud. Two phones open a direct WebRTC tunnel to each other, and every message, image, and call travels through it end-to-end encrypted. The only server involved is a tiny "introducer" that helps the phones find each other — after that, it goes idle and sees nothing. This post is the full engineering deep-dive: architecture, encryption, MITM defense, offline handling, media calls, the wire protocol, deployment, and the platform quirks that cost me actual days. If you just want to know what the app does in plain words, the project page has the friendly version.',
 

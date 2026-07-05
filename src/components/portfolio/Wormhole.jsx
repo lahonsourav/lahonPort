@@ -68,6 +68,17 @@ const Wormhole = () => {
             <span key={t} className="wh-tag">{t}</span>
           ))}
         </div>
+        <div className="wh-hero-cta">
+          <a
+            href="https://drive.google.com/file/d/1B8697BYuBhqrzr1ymNnPD0rNbEFtFb_F/view?usp=drive_link"
+            className="wh-download-btn"
+            target="_blank"
+            rel="noreferrer"
+          >
+            🤖 Download APK for Android
+          </a>
+          <span className="wh-coming-pill">🍎 iOS — coming soon</span>
+        </div>
       </div>
 
       {/* ── The one-line idea ── */}
@@ -189,9 +200,16 @@ const Wormhole = () => {
 
       {/* ── Status ── */}
       <div className="wh-cta-section">
-        <p className="wh-cta-label">In development</p>
+        <p className="wh-cta-label">Try it now</p>
         <div className="wh-coming-row">
-          <span className="wh-coming-pill">🤖 Android — coming soon</span>
+          <a
+            href="https://drive.google.com/file/d/1B8697BYuBhqrzr1ymNnPD0rNbEFtFb_F/view?usp=drive_link"
+            className="wh-download-btn"
+            target="_blank"
+            rel="noreferrer"
+          >
+            🤖 Download APK for Android
+          </a>
           <span className="wh-coming-pill">🍎 iOS — coming soon</span>
         </div>
       </div>
