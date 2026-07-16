@@ -4,6 +4,7 @@ import "./about.css";
 import { TfiMicrosoftAlt } from "react-icons/tfi";
 
 import PHOTO from "../../assets/mejpg.jpg";
+import PHOTO_WEBP from "../../assets/mejpg.webp";
 
 const About = () => {
   return (
@@ -18,7 +19,14 @@ const About = () => {
       <div className="container about__container">
         <div data-aos="zoom-in" className="about__me__wrapper">
           <div className="about__me">
-            <img className="about__me_image" src={PHOTO} alt="Sourav Lahon — Software Engineer at BlackRock" />
+            <picture>
+              <source srcSet={PHOTO_WEBP} type="image/webp" />
+              <img
+                className="about__me_image"
+                src={PHOTO}
+                alt="Sourav Lahon — Software Engineer at BlackRock"
+              />
+            </picture>
           </div>
           <p className="about__me__caption">{"// debugging life, one commit at a time"}</p>
         </div>

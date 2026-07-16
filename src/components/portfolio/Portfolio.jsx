@@ -214,7 +214,7 @@ const Portfolio = () => {
         <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="400" className="portfolio__items">
             <div className="portfolio__item-image">
-              <img src={PRO6} alt="" loading="lazy" />
+              <img src={PRO6} alt="" width="1456" height="1068" loading="lazy" />
             </div>
             <h3>Assamesedress.shop</h3>
             <small>
@@ -245,7 +245,7 @@ const Portfolio = () => {
         <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="500" className="portfolio__items">
             <div className="portfolio__item-image">
-              <img src={PRO4} alt="" loading="lazy" />
+              <img src={PRO4} alt="" width="480" height="360" loading="lazy" />
             </div>
             <h3>Doggies</h3>
             <small>

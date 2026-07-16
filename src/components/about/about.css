@@ -42,6 +42,10 @@
   border: 1px solid var(--ds-border);
 }
 
+.about__me picture {
+  display: contents;
+}
+
 .about__me_image {
   display: flex;
   border-radius: var(--ds-radius-xl);
