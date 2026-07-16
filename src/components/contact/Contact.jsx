@@ -6,6 +6,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import emailjs from "@emailjs/browser";
 
 import ReactAlert from "../../additionals/customAlerts/CustomAlert";
+import BusinessCard from "../businessCard/BusinessCard";
 
 const Contact = () => {
   const form = useRef();
@@ -52,6 +53,10 @@ const Contact = () => {
       )}
       <h5 data-aos="fade-down">Get in Touch</h5>
       <h2>Contact Me</h2>
+
+      <div className="contact__card-wrap" data-aos="zoom-in">
+        <BusinessCard />
+      </div>
 
       <div className="container contact__container">
         <div className="contact__options">

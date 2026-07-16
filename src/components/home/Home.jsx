@@ -6,6 +6,7 @@ import About from "../about/About";
 import Experience from "../experience/Experience";
 import Services from "../services/Services";
 import Portfolio from "../portfolio/Portfolio";
+import FeaturedBlogs from "../blog/FeaturedBlogs";
 import Contacts from "../contact/Contact";
 import Footer from "../footer/Footer";
 
@@ -33,9 +34,11 @@ const Home = () => {
 
         <Education />
 
-        <Experience />
+        <FeaturedBlogs />
 
         <Portfolio />
+
+        <Experience />
 
         <Services />
 
@@ -43,6 +46,7 @@ const Home = () => {
 
         <FlowerVine />
       </div>
+
       <HeaderSocials />
 
       <Footer />

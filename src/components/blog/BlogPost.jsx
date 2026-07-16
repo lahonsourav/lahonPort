@@ -5,10 +5,11 @@ import MermaidDiagram from './MermaidDiagram';
 import './blog.css';
 
 const TAG_COLORS = {
-  life:   '#7ee787',
-  tech:   '#58a6ff',
-  space:  '#a371f7',
-  travel: '#e3b341',
+  life:     '#7ee787',
+  tech:     '#58a6ff',
+  space:    '#a371f7',
+  travel:   '#e3b341',
+  business: '#f0883e',
 };
 
 // Posts hold either plain-string paragraphs or typed blocks

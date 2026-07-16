@@ -35,17 +35,6 @@ const Nav = () => {
 
       <Link
         activeClass="active"
-        to="skills"
-        spy={true}
-        smooth={true}
-        offset={-40}
-        duration={600}
-      >
-        <GiSkills />
-      </Link>
-
-      <Link
-        activeClass="active"
         to="portfolio"
         spy={true}
         smooth={true}
@@ -53,6 +42,17 @@ const Nav = () => {
         duration={600}
       >
         <FaCode />
+      </Link>
+
+      <Link
+        activeClass="active"
+        to="skills"
+        spy={true}
+        smooth={true}
+        offset={-40}
+        duration={600}
+      >
+        <GiSkills />
       </Link>
 
       <Link

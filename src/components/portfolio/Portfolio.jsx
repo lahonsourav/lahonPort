@@ -105,7 +105,7 @@ const Portfolio = () => {
             </div>
             <h3>Innercast</h3>
             <small>
-              Your private mood diary. Check in with 35+ emotions daily, get an AI-written journal every night, and explore mood patterns across the last 7, 30, and 90 days, fully encrypted on device.
+              Your private mood diary. Check in with 35+ emotions daily, get an AI-written journal every night, and explore mood patterns across the last 90 days, fully encrypted on device. (React Native, SQLite)
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -113,6 +113,12 @@ const Portfolio = () => {
                 className="btn btn-primary"
               >
                 Learn More
+              </div>
+              <div
+                onClick={() => navigate("/blog/why-im-building-innercast")}
+                className="btn btn-primary"
+              >
+                Blog
               </div>
             </div>
           </article>
@@ -167,6 +173,46 @@ const Portfolio = () => {
 
         <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="300" className="portfolio__items">
+            <div className="portfolio__item-image spg-preview">
+              <div className="spg-inner">
+                <div className="spg-title-row">
+                  <span className="spg-cap">🎓</span>
+                  <span className="spg-name">Success Point</span>
+                </div>
+                <div className="spg-chips">
+                  <span className="spg-chip">NEET</span>
+                  <span className="spg-chip">JEE</span>
+                  <span className="spg-chip">ADRE</span>
+                  <span className="spg-chip">TET</span>
+                </div>
+                <div className="spg-badge">Admissions Open</div>
+              </div>
+            </div>
+            <h3>Success Point Gogamukh</h3>
+            <small>
+              A coaching center website for Success Point Gogamukh, Assam, covering board-exam tuition for Classes IX–XII plus NEET, JEE, and state government exam prep like ADRE, TET, SSC, and Assam Police. (React, PostgreSQL)
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://www.successpointgogamukh.com/"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit
+              </a>
+              <div
+                onClick={() => navigate("/blog/why-digitalise-your-coaching-business")}
+                className="btn btn-primary"
+              >
+                Blog
+              </div>
+            </div>
+          </article>
+        </MaybeTilt>
+
+        <MaybeTilt>
+          <article data-aos="zoom-in-up" data-aos-delay="400" className="portfolio__items">
             <div className="portfolio__item-image">
               <img src={PRO6} alt="" loading="lazy" />
             </div>
@@ -197,7 +243,7 @@ const Portfolio = () => {
         </MaybeTilt>
 
         <MaybeTilt>
-          <article data-aos="zoom-in-up" data-aos-delay="400" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="500" className="portfolio__items">
             <div className="portfolio__item-image">
               <img src={PRO4} alt="" loading="lazy" />
             </div>
@@ -305,20 +351,12 @@ const Portfolio = () => {
                 Learn More
               </div>
               <a
-                href="https://www.npmjs.com/package/lazyperm"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                npm
-              </a>
-              <a
                 href="https://marketplace.visualstudio.com/items?itemName=lahonsourav.lazyperm-claude"
                 className="btn btn-primary"
                 target="_blank"
                 rel="noreferrer"
               >
-                VS Code
+                Extension
               </a>
             </div>
           </article>

@@ -408,6 +408,67 @@
   color: rgba(88, 166, 255, 0.88);
 }
 
+/* ── Success Point Gogamukh preview ── */
+.spg-preview {
+  background: #0d1117;
+  padding: 0;
+  align-items: stretch;
+}
+
+.spg-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+}
+
+.spg-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.spg-cap {
+  font-size: 1rem;
+}
+
+.spg-name {
+  font-family: var(--ds-font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #e6edf3;
+}
+
+.spg-chips {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.spg-chip {
+  font-family: var(--ds-font-mono, monospace);
+  font-size: 0.5rem;
+  color: #58a6ff;
+  border: 1px solid rgba(88, 166, 255, 0.35);
+  background: rgba(88, 166, 255, 0.1);
+  border-radius: 100px;
+  padding: 0.12rem 0.45rem;
+}
+
+.spg-badge {
+  font-size: 0.42rem;
+  color: rgba(61, 224, 129, 0.88);
+  background: rgba(61, 224, 129, 0.1);
+  border: 1px solid rgba(61, 224, 129, 0.35);
+  border-radius: 100px;
+  padding: 0.15rem 0.5rem;
+}
+
 /* ── Live clock in card ── */
 .time {
   display: flex;

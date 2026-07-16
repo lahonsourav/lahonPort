@@ -1,0 +1,149 @@
+.bcard-scene {
+  --bc-scale: 1;
+  width: 100%;
+  height: 100%;
+  perspective: 1800px;
+  font-family: var(--ds-font-mono);
+}
+
+.bcard-flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.bcard-flip.bcard-flip--flipped {
+  transform: rotateY(180deg);
+}
+
+.bcard-card {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  box-shadow: 0 26px 55px -28px rgba(0, 0, 0, 0.55);
+}
+.bcard-card--front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bcard-card--back {
+  transform: rotateY(180deg);
+  padding: calc(var(--bc-scale) * 56px) calc(var(--bc-scale) * 60px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* quiet maker's tick */
+.bcard-card--front::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--bc-scale) * 34px);
+  bottom: calc(var(--bc-scale) * 30px);
+  width: calc(var(--bc-scale) * 22px);
+  height: 1px;
+  background: var(--ds-border);
+}
+
+/* ---- front ---- */
+.bcard-email {
+  position: relative;
+  font-size: clamp(15px, calc(var(--bc-scale) * 42px), 42px);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--ds-text);
+  white-space: nowrap;
+}
+.bcard-site {
+  color: var(--ds-green);
+}
+.bcard-brace {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+}
+.bcard-brace path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.bcard-brace--email path {
+  stroke: var(--ds-text-muted);
+  stroke-width: 1.6;
+}
+.bcard-brace--web path {
+  stroke: var(--ds-green);
+  stroke-width: 1.6;
+}
+.bcard-label {
+  position: absolute;
+  font-size: clamp(8.5px, calc(var(--bc-scale) * 12.5px), 12.5px);
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+.bcard-label--email {
+  color: var(--ds-text-muted);
+}
+.bcard-label--web {
+  color: var(--ds-green);
+}
+
+/* ---- back ---- */
+.bcard-name {
+  font-size: clamp(13px, calc(var(--bc-scale) * 27px), 27px);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--ds-text);
+  margin: 0;
+}
+.bcard-rule {
+  height: 1px;
+  background: var(--ds-border);
+  margin: calc(var(--bc-scale) * 22px) 0 calc(var(--bc-scale) * 30px);
+}
+.bcard-rows {
+  display: grid;
+  grid-template-columns: calc(var(--bc-scale) * 96px) 1fr;
+  column-gap: calc(var(--bc-scale) * 26px);
+  row-gap: calc(var(--bc-scale) * 20px);
+  align-items: baseline;
+}
+.bcard-k {
+  font-size: clamp(8px, calc(var(--bc-scale) * 11.5px), 11.5px);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ds-text-muted);
+  line-height: 1.4;
+}
+.bcard-v {
+  font-size: clamp(10px, calc(var(--bc-scale) * 17px), 17px);
+  color: var(--ds-text);
+  line-height: 1.4;
+}
+.bcard-v a {
+  color: var(--ds-green);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease;
+}
+.bcard-v a:hover {
+  border-bottom-color: var(--ds-green);
+}
+.bcard-back-tick {
+  margin-top: auto;
+  align-self: flex-end;
+  font-size: clamp(8px, calc(var(--bc-scale) * 11.5px), 11.5px);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ds-text-muted);
+}

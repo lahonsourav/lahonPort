@@ -117,9 +117,6 @@ const Education = () => {
 
   return (
     <section id="experience">
-      <h5 data-aos="fade-down">where i&apos;ve been</h5>
-      <h2 data-aos="fade-down" data-aos-delay="100">Experience</h2>
-
       <div className="edu__timeline" ref={timelineRef}>
         {entries.map((e, i) => (
           <div key={i} className={`edu__entry edu__entry--${e.side}`}>

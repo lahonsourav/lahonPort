@@ -201,7 +201,7 @@ const Lazyperm = () => {
                             <code>{'['}</code>
                             <code>{'  "git (status|diff|log)",'}</code>
                             <code>{'  "npm (test|run lint)",'}</code>
-                            <code>{'  ".*"'}<span className="lk_comment"> // catch-all</span></code>
+                            <code>{'  ".*"'}<span className="lk_comment">{' // catch-all'}</span></code>
                             <code>{']'}</code>
                         </div>
                     </div>

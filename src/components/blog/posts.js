@@ -503,7 +503,7 @@ export const POSTS = [
     title: "Why I'm Building Innercast",
     date: '2026-07-03',
     tag: 'life',
-    excerpt: 'Mental health is the one thing we track the least about ourselves, yet it shapes everything else.',
+    excerpt: 'Mental health is the one thing we track the least about ourselves, yet it shapes everything else. A private, on-device mood diary that checks in daily and writes the story back to you.',
     projectLabel: 'Learn more about Innercast →',
     projectUrl: '/mood',
     content: [
@@ -522,6 +522,36 @@ export const POSTS = [
       'I also care a lot about privacy. Your data lives on your device. The AI sees only a structured summary of your moods, never your raw notes. You do not need to trust a server you have never seen. That matters to me when I think about who would actually use this.',
 
       'I am building Innercast because I want it to exist. The act of building it is already changing how I think about my own days. Even without the app open, I find myself more aware of what I am actually feeling, not just what I am doing. That awareness is quiet and useful. I think more people could use it.',
+    ],
+  },
+  {
+    slug: 'why-digitalise-your-coaching-business',
+    title: 'Why It Matters to Digitalise Your Business, Entity, and Identity',
+    date: '2026-07-17',
+    tag: 'business',
+    excerpt: 'A signboard and word of mouth used to be enough. For coaching centers and schools competing for the same batch of NEET, JEE, and ADRE aspirants, they no longer are.',
+    downloadLabel: '🎓 Visit Success Point Gogamukh',
+    downloadUrl: 'https://www.successpointgogamukh.com/',
+    content: [
+      'A coaching center in a small town has historically run on three things: a signboard, word of mouth, and whichever teacher the neighborhood already trusts. That model worked for decades. It is starting to break, not because the teaching got worse, but because the way students and parents decide where to enroll has completely changed underneath it.',
+
+      { type: 'h2', text: 'The search happens before the visit' },
+
+      'A parent in Dhemaji deciding between coaching centers for their Class XI child does not start by walking down Mothauri Road. They start on their phone. They search the exam name, the town name, or ask in a WhatsApp group. If a coaching center has no searchable presence, no website, no listing, no way to see fees or faculty before showing up, it simply does not exist in that decision. The signboard only works on people who already walked past it.',
+
+      'This is sharper for competitive exam coaching than for almost any other local business. NEET, JEE, and ADRE aspirants are, by definition, comparison shoppers. They are already researching cutoffs, previous results, and fee structures for exams months away. A coaching center that cannot be found and compared online the same way loses the student before the first phone call.',
+
+      { type: 'h2', text: 'What "digital identity" actually means here' },
+
+      'It is not a Facebook page. A real digital identity for an education business has a few concrete parts: a website that answers the questions a parent actually has (which classes, which exams, what does it cost, who teaches it), a way to reach the institute instantly (call or WhatsApp, not a contact form nobody checks), and consistency: the same name, number, and address everywhere someone might find you, so trust builds instead of confusion.',
+
+      'Fee transparency matters more here than in most industries. Coaching admission decisions involve real money and real risk for a family. A published fee breakdown per subject, per class, per exam removes the single biggest reason a hesitant parent calls a competitor instead of you.',
+
+      { type: 'h2', text: 'The compounding effect' },
+
+      'None of this replaces good teaching. A weak faculty with a great website still loses students once word gets around. But a strong coaching center with no digital identity is invisible to exactly the students who would have benefited most: the ones outside the immediate neighborhood, the ones comparing three institutes before choosing, the ones who moved towns and are searching cold. Digitalising is not a replacement for reputation. It is what lets reputation travel further than 150 meters from the traffic point.',
+
+      'Every class, exam program, and faculty member you put online is one more way to be found by someone who was never going to walk past your signboard in the first place.',
     ],
   },
 ];

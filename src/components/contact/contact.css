@@ -1,3 +1,13 @@
+.contact__card-wrap {
+  width: min(560px, 90%);
+  aspect-ratio: 760 / 440;
+  margin: 0 auto 3rem;
+  border-radius: var(--ds-radius-xl);
+  background: linear-gradient(45deg, transparent, var(--ds-surface), var(--ds-green-btn));
+  border: 1px solid var(--ds-border);
+  padding: 4px;
+}
+
 .container.contact__container {
   width: 60%;
   display: grid;

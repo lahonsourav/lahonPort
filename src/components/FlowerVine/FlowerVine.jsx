@@ -211,7 +211,7 @@ const FlowerVine = () => {
         const s = document.querySelector(sel);
         return s ? rel(s.getBoundingClientRect()) : null;
       };
-      const secs = ["#about", "#experience", "#skills", "#portfolio", "#bio", "#contact"]
+      const secs = ["#about", "#experience", "#blog-preview", "#portfolio", "#skills", "#bio", "#contact"]
         .map(q)
         .filter(Boolean);
       const gapList = [];
