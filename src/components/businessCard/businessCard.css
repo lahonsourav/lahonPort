@@ -51,6 +51,18 @@
   background: var(--ds-border);
 }
 
+.bcard-hint {
+  position: absolute;
+  right: calc(var(--bc-scale) * 24px);
+  bottom: calc(var(--bc-scale) * 24px);
+  font-size: clamp(8px, calc(var(--bc-scale) * 11px), 11px);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ds-text-muted);
+  opacity: 0.7;
+  user-select: none;
+}
+
 /* ---- front ---- */
 .bcard-email {
   position: relative;

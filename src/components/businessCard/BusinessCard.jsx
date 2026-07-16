@@ -100,6 +100,7 @@ const BusinessCard = () => {
               </>
             )}
           </div>
+          <div className="bcard-hint">click to flip</div>
         </div>
 
         <div className="bcard-card bcard-card--back">
