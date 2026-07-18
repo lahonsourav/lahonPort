@@ -12,6 +12,20 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0d1117" />
 
+    <!-- Set theme before first paint to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+
     <!-- Canonical -->
     <link rel="canonical" href="https://lahon.in/" />
 

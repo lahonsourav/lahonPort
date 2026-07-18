@@ -5,14 +5,14 @@
     justify-content: center;
     gap: 1.25rem;
     height: 100vh;
-    background: #0d1117;
+    background: var(--ds-bg);
 }
 
 .loading-spinner {
     width: 36px;
     height: 36px;
-    border: 2px solid #21262d;
-    border-top-color: #7ee787;
+    border: 2px solid var(--ds-surface-2);
+    border-top-color: var(--ds-green);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -22,8 +22,8 @@
 }
 
 .loading-text {
-    font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+    font-family: var(--ds-font-mono, 'Fira Code', 'Cascadia Code', 'Courier New', monospace);
     font-size: 0.8rem;
-    color: #8b949e;
+    color: var(--ds-text-muted);
     letter-spacing: 0.08em;
 }

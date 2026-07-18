@@ -28,7 +28,6 @@
   list-style: none;
   text-decoration: none;
   scroll-behavior: smooth;
-  color-scheme: dark;
 }
 
 /* ── Base ── */
@@ -49,6 +48,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 500px;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 code {
@@ -135,20 +135,20 @@ a:hover {
 
 .btn:hover {
   background: var(--ds-green-btn);
-  color: var(--ds-text);
+  color: var(--ds-text-on-accent);
   border-color: var(--ds-green-btn-hover);
 }
 
 .btn-primary {
   background: var(--ds-green-btn);
-  color: var(--ds-text);
+  color: var(--ds-text-on-accent);
   border-color: var(--ds-green-btn);
 }
 
 .btn-primary:hover {
   background: var(--ds-green-btn-hover);
   border-color: var(--ds-green-btn-hover);
-  color: var(--ds-text);
+  color: var(--ds-text-on-accent);
 }
 
 /* ── Utility ── */

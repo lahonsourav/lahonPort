@@ -8,6 +8,11 @@ header {
   text-align: center;
 }
 
+:root[data-theme="light"] header {
+  background: linear-gradient(135deg, #f6f8fa 0%, #ffffff 35%, #e9fbee 65%, #ffffff 100%);
+  background-size: 300% 300%;
+}
+
 header::after {
   content: "";
   position: absolute;
@@ -15,7 +20,7 @@ header::after {
   left: 0;
   right: 0;
   height: 100px;
-  background: linear-gradient(to bottom, transparent, #0d1117);
+  background: linear-gradient(to bottom, transparent, var(--ds-bg));
   pointer-events: none;
 }
 
