@@ -34,7 +34,7 @@
    (a transition keeps the page-sized SVG repainting after every tick) */
 .vf-stem {
   stroke: var(--ds-green);
-  opacity: 0.9;
+  opacity: 0.25;
 }
 
 /* Flower stroke draw. Color set here (not the inline `stroke` attribute in
