@@ -90,7 +90,7 @@
 
 .blog-date {
   font-size: 0.75rem;
-  color: #adbac7;
+  color: var(--ds-text-muted);
   font-family: var(--ds-font-mono);
 }
 
@@ -118,7 +118,7 @@
 
 .blog-card-excerpt {
   font-size: 0.9rem;
-  color: #c9d1d9;
+  color: var(--ds-text-muted);
   line-height: 1.65;
 }
 
@@ -194,14 +194,14 @@
 .blog-post-body {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: #ffffff;
+  color: var(--ds-text);
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
 }
 
 .blog-post-body p {
-  color: #ffffff;
+  color: var(--ds-text);
   text-align: justify;
   hyphens: auto;
 }
@@ -277,7 +277,7 @@
   padding: 1rem 1.1rem;
   font-family: var(--ds-font-mono);
   font-size: 0.82rem;
-  color: #f85149;
+  color: var(--ds-error);
 }
 
 .blog-table-wrap {
@@ -307,7 +307,7 @@
 
 .blog-table td {
   padding: 0.55rem 0.9rem;
-  color: #c9d1d9;
+  color: var(--ds-text);
   border-bottom: 1px solid var(--ds-border-subtle);
   line-height: 1.5;
   vertical-align: top;
@@ -323,7 +323,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  color: #e6edf3;
+  color: var(--ds-text);
   font-size: 0.98rem;
   line-height: 1.7;
 }
@@ -339,7 +339,7 @@
   padding: 0.8rem 1.1rem;
   font-size: 0.92rem;
   line-height: 1.65;
-  color: #e6edf3;
+  color: var(--ds-text);
 }
 
 /* ── Project link callout ── */
