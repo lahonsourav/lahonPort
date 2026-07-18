@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./FlowerVine.css";
 
+/* Fallback only — actual color comes from the .vf-path/.vf-dot/.vf-stem
+   rules in FlowerVine.css, which use var(--ds-green) so the vine follows
+   the selected accent color. */
 const S = "#7ee787";
 const W = "0.55"; /* local stroke width — flowers are scaled ~3x, so renders ~1.6px */
 
