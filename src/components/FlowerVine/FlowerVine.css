@@ -33,16 +33,20 @@
 /* Stem drawn directly by scroll — updated once per frame, no transition
    (a transition keeps the page-sized SVG repainting after every tick) */
 .vf-stem {
+  stroke: var(--ds-green);
   opacity: 0.9;
 }
 
-/* Flower stroke draw */
+/* Flower stroke draw. Color set here (not the inline `stroke` attribute in
+   FlowerVine.jsx) so it follows the selected accent color. */
 .vf-path {
+  stroke: var(--ds-green);
   transition: stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Filled dots fade in after strokes draw */
 .vf-dot {
+  fill: var(--ds-green);
   opacity: 0;
   transition: opacity 0.35s ease 0.7s;
 }
