@@ -339,7 +339,7 @@ const FlowerVine = () => {
             d={stemD}
             fill="none"
             stroke={S}
-            strokeWidth="2"
+            strokeWidth="1"
             strokeLinecap="round"
           />
           {flowers.map(({ x, y, scale, Component }, i) => (

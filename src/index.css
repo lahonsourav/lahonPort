@@ -38,6 +38,8 @@ html {
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  scrollbar-width: none;    /* Firefox */
+  -ms-overflow-style: none; /* old Edge/IE */
 }
 
 body {

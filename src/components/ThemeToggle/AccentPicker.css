@@ -65,6 +65,17 @@
   box-shadow: 0 0 0 2px var(--ds-surface), 0 0 0 3px var(--ds-text);
 }
 
+.accent-picker__swatch--dynamic {
+  background-size: 220% 220%;
+  animation: accent-dynamic-shimmer 4s ease infinite;
+}
+
+@keyframes accent-dynamic-shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 @media screen and (max-width: 600px) {
   .accent-picker {
     top: 1rem;
