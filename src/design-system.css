@@ -56,20 +56,21 @@
 /*
  * ── Light theme ──
  * Applied when <html data-theme="light">. Toggled by ThemeToggle.
+ * A warm/creamy off-white, not stark white.
  */
 :root[data-theme="light"] {
   /* ── Backgrounds ── */
-  --ds-bg:        #ffffff;
-  --ds-surface:   #f6f8fa;
-  --ds-surface-2: #eaeef2;
+  --ds-bg:        #faf6ee;
+  --ds-surface:   #f4ede0;
+  --ds-surface-2: #ece1cd;
 
   /* ── Borders ── */
-  --ds-border:        #d0d7de;
-  --ds-border-subtle: #d8dee4;
+  --ds-border:        #ddd0b5;
+  --ds-border-subtle: #e6dac0;
 
   /* ── Text ── */
-  --ds-text:       #1f2328;
-  --ds-text-muted: #59636e;
+  --ds-text:       #2b2419;
+  --ds-text-muted: #6b6152;
   --ds-text-code:  #0969da;
 
   /* ── Accent — green ── */
@@ -87,4 +88,78 @@
   --ds-error:   #cf222e;
 
   color-scheme: light;
+}
+
+/*
+ * ── Accent presets ──
+ * The site's accent has always lived in the --ds-green* tokens (every
+ * component already reads through them), so picking a different accent
+ * just swaps those four values — no component changes needed. "green"
+ * is the default and needs no override; it's what's baked into the
+ * :root / [data-theme="light"] blocks above. Applied via
+ * <html data-accent="…">, chosen with AccentPicker.
+ */
+:root[data-accent="blue"] {
+  --ds-green:           #79c0ff;
+  --ds-green-btn:       #1f6feb;
+  --ds-green-btn-hover: #388bfd;
+  --ds-green-bg:        #0c2d6b;
+}
+:root[data-accent="blue"][data-theme="light"] {
+  --ds-green:           #0969da;
+  --ds-green-btn:       #0969da;
+  --ds-green-btn-hover: #0860ca;
+  --ds-green-bg:        #ddf4ff;
+}
+
+:root[data-accent="purple"] {
+  --ds-green:           #d2a8ff;
+  --ds-green-btn:       #8957e5;
+  --ds-green-btn-hover: #a371f7;
+  --ds-green-bg:        #3c2a63;
+}
+:root[data-accent="purple"][data-theme="light"] {
+  --ds-green:           #8250df;
+  --ds-green-btn:       #8250df;
+  --ds-green-btn-hover: #6e40c9;
+  --ds-green-bg:        #fbefff;
+}
+
+:root[data-accent="pink"] {
+  --ds-green:           #ff9bce;
+  --ds-green-btn:       #db61a2;
+  --ds-green-btn-hover: #f778ba;
+  --ds-green-bg:        #4a1d35;
+}
+:root[data-accent="pink"][data-theme="light"] {
+  --ds-green:           #bf3989;
+  --ds-green-btn:       #bf3989;
+  --ds-green-btn-hover: #99306f;
+  --ds-green-bg:        #ffeff7;
+}
+
+:root[data-accent="orange"] {
+  --ds-green:           #ffa657;
+  --ds-green-btn:       #c9510c;
+  --ds-green-btn-hover: #db6d28;
+  --ds-green-bg:        #4a2a0f;
+}
+:root[data-accent="orange"][data-theme="light"] {
+  --ds-green:           #bc4c00;
+  --ds-green-btn:       #bc4c00;
+  --ds-green-btn-hover: #953800;
+  --ds-green-bg:        #fff1e5;
+}
+
+:root[data-accent="red"] {
+  --ds-green:           #ff7b72;
+  --ds-green-btn:       #da3633;
+  --ds-green-btn-hover: #f85149;
+  --ds-green-bg:        #4c1e1e;
+}
+:root[data-accent="red"][data-theme="light"] {
+  --ds-green:           #cf222e;
+  --ds-green-btn:       #cf222e;
+  --ds-green-btn-hover: #a40e26;
+  --ds-green-bg:        #ffebe9;
 }

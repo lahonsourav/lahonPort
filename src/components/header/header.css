@@ -1,16 +1,11 @@
 header {
   position: relative;
-  background: linear-gradient(135deg, #161b22 0%, #0d1117 35%, #0f1f12 65%, #0d1117 100%);
+  background: linear-gradient(135deg, var(--ds-surface) 0%, var(--ds-bg) 35%, color-mix(in srgb, var(--ds-green-btn) 18%, var(--ds-bg)) 65%, var(--ds-bg) 100%);
   background-size: 300% 300%;
   animation: hero-gradient 12s ease infinite;
   padding-top: 5rem;
   padding-bottom: 5rem;
   text-align: center;
-}
-
-:root[data-theme="light"] header {
-  background: linear-gradient(135deg, #f6f8fa 0%, #ffffff 35%, #e9fbee 65%, #ffffff 100%);
-  background-size: 300% 300%;
 }
 
 header::after {
