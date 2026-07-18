@@ -15,7 +15,7 @@
 
 .cta .btn:hover {
   background: var(--ds-green-btn);
-  color: var(--ds-text);
+  color: var(--ds-text-on-accent);
   border-color: var(--ds-green-btn-hover);
 }
 

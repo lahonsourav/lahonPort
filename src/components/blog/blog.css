@@ -365,7 +365,7 @@
 
 .blog-project-link:hover {
   background: var(--ds-green-btn);
-  color: var(--ds-text);
+  color: var(--ds-text-on-accent);
 }
 
 .blog-not-found {

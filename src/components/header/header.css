@@ -1,6 +1,6 @@
 header {
   position: relative;
-  background: linear-gradient(135deg, #161b22 0%, #0d1117 35%, #0f1f12 65%, #0d1117 100%);
+  background: linear-gradient(135deg, var(--ds-surface) 0%, var(--ds-bg) 35%, color-mix(in srgb, var(--ds-green-btn) 18%, var(--ds-bg)) 65%, var(--ds-bg) 100%);
   background-size: 300% 300%;
   animation: hero-gradient 12s ease infinite;
   padding-top: 5rem;
@@ -15,7 +15,7 @@ header::after {
   left: 0;
   right: 0;
   height: 100px;
-  background: linear-gradient(to bottom, transparent, #0d1117);
+  background: linear-gradient(to bottom, transparent, var(--ds-bg));
   pointer-events: none;
 }
 

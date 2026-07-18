@@ -5,6 +5,8 @@ import React, { Suspense, lazy, useEffect } from "react";
 import Loading from "./additionals/loading/Loading.jsx";
 import HomePage from "./homePage/HomePage.jsx";
 import Admin from "./admin/Admin.jsx";
+import ThemeToggle from "./components/ThemeToggle/ThemeToggle.jsx";
+import AccentPicker from "./components/ThemeToggle/AccentPicker.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
@@ -25,6 +27,8 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <ThemeToggle />
+        <AccentPicker />
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
