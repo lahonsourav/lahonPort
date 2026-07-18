@@ -15,7 +15,7 @@ const ACCENTS = [
 
 const getInitialAccent = () => {
   const stored = localStorage.getItem(STORAGE_KEY);
-  return ACCENTS.some((a) => a.id === stored) ? stored : "green";
+  return ACCENTS.some((a) => a.id === stored) ? stored : "purple";
 };
 
 const AccentPicker = () => {

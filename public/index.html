@@ -16,19 +16,14 @@
     <script>
       (function () {
         var storedTheme = localStorage.getItem("theme");
-        var theme =
-          storedTheme === "light" || storedTheme === "dark"
-            ? storedTheme
-            : window.matchMedia("(prefers-color-scheme: light)").matches
-            ? "light"
-            : "dark";
+        var theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
         document.documentElement.setAttribute("data-theme", theme);
 
         var accents = ["green", "blue", "purple", "pink", "orange", "red"];
         var storedAccent = localStorage.getItem("accent");
         document.documentElement.setAttribute(
           "data-accent",
-          accents.indexOf(storedAccent) !== -1 ? storedAccent : "green"
+          accents.indexOf(storedAccent) !== -1 ? storedAccent : "purple"
         );
       })();
     </script>

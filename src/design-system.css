@@ -23,11 +23,11 @@
      nav, badges) — stays constant across themes since those backgrounds do. */
   --ds-text-on-accent: #f0f6fc;
 
-  /* ── Accent — green ── */
-  --ds-green:          #7ee787;
-  --ds-green-btn:      #238636;
-  --ds-green-btn-hover:#2ea043;
-  --ds-green-bg:       #1f3d2a;
+  /* ── Accent — purple (default) ── */
+  --ds-green:          #d2a8ff;
+  --ds-green-btn:      #8957e5;
+  --ds-green-btn-hover:#a371f7;
+  --ds-green-bg:       #3c2a63;
 
   /* ── Accent — blue ── */
   --ds-blue:      #58a6ff;
@@ -73,11 +73,11 @@
   --ds-text-muted: #6b6152;
   --ds-text-code:  #0969da;
 
-  /* ── Accent — green ── */
-  --ds-green:          #1a7f37;
-  --ds-green-btn:      #2da44e;
-  --ds-green-btn-hover:#2c974b;
-  --ds-green-bg:       #dafbe1;
+  /* ── Accent — purple (default) ── */
+  --ds-green:          #8250df;
+  --ds-green-btn:      #8250df;
+  --ds-green-btn-hover:#6e40c9;
+  --ds-green-bg:       #fbefff;
 
   /* ── Accent — blue ── */
   --ds-blue:      #0969da;
@@ -94,7 +94,7 @@
  * ── Accent presets ──
  * The site's accent has always lived in the --ds-green* tokens (every
  * component already reads through them), so picking a different accent
- * just swaps those four values — no component changes needed. "green"
+ * just swaps those four values — no component changes needed. "purple"
  * is the default and needs no override; it's what's baked into the
  * :root / [data-theme="light"] blocks above. Applied via
  * <html data-accent="…">, chosen with AccentPicker.
@@ -112,17 +112,17 @@
   --ds-green-bg:        #ddf4ff;
 }
 
-:root[data-accent="purple"] {
-  --ds-green:           #d2a8ff;
-  --ds-green-btn:       #8957e5;
-  --ds-green-btn-hover: #a371f7;
-  --ds-green-bg:        #3c2a63;
+:root[data-accent="green"] {
+  --ds-green:           #7ee787;
+  --ds-green-btn:       #238636;
+  --ds-green-btn-hover: #2ea043;
+  --ds-green-bg:        #1f3d2a;
 }
-:root[data-accent="purple"][data-theme="light"] {
-  --ds-green:           #8250df;
-  --ds-green-btn:       #8250df;
-  --ds-green-btn-hover: #6e40c9;
-  --ds-green-bg:        #fbefff;
+:root[data-accent="green"][data-theme="light"] {
+  --ds-green:           #1a7f37;
+  --ds-green-btn:       #2da44e;
+  --ds-green-btn-hover: #2c974b;
+  --ds-green-bg:        #dafbe1;
 }
 
 :root[data-accent="pink"] {
