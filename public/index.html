@@ -19,11 +19,11 @@
         var theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
         document.documentElement.setAttribute("data-theme", theme);
 
-        var accents = ["green", "blue", "purple", "pink", "orange", "red"];
+        var accents = ["dynamic", "green", "blue", "purple", "pink", "orange", "red"];
         var storedAccent = localStorage.getItem("accent");
         document.documentElement.setAttribute(
           "data-accent",
-          accents.indexOf(storedAccent) !== -1 ? storedAccent : "purple"
+          accents.indexOf(storedAccent) !== -1 ? storedAccent : "dynamic"
         );
       })();
     </script>
