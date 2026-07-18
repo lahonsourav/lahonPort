@@ -4,7 +4,6 @@ import React, { Suspense, lazy, useEffect } from "react";
 
 import Loading from "./additionals/loading/Loading.jsx";
 import HomePage from "./homePage/HomePage.jsx";
-import Admin from "./admin/Admin.jsx";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle.jsx";
 import AccentPicker from "./components/ThemeToggle/AccentPicker.jsx";
 
@@ -40,7 +39,6 @@ function App() {
             <Route path="/lazyperm" element={<Lazyperm />} />
             <Route path="/wormhole" element={<Wormhole />} />
             <Route path="/alien" element={<HomePage />} />
-            <Route path="/adminsecret" element={<Admin />} />
           </Routes>
         </Suspense>
       </div>
