@@ -361,6 +361,37 @@ const Portfolio = () => {
             </div>
           </article>
         </MaybeTilt>
+
+        <MaybeTilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="portfolio__item-image sg-preview">
+              <div className="sg-inner">
+                <div className="sg-brand">Spend<span className="sg-dot">·</span>Gate</div>
+                <div className="sg-verdict">
+                  <span className="sg-verdict-tag">Hold 72h</span>
+                  <div className="sg-verdict-amt">₹18,000</div>
+                  <div className="sg-meter">
+                    <div className="sg-meter-fill" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3>Spend Gate</h3>
+            <small>
+              A spending gate for impulse buys — type an amount, answer a few honest questions, and get a verdict: buy, wait 72 hours, or skip. Tracks budgets from your bank export and plans savings automatically.
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://lahonsourav.github.io/Spend-Gate/"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open App
+              </a>
+            </div>
+          </article>
+        </MaybeTilt>
       </div>
     </section>
   );

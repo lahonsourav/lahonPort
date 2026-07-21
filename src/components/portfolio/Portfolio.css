@@ -578,6 +578,75 @@
 .lp-deny  { color: #f85149; }
 .lp-prompt { color: #e3b341; }
 
+/* ── Spend Gate preview ── */
+.sg-preview {
+  background: #0e1420;
+  padding: 0;
+  align-items: stretch;
+}
+
+.sg-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1.1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.sg-brand {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e8edf5;
+  letter-spacing: -0.02em;
+}
+
+.sg-dot {
+  color: #5b7db1;
+}
+
+.sg-verdict {
+  width: 100%;
+  max-width: 220px;
+  background: #2a2113;
+  border: 1px solid #e8a13c;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  text-align: center;
+}
+
+.sg-verdict-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e8a13c;
+}
+
+.sg-verdict-amt {
+  font-family: var(--ds-font-mono, monospace);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e8edf5;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.sg-meter {
+  height: 5px;
+  background: #0e1420;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sg-meter-fill {
+  height: 100%;
+  width: 68%;
+  background: #e8a13c;
+  border-radius: 4px;
+}
+
 .client__link {
   margin-bottom: 4rem;
 }
