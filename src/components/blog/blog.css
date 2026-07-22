@@ -248,6 +248,11 @@
   border: 1px solid var(--ds-border);
   border-radius: var(--ds-radius);
   background: #0d1117;
+  /* Fixed dark card regardless of site theme (matches the Mermaid diagram's
+     hardcoded dark palette below) — text must inherit a fixed light color
+     here too, not the theme-following --ds-text, or it goes near-invisible
+     in light mode. */
+  color: #e6edf3;
   overflow: hidden;
 }
 
@@ -260,6 +265,14 @@
   padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--ds-border);
   background: var(--ds-surface);
+}
+
+/* .blog-post-body p targets every <p> in the subtree, including the ones
+   Mermaid generates inside its foreignObject html-labels — beat it back to
+   the diagram's fixed light color with a higher-specificity selector. */
+.blog-post-body .blog-figure--diagram p {
+  color: #e6edf3;
+  text-align: left;
 }
 
 .blog-figure--image img {
