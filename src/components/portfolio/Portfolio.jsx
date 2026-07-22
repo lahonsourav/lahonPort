@@ -202,10 +202,10 @@ const Portfolio = () => {
                 Visit
               </a>
               <div
-                onClick={() => navigate("/blog/why-digitalise-your-coaching-business")}
+                onClick={() => navigate("/success-point-gogamukh")}
                 className="btn btn-primary"
               >
-                Blog
+                Learn More
               </div>
             </div>
           </article>
