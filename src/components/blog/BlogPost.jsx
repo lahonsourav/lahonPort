@@ -39,6 +39,13 @@ const renderBlock = (block, i) => {
           <MermaidDiagram chart={block.text} />
         </figure>
       );
+    case 'image':
+      return (
+        <figure key={i} className="blog-figure blog-figure--image">
+          {block.caption && <figcaption>{block.caption}</figcaption>}
+          <img src={block.src} alt={block.alt ?? ''} loading="lazy" />
+        </figure>
+      );
     case 'table':
       return (
         <div key={i} className="blog-table-wrap">
