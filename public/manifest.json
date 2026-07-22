@@ -4,8 +4,8 @@
   "description": "Portfolio of Sourav Lahon — Software Engineer at BlackRock, full-stack developer, and open-source builder.",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#0d1117",
-  "background_color": "#0d1117",
+  "theme_color": "#faf6ee",
+  "background_color": "#faf6ee",
   "icons": [
     {
       "src": "/android-icon-36x36.png",

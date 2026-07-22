@@ -262,6 +262,15 @@
   background: var(--ds-surface);
 }
 
+.blog-figure--image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  object-position: top;
+}
+
 .blog-diagram-svg {
   padding: 1.25rem 1.1rem;
   overflow-x: auto;
