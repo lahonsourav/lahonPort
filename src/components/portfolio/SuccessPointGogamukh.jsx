@@ -2,9 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './successpointgogamukh.css';
 
-// ─── Reusable mock frames ───────────────────────────────────────────────────
+import landingShot from '../../images/spg/landing.webp';
+import courseDetailShot from '../../images/spg/course-detail.webp';
+import searchShot from '../../images/spg/search.webp';
+import loginShot from '../../images/spg/login.webp';
+import facultyJoinShot from '../../images/spg/faculty-join.webp';
+import studentDashboardShot from '../../images/spg/student-dashboard.webp';
+import studentRecordingsShot from '../../images/spg/student-recordings.webp';
+import facultyDashboardShot from '../../images/spg/faculty-dashboard.webp';
+import facultyStudentsShot from '../../images/spg/faculty-students.webp';
+import goLiveShot from '../../images/spg/go-live.webp';
+import adminDashboardShot from '../../images/spg/admin-dashboard.webp';
+import adminCoursesShot from '../../images/spg/admin-courses.webp';
+import adminStudentsShot from '../../images/spg/admin-students.webp';
+import adminFacultyShot from '../../images/spg/admin-faculty.webp';
+import adminEnrollmentsShot from '../../images/spg/admin-enrollments.webp';
+import adminAnnouncementsShot from '../../images/spg/admin-announcements.webp';
+import adminAuditLogShot from '../../images/spg/admin-audit-log.webp';
+import adminLoginActivityShot from '../../images/spg/admin-login-activity.webp';
+import adminDevChargeShot from '../../images/spg/admin-dev-charge.webp';
+import masterOverviewShot from '../../images/spg/master-overview.webp';
+import masterServicesShot from '../../images/spg/master-services.webp';
+import masterPaymentsShot from '../../images/spg/master-payments.webp';
 
-function BrowserMock({ url, children, caption }) {
+// ─── Reusable "real screenshot in a browser frame" ──────────────────────────
+
+function Shot({ url, src, alt, caption, tall }) {
   return (
     <>
       <div className="spgp-browser">
@@ -14,19 +37,20 @@ function BrowserMock({ url, children, caption }) {
           <span className="spgp-browser-dot" />
           <span className="spgp-browser-url">{url}</span>
         </div>
-        <div className="spgp-browser-body">{children}</div>
+        <div className="spgp-browser-body spgp-browser-body--shot">
+          <img className="spgp-shot-img" src={src} alt={alt} loading="lazy" />
+        </div>
       </div>
-      {caption && <div className="spgp-mock-caption">{caption}</div>}
+      <div className="spgp-mock-caption">{caption}{tall ? ' — scroll inside the frame to see the full page' : ''}</div>
     </>
   );
 }
 
-function PhoneMock({ children, caption }) {
+function Gallery({ items }) {
   return (
-    <>
-      <div className="spgp-phone">{children}</div>
-      {caption && <div className="spgp-mock-caption">{caption}</div>}
-    </>
+    <div className="spgp-gallery">
+      {items.map((s) => <Shot key={s.caption} {...s} />)}
+    </div>
   );
 }
 
@@ -60,8 +84,8 @@ const SuccessPointGogamukh = () => {
           A full digital platform for a coaching center in Gogamukh, Dhemaji, Assam —
           a public marketing site that wins new admissions, plus student, faculty,
           admin, and owner dashboards that run live online classes, enrollments,
-          announcements, and billing behind the scenes. Built end-to-end: design,
-          frontend, backend, database, and deployment.
+          announcements, and billing behind the scenes. Every screenshot below is the
+          real, running application — not a mockup.
         </p>
         <div className="spgp-badge-row">
           {['NEET', 'JEE', 'Assam CEE', 'Board Exam', 'SSC GD', 'ADRE', 'Assam Police'].map((b) => (
@@ -94,60 +118,21 @@ const SuccessPointGogamukh = () => {
           searching on their phone at night into an admission.
         </p>
 
-        <BrowserMock url="successpointgogamukh.com" caption="Landing page — hero, exam badges, demo-class CTA, floating WhatsApp button">
-          <div className="spgp-mock-relative">
-            <div className="spgp-mock-nav">
-              <span className="spgp-mock-brand">🎓 Success Point</span>
-              <span>Courses · Contact</span>
-            </div>
-            <div className="spgp-mock-hero-title">Your Dreams, Our Goal</div>
-            <div className="spgp-mock-hero-sub">
-              School-subject tuition and competitive exam coaching for Classes IX–XII, NEET, JEE,
-              and Assam government exams — right here in Gogamukh.
-            </div>
-            <div className="spgp-mock-cta-row">
-              <span className="spgp-mock-pill spgp-mock-pill--fill">One Week Free Demo Class</span>
-              <span className="spgp-mock-pill spgp-mock-pill--ghost">Admissions Open</span>
-            </div>
-            <div className="spgp-badge-row">
-              {['NEET', 'JEE', 'Assam CEE', 'Board Exam', 'ADRE'].map((b) => (
-                <span key={b} className="spgp-badge">{b}</span>
-              ))}
-            </div>
-            <span className="spgp-mock-whatsapp">💬</span>
-          </div>
-        </BrowserMock>
+        <Shot
+          url="successpointgogamukh.com"
+          src={landingShot}
+          alt="Success Point Gogamukh landing page — hero, programs, why choose us, testimonial, demo-class CTA, and location"
+          caption="Landing page — hero, program cards, testimonial, demo-class CTA, contact & map"
+          tall
+        />
 
         <div style={{ marginTop: '1.75rem' }}>
-          <h3 style={{ textAlign: 'center', fontSize: '0.95rem', marginBottom: '0.9rem' }}>Programs on offer</h3>
-          <div className="spgp-program-grid">
-            {[
-              { name: 'Classes IX & X', color: '#2dd4bf', desc: 'All subjects, foundation building, regular tests & assessments.' },
-              { name: 'Classes XI & XII (PCMB)', color: '#3de081', desc: 'Physics, Chemistry, Maths, Biology — focused NEET & JEE prep.' },
-              { name: 'ADRE 3.0 — Grade III & IV', color: '#f85149', desc: 'English, GK, Arithmetic, Reasoning for Assam govt. exam aspirants.' },
-            ].map((p) => (
-              <div key={p.name} className="spgp-program-card">
-                <h4><span className="spgp-program-dot" style={{ background: p.color }} />{p.name}</h4>
-                <p>{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div style={{ marginTop: '1.75rem' }}>
-          <h3 style={{ textAlign: 'center', fontSize: '0.95rem', marginBottom: '0.9rem' }}>Course catalog & transparent pricing</h3>
-          <div className="spgp-course-card">
-            <div className="spgp-course-top">
-              <span className="spgp-course-name">Class XI–XII · PCMB (NEET/JEE track)</span>
-              <span><span className="spgp-price-strike">₹4,500/mo</span><span className="spgp-price-offer">₹3,800/mo</span></span>
-            </div>
-            <div className="spgp-course-subjects">
-              {['Physics', 'Chemistry', 'Mathematics', 'Biology'].map((s) => (
-                <span key={s} className="spgp-subject-chip">{s}</span>
-              ))}
-            </div>
-            <div className="spgp-course-fine">Admission fee ₹700 · offer price shown struck-through against the original</div>
-          </div>
+          <Gallery
+            items={[
+              { url: 'successpointgogamukh.com/courses/…', src: courseDetailShot, alt: 'Course detail page with subjects, fees, and faculty', caption: 'Course detail — subjects, monthly/complete fees, assigned faculty' },
+              { url: 'successpointgogamukh.com/search?q=…', src: searchShot, alt: 'Search results page', caption: 'Search — find a course or subject by name' },
+            ]}
+          />
         </div>
 
         <FeatureGrid
@@ -164,33 +149,26 @@ const SuccessPointGogamukh = () => {
 
       {/* ── Accounts & Auth ── */}
       <div className="spgp-section">
-        <div className="spgp-split">
-          <div>
-            <BrowserMock url="successpointgogamukh.com/login">
-              <div className="spgp-otp-title">Log in with your phone</div>
-              <div className="spgp-phone-input">📱 +91 93875 72757</div>
-              <div className="spgp-otp-boxes">
-                {['4', '8', '2', '9'].map((d, i) => (
-                  <span key={i} className="spgp-otp-box">{d}</span>
-                ))}
-              </div>
-              <div className="spgp-mock-note">OTP sent via Twilio Verify · no password, ever</div>
-            </BrowserMock>
-          </div>
-          <div className="spgp-split-text">
-            <h3>Accounts & Authentication</h3>
-            <p>
-              Students and admins log in with just a phone number and an SMS OTP —
-              no passwords to forget or leak. Faculty get a dedicated invite/join link
-              to verify their phone and complete their account.
-            </p>
-            <p>
-              Four roles — <strong>student</strong>, <strong>faculty</strong>, <strong>admin</strong>,{' '}
-              <strong>master</strong> — each land on a distinct dashboard with a distinct permission
-              set. Every OTP send/verify/fail is logged with IP, user agent, and geolocation
-              (city/region/country), visible to admins alongside the SMS cost per OTP.
-            </p>
-          </div>
+        <h2 className="spgp-section-h">Accounts & Authentication</h2>
+        <p className="spgp-section-sub">
+          Students and admins log in with just a phone number and an SMS OTP — no
+          passwords to forget or leak. Faculty get a dedicated invite/join flow.
+        </p>
+        <Gallery
+          items={[
+            { url: 'successpointgogamukh.com/login', src: loginShot, alt: 'Phone number login screen', caption: 'Student/admin login — phone + OTP, no password' },
+            { url: 'successpointgogamukh.com/faculty/join', src: facultyJoinShot, alt: 'Faculty join page', caption: 'Faculty invite/join flow' },
+          ]}
+        />
+        <div style={{ marginTop: '1.75rem' }}>
+          <FeatureGrid
+            items={[
+              { icon: '📱', title: 'Phone + OTP, no passwords', body: 'Students and admins log in with just a phone number and an SMS OTP via Twilio Verify.' },
+              { icon: '🧑‍🏫', title: 'Faculty invite flow', body: 'A separate join link lets faculty verify their phone and complete their account.' },
+              { icon: '🎭', title: 'Four roles', body: 'student, faculty, admin, master — each with a distinct dashboard and permission set.' },
+              { icon: '🔐', title: 'Login activity tracking', body: 'Every OTP send/verify/fail is logged with IP, user agent, and geolocation, visible to admins with SMS cost per OTP.' },
+            ]}
+          />
         </div>
       </div>
 
@@ -201,33 +179,12 @@ const SuccessPointGogamukh = () => {
           Everything an enrolled student needs — courses, live classes, recordings, and
           notifications — in one mobile-first dashboard.
         </p>
-        <PhoneMock caption="Student home — My Courses, join a live class, or catch up on a recording">
-          <div className="spgp-mock-nav" style={{ marginBottom: '0.6rem' }}>
-            <span className="spgp-mock-brand">My Courses</span>
-            <span>👤</span>
-          </div>
-          <div className="spgp-course-card" style={{ padding: '0.6rem 0.7rem' }}>
-            <div className="spgp-course-top">
-              <span className="spgp-course-name" style={{ fontSize: '0.75rem' }}>XI–XII PCMB</span>
-              <span className="spgp-mock-pill spgp-mock-pill--fill" style={{ fontSize: '0.6rem' }}>🔴 Live now</span>
-            </div>
-            <div className="spgp-course-fine">Enrolled 12 Jun 2026 · Recordings available</div>
-          </div>
-          <div className="spgp-course-card" style={{ padding: '0.6rem 0.7rem' }}>
-            <div className="spgp-course-top">
-              <span className="spgp-course-name" style={{ fontSize: '0.75rem' }}>ADRE 3.0</span>
-            </div>
-            <div className="spgp-course-fine">Enrolled 3 May 2026</div>
-          </div>
-          <div className="spgp-toast" style={{ marginTop: '0.6rem' }}>
-            <span className="spgp-toast-icon">🔔</span>
-            <div>
-              <div className="spgp-toast-title">Allow Notifications</div>
-              <div className="spgp-toast-body">Get notified the moment a live class starts</div>
-            </div>
-          </div>
-        </PhoneMock>
-
+        <Gallery
+          items={[
+            { url: 'successpointgogamukh.com/dashboard/student', src: studentDashboardShot, alt: 'Student dashboard with enrolled and available courses', caption: 'Student home — My Courses + Available Courses' },
+            { url: 'successpointgogamukh.com/dashboard/course-recordings/…', src: studentRecordingsShot, alt: 'Recordings and materials page', caption: 'Recordings & materials, filterable by subject/chapter/topic' },
+          ]}
+        />
         <div style={{ marginTop: '1.75rem' }}>
           <FeatureGrid
             items={[
@@ -246,24 +203,20 @@ const SuccessPointGogamukh = () => {
           The centerpiece feature — faculty and admins run genuine live classes with
           curriculum structure, watermarked playback, and full attendance logs.
         </p>
-        <BrowserMock url="successpointgogamukh.com/dashboard/live-class" caption="Go Live — pick Course → Subject → Chapter → Topic, paste a YouTube ID, optionally cross-link other courses">
-          <div className="spgp-dash-shell" style={{ minHeight: 'auto' }}>
-            <div style={{ width: '100%' }}>
-              <div className="spgp-otp-title" style={{ textAlign: 'left' }}>🔴 Go Live</div>
-              <div className="spgp-phone-input">▶ YouTube video ID or URL</div>
-              <div className="spgp-course-subjects" style={{ marginBottom: '0.7rem' }}>
-                <span className="spgp-subject-chip">XI–XII PCMB → Physics</span>
-                <span className="spgp-subject-chip">Ch. Optics → Topic: Refraction</span>
-              </div>
-              <div className="spgp-course-fine">Cross-link to: ☑ ADRE 3.0 batch (optional)</div>
-              <div className="spgp-mock-cta-row" style={{ justifyContent: 'flex-start', marginTop: '0.8rem' }}>
-                <span className="spgp-mock-pill spgp-mock-pill--fill">Start Live Class</span>
-                <span className="spgp-mock-pill spgp-mock-pill--ghost">End Live Class</span>
-              </div>
-            </div>
-          </div>
-        </BrowserMock>
-
+        <Shot
+          url="successpointgogamukh.com/dashboard/online-class"
+          src={goLiveShot}
+          alt="Go Live panel — course, cross-linking, subject, chapter, and topic picker with a live indicator"
+          caption="Go Live — pick Course → Subject → Chapter → Topic, cross-link other courses, see what's live right now"
+        />
+        <div style={{ marginTop: '1.75rem' }}>
+          <Gallery
+            items={[
+              { url: 'successpointgogamukh.com/dashboard/faculty', src: facultyDashboardShot, alt: 'Faculty dashboard with assigned subjects', caption: 'Faculty dashboard — assigned subjects, quick stats' },
+              { url: 'successpointgogamukh.com/dashboard/faculty/students', src: facultyStudentsShot, alt: 'Faculty view of students', caption: "Faculty's student roster" },
+            ]}
+          />
+        </div>
         <div style={{ marginTop: '1.75rem' }}>
           <FeatureGrid
             items={[
@@ -282,20 +235,12 @@ const SuccessPointGogamukh = () => {
       <div className="spgp-section">
         <div className="spgp-split spgp-split--rev">
           <div>
-            <div className="spgp-toast">
-              <span className="spgp-toast-icon">📢</span>
-              <div>
-                <div className="spgp-toast-title">New batch starting — NEET 2027</div>
-                <div className="spgp-toast-body">Sent to: All students enrolled in XI–XII PCMB · tap to open admission form</div>
-              </div>
-            </div>
-            <div className="spgp-toast" style={{ marginTop: '0.6rem' }}>
-              <span className="spgp-toast-icon">🔴</span>
-              <div>
-                <div className="spgp-toast-title">Physics — Optics is live now</div>
-                <div className="spgp-toast-body">Sent automatically the moment staff go live</div>
-              </div>
-            </div>
+            <Shot
+              url="successpointgogamukh.com/dashboard/admin/announcements"
+              src={adminAnnouncementsShot}
+              alt="Announcements composer — title, message, optional link, audience selector"
+              caption="Compose and send — all students or specific courses, with an optional link"
+            />
           </div>
           <div className="spgp-split-text">
             <h3>Push Notifications & Announcements</h3>
@@ -322,28 +267,26 @@ const SuccessPointGogamukh = () => {
           The operational control center — courses, students, faculty, enrollments,
           announcements, and a fully auditable trail of every change.
         </p>
-        <BrowserMock url="successpointgogamukh.com/dashboard" caption="Admin dashboard — sidebar navigation across every management tool">
-          <div className="spgp-dash-shell">
-            <div className="spgp-sidebar">
-              {['Manage Courses', 'Manage Students', 'Manage Faculty', 'Admins', 'Enrollment Requests', 'Online Class', 'Announcements', 'Development Charge', 'Audit Log', 'Login Activity'].map((item, i) => (
-                <span key={item} className={`spgp-sidebar-item${i === 0 ? ' spgp-sidebar-item--active' : ''}`}>{item}</span>
-              ))}
-            </div>
-            <div className="spgp-dash-main">
-              <div className="spgp-dash-banner">⏳ Development balance due in 12 days — see Development Charge</div>
-              <table className="spgp-table">
-                <thead>
-                  <tr><th>Course</th><th>Subjects</th><th>Fee</th><th>Status</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>XI–XII PCMB</td><td>4</td><td>₹3,800/mo</td><td>Active</td></tr>
-                  <tr><td>ADRE 3.0</td><td>4</td><td>₹1,500/mo</td><td>Active</td></tr>
-                  <tr><td>Classes IX–X</td><td>6</td><td>₹1,200/mo</td><td>Active</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </BrowserMock>
+        <Shot
+          url="successpointgogamukh.com/dashboard/admin"
+          src={adminDashboardShot}
+          alt="Admin dashboard home with stats and a grid of management tools"
+          caption="Admin home — live stats plus every management tool, one click away"
+        />
+
+        <div style={{ marginTop: '1.75rem' }}>
+          <Gallery
+            items={[
+              { url: 'successpointgogamukh.com/dashboard/admin/courses', src: adminCoursesShot, alt: 'Manage courses table', caption: 'Manage Courses — pricing, enrollment counts, requests, recordings' },
+              { url: 'successpointgogamukh.com/dashboard/admin/students', src: adminStudentsShot, alt: 'Manage students table', caption: 'Manage Students — search, enrollment, per-student edit' },
+              { url: 'successpointgogamukh.com/dashboard/admin/faculty', src: adminFacultyShot, alt: 'Manage faculty page', caption: 'Manage Faculty — subject assignments' },
+              { url: 'successpointgogamukh.com/dashboard/admin/enrollments', src: adminEnrollmentsShot, alt: 'Enrollment requests page', caption: 'Enrollment Requests — verify receipts, approve/reject' },
+              { url: 'successpointgogamukh.com/dashboard/admin/audit-log', src: adminAuditLogShot, alt: 'Audit log table', caption: 'Audit Log — immutable trail of every change, by actor' },
+              { url: 'successpointgogamukh.com/dashboard/admin/login-activity', src: adminLoginActivityShot, alt: 'Login activity table with SMS cost', caption: 'Login Activity — device, location, SMS cost per OTP' },
+              { url: 'successpointgogamukh.com/dashboard/admin/pending-fees', src: adminDevChargeShot, alt: 'Development charge breakdown', caption: 'Development Charge — read-only, what\'s owed vs. paid' },
+            ]}
+          />
+        </div>
 
         <div style={{ marginTop: '1.75rem' }}>
           <FeatureGrid
@@ -369,31 +312,20 @@ const SuccessPointGogamukh = () => {
           Everything an admin can do, plus the tools I use myself to track this project's
           costs and the client's payments against them.
         </p>
-        <BrowserMock url="successpointgogamukh.com/dashboard/master" caption="Overview — live counts and the payment due countdown">
-          <div className="spgp-stat-grid">
-            {[
-              { n: '412', l: 'STUDENTS' },
-              { n: '9', l: 'COURSES' },
-              { n: '14', l: 'FACULTY' },
-              { n: '689', l: 'ENROLLMENTS' },
-            ].map((s) => (
-              <div key={s.l} className="spgp-stat-card">
-                <div className="spgp-stat-num">{s.n}</div>
-                <div className="spgp-stat-lbl">{s.l}</div>
-              </div>
-            ))}
-          </div>
-          <table className="spgp-table" style={{ marginTop: '0.9rem' }}>
-            <thead>
-              <tr><th>Line item</th><th>Category</th><th>Amount</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Website design & build</td><td>Development</td><td>₹45,000</td><td>Active</td></tr>
-              <tr><td>Live class infrastructure</td><td>Development</td><td>₹18,000</td><td>Active</td></tr>
-              <tr><td>SMS OTP (monthly)</td><td>Service</td><td>₹1,200</td><td>Active</td></tr>
-            </tbody>
-          </table>
-        </BrowserMock>
+        <Shot
+          url="successpointgogamukh.com/dashboard/master"
+          src={masterOverviewShot}
+          alt="Master dashboard overview with counts and billing tools"
+          caption="Master overview — live counts, payment countdown, plus billing tools"
+        />
+        <div style={{ marginTop: '1.75rem' }}>
+          <Gallery
+            items={[
+              { url: 'successpointgogamukh.com/dashboard/master/services', src: masterServicesShot, alt: 'Services and pricing breakdown', caption: 'Services & Pricing — itemized service vs. development cost breakdown' },
+              { url: 'successpointgogamukh.com/dashboard/master/payments', src: masterPaymentsShot, alt: 'Payment tracking page', caption: 'Payment Tracking — record payments, set the due date' },
+            ]}
+          />
+        </div>
         <div style={{ marginTop: '1.75rem' }}>
           <FeatureGrid
             items={[

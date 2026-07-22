@@ -190,12 +190,37 @@
   padding: 1.25rem;
 }
 
+.spgp-browser-body--shot {
+  padding: 0;
+  max-height: 560px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.spgp-shot-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .spgp-mock-caption {
   text-align: center;
   font-size: 0.75rem;
   color: var(--ds-text-muted);
   margin-top: 0.6rem;
   font-family: var(--ds-font-mono);
+}
+
+/* ── Screenshot gallery (grid of smaller browser-frame shots) ── */
+.spgp-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.spgp-gallery .spgp-browser-body--shot {
+  max-height: 320px;
 }
 
 /* ── Phone mock frame ── */
