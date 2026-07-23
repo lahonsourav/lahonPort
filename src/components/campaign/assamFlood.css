@@ -1,0 +1,211 @@
+.af_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--ds-bg);
+  color: var(--ds-text);
+  font-family: var(--ds-font);
+  padding-bottom: 4rem;
+}
+
+.af_back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--ds-text-muted);
+  font-family: var(--ds-font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 1.5rem 2rem 0;
+  transition: var(--ds-transition);
+}
+
+.af_back:hover {
+  color: var(--ds-green);
+}
+
+/* ── Hero ── */
+.af_hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 640px;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.af_eyebrow {
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Fixed light backing for the print artwork — it's dark navy text on a
+   transparent PNG, made for a light background, so it needs to stay on
+   one regardless of the site's dark/light theme. */
+.af_art_card {
+  background: #faf6ee;
+  border-radius: var(--ds-radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+}
+
+.af_art_card--wide {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0;
+}
+
+.af_hero_img {
+  display: block;
+  width: min(320px, 70vw);
+  height: auto;
+}
+
+.af_title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ds-text);
+  margin-bottom: 0.5rem;
+}
+
+.af_tagline {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ds-green);
+  margin-bottom: 1.25rem;
+}
+
+.af_description {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ds-text-muted);
+}
+
+.af_description strong {
+  color: var(--ds-text);
+}
+
+/* ── Sections ── */
+.af_section {
+  width: 100%;
+  max-width: 560px;
+  padding: 2rem 1.5rem 0;
+}
+
+.af_section_title {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Steps ── */
+.af_steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.af_step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  padding: 1rem 1.1rem;
+}
+
+.af_step_n {
+  flex-shrink: 0;
+  width: 1.9rem;
+  height: 1.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--ds-green-btn);
+  color: var(--ds-text-on-accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.af_step p {
+  font-size: 0.92rem;
+  color: var(--ds-text-muted);
+  line-height: 1.6;
+}
+
+/* ── QR card ── */
+.af_qr_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  padding: 1.75rem 1.5rem;
+}
+
+.af_qr_img {
+  width: min(260px, 70vw);
+  height: auto;
+  border-radius: var(--ds-radius);
+  margin-bottom: 1rem;
+}
+
+.af_qr_upi {
+  font-family: var(--ds-font-mono);
+  font-size: 0.92rem;
+  color: var(--ds-text);
+  margin-bottom: 0.35rem;
+}
+
+.af_qr_upi span {
+  color: var(--ds-green);
+}
+
+.af_qr_hint {
+  font-size: 0.82rem;
+  color: var(--ds-text-muted);
+}
+
+/* ── Form ── */
+.af_form {
+  max-width: 100%;
+}
+
+.af_form_note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--ds-text-muted);
+  margin-top: 1rem;
+}
+
+/* ── Print artwork ── */
+.af_print {
+  padding-bottom: 1rem;
+}
+
+.af_print_img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--ds-radius-lg) - 0.5rem);
+}
+
+@media screen and (max-width: 600px) {
+  .af_title {
+    font-size: 1.9rem;
+  }
+}
