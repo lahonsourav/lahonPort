@@ -1,3 +1,12 @@
+import landingShot from '../../images/spg/landing.webp';
+import courseDetailShot from '../../images/spg/course-detail.webp';
+import loginShot from '../../images/spg/login.webp';
+import studentDashboardShot from '../../images/spg/student-dashboard.webp';
+import goLiveShot from '../../images/spg/go-live.webp';
+import adminAnnouncementsShot from '../../images/spg/admin-announcements.webp';
+import adminDashboardShot from '../../images/spg/admin-dashboard.webp';
+import masterOverviewShot from '../../images/spg/master-overview.webp';
+
 export const POSTS = [
   {
     slug: 'building-wormhole-p2p-messaging',
@@ -552,6 +561,309 @@ export const POSTS = [
       'None of this replaces a good teacher. A brilliant website in front of a weak faculty just gets people to show up once. But I watched something specific happen with Success Point: a strong coaching center that had zero digital footprint was invisible to precisely the students who needed it most. Not the neighbors who already knew about it. The ones a few towns over. The ones comparing three institutes side by side on a Sunday night. The ones who had just moved to Dhemaji and were searching cold, with no word of mouth to go on at all. Digitalising a business like this is not a replacement for its reputation, it is the thing that finally lets that reputation travel further than 150 meters from a traffic point.',
 
       'Every class, every exam program, every faculty name I put on that site is one more door for someone to find their way in through, someone who was never, ever going to walk past that signboard on their own.',
+    ],
+  },
+  {
+    slug: 'building-success-point-gogamukh',
+    title: 'Success Point Gogamukh — The Full Technical Build',
+    date: '2026-07-21',
+    tag: 'tech',
+    excerpt: 'Next.js App Router and Server Actions, a Prisma/PostgreSQL schema built around live classes, phone+OTP auth with per-attempt SMS cost tracking, Web Push, an offline-ready PWA, and an immutable audit log — the full engineering breakdown of a real client platform.',
+    projectLabel: 'Learn more about Success Point Gogamukh →',
+    projectUrl: '/success-point-gogamukh',
+    downloadLabel: '🎓 Visit Success Point Gogamukh',
+    downloadUrl: 'https://www.successpointgogamukh.com/',
+    content: [
+      'Success Point Gogamukh started as "build a website for a coaching center" and ended up as a small SaaS: a public marketing site plus four role-based dashboards (student, faculty, admin, master) running live-streamed classes, enrollment workflows, push notifications, and even the developer\'s own billing against the client. This post is the engineering deep-dive — architecture, schema, auth, the live-class join-token design, push, the PWA/service-worker caching strategy, and the audit trail. If you just want the plain-language tour of what the site does, the project page has that version.',
+
+      { type: 'h2', text: '1. Architecture Overview' },
+
+      'The whole app is one Next.js project using the App Router. There is no separate REST/GraphQL API for the dashboards — mutations go through Server Actions, which run on the server, next to Prisma, and get called directly from client components like normal async functions. The only real API routes that exist are for things that need a stable HTTP contract: webhooks, the service worker\'s push endpoint registration, and a couple of health/cron-style routes.',
+
+      { type: 'diagram', title: 'Request flow — Server Actions instead of a separate API layer', text:
+`flowchart LR
+    UI["Client component<br/>(form / button)"] -->|"await serverAction(formData)"| SA["Server Action<br/>runs on the server"]
+    SA --> AUTH["Re-check session + role<br/>from the signed cookie"]
+    AUTH --> PZ["Prisma Client"]
+    PZ --> PG[("PostgreSQL")]
+    SA --> AL["Write an AuditLog row<br/>for anything that mutates state"]
+    SA -->|"revalidatePath / return"| UI` },
+
+      'The public site (landing, course catalog, course detail) is server-rendered for SEO and speed. Every authenticated route lives under /dashboard, /login, /signup, and /faculty/join, and is explicitly excluded from search indexing and from the service worker\'s cache — more on both below.',
+
+      { type: 'h2', text: '2. Tech Stack' },
+
+      { type: 'table',
+        head: ['Layer', 'Choice', 'Why'],
+        rows: [
+          ['Framework', 'Next.js 16 (App Router)', 'Server Actions remove the need for a hand-rolled API layer; file-based routing matches the site/dashboard split cleanly'],
+          ['UI', 'React 19 + TypeScript + Tailwind CSS v4', 'Type safety across server actions and components; utility CSS keeps the design system consistent without a component library'],
+          ['ORM / DB', 'Prisma 7 (driver adapters) + PostgreSQL', 'Typed schema, migrations as first-class citizens, and the new driver-adapter mode (@prisma/adapter-pg) for a lighter runtime'],
+          ['Auth', 'Twilio Verify (SMS OTP) + jose (JWT)', 'No password storage/reset flow to build or secure; jose signs short-lived session and join tokens'],
+          ['Push', 'web-push (VAPID) + browser Push API', 'Standards-based — no third-party push SaaS or its recurring bill'],
+          ['Validation', 'zod', 'Schema validation at every Server Action boundary, not just on the client form'],
+          ['Passwords/tokens', 'bcryptjs', 'Hashing anywhere a secret does need to be stored at rest'],
+          ['Hosting', 'Railway (railway.toml)', 'Managed Postgres + app deploy from one provider, sized right for a single coaching center, not enterprise infra'],
+        ] },
+
+      { type: 'h2', text: '3. Data Model' },
+
+      'The curriculum side of the schema is a five-level tree: Course → Subject → Chapter → Topic → LiveSession, with a JoinLog under every session. Chapters and Topics are reusable — staff pick an existing one or create it on the fly when going live — while a LiveSession is a real, timestamped occurrence, not a reused slot. Cascading deletes keep this consistent: delete a Chapter and its Topics, LiveSessions, and JoinLogs go with it.',
+
+      { type: 'diagram', title: 'Curriculum tree and the models hanging off it', text:
+`flowchart TD
+    U["User — role: student/faculty/admin/master"]
+    C["Course<br/>price, actualPrice, admissionFee"]
+    S["Subject<br/>fee, monthlyFee"]
+    CH["Chapter"]
+    T["Topic"]
+    LS["LiveSession<br/>youtubeVideoId, status: live/ended"]
+    JL["JoinLog<br/>studentName, joinedAt"]
+    C -->|"has many"| S
+    S -->|"has many"| CH
+    CH -->|"has many"| T
+    T -->|"has many, over time"| LS
+    LS -->|"has many"| JL
+    LS -.->|"crossLinkedSessions — cast to extra courses too"| C
+    U -->|"Enrollment / SubjectEnrollment"| C
+    U -->|"SubjectFaculty"| S
+    U -->|"EnrollmentRequest — receipt number, pending/verified/rejected"| C` },
+
+      { type: 'table',
+        head: ['Model', 'Notable fields', 'Purpose'],
+        rows: [
+          ['AuthEvent', 'type, purpose, ip/city/region/country, costInr', 'Every OTP send/verify/fail — the login-activity trail'],
+          ['AuditLog', 'actorId (nullable), actorName, actorRole, action, entityType, summary, metadata', 'Immutable trail of every admin/faculty mutation, write-once, no update/delete path exposed anywhere'],
+          ['PushSubscription', 'endpoint (unique), p256dh, auth', 'One row per browser/device Web Push registration'],
+          ['ServiceItem / ClientPayment / BillingSettings', 'category, status, amountInr / paidAt / dueDate', 'The master-only developer-billing system — what\'s owed vs. what\'s been paid'],
+          ['EnrollmentRequest', 'type, receiptNumber, status', 'Student-submitted enrollment pending admin verification'],
+        ] },
+
+      { type: 'note', text: 'AuthEvent and AuditLog both keep a denormalized actor name/phone alongside a nullable foreign key (onDelete: SetNull). Deleting a user account later never breaks — or silently rewrites — the historical trail.' },
+
+      { type: 'h2', text: '4. Authentication' },
+
+      'There\'s no password anywhere in the student/admin flow. Login is phone number + a 6-digit SMS OTP sent through Twilio Verify; Twilio owns OTP generation and expiry, the app just asks it to send and verify. On success, a signed JWT session cookie is issued via jose. Faculty go through a separate invite/join link — a one-time URL that lets them verify their phone and set up the account, rather than an admin typing in a password for them.',
+
+      { type: 'diagram', title: 'Phone + OTP login, with every attempt logged', text:
+`sequenceDiagram
+    participant U as User
+    participant App as Server Action
+    participant Tw as Twilio Verify
+    participant DB as Postgres
+    U->>App: submit phone number
+    App->>Tw: start verification
+    Tw-->>U: SMS with 6-digit code
+    App->>DB: AuthEvent(type: otp_sent, costInr, ip, geo)
+    U->>App: submit code
+    App->>Tw: check verification
+    alt code correct
+        Tw-->>App: approved
+        App->>DB: AuthEvent(type: otp_verified)
+        App->>App: sign JWT session cookie (jose)
+        App-->>U: redirect to role's dashboard
+    else code wrong/expired
+        Tw-->>App: denied
+        App->>DB: AuthEvent(type: otp_failed)
+        App-->>U: show error, allow retry
+    end` },
+
+      'Every one of those AuthEvent rows carries IP address, user agent, and geolocation resolved to city/region/country, plus — for otp_sent — the SMS cost in INR, converted from Twilio\'s USD pricing at the live exchange rate at send time. Admins get a Login Activity page built entirely from this table: who tried to log in, from where, and what it cost.',
+
+      { type: 'h2', text: '5. Roles & Permissions' },
+
+      { type: 'table',
+        head: ['Role', 'Dashboard', 'Can do'],
+        rows: [
+          ['student', '/dashboard', 'View enrolled courses, request new enrollments, join/watch live classes and recordings, manage push subscription'],
+          ['faculty', '/dashboard', 'Everything student-relevant to teaching: go live, manage curriculum (chapters/topics), see enrollment for assigned subjects'],
+          ['admin', '/dashboard', 'Full course/student/faculty/enrollment management, announcements, audit log, login activity, and a read-only view of the development charge'],
+          ['master', '/dashboard', 'Everything admin can do, plus Services & Pricing and Payment Tracking — the developer-billing tools'],
+        ] },
+
+      'Role is a plain enum column on User, checked at the top of every Server Action and every dashboard route — there\'s no separate permissions table to keep in sync, which fits a four-role app but would be the first thing to refactor if the role list ever grew past a handful.',
+
+      { type: 'h2', text: '6. Live Classes — the Join-Token Design' },
+
+      'Going live creates a LiveSession row under a Topic with a YouTube video ID. The interesting design decision is how students actually get that video ID. It isn\'t embedded in any page HTML or exposed on a public API — it\'s handed out through a short-lived, signed join token, resolved fresh on every watch:',
+
+      { type: 'diagram', title: 'Go Live → join → resolve → watermark → auto-cutoff', text:
+`sequenceDiagram
+    participant F as Faculty/Admin
+    participant App as Server
+    participant St as Student
+    F->>App: go live (Topic, YouTube ID, optional cross-linked courses)
+    App->>App: create LiveSession(status: live)
+    App->>St: push notification — "class is live"
+    St->>App: request to watch
+    App->>App: verify session (JWT, jose), re-check enrollment
+    App->>App: sign 10-minute join token (studentId, sessionId)
+    App-->>St: join token
+    St->>App: resolveJoinToken(token)
+    App->>App: verify token + re-check LiveSession.status === live
+    App->>App: write JoinLog(studentName, joinedAt)
+    App-->>St: youtubeVideoId, only now
+    St->>St: play video with identity watermark overlay
+    loop every 4s while watching
+        St->>App: poll session status
+        App-->>St: live / ended
+    end
+    F->>App: end live class
+    App->>App: LiveSession.status = ended
+    Note over St: next poll returns "ended" — playback stops automatically` },
+
+      { type: 'note', text: 'The code comment on this token scheme is unusually candid about its own limits, and worth quoting: "This is NOT DRM. Once resolveJoinToken hands the YouTube video ID back to an authenticated, enrolled student, that ID is in their browser." What it actually buys: no public endpoint ever leaks a video ID to someone unauthenticated or unenrolled; no sequential/guessable IDs to enumerate other batches\' sessions; every real join is logged with who/when; and a 10-minute token window means a stale or forwarded link stops working fast, with no extra invalidation bookkeeping needed. If leak prevention ever needs to get stricter, the honest fix is per-student rooms via a provider like 100ms or Agora — not tightening this scheme further.' },
+
+      'The watermark itself overlays the viewing student\'s identity on the video during playback — a lightweight deterrent, not a technical guarantee, which is consistent with the join-token philosophy above: layers that raise the cost of leaking without pretending to make it impossible.',
+
+      { type: 'h2', text: '7. Push Notifications' },
+
+      'Students opt in through the browser\'s Push API, which registers a subscription (an endpoint URL plus two keys, p256dh and auth) that gets stored as a PushSubscription row. Sending a push means the server signs a payload with the app\'s VAPID keys via the web-push package and posts it straight to whichever push service the browser uses (Chrome, Firefox, etc.) — no third-party push platform in between.',
+
+      { type: 'diagram', title: 'Subscribe once, then two triggers push a notification', text:
+`flowchart TD
+    A["Student taps Allow Notifications"] --> B["Browser Push API generates subscription"]
+    B --> C["Store PushSubscription — endpoint, p256dh, auth"]
+    D["Trigger 1 — staff goes live"] --> E["Push to every student enrolled in that class's course(s)"]
+    F["Trigger 2 — staff posts an Announcement"] --> G["Push to all students, or to selected courses' students"]
+    E --> H["web-push signs payload with VAPID keys"]
+    G --> H
+    H --> I["Push service delivers to the browser"]
+    I --> J["Service worker 'push' event → showNotification()"]
+    J --> K["User taps — 'notificationclick' opens the announcement's link, or the dashboard"]
+    H -->|"endpoint responds 410/404 — subscription gone"| L["Delete that PushSubscription row automatically"]` },
+
+      'That last edge, pruning dead subscriptions on a 410/404 response, matters more than it sounds: without it, a table of push subscriptions only grows, and every send job wastes time and quota retrying devices that uninstalled the app or cleared their browser months ago.',
+
+      { type: 'h2', text: '8. PWA & Service Worker Caching' },
+
+      'The service worker is hand-written — no Workbox, no next-pwa dependency — and deliberately narrow in scope: only the public marketing site and static assets are ever cached. Every authenticated route is excluded outright, which matters on a shared or family device: nobody\'s dashboard should ever be servable from another user\'s browser cache.',
+
+      { type: 'diagram', title: 'Three caching strategies, one per URL class', text:
+`flowchart TD
+    R["Incoming GET request"] --> Q1{"Starts with<br/>/dashboard, /login, /signup,<br/>/faculty/join, or /api ?"}
+    Q1 -->|"yes"| NET["Network-only — never intercepted, never cached"]
+    Q1 -->|"no"| Q2{"Static asset?<br/>/_next/static, /icons/, /images/"}
+    Q2 -->|"yes"| CF["Cache-first — serve cached copy instantly,<br/>fall back to network + cache the response"]
+    Q2 -->|"no"| NF["Network-first — always try fresh,<br/>fall back to cache, then to '/' if offline"]` },
+
+      'On top of the runtime strategy, four URLs are pre-cached at install time (/, the web manifest, and the two icon sizes) so the app shell is available offline immediately after the first visit, not just after a page has been separately fetched once. Combined with the manifest and maskable icons, this is what makes "Add to Home Screen" actually feel like installing an app rather than bookmarking a page.',
+
+      { type: 'h2', text: '9. The Audit Log' },
+
+      'Every admin/faculty mutation — a price change, a faculty assignment, an enrollment approval, an announcement send — writes an AuditLog row inside the same Server Action that performs the change. The table has no update or delete path exposed anywhere in the codebase; it is write-once and read-only by construction, not just by convention. actorId is nullable with onDelete: SetNull, but actorName and actorRole are stored as plain strings at write time, so the log stays fully readable even after the account that made a change is gone.',
+
+      { type: 'h2', text: '10. Developer Billing, Built Into the Master Dashboard' },
+
+      'One feature that\'s unusual for a coaching-center site: the developer\'s own invoice lives inside the app. ServiceItem rows (service vs. development, each active/deferred/on-demand) make up an itemized cost breakdown; ClientPayment rows record what\'s actually been paid; and a single BillingSettings row holds a due date. Admins see a read-only countdown/overdue banner site-wide once a due date is set — the master role is the only one that can edit the underlying numbers. It reuses the exact same currency-conversion logic as the SMS-cost tracking in AuthEvent (a live USD→INR rate), so both "what this client owes for OTPs this month" and "what this client owes for the project" run through one shared conversion path instead of two.',
+
+      { type: 'h2', text: '11. SEO' },
+
+      'The public site carries per-page metadata, Open Graph/Twitter cards, and JSON-LD structured data (Course and Breadcrumb schemas) on every course page, plus a generated sitemap.xml and robots.txt. The flip side of that effort is making sure none of it leaks into search results for pages that shouldn\'t be indexed: every route under /dashboard, /login, /signup, and /faculty/join carries a blanket noindex, the same route prefixes excluded from the service worker\'s cache.',
+
+      { type: 'h2', text: '12. Deployment' },
+
+      'The app deploys to Railway from a railway.toml, alongside a managed PostgreSQL instance. Prisma migrations run as part of the deploy step rather than by hand against production. It\'s intentionally boring infrastructure for what it is — one coaching center, not a multi-tenant platform — and boring is the right call: nothing here needs a Kubernetes cluster, and every extra moving part is one more thing to debug at 11pm before an admissions season starts.',
+
+      { type: 'h2', text: 'Closing Thoughts' },
+
+      'None of the individual pieces here are exotic — OTP auth, Server Actions, a service worker, Web Push. What made this project interesting was fitting them together for a genuinely operational system: a coaching center actually runs live classes through this, actually gets paid through the fee pages it advertises, and actually tracks its own SMS spend against a monthly figure that used to be invisible. The join-token design and the audit log are the two pieces I\'d point to as the most "engineering," but the boring parts — cascading deletes that don\'t leave orphaned rows, a service worker that refuses to cache a dashboard, a payments table nobody can quietly edit after the fact — are what actually make it trustworthy enough for a real client to run their business on.',
+
+      'If you want the plain-language tour of what the platform does for the coaching center and its students — no schemas, no JWTs — the project page has that version.',
+    ],
+  },
+  {
+    slug: 'coaching-center-management-system',
+    title: 'A Complete Coaching Center Management System — Website, Dashboards, Live Classes, Billing',
+    date: '2026-07-22',
+    tag: 'business',
+    excerpt: 'What I built for Success Point Gogamukh wasn\'t just a website — it\'s a full operating system for a coaching business. Every feature, every screen, and what it would take to build one for your institute.',
+    projectLabel: 'See it live — Success Point Gogamukh →',
+    projectUrl: '/success-point-gogamukh',
+    downloadLabel: '🎓 Visit Success Point Gogamukh',
+    downloadUrl: 'https://www.successpointgogamukh.com/',
+    content: [
+      'When Success Point, a coaching center in Gogamukh, Assam, asked me for "a website," what they actually needed — like most coaching centers running NEET, JEE, board-exam, or government-exam batches — was something much bigger: a way to be found by new students, a way to run live classes without a third-party app, a way to track who owes what, and a way to know who\'s actually logging in. So that\'s what got built: a public site that wins admissions, plus student, faculty, admin, and owner dashboards that run the whole operation behind it. Every screenshot below is the real, running product.',
+
+      { type: 'h2', text: 'A public website that actually converts' },
+
+      'A parent comparing coaching centers on their phone at 10pm needs three things fast: what it costs, who teaches it, and how to reach a real person. The public site leads with exactly that — exam category badges, program cards, transparent fees with offer pricing shown struck-through against the original, and a floating WhatsApp button that\'s always one tap away.',
+
+      { type: 'image', src: landingShot, alt: 'Coaching center landing page with hero, programs, and demo-class CTA', caption: 'Landing page — hero, exam badges, program cards, demo-class CTA' },
+
+      { type: 'image', src: courseDetailShot, alt: 'Course detail page with subjects, fees, and faculty', caption: 'Course detail — subjects, monthly/complete fees, assigned faculty, no "call for pricing"' },
+
+      { type: 'list', items: [
+        'Search — find any course or subject by name from the header',
+        'Enrollment requests — students submit a payment receipt number; staff verify or reject it',
+        'SEO — per-page metadata, Open Graph cards, JSON-LD on course pages, sitemap, robots.txt',
+        'Installable PWA — Android/Chrome install prompt, iOS "Add to Home Screen", offline-ready',
+        'Location & contact — address, embedded map, click-to-call, pre-filled WhatsApp link',
+      ] },
+
+      { type: 'h2', text: 'No passwords, ever' },
+
+      'Students and admins log in with a phone number and an SMS OTP — nothing to forget, nothing to leak. Faculty get a separate invite link to verify their phone and set up their account. Every login attempt is logged with device, location, and SMS cost, so the owner always knows who\'s actually using the system.',
+
+      { type: 'image', src: loginShot, alt: 'Phone number login screen', caption: 'Login — phone + OTP, no password anywhere in the system' },
+
+      { type: 'h2', text: 'A dashboard for every role' },
+
+      'Four roles, four dashboards: student, faculty, admin, and — unusually — a master role for the owner, layered on top of admin with its own billing tools. Nobody sees more than they need to.',
+
+      { type: 'image', src: studentDashboardShot, alt: 'Student dashboard with enrolled and available courses', caption: 'Student dashboard — enrolled courses, browse and request new enrollments, join live classes' },
+
+      { type: 'h2', text: 'Live classes without a third-party app' },
+
+      'This is the feature that turns a coaching center\'s YouTube-and-WhatsApp workaround into an actual product: staff pick a course → subject → chapter → topic, paste a YouTube video ID, and go live. The same class can be cross-linked to reach students in other batches at once. Ending the class cuts off every watching student automatically. Every past session becomes a searchable recording, every join is logged for attendance, and playback is watermarked with the viewer\'s identity as a leak deterrent.',
+
+      { type: 'image', src: goLiveShot, alt: 'Go Live panel with course, subject, chapter, and topic picker', caption: 'Go Live — curriculum picker, cross-linking to other batches, live status at a glance' },
+
+      { type: 'h2', text: 'Push notifications that actually get read' },
+
+      'A class going live pushes a notification straight to every enrolled student automatically. On top of that, staff can broadcast an announcement — a title, a message, and an optional link to a form or payment page — to all students or to specific courses, all from one composer.',
+
+      { type: 'image', src: adminAnnouncementsShot, alt: 'Announcements composer with title, message, link, and audience selector', caption: 'Announcements — compose once, send to all students or specific courses' },
+
+      { type: 'h2', text: 'One dashboard that runs the whole institute' },
+
+      'Manage courses and pricing, students, faculty, admins, and enrollment requests. Every price change, faculty assignment, and enrollment approval writes to an immutable audit log — a permanent, write-once record of who did what, when. Login activity shows every device and location an OTP was sent to, with the SMS cost attached.',
+
+      { type: 'image', src: adminDashboardShot, alt: 'Admin dashboard home with stats and management tools', caption: 'Admin dashboard — every management tool, live stats, one click away' },
+
+      { type: 'table',
+        head: ['Tool', 'What it does'],
+        rows: [
+          ['Manage Courses', 'Create/edit/delete courses and subjects, set fees and offer pricing, assign faculty'],
+          ['Manage Students / Faculty', 'View, edit, search, and manage every account'],
+          ['Enrollment Requests', 'Verify receipt numbers, approve or reject in one click'],
+          ['Announcements', 'Push notifications to all students or specific courses'],
+          ['Audit Log', 'An immutable trail of every change — who, what, when'],
+          ['Login Activity', 'Every OTP attempt with device, location, and SMS cost'],
+        ] },
+
+      { type: 'h2', text: 'And for the owner: what it costs to run' },
+
+      'The master dashboard is the one piece that\'s unusual for a coaching-center product — it\'s where I track what the client owes for building and running their system, and what they\'ve paid, right inside their own app. Live student/course/faculty counts, an itemized services breakdown, and a payment tracker with a due-date countdown the admin sees site-wide.',
+
+      { type: 'image', src: masterOverviewShot, alt: 'Owner dashboard overview with live counts and billing tools', caption: 'Owner overview — live counts, plus the billing tools behind the scenes' },
+
+      { type: 'h2', text: 'Built to actually stay up' },
+
+      { type: 'table',
+        head: ['Layer', 'Choice'],
+        rows: [
+          ['Framework', 'Next.js (App Router, Server Actions) + TypeScript + Tailwind'],
+          ['Database', 'PostgreSQL via Prisma'],
+          ['Auth', 'Phone + SMS OTP (Twilio Verify) — no passwords'],
+          ['Notifications', 'Web Push (VAPID) — standards-based, no third-party push SaaS'],
+          ['Offline/installable', 'PWA with a hand-written service worker'],
+          ['Hosting', 'Railway — managed Postgres + app, sized for one institute, not enterprise infra'],
+        ] },
+
+      'None of the individual pieces are exotic. What makes it worth building is fitting them together into something a coaching center actually runs their business on — real live classes, real fee pages, real SMS cost tracking, a real audit trail nobody can quietly edit.',
+
+      'This exact system — public site, live classes, all four dashboards — is what\'s running in production for Success Point Gogamukh today. If your coaching center, tuition institute, or exam-prep center needs the same thing — a real online presence plus a system to actually run the day-to-day — that\'s what I build. See the live example and the full feature tour below.',
     ],
   },
 ];
