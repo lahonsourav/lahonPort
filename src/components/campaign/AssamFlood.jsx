@@ -7,7 +7,7 @@ import "./assamFlood.css";
 import ReactAlert from "../../additionals/customAlerts/CustomAlert";
 import assamFront from "../../images/assam-flood-front.png";
 import assamBack from "../../images/assam-flood-back.png";
-import donateQr from "../../images/assam-flood-qr.jpeg";
+import donateQr from "../../images/assam-flood-qr-styled.png";
 
 const AssamFlood = () => {
   const navigate = useNavigate();
