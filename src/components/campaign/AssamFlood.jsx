@@ -17,7 +17,7 @@ const AssamFlood = () => {
   const [alertType, setAlertType] = useState("");
   const [showAlert, setShowAlert] = useState(false);
 
-  const sendPledge = (e) => {
+  const sendMessage = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(
@@ -28,7 +28,7 @@ const AssamFlood = () => {
       )
       .then(
         () => {
-          setAlertMessage("Got it — thank you! I'll match it and follow up soon.");
+          setAlertMessage("Got it — thank you! I'll get back to you soon.");
           setAlertType("success");
           setShowAlert(true);
         },
@@ -56,23 +56,23 @@ const AssamFlood = () => {
         <div className="af_art_card">
           <img src={assamFront} alt="Stand with Assam" className="af_hero_img" />
         </div>
-        <h1 className="af_title">Double Your Donation</h1>
+        <span className="af_closed_badge">Donations Closed</span>
+        <h1 className="af_title">Thank You For Doubling The Impact</h1>
         <p className="af_tagline">When the water rises, we rise together.</p>
         <p className="af_description">
-          Assam is underwater again this monsoon, and relief funds are stretched thin. So here's the
-          deal — send whatever you can to the QR below, tell me how much, and{" "}
-          <strong>I'll match it, rupee for rupee, out of my own pocket.*</strong>{" "}
-          Valid till <strong>25th July, midnight</strong>.
+          The campaign is now closed, and I mean it from the bottom of my heart —{" "}
+          <strong>thank you</strong> to everyone who sent whatever they could. Every rupee that came
+          in before the deadline was matched, out of my own pocket.*
         </p>
-        <p className="af_note">* My matching contribution is capped at ₹10,000 total.</p>
+        <p className="af_note">* My matching contribution was capped at ₹10,000 total.</p>
       </div>
 
       <div className="af_section">
-        <h2 className="af_section_title">How it works</h2>
+        <h2 className="af_section_title">How it worked</h2>
         <div className="af_steps">
           <div className="af_step">
             <span className="af_step_n">1</span>
-            <p>Scan the QR below and send any amount via UPI.</p>
+            <p>Scan the QR and send any amount via UPI.</p>
           </div>
           <div className="af_step">
             <span className="af_step_n">2</span>
@@ -80,23 +80,28 @@ const AssamFlood = () => {
           </div>
           <div className="af_step">
             <span className="af_step_n">3</span>
-            <p>I match it rupee for rupee — double the impact, on me.*</p>
+            <p>Every rupee got matched — double the impact, on me.*</p>
           </div>
         </div>
       </div>
 
       <div className="af_section">
-        <h2 className="af_section_title">Scan to donate</h2>
-        <div className="af_qr_card">
-          <img src={donateQr} alt="UPI QR code for frustratedcollegian@oksbi" className="af_qr_img" />
-          <p className="af_qr_upi">UPI ID: <span>frustratedcollegian@oksbi</span></p>
-          <p className="af_qr_hint">Scan with any UPI app — GPay, PhonePe, Paytm, and the rest.</p>
+        <h2 className="af_section_title">Donations closed</h2>
+        <div className="af_qr_card af_qr_card--closed">
+          <div className="af_qr_closed_overlay">Closed</div>
+          <img
+            src={donateQr}
+            alt="UPI QR code — donations closed"
+            className="af_qr_img af_qr_img--blurred"
+          />
+          <p className="af_qr_upi af_qr_upi--blurred">UPI ID: <span>frustratedcollegian@oksbi</span></p>
+          <p className="af_qr_hint">This campaign is no longer accepting donations. Thank you for your support!</p>
         </div>
       </div>
 
       <div className="af_section">
-        <h2 className="af_section_title">Tell me what you sent</h2>
-        <form ref={form} className="af_form contact__form" onSubmit={sendPledge}>
+        <h2 className="af_section_title">Get in touch</h2>
+        <form ref={form} className="af_form contact__form" onSubmit={sendMessage}>
           <input
             type="text"
             name="name"
@@ -105,34 +110,32 @@ const AssamFlood = () => {
             required
           />
           <input
-            type="number"
+            type="text"
             name="email"
-            min="1"
-            step="1"
-            placeholder="Amount you donated (₹)"
+            placeholder="Your Contact (phone or email)"
             className="form-control-input"
             required
           />
           <textarea
             name="message"
             rows="4"
-            placeholder="Anything you'd like to add (optional)"
+            placeholder="Your message"
             className="form-control-text"
+            required
           ></textarea>
           <button type="submit" className="btn btn-primary">
-            Log My Donation
+            Send
           </button>
         </form>
         <p className="af_form_note">
-          Campaign closes 25th July, midnight — every rupee sent before then gets matched.
+          Missed the window or have a question about your donation? Reach out here.
         </p>
       </div>
 
       <div className="af_section">
         <h2 className="af_section_title">Donor list</h2>
         <p className="af_note">
-          Full donor list — names, amounts, doubled totals — goes up on the same link on{" "}
-          <strong>26th July</strong>. Donation details will be updated on the same link.
+          The full donor list — names, amounts, doubled totals — will be published here shortly.
         </p>
       </div>
 
