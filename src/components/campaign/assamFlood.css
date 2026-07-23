@@ -93,6 +93,13 @@
   color: var(--ds-text);
 }
 
+.af_note {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ds-text-muted);
+  margin-top: 0.6rem;
+}
+
 /* ── Sections ── */
 .af_section {
   width: 100%;

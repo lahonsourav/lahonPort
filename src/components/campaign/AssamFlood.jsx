@@ -61,9 +61,10 @@ const AssamFlood = () => {
         <p className="af_description">
           Assam is underwater again this monsoon, and relief funds are stretched thin. So here's the
           deal — send whatever you can to the QR below, tell me how much, and{" "}
-          <strong>I'll match it, rupee for rupee, out of my own pocket.</strong>{" "}
-          Valid till <strong>25th July</strong>.
+          <strong>I'll match it, rupee for rupee, out of my own pocket.*</strong>{" "}
+          Valid till <strong>25th July, midnight</strong>.
         </p>
+        <p className="af_note">* My matching contribution is capped at ₹10,000 total.</p>
       </div>
 
       <div className="af_section">
@@ -79,7 +80,7 @@ const AssamFlood = () => {
           </div>
           <div className="af_step">
             <span className="af_step_n">3</span>
-            <p>I match it rupee for rupee — double the impact, on me.</p>
+            <p>I match it rupee for rupee — double the impact, on me.*</p>
           </div>
         </div>
       </div>
@@ -123,7 +124,15 @@ const AssamFlood = () => {
           </button>
         </form>
         <p className="af_form_note">
-          Campaign closes 25th July — every rupee sent before then gets matched.
+          Campaign closes 25th July, midnight — every rupee sent before then gets matched.
+        </p>
+      </div>
+
+      <div className="af_section">
+        <h2 className="af_section_title">Donor list</h2>
+        <p className="af_note">
+          Full donor list — names, amounts, doubled totals — goes up on the same link on{" "}
+          <strong>26th July</strong>. Donation details will be updated on the same link.
         </p>
       </div>
 
