@@ -15,6 +15,7 @@ const Mood = lazy(() => import("./components/portfolio/Mood"));
 const LazyKit = lazy(() => import("./components/portfolio/LazyKit"));
 const Lazyperm = lazy(() => import("./components/portfolio/Lazyperm"));
 const Wormhole = lazy(() => import("./components/portfolio/Wormhole"));
+const AssamFlood = lazy(() => import("./components/campaign/AssamFlood"));
 const SuccessPointGogamukh = lazy(() => import("./components/portfolio/SuccessPointGogamukh"));
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
             <Route path="/lazykit" element={<LazyKit />} />
             <Route path="/lazyperm" element={<Lazyperm />} />
             <Route path="/wormhole" element={<Wormhole />} />
+            <Route path="/assam-flood" element={<AssamFlood />} />
             <Route path="/success-point-gogamukh" element={<SuccessPointGogamukh />} />
             <Route path="/alien" element={<HomePage />} />
           </Routes>
