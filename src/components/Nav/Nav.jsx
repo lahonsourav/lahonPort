@@ -1,6 +1,5 @@
 import React from "react";
 import "./nav.css";
-import { AiOutlineUser } from "react-icons/ai";
 import { BsFillJournalBookmarkFill, BsBriefcaseFill } from "react-icons/bs";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { GiSkills } from "react-icons/gi";
@@ -11,17 +10,6 @@ import { Link } from "react-scroll";
 const Nav = () => {
   return (
     <nav>
-      <Link
-        activeClass="active"
-        to="about"
-        spy={true}
-        smooth={true}
-        offset={100}
-        duration={600}
-      >
-        <AiOutlineUser />
-      </Link>
-
       <Link
         activeClass="active"
         to="experience"
