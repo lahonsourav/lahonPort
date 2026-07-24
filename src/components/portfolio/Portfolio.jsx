@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Portfolio.css";
 
 import AssamFloodArt from "../../images/assam-flood-front.png";
-import mokshaLogo from "../../assets/mokshaligned.png";
 
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
@@ -227,10 +226,7 @@ const Portfolio = () => {
         </div>
       </div>
 
-      <h2 className="tools__heading moksha__heading">
-        <img src={mokshaLogo} alt="" className="moksha__logo" />
-        Moksha
-      </h2>
+      <h2 className="tools__heading">Moksha</h2>
 
       <div className="container forpeople__container">
         <MaybeTilt>

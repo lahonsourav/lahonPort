@@ -546,21 +546,6 @@
   vertical-align: middle;
 }
 
-/* ── "Moksha" section heading — reuses .tools__heading spacing, adds the logo mark ── */
-.moksha__heading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-}
-
-.moksha__logo {
-  width: 1.6rem;
-  height: 1.6rem;
-  object-fit: cover;
-  border-radius: var(--ds-radius-sm);
-}
-
 /* ── "Learn about Moksha" link, sits after the For People grid ── */
 .moksha__see-all {
   margin: -1.5rem 0 2rem;

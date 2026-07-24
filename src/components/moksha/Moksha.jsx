@@ -35,11 +35,6 @@ const Moksha = () => {
           things get hard — no committee, no overhead, no paperwork. Just find
           someone who needs help, and help them.
         </p>
-        <p>
-          Sometimes that looks like matching flood relief donations rupee for
-          rupee. Sometimes it'll be something else entirely. If you know someone
-          who needs a hand, or want to pitch in on the next one, reach out.
-        </p>
       </div>
 
       <h2 className="mk_section_heading" data-aos="fade-down">Initiatives</h2>

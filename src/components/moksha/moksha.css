@@ -37,7 +37,7 @@
   height: 76px;
   object-fit: cover;
   border-radius: var(--ds-radius-lg);
-  margin-bottom: 1.25rem;
+  margin: 0 auto 1.25rem;
 }
 
 .mk_hero h5 {
