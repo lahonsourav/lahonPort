@@ -1,17 +1,29 @@
+import { useState } from 'react';
 import './cts.css';
 import cv from "../assets/resume.pdf";
 import { useNavigate } from 'react-router-dom';
+import PdfModal from "../additionals/pdfModal/PdfModal";
 
 const CTA = () => {
   const navigate = useNavigate();
+  const [showResume, setShowResume] = useState(false);
+
   return (
     <div className="cta">
-      <a href={cv} target="_blank" rel="noopener noreferrer" className="btn">
+      <div className="btn" onClick={() => setShowResume(true)} role="button">
         Resume
-      </a>
+      </div>
       <div className="btn btn-primary" onClick={() => navigate("/blog")}>
         Blog
       </div>
+
+      {showResume && (
+        <PdfModal
+          src={cv}
+          title="Resume"
+          onClose={() => setShowResume(false)}
+        />
+      )}
     </div>
   );
 };

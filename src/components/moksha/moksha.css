@@ -1,0 +1,100 @@
+.mk_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--ds-bg);
+  color: var(--ds-text);
+  font-family: var(--ds-font);
+  padding-bottom: 4rem;
+}
+
+.mk_back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--ds-text-muted);
+  font-family: var(--ds-font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 1.5rem 2rem 0;
+  transition: var(--ds-transition);
+}
+
+.mk_back:hover {
+  color: var(--ds-green);
+}
+
+.mk_hero {
+  text-align: center;
+  padding: 1.5rem 1.5rem 1rem;
+  max-width: 640px;
+}
+
+.mk_logo {
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: var(--ds-radius-lg);
+  margin: 0 auto 1.25rem;
+}
+
+.mk_hero h5 {
+  color: var(--ds-text-muted);
+  font-size: 0.95rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.mk_hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ds-text);
+}
+
+.mk_tagline {
+  color: var(--ds-text-muted);
+  font-size: 1.05rem;
+  margin-top: 0.75rem;
+}
+
+.mk_mission {
+  max-width: 620px;
+  text-align: center;
+  color: var(--ds-text-muted);
+  line-height: 1.7;
+  margin: 1rem 1.5rem 3rem;
+}
+
+.mk_mission p {
+  margin-bottom: 1rem;
+}
+
+.mk_mission strong {
+  color: var(--ds-text);
+}
+
+.mk_section_heading {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.mk_initiatives {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 380px));
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.mk_cta {
+  text-align: center;
+}
+
+.mk_cta p {
+  color: var(--ds-text-muted);
+  margin-bottom: 1rem;
+}

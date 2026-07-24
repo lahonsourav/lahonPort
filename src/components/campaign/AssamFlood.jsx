@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import "../contact/contact.css";
@@ -9,6 +9,9 @@ import assamFront from "../../images/assam-flood-front.png";
 import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
 
+const RAISED = 6500;
+const DOUBLED = RAISED * 2;
+
 const AssamFlood = () => {
   const navigate = useNavigate();
   const form = useRef();
@@ -16,6 +19,37 @@ const AssamFlood = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+
+  const [count, setCount] = useState(1);
+  const [countPhase, setCountPhase] = useState("raising");
+
+  useEffect(() => {
+    let raf;
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+
+    const runPhase = (from, to, duration, onDone) => {
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min((now - start) / duration, 1);
+        setCount(Math.round(from + ease(t) * (to - from)));
+        if (t < 1) {
+          raf = requestAnimationFrame(step);
+        } else {
+          onDone?.();
+        }
+      };
+      raf = requestAnimationFrame(step);
+    };
+
+    runPhase(1, RAISED, 1400, () => {
+      setTimeout(() => {
+        setCountPhase("doubling");
+        runPhase(RAISED, DOUBLED, 1000, () => setCountPhase("done"));
+      }, 700);
+    });
+
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   const sendPledge = (e) => {
     e.preventDefault();
@@ -65,6 +99,18 @@ const AssamFlood = () => {
           Valid till <strong>25th July, midnight</strong>.
         </p>
         <p className="af_note">* My matching contribution is capped at ₹10,000 total.</p>
+      </div>
+
+      <div className="af_section af_progress">
+        <div className="af_counter">
+          <span className="af_counter_value">₹{count.toLocaleString("en-IN")}</span>
+          <span className="af_counter_label">
+            {countPhase === "raising" && "raised so far"}
+            {countPhase === "doubling" && "doubling it, live"}
+            {countPhase === "done" && "raised, doubled together"}
+          </span>
+        </div>
+        <p className="af_counter_note">Next update: 25th July morning.</p>
       </div>
 
       <div className="af_section">

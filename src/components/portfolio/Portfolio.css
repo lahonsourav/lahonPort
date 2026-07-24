@@ -517,18 +517,64 @@
   100% { transform: scale(1.4) translate(100%, -100%); opacity: 0; }
 }
 
-/* ── Tools section ── */
+/* ── Section heading reused by "For People" below ── */
 .tools__heading {
   text-align: center;
   margin-bottom: 2rem;
   margin-top: 1rem;
 }
 
-.tools__container {
+/* ── "See all work" link, between My Projects and For People ── */
+.portfolio__see-all {
+  display: flex;
+  justify-content: center;
+  margin: -1.5rem 0 4rem;
+}
+
+/* ── Small tag pill for tool cards on the /work page ── */
+.work-tag {
+  display: inline-block;
+  font-family: var(--ds-font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--ds-green);
+  background: color-mix(in srgb, var(--ds-green) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ds-green) 30%, transparent);
+  border-radius: 100px;
+  padding: 0.15rem 0.55rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+/* ── "Learn about Moksha" link, sits after the For People grid ── */
+.moksha__see-all {
+  margin: -1.5rem 0 2rem;
+}
+
+/* ── For People section ──
+   minmax caps at a fixed width (not 1fr) so a single card centers at a
+   sane size instead of stretching to the full container width — more
+   cards can still wrap into additional same-size columns later. */
+.forpeople__container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 380px));
+  justify-content: center;
   gap: 1.5rem;
   margin-bottom: 4rem;
+}
+
+/* Fixed light backing for the campaign artwork — dark navy text on a
+   transparent PNG, made for a light background, so it stays on one
+   regardless of the site's dark/light theme (same fix as the campaign
+   page itself). */
+.afp-preview {
+  background: #faf6ee;
+}
+
+.afp-preview img {
+  object-fit: contain;
+  padding: 1.1rem;
+  box-sizing: border-box;
 }
 
 /* ── lazyperm terminal preview ── */
@@ -658,7 +704,8 @@
 
 @media screen and (max-width: 600px) {
   .portfolio__container,
-  .tools__container {
+  .tools__container,
+  .forpeople__container {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
