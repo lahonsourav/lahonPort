@@ -2,7 +2,6 @@ import React from 'react'
 
 import Header from "../header/Header"
 import Nav from "../Nav/Nav";
-import About from "../about/About";
 import Experience from "../experience/Experience";
 import Services from "../services/Services";
 import Portfolio from "../portfolio/Portfolio";
@@ -32,7 +31,6 @@ const Home = () => {
       <div className="vine-flow">
         <Header />
         <CTA />
-        <About />
 
         <Education />
 
