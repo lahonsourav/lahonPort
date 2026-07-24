@@ -245,7 +245,7 @@ const Work = () => {
             <div className="portfolio__item-image">
               <img src={PRO4} alt="" width="480" height="360" loading="lazy" />
             </div>
-            <h3>Doggies</h3>
+            <h3>Doggies <span className="work-tag">#5minhack</span></h3>
             <small>
               A swipe-based dog discovery app with a delightfully simple UI — browse breeds, swipe left or right, and save your favourite matches. Built for Android with smooth, native-feeling gesture navigation. (Flutter, Android)
             </small>
