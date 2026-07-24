@@ -27,6 +27,7 @@ const AssamFlood = () => {
   const [codePhase, setCodePhase] = useState("raising");
   const [typedLine1, setTypedLine1] = useState("");
   const [typedLine2, setTypedLine2] = useState("");
+  const progressRef = useRef(null);
 
   useEffect(() => {
     let raf;
@@ -61,32 +62,58 @@ const AssamFlood = () => {
       tick();
     };
 
-    animateCount(1, RAISED, 1400, setCount, () => {
-      timers.push(
-        setTimeout(() => {
-          setCodePhase("typing");
-          typeLine(CODE_LINE_1, setTypedLine1, () => {
-            timers.push(
-              setTimeout(() => {
-                typeLine(CODE_LINE_2, setTypedLine2, () => {
-                  timers.push(
-                    setTimeout(() => {
-                      setCodePhase("executing");
-                      animateCount(0, DOUBLED, 900, setDoubledCount, () =>
-                        setCodePhase("done")
-                      );
-                    }, 400)
-                  );
-                });
-              }, 250)
-            );
-          });
-        }, 500)
-      );
+    const runSequence = () => {
+      animateCount(1, RAISED, 1400, setCount, () => {
+        timers.push(
+          setTimeout(() => {
+            setCodePhase("typing");
+            typeLine(CODE_LINE_1, setTypedLine1, () => {
+              timers.push(
+                setTimeout(() => {
+                  typeLine(CODE_LINE_2, setTypedLine2, () => {
+                    timers.push(
+                      setTimeout(() => {
+                        setCodePhase("executing");
+                        animateCount(0, DOUBLED, 900, setDoubledCount, () =>
+                          setCodePhase("done")
+                        );
+                      }, 400)
+                    );
+                  });
+                }, 250)
+              );
+            });
+          }, 500)
+        );
+      });
+    };
+
+    const node = progressRef.current;
+    if (!node) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runSequence();
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.5, rootMargin: "0px 0px -100px 0px" }
+    );
+
+    // Wait a couple of frames before observing so the initial layout (hero
+    // image, fonts) has settled — otherwise the pre-load layout can put this
+    // section fully in view for a moment and fire the observer too early.
+    let raf2 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => io.observe(node));
     });
 
     return () => {
+      io.disconnect();
       cancelAnimationFrame(raf);
+      cancelAnimationFrame(raf2);
       timers.forEach(clearTimeout);
     };
   }, []);
@@ -128,7 +155,7 @@ const AssamFlood = () => {
       <div className="af_hero">
         <span className="af_eyebrow">Assam Floods · Monsoon 2026</span>
         <div className="af_art_card">
-          <img src={assamFront} alt="Stand with Assam" className="af_hero_img" />
+          <img src={assamFront} alt="Stand with Assam" className="af_hero_img" width="800" height="800" />
         </div>
         <h1 className="af_title">Double Your Donation</h1>
         <p className="af_tagline">When the water rises, we rise together.</p>
@@ -141,7 +168,7 @@ const AssamFlood = () => {
         <p className="af_note">* My matching contribution is capped at ₹10,000 total.</p>
       </div>
 
-      <div className="af_section af_progress">
+      <div className="af_section af_progress" ref={progressRef}>
         <div className="af_double_row">
           <div className="af_counter_card">
             <span className="af_counter_value">₹{count.toLocaleString("en-IN")}</span>
