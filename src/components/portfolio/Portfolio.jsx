@@ -226,6 +226,7 @@ const Portfolio = () => {
         </div>
       </div>
 
+      <h5 data-aos="fade-down">a side project of my heart</h5>
       <h2 className="tools__heading">Moksha</h2>
 
       <div className="container forpeople__container">
