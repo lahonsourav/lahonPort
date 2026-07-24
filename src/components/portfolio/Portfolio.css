@@ -517,18 +517,33 @@
   100% { transform: scale(1.4) translate(100%, -100%); opacity: 0; }
 }
 
-/* ── Tools section ── */
+/* ── Section heading reused by "For People" below ── */
 .tools__heading {
   text-align: center;
   margin-bottom: 2rem;
   margin-top: 1rem;
 }
 
-.tools__container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 4rem;
+/* ── "See all work" link, between My Projects and For People ── */
+.portfolio__see-all {
+  display: flex;
+  justify-content: center;
+  margin: -1.5rem 0 4rem;
+}
+
+/* ── Small tag pill for tool cards on the /work page ── */
+.work-tag {
+  display: inline-block;
+  font-family: var(--ds-font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--ds-green);
+  background: color-mix(in srgb, var(--ds-green) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ds-green) 30%, transparent);
+  border-radius: 100px;
+  padding: 0.15rem 0.55rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
 }
 
 /* ── For People section ──

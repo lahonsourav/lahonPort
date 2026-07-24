@@ -1,8 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./education.css";
 import micro from "../../treeicons/micro.png";
-import simp from "../../treeicons/simp.png";
-import css from "../../treeicons/csspng.png";
 import blackrock from "../../treeicons/blackrock.png";
 
 const entries = [
@@ -32,24 +30,6 @@ const entries = [
     title: "Software Engineer Intern",
     subtitle: "Microsoft",
     desc: "Built a debug tool for the MSAI-UX team — Response Debugger, Accessibility Debugger, and Performance Analyzer — reducing triage time by 30% and boosting performance by 50%.",
-  },
-  {
-    side: "right",
-    icon: simp,
-    iconAlt: "Symphonits",
-    date: "2023 – 2024",
-    title: "Head",
-    subtitle: "Symphonits, Music Club — NIT Silchar",
-    desc: "Led the music club, arranged college-wide events and activities.",
-  },
-  {
-    side: "left",
-    icon: css,
-    iconAlt: "CS Society",
-    date: "2023 – 2024",
-    title: "Design Wing Head",
-    subtitle: "Computer Science Society — NIT Silchar",
-    desc: "Led the design wing, driving the digital presence of the CS Society.",
   },
 ];
 

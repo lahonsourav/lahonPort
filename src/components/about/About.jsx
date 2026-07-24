@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import "./about.css";
 import { TfiMicrosoftAlt } from "react-icons/tfi";
 
-import PHOTO from "../../assets/mejpg.jpg";
-import PHOTO_WEBP from "../../assets/mejpg.webp";
-
 const About = () => {
   return (
 
@@ -17,20 +14,6 @@ const About = () => {
       <h2 data-aos="fade-down" data-aos-delay="100">About me</h2>
 
       <div className="container about__container">
-        <div data-aos="zoom-in" className="about__me__wrapper">
-          <div className="about__me">
-            <picture>
-              <source srcSet={PHOTO_WEBP} type="image/webp" />
-              <img
-                className="about__me_image"
-                src={PHOTO}
-                alt="Sourav Lahon — Software Engineer at BlackRock"
-              />
-            </picture>
-          </div>
-          <p className="about__me__caption">{"// debugging life, one commit at a time"}</p>
-        </div>
-
         <div className="about__content">
           <div className="about__cards">
             <article data-aos="fade-up" className="about__card">
