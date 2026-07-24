@@ -4,6 +4,7 @@ import Pt from './Partnership.pdf'
 
 import PRO4 from "../../images/doggo.jpg";
 import PRO6 from "../../images/gamusawhitelow.jpg";
+import AssamFloodArt from "../../images/assam-flood-front.png";
 
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
@@ -389,6 +390,32 @@ const Portfolio = () => {
               >
                 Open App
               </a>
+            </div>
+          </article>
+        </MaybeTilt>
+      </div>
+
+      <h2 className="tools__heading">For People</h2>
+
+      <div className="container forpeople__container">
+        <MaybeTilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="portfolio__item-image afp-preview">
+              <img src={AssamFloodArt} alt="Stand with Assam" />
+            </div>
+            <h3>Assam Flood Relief</h3>
+            <small>
+              A "double your donation" drive for Assam's monsoon floods — scan the UPI QR, log what
+              you sent, and I match it rupee for rupee out of my own pocket. Open till 25th July,
+              matching capped at ₹10,000.
+            </small>
+            <div className="portfolio__item-cta">
+              <div
+                onClick={() => navigate("/assam-flood")}
+                className="btn btn-primary"
+              >
+                Donate Now
+              </div>
             </div>
           </article>
         </MaybeTilt>

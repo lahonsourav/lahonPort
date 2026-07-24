@@ -531,6 +531,32 @@
   margin-bottom: 4rem;
 }
 
+/* ── For People section ──
+   minmax caps at a fixed width (not 1fr) so a single card centers at a
+   sane size instead of stretching to the full container width — more
+   cards can still wrap into additional same-size columns later. */
+.forpeople__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 380px));
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+/* Fixed light backing for the campaign artwork — dark navy text on a
+   transparent PNG, made for a light background, so it stays on one
+   regardless of the site's dark/light theme (same fix as the campaign
+   page itself). */
+.afp-preview {
+  background: #faf6ee;
+}
+
+.afp-preview img {
+  object-fit: contain;
+  padding: 1.1rem;
+  box-sizing: border-box;
+}
+
 /* ── lazyperm terminal preview ── */
 .lazyperm-preview {
   background: #0d1117;
@@ -658,7 +684,8 @@
 
 @media screen and (max-width: 600px) {
   .portfolio__container,
-  .tools__container {
+  .tools__container,
+  .forpeople__container {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
