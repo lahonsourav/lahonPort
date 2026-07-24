@@ -9,9 +9,9 @@ import assamFront from "../../images/assam-flood-front.png";
 import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
 
-const RAISED = 6500;
+const RAISED = 6740;
 const DOUBLED = RAISED * 2;
-const CODE_LINE_1 = "raised = 6500";
+const CODE_LINE_1 = "raised = 6740";
 const CODE_LINE_2 = "matched = raised * 2";
 
 const AssamFlood = () => {
