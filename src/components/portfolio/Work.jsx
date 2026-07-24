@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Portfolio.css";
 import "./work.css";
-import Pt from './Partnership.pdf'
 
 import PRO4 from "../../images/doggo.jpg";
 import PRO6 from "../../images/gamusawhitelow.jpg";
 
 import Tilt from "react-parallax-tilt";
 import useReveal from "../reveal/useReveal";
+import PdfModal from "./PdfModal";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
   isTouch ? <>{children}</> : <Tilt {...props}>{children}</Tilt>;
 
+const AVSR_THESIS_URL = "https://drive.google.com/file/d/12Yy-KGhU3uN-VXC6uvemQuQSAkR_i6Nl/preview";
+
 const Work = () => {
   const navigate = useNavigate();
+  const [showThesis, setShowThesis] = useState(false);
   useReveal();
 
   return (
@@ -165,14 +168,12 @@ const Work = () => {
               Multi-modal AVSR system fusing audio features (MFCCs) with video features (CNNs) for 25% better accuracy in noisy environments than audio alone. Trained SVM, Random Forest, DNN, and LSTM models, running under 500ms.
             </small>
             <div className="portfolio__item-cta">
-              <a
-                href="https://drive.google.com/file/d/12Yy-KGhU3uN-VXC6uvemQuQSAkR_i6Nl/view"
+              <div
+                onClick={() => setShowThesis(true)}
                 className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
               >
                 Thesis
-              </a>
+              </div>
             </div>
           </article>
         </MaybeTilt>
@@ -234,15 +235,6 @@ const Work = () => {
                 rel="noreferrer"
               >
                 Visit
-              </a>
-
-              <a
-                href={Pt} download="Gamusa_Partnership"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Partnership
               </a>
             </div>
           </article>
@@ -395,6 +387,14 @@ const Work = () => {
           </article>
         </MaybeTilt>
       </div>
+
+      {showThesis && (
+        <PdfModal
+          src={AVSR_THESIS_URL}
+          title="AVSR Thesis"
+          onClose={() => setShowThesis(false)}
+        />
+      )}
     </div>
   );
 };
