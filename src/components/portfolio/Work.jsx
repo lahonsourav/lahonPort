@@ -8,7 +8,7 @@ import PRO6 from "../../images/gamusawhitelow.jpg";
 
 import Tilt from "react-parallax-tilt";
 import useReveal from "../reveal/useReveal";
-import PdfModal from "./PdfModal";
+import PdfModal from "../../additionals/pdfModal/PdfModal";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>

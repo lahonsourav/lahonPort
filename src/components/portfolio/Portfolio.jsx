@@ -5,7 +5,7 @@ import AssamFloodArt from "../../images/assam-flood-front.png";
 
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
-import PdfModal from "./PdfModal";
+import PdfModal from "../../additionals/pdfModal/PdfModal";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>

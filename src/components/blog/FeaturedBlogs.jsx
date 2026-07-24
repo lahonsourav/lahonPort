@@ -22,7 +22,7 @@ const FeaturedBlogs = () => {
   const navigate = useNavigate();
   const featured = [...POSTS]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 3);
+    .slice(0, 6);
 
   if (featured.length === 0) return null;
 
