@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Portfolio.css";
 
 import AssamFloodArt from "../../images/assam-flood-front.png";
+import mokshaLogo from "../../assets/mokshaligned.png";
 
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
@@ -226,7 +227,10 @@ const Portfolio = () => {
         </div>
       </div>
 
-      <h2 className="tools__heading">For People</h2>
+      <h2 className="tools__heading moksha__heading">
+        <img src={mokshaLogo} alt="" className="moksha__logo" />
+        Moksha
+      </h2>
 
       <div className="container forpeople__container">
         <MaybeTilt>
@@ -250,6 +254,12 @@ const Portfolio = () => {
             </div>
           </article>
         </MaybeTilt>
+      </div>
+
+      <div className="portfolio__see-all moksha__see-all">
+        <div onClick={() => navigate("/moksha")} className="btn" role="button">
+          Learn about Moksha →
+        </div>
       </div>
     </section>
   );

@@ -18,6 +18,7 @@ const Wormhole = lazy(() => import("./components/portfolio/Wormhole"));
 const AssamFlood = lazy(() => import("./components/campaign/AssamFlood"));
 const SuccessPointGogamukh = lazy(() => import("./components/portfolio/SuccessPointGogamukh"));
 const Work = lazy(() => import("./components/portfolio/Work"));
+const Moksha = lazy(() => import("./components/moksha/Moksha"));
 
 function App() {
   useEffect(() => {
@@ -44,6 +45,7 @@ function App() {
             <Route path="/assam-flood" element={<AssamFlood />} />
             <Route path="/success-point-gogamukh" element={<SuccessPointGogamukh />} />
             <Route path="/work" element={<Work />} />
+            <Route path="/moksha" element={<Moksha />} />
             <Route path="/alien" element={<HomePage />} />
           </Routes>
         </Suspense>
