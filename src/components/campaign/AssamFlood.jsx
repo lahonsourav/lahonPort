@@ -11,6 +11,8 @@ import donateQr from "../../images/assam-flood-qr-styled.png";
 
 const RAISED = 6500;
 const DOUBLED = RAISED * 2;
+const CODE_LINE_1 = "raised = 6500";
+const CODE_LINE_2 = "matched = raised * 2";
 
 const AssamFlood = () => {
   const navigate = useNavigate();
@@ -21,17 +23,21 @@ const AssamFlood = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const [count, setCount] = useState(1);
-  const [countPhase, setCountPhase] = useState("raising");
+  const [doubledCount, setDoubledCount] = useState(0);
+  const [codePhase, setCodePhase] = useState("raising");
+  const [typedLine1, setTypedLine1] = useState("");
+  const [typedLine2, setTypedLine2] = useState("");
 
   useEffect(() => {
     let raf;
+    const timers = [];
     const ease = (t) => 1 - Math.pow(1 - t, 3);
 
-    const runPhase = (from, to, duration, onDone) => {
+    const animateCount = (from, to, duration, onUpdate, onDone) => {
       const start = performance.now();
       const step = (now) => {
         const t = Math.min((now - start) / duration, 1);
-        setCount(Math.round(from + ease(t) * (to - from)));
+        onUpdate(Math.round(from + ease(t) * (to - from)));
         if (t < 1) {
           raf = requestAnimationFrame(step);
         } else {
@@ -41,14 +47,48 @@ const AssamFlood = () => {
       raf = requestAnimationFrame(step);
     };
 
-    runPhase(1, RAISED, 1400, () => {
-      setTimeout(() => {
-        setCountPhase("doubling");
-        runPhase(RAISED, DOUBLED, 1000, () => setCountPhase("done"));
-      }, 700);
+    const typeLine = (text, setter, onDone) => {
+      let i = 0;
+      const tick = () => {
+        i++;
+        setter(text.slice(0, i));
+        if (i < text.length) {
+          timers.push(setTimeout(tick, 32));
+        } else {
+          onDone?.();
+        }
+      };
+      tick();
+    };
+
+    animateCount(1, RAISED, 1400, setCount, () => {
+      timers.push(
+        setTimeout(() => {
+          setCodePhase("typing");
+          typeLine(CODE_LINE_1, setTypedLine1, () => {
+            timers.push(
+              setTimeout(() => {
+                typeLine(CODE_LINE_2, setTypedLine2, () => {
+                  timers.push(
+                    setTimeout(() => {
+                      setCodePhase("executing");
+                      animateCount(0, DOUBLED, 900, setDoubledCount, () =>
+                        setCodePhase("done")
+                      );
+                    }, 400)
+                  );
+                });
+              }, 250)
+            );
+          });
+        }, 500)
+      );
     });
 
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      timers.forEach(clearTimeout);
+    };
   }, []);
 
   const sendPledge = (e) => {
@@ -102,13 +142,45 @@ const AssamFlood = () => {
       </div>
 
       <div className="af_section af_progress">
-        <div className="af_counter">
-          <span className="af_counter_value">₹{count.toLocaleString("en-IN")}</span>
-          <span className="af_counter_label">
-            {countPhase === "raising" && "raised so far"}
-            {countPhase === "doubling" && "doubling it, live"}
-            {countPhase === "done" && "raised, doubled together"}
-          </span>
+        <div className="af_double_row">
+          <div className="af_counter_card">
+            <span className="af_counter_value">₹{count.toLocaleString("en-IN")}</span>
+            <span className="af_counter_label">raised so far</span>
+          </div>
+
+          <div className="af_double_terminal">
+            <div className="af_double_terminal__bar">
+              <span /><span /><span />
+            </div>
+            <div className="af_double_terminal__body">
+              <div>
+                <span className="af_term_prompt">$</span>{" "}
+                <span className="af_term_cmd">{typedLine1}</span>
+                {codePhase === "typing" && typedLine1.length < CODE_LINE_1.length && (
+                  <span className="af_term_cursor">▌</span>
+                )}
+              </div>
+              <div>
+                {typedLine1.length === CODE_LINE_1.length && (
+                  <>
+                    <span className="af_term_prompt">$</span>{" "}
+                    <span className="af_term_cmd">{typedLine2}</span>
+                    {codePhase === "typing" && typedLine2.length < CODE_LINE_2.length && (
+                      <span className="af_term_cursor">▌</span>
+                    )}
+                  </>
+                )}
+              </div>
+              {(codePhase === "executing" || codePhase === "done") && (
+                <div className="af_term_result">✓ {DOUBLED.toLocaleString("en-IN")}</div>
+              )}
+            </div>
+          </div>
+
+          <div className="af_counter_card af_counter_card--doubled">
+            <span className="af_counter_value">₹{doubledCount.toLocaleString("en-IN")}</span>
+            <span className="af_counter_label">doubled total</span>
+          </div>
         </div>
         <p className="af_counter_note">Next update: 25th July morning.</p>
       </div>
