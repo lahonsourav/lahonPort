@@ -5,9 +5,13 @@ import "../contact/contact.css";
 import "./assamFlood.css";
 
 import ReactAlert from "../../additionals/customAlerts/CustomAlert";
+import PdfModal from "../../additionals/pdfModal/PdfModal";
 import assamFront from "../../images/assam-flood-front.png";
 import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
+import vkfcLetter from "../../images/vkfc-acknowledgement.png";
+
+const VKFC_PDF_URL = "https://drive.google.com/file/d/1WB8A3uMzrw0oWYOHHLFw3NHx12rZL9lc/preview";
 
 const RAISED = 7824;
 const DOUBLED = RAISED * 2;
@@ -43,6 +47,7 @@ const AssamFlood = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [showAckPdf, setShowAckPdf] = useState(false);
 
   const [count, setCount] = useState(1);
   const [doubledCount, setDoubledCount] = useState(0);
@@ -343,6 +348,43 @@ const AssamFlood = () => {
           })}
         </div>
       </div>
+
+      <div className="af_section">
+        <h2 className="af_section_title">Donation Details</h2>
+        <p className="af_donation_intro">
+          ₹10,000 was forwarded to <strong>All Assam Virat Kohli Fan Club (VKFC)</strong> for
+          on-ground relief work in Assam.
+        </p>
+        <div className="af_donation_proof">
+          <div className="af_art_card">
+            <img
+              src={vkfcLetter}
+              alt="Acknowledgement letter from All Assam Virat Kohli Fan Club"
+              className="af_donation_img"
+              width="1640"
+              height="2360"
+            />
+          </div>
+          <div
+            className="btn btn-primary"
+            onClick={() => setShowAckPdf(true)}
+            role="button"
+          >
+            View Acknowledgement Letter (PDF)
+          </div>
+          <p className="af_donation_contact">
+            Point of contact: <a href="tel:+919101471379">+91 91014 71379</a>
+          </p>
+        </div>
+      </div>
+
+      {showAckPdf && (
+        <PdfModal
+          src={VKFC_PDF_URL}
+          title="VKFC Acknowledgement Letter"
+          onClose={() => setShowAckPdf(false)}
+        />
+      )}
 
       <div className="af_section">
         <h2 className="af_section_title">A note from me</h2>

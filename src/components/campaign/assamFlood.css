@@ -120,6 +120,43 @@
   color: var(--ds-text);
 }
 
+/* ── Donation details (VKFC top-up proof) ── */
+.af_donation_intro {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ds-text-muted);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.af_donation_intro strong {
+  color: var(--ds-text);
+}
+
+.af_donation_proof {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.af_donation_img {
+  display: block;
+  width: min(320px, 78vw);
+  height: auto;
+  border-radius: calc(var(--ds-radius-lg) - 0.4rem);
+}
+
+.af_donation_contact {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--ds-text-muted);
+}
+
+.af_donation_contact a {
+  color: var(--ds-green);
+  font-family: var(--ds-font-mono);
+}
+
 .af_note {
   text-align: center;
   font-size: 0.8rem;

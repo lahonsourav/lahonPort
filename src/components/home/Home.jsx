@@ -3,7 +3,6 @@ import React from 'react'
 import Header from "../header/Header"
 import Nav from "../Nav/Nav";
 import Experience from "../experience/Experience";
-import Services from "../services/Services";
 import Portfolio from "../portfolio/Portfolio";
 import FeaturedBlogs from "../blog/FeaturedBlogs";
 import Contacts from "../contact/Contact";
@@ -37,8 +36,6 @@ const Home = () => {
         <Portfolio />
 
         <Experience />
-
-        <Services />
 
         <Contacts />
 
