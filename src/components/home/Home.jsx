@@ -16,9 +16,26 @@ import ScrollProgress from "../ScrollProgress/ScrollProgress";
 import Cursor from "../cursor/Cursor";
 import FlowerVine from "../FlowerVine/FlowerVine";
 import useReveal from "../reveal/useReveal";
+import { unlock } from "../../achievements";
 
 const Home = () => {
   useReveal();
+
+  React.useEffect(() => {
+    const el = document.getElementById("contact");
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          unlock("deep-diver");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { POSTS } from './posts';
 import { readMins } from './readingTime';
+import { trackBlogRead } from '../../achievements';
 import MermaidDiagram from './MermaidDiagram';
 import './blog.css';
 
@@ -85,6 +86,7 @@ const BlogPost = () => {
     const key = `blog_reads_${slug}`;
     const n = parseInt(localStorage.getItem(key) || '0', 10);
     localStorage.setItem(key, n + 1);
+    trackBlogRead(POSTS.map(p => p.slug));
   }, [slug]);
 
   if (!post) {

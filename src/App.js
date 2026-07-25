@@ -6,6 +6,9 @@ import Loading from "./additionals/loading/Loading.jsx";
 import HomePage from "./homePage/HomePage.jsx";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle.jsx";
 import AccentPicker from "./components/ThemeToggle/AccentPicker.jsx";
+import SoundToggle from "./components/SoundToggle/SoundToggle.jsx";
+import AchievementsTray from "./components/Achievements/AchievementsTray.jsx";
+import RouteTracker from "./components/RouteTracker/RouteTracker.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
@@ -33,6 +36,9 @@ function App() {
       <div className="App">
         <ThemeToggle />
         <AccentPicker />
+        <SoundToggle />
+        <AchievementsTray />
+        <RouteTracker />
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
