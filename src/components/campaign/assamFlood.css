@@ -186,6 +186,40 @@
   margin-top: 0.4rem;
 }
 
+/* ── Top-up + grand total row, revealed after the doubling finishes ── */
+.af_topup_row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  animation: af-fade-in 0.5s ease;
+}
+
+@keyframes af-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.af_topup_connector {
+  color: var(--ds-text-muted);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.af_counter_card--topup .af_counter_value {
+  color: var(--ds-warning);
+}
+
+.af_counter_card--grand {
+  border-color: var(--ds-blue);
+}
+
+.af_counter_card--grand .af_counter_value {
+  color: var(--ds-blue);
+}
+
 .af_counter_note {
   font-size: 0.8rem;
   color: var(--ds-text-muted);

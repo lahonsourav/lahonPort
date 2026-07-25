@@ -11,7 +11,9 @@ import donateQr from "../../images/assam-flood-qr-styled.png";
 
 const RAISED = 7824;
 const DOUBLED = RAISED * 2;
-const CODE_LINE_1 = "raised = 7824";
+const TOPUP = 2176;
+const GRAND_TOTAL = DOUBLED + TOPUP;
+const CODE_LINE_1 = `raised = ${RAISED}`;
 const CODE_LINE_2 = "matched = raised * 2";
 
 const TAG_PALETTE = ["#f85149", "#f778ba", "#f0883e", "#e3b341", "#7ee787", "#58a6ff", "#a371f7"];
@@ -44,6 +46,7 @@ const AssamFlood = () => {
 
   const [count, setCount] = useState(1);
   const [doubledCount, setDoubledCount] = useState(0);
+  const [grandTotal, setGrandTotal] = useState(0);
   const [codePhase, setCodePhase] = useState("raising");
   const [typedLine1, setTypedLine1] = useState("");
   const [typedLine2, setTypedLine2] = useState("");
@@ -94,9 +97,17 @@ const AssamFlood = () => {
                     timers.push(
                       setTimeout(() => {
                         setCodePhase("executing");
-                        animateCount(0, DOUBLED, 900, setDoubledCount, () =>
-                          setCodePhase("done")
-                        );
+                        animateCount(0, DOUBLED, 900, setDoubledCount, () => {
+                          setCodePhase("done");
+                          timers.push(
+                            setTimeout(() => {
+                              setCodePhase("toppingup");
+                              animateCount(DOUBLED, GRAND_TOTAL, 700, setGrandTotal, () =>
+                                setCodePhase("grandtotal")
+                              );
+                            }, 500)
+                          );
+                        });
                       }, 400)
                     );
                   });
@@ -120,7 +131,7 @@ const AssamFlood = () => {
           }
         });
       },
-      { threshold: 0.5, rootMargin: "0px 0px -100px 0px" }
+      { threshold: 0.3, rootMargin: "0px 0px -60px 0px" }
     );
 
     // Wait a couple of frames before observing so the initial layout (hero
@@ -228,6 +239,21 @@ const AssamFlood = () => {
             <span className="af_counter_label">doubled total</span>
           </div>
         </div>
+
+        {(codePhase === "toppingup" || codePhase === "grandtotal") && (
+          <div className="af_topup_row">
+            <span className="af_topup_connector">+</span>
+            <div className="af_counter_card af_counter_card--topup">
+              <span className="af_counter_value">₹{TOPUP.toLocaleString("en-IN")}</span>
+              <span className="af_counter_label">topped up by me</span>
+            </div>
+            <span className="af_topup_connector">=</span>
+            <div className="af_counter_card af_counter_card--grand">
+              <span className="af_counter_value">₹{grandTotal.toLocaleString("en-IN")}</span>
+              <span className="af_counter_label">grand total</span>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="af_section">
