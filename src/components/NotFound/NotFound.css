@@ -1,0 +1,39 @@
+.nf_page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: var(--ds-bg);
+  color: var(--ds-text);
+}
+
+.nf_code {
+  font-family: var(--ds-font-mono);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  background: linear-gradient(90deg, var(--ds-green-btn), var(--ds-green-btn-hover), var(--ds-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nf_title {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.75rem;
+}
+
+.nf_text {
+  color: var(--ds-text-muted);
+  max-width: 30rem;
+  margin: 0 0 2rem;
+}
+
+.nf_home {
+  cursor: pointer;
+  border: none;
+}

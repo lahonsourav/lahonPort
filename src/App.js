@@ -19,6 +19,7 @@ const AssamFlood = lazy(() => import("./components/campaign/AssamFlood"));
 const SuccessPointGogamukh = lazy(() => import("./components/portfolio/SuccessPointGogamukh"));
 const Work = lazy(() => import("./components/portfolio/Work"));
 const Moksha = lazy(() => import("./components/moksha/Moksha"));
+const NotFound = lazy(() => import("./components/NotFound/NotFound"));
 
 function App() {
   useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
             <Route path="/work" element={<Work />} />
             <Route path="/moksha" element={<Moksha />} />
             <Route path="/alien" element={<HomePage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </div>
