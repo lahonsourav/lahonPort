@@ -102,9 +102,21 @@
   font-size: 1rem;
   line-height: 1.75;
   color: var(--ds-text-muted);
+  text-align: justify;
 }
 
 .af_description strong {
+  color: var(--ds-text);
+}
+
+.af_thankyou_text {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ds-text-muted);
+  text-align: justify;
+}
+
+.af_thankyou_text strong {
   color: var(--ds-text);
 }
 
@@ -360,6 +372,80 @@
   font-size: 0.82rem;
   color: var(--ds-text-muted);
   margin-top: 1rem;
+}
+
+/* ── Donor list ── */
+.af_donor_list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ds-border);
+}
+
+.af_donor_row {
+  display: grid;
+  grid-template-columns: 150px 1fr auto 14px auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+.af_donor_title {
+  justify-self: start;
+  max-width: 100%;
+  font-family: var(--ds-font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  border-radius: 100px;
+  padding: 0.15rem 0.6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.af_donor_name {
+  min-width: 0;
+  font-weight: 600;
+  color: var(--ds-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.af_donor_amount {
+  font-family: var(--ds-font-mono);
+  font-size: 0.85rem;
+  color: var(--ds-text-muted);
+}
+
+.af_donor_arrow {
+  color: var(--ds-text-muted);
+  font-size: 0.8rem;
+}
+
+.af_donor_doubled {
+  font-family: var(--ds-font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ds-blue);
+}
+
+@media screen and (max-width: 480px) {
+  .af_donor_row {
+    grid-template-columns: 108px 1fr auto 12px auto;
+    gap: 0.4rem;
+  }
+
+  .af_donor_title {
+    font-size: 0.6rem;
+    padding: 0.12rem 0.45rem;
+  }
+
+  .af_donor_amount,
+  .af_donor_doubled {
+    font-size: 0.75rem;
+  }
 }
 
 /* ── Print artwork ── */

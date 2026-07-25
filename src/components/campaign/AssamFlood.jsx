@@ -14,6 +14,26 @@ const DOUBLED = RAISED * 2;
 const CODE_LINE_1 = "raised = 7824";
 const CODE_LINE_2 = "matched = raised * 2";
 
+const TAG_PALETTE = ["#f85149", "#f778ba", "#f0883e", "#e3b341", "#7ee787", "#58a6ff", "#a371f7"];
+
+const DONORS = [
+  { title: "1st Blood", emoji: "🩸", name: "Tilutpal", amount: 500 },
+  { title: "Cutie", emoji: "🥰", name: "Aditi", amount: 250 },
+  { title: "Solo Century", emoji: "💯", name: "Bornov", amount: 100 },
+  { title: "Awesome", emoji: "🌟", name: "Saurav", amount: 500 },
+  { title: "Princess", emoji: "👑", name: "Angana", amount: 30 },
+  { title: "Botanist", emoji: "🌱", name: "Homen", amount: 200 },
+  { title: "Almighty", emoji: "⚡", name: "Gyan", amount: 2000 },
+  { title: "Big Brained", emoji: "🧠", name: "Bikash", amount: 2000 },
+  { title: "Pyare", emoji: "💜", name: "Priyanuj", amount: 500 },
+  { title: "Dil Se", emoji: "❤️", name: "Vishal", amount: 10 },
+  { title: "Shandar", emoji: "✨", name: "Shubham", amount: 500 },
+  { title: "No Cap", emoji: "🧢", name: "Pritam", amount: 150 },
+  { title: "Shady", emoji: "😎", name: "Sandeep", amount: 1000 },
+  { title: "Conjoos", emoji: "🪙", name: "Tanuj", amount: 1 },
+  { title: "Hats Off", emoji: "🎩", name: "Harinarayan", amount: 83 },
+];
+
 const AssamFlood = () => {
   const navigate = useNavigate();
   const form = useRef();
@@ -277,8 +297,35 @@ const AssamFlood = () => {
 
       <div className="af_section">
         <h2 className="af_section_title">Donor list</h2>
-        <p className="af_note">
-          The full donor list — names, amounts, doubled totals — will be published here shortly.
+        <div className="af_donor_list">
+          {DONORS.map(({ title, emoji, name, amount }, i) => {
+            const color = TAG_PALETTE[i % TAG_PALETTE.length];
+            return (
+              <div className="af_donor_row" key={name + title}>
+                <span
+                  className="af_donor_title"
+                  style={{ color, borderColor: color + "55", background: color + "1f" }}
+                >
+                  {emoji} {title}
+                </span>
+                <span className="af_donor_name">{name}</span>
+                <span className="af_donor_amount">₹{amount.toLocaleString("en-IN")}</span>
+                <span className="af_donor_arrow">→</span>
+                <span className="af_donor_doubled">₹{(amount * 2).toLocaleString("en-IN")}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="af_section">
+        <h2 className="af_section_title">A note from me</h2>
+        <p className="af_thankyou_text">
+          To everyone on that list, and everyone who reached out even without sending money —{" "}
+          <strong>thank you</strong>. Assam floods almost every year, and it's easy to feel like
+          nothing one person does will matter. You proved that wrong. Every rupee got doubled,
+          every message meant something, and together we did more than I could've alone. See you
+          at the next one. 🙏
         </p>
       </div>
 
