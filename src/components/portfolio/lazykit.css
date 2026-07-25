@@ -8,6 +8,11 @@
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
+.lk_container > .back-home {
+    align-self: flex-start;
+    padding: 1.5rem 2rem 0;
+}
+
 /* ── Hero ── */
 .lk_hero {
     display: flex;

@@ -13,6 +13,11 @@
   --spgp-accent-2: #58a6ff;
 }
 
+.spgp-page > .back-home {
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+
 .spgp-section-h {
   font-size: 1.5rem;
   font-weight: 700;

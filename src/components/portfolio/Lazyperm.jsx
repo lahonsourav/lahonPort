@@ -2,10 +2,12 @@ import React from 'react';
 import './lazykit.css';
 import './lazyperm.css';
 import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
 
 const Lazyperm = () => {
     return (
         <div className="lk_container">
+            <BackHome className="back-home--dark" />
 
             {/* ── Hero ── */}
             <div className="lk_hero">

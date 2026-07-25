@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './wormhole.css';
 import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
 
 // ─── Static phone chat demo ───────────────────────────────────────────────────
 
@@ -53,6 +54,7 @@ function PhoneDemo() {
 const Wormhole = () => {
   return (
     <div className="wh-page">
+      <BackHome />
 
       {/* ── Hero ── */}
       <div className="wh-hero">

@@ -1,10 +1,12 @@
 import React from 'react';
 import './lazykit.css';
 import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
 
 const LazyKit = () => {
     return (
         <div className="lk_container">
+            <BackHome className="back-home--dark" />
 
             {/* ── Hero ── */}
             <div className="lk_hero">

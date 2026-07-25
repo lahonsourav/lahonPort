@@ -1,0 +1,24 @@
+.back-home {
+  background: none;
+  border: none;
+  color: var(--ds-text-muted);
+  font-family: var(--ds-font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--ds-transition);
+}
+
+.back-home:hover {
+  color: var(--ds-green);
+}
+
+/* Variant for pages with a fixed dark palette (LazyKit/lazyperm),
+   not theme-aware, so it can't use the --ds-* tokens above. */
+.back-home--dark {
+  color: #8b949e;
+}
+
+.back-home--dark:hover {
+  color: #7ee787;
+}
