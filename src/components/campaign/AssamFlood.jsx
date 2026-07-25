@@ -28,7 +28,7 @@ const DONORS = [
   { title: "Pyare", emoji: "💜", name: "Priyanuj", amount: 500 },
   { title: "Dil Se", emoji: "❤️", name: "Vishal", amount: 10 },
   { title: "Shandar", emoji: "✨", name: "Shubham", amount: 500 },
-  { title: "Chhota Packet", emoji: "🎁", name: "Pritam", amount: 150 },
+  { title: "No Cap", emoji: "🧢", name: "Pritam", amount: 150 },
   { title: "Shady", emoji: "😎", name: "Sandeep", amount: 1000 },
   { title: "Conjoos", emoji: "🪙", name: "Tanuj", amount: 1 },
   { title: "Hats Off", emoji: "🎩", name: "Harinarayan", amount: 83 },
