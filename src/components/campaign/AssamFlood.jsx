@@ -14,22 +14,24 @@ const DOUBLED = RAISED * 2;
 const CODE_LINE_1 = "raised = 7824";
 const CODE_LINE_2 = "matched = raised * 2";
 
+const TAG_PALETTE = ["#f85149", "#f778ba", "#f0883e", "#e3b341", "#7ee787", "#58a6ff", "#a371f7"];
+
 const DONORS = [
-  { title: "1st Blood", name: "Tilutpal", amount: 500 },
-  { title: "Cutie", name: "Aditi", amount: 250 },
-  { title: "Solo Century", name: "Bornov", amount: 100 },
-  { title: "Awesome", name: "Saurav", amount: 500 },
-  { title: "Princess", name: "Angana", amount: 30 },
-  { title: "Fitness Botanist", name: "Homen", amount: 200 },
-  { title: "Almighty", name: "Gyan", amount: 2000 },
-  { title: "Big Brained", name: "Bikash", amount: 2000 },
-  { title: "Pyare", name: "Priyanuj", amount: 500 },
-  { title: "Dil Se", name: "Vishal", amount: 10 },
-  { title: "Shandar", name: "Shubham", amount: 500 },
-  { title: "Pritam", name: "Pyare", amount: 150 },
-  { title: "Shady", name: "Sandeep", amount: 1000 },
-  { title: "Conjoos", name: "Tanuj", amount: 1 },
-  { title: "Hats Off", name: "Harinarayan", amount: 83 },
+  { title: "1st Blood", emoji: "🩸", name: "Tilutpal", amount: 500 },
+  { title: "Cutie", emoji: "🥰", name: "Aditi", amount: 250 },
+  { title: "Solo Century", emoji: "💯", name: "Bornov", amount: 100 },
+  { title: "Awesome", emoji: "🌟", name: "Saurav", amount: 500 },
+  { title: "Princess", emoji: "👑", name: "Angana", amount: 30 },
+  { title: "Fitness Botanist", emoji: "🌱", name: "Homen", amount: 200 },
+  { title: "Almighty", emoji: "⚡", name: "Gyan", amount: 2000 },
+  { title: "Big Brained", emoji: "🧠", name: "Bikash", amount: 2000 },
+  { title: "Pyare", emoji: "💜", name: "Priyanuj", amount: 500 },
+  { title: "Dil Se", emoji: "❤️", name: "Vishal", amount: 10 },
+  { title: "Shandar", emoji: "✨", name: "Shubham", amount: 500 },
+  { title: "Pritam", emoji: "💛", name: "Pyare", amount: 150 },
+  { title: "Shady", emoji: "😎", name: "Sandeep", amount: 1000 },
+  { title: "Conjoos", emoji: "🪙", name: "Tanuj", amount: 1 },
+  { title: "Hats Off", emoji: "🎩", name: "Harinarayan", amount: 83 },
 ];
 
 const AssamFlood = () => {
@@ -296,15 +298,23 @@ const AssamFlood = () => {
       <div className="af_section">
         <h2 className="af_section_title">Donor list</h2>
         <div className="af_donor_list">
-          {DONORS.map(({ title, name, amount }) => (
-            <div className="af_donor_row" key={name + title}>
-              <span className="af_donor_title">{title}</span>
-              <span className="af_donor_name">{name}</span>
-              <span className="af_donor_amount">₹{amount.toLocaleString("en-IN")}</span>
-              <span className="af_donor_arrow">→</span>
-              <span className="af_donor_doubled">₹{(amount * 2).toLocaleString("en-IN")}</span>
-            </div>
-          ))}
+          {DONORS.map(({ title, emoji, name, amount }, i) => {
+            const color = TAG_PALETTE[i % TAG_PALETTE.length];
+            return (
+              <div className="af_donor_row" key={name + title}>
+                <span
+                  className="af_donor_title"
+                  style={{ color, borderColor: color + "55", background: color + "1f" }}
+                >
+                  {emoji} {title}
+                </span>
+                <span className="af_donor_name">{name}</span>
+                <span className="af_donor_amount">₹{amount.toLocaleString("en-IN")}</span>
+                <span className="af_donor_arrow">→</span>
+                <span className="af_donor_doubled">₹{(amount * 2).toLocaleString("en-IN")}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 

@@ -382,9 +382,6 @@
   font-family: var(--ds-font-mono);
   font-size: 0.66rem;
   font-weight: 600;
-  color: var(--ds-green);
-  background: color-mix(in srgb, var(--ds-green) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--ds-green) 30%, transparent);
   border-radius: 100px;
   padding: 0.15rem 0.6rem;
   white-space: nowrap;
