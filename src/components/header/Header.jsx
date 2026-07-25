@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
 import { SEARCH_INDEX } from "../../searchIndex";
+import { playClick } from "../../sound";
+import { unlock } from "../../achievements";
 import "./header.css";
 
 const PHRASES = [
@@ -35,6 +37,10 @@ const HeroSearch = () => {
   useEffect(() => setActiveIdx(0), [query]);
 
   useEffect(() => {
+    if (query.trim()) unlock("curious");
+  }, [query]);
+
+  useEffect(() => {
     if (!open) return;
     const handleOutside = (e) => {
       if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false);
@@ -45,6 +51,7 @@ const HeroSearch = () => {
 
   const go = (item) => {
     if (!item) return;
+    playClick();
     if (item.type === "file") {
       window.open(item.url, "_blank", "noreferrer");
     } else {

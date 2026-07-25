@@ -3,6 +3,7 @@ import './cts.css';
 import cv from "../assets/resume.pdf";
 import { useNavigate } from 'react-router-dom';
 import PdfModal from "../additionals/pdfModal/PdfModal";
+import { playClick } from "../sound";
 
 const CTA = () => {
   const navigate = useNavigate();
@@ -30,7 +31,10 @@ const CTA = () => {
       <button
         type="button"
         className="cta-scroll-hint"
-        onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })}
+        onClick={() => {
+          playClick();
+          document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
+        }}
         aria-label="Scroll down"
       >
         scroll
