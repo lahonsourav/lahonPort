@@ -9,9 +9,11 @@ import assamFront from "../../images/assam-flood-front.png";
 import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
 
-const RAISED = 7824;
+const DONOR_TOTAL = 7824;
+const RAISED = 20000;
+const TOPUP = RAISED - DONOR_TOTAL;
 const DOUBLED = RAISED * 2;
-const CODE_LINE_1 = "raised = 7824";
+const CODE_LINE_1 = `raised = ${RAISED}`;
 const CODE_LINE_2 = "matched = raised * 2";
 
 const TAG_PALETTE = ["#f85149", "#f778ba", "#f0883e", "#e3b341", "#7ee787", "#58a6ff", "#a371f7"];
@@ -83,24 +85,31 @@ const AssamFlood = () => {
     };
 
     const runSequence = () => {
-      animateCount(1, RAISED, 1400, setCount, () => {
+      animateCount(1, DONOR_TOTAL, 1400, setCount, () => {
         timers.push(
           setTimeout(() => {
-            setCodePhase("typing");
-            typeLine(CODE_LINE_1, setTypedLine1, () => {
+            setCodePhase("boosting");
+            animateCount(DONOR_TOTAL, RAISED, 900, setCount, () => {
               timers.push(
                 setTimeout(() => {
-                  typeLine(CODE_LINE_2, setTypedLine2, () => {
+                  setCodePhase("typing");
+                  typeLine(CODE_LINE_1, setTypedLine1, () => {
                     timers.push(
                       setTimeout(() => {
-                        setCodePhase("executing");
-                        animateCount(0, DOUBLED, 900, setDoubledCount, () =>
-                          setCodePhase("done")
-                        );
-                      }, 400)
+                        typeLine(CODE_LINE_2, setTypedLine2, () => {
+                          timers.push(
+                            setTimeout(() => {
+                              setCodePhase("executing");
+                              animateCount(0, DOUBLED, 900, setDoubledCount, () =>
+                                setCodePhase("done")
+                              );
+                            }, 400)
+                          );
+                        });
+                      }, 250)
                     );
                   });
-                }, 250)
+                }, 500)
               );
             });
           }, 500)
@@ -120,7 +129,7 @@ const AssamFlood = () => {
           }
         });
       },
-      { threshold: 0.5, rootMargin: "0px 0px -100px 0px" }
+      { threshold: 0.3, rootMargin: "0px 0px -60px 0px" }
     );
 
     // Wait a couple of frames before observing so the initial layout (hero
@@ -190,8 +199,18 @@ const AssamFlood = () => {
       <div className="af_section af_progress" ref={progressRef}>
         <div className="af_double_row">
           <div className="af_counter_card">
-            <span className="af_counter_value">₹{count.toLocaleString("en-IN")}</span>
-            <span className="af_counter_label">total raised</span>
+            <span className={`af_counter_value${codePhase === "boosting" ? " af_counter_value--boosting" : ""}`}>
+              ₹{count.toLocaleString("en-IN")}
+            </span>
+            <span className="af_counter_label">
+              {codePhase === "raising" && "raised by donors"}
+              {codePhase === "boosting" && "topping up… 🚀"}
+              {(codePhase === "typing" || codePhase === "executing" || codePhase === "done") &&
+                "total raised"}
+            </span>
+            {(codePhase === "typing" || codePhase === "executing" || codePhase === "done") && (
+              <span className="af_counter_boost">🚀 +₹{TOPUP.toLocaleString("en-IN")} from me</span>
+            )}
           </div>
 
           <div className="af_double_terminal">
