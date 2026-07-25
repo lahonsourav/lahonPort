@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { Suspense, lazy, useEffect } from "react";
 
 import Loading from "./additionals/loading/Loading.jsx";
-import AlienPage from "./easterEgg/AlienPage.jsx";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle.jsx";
 import AccentPicker from "./components/ThemeToggle/AccentPicker.jsx";
 import SoundToggle from "./components/SoundToggle/SoundToggle.jsx";
@@ -54,7 +53,6 @@ function App() {
               <Route path="/success-point-gogamukh" element={<SuccessPointGogamukh />} />
               <Route path="/work" element={<Work />} />
               <Route path="/moksha" element={<Moksha />} />
-              <Route path="/alien" element={<AlienPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
