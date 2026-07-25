@@ -7,6 +7,11 @@ React
 - Match the existing code style and patterns in whatever file you are editing.
 - Follow the folder structure already present in the repo.
 - Keep changes scoped to what the issue asks for — do not refactor unrelated code.
+- Responsive breakpoints: for any *new* `@media` query, use one of `480px` (small
+  phones), `768px` (tablets), or `1024px` (small laptops) as the `max-width`/
+  `min-width` value. Existing components use a wider scattered set (600/640/700/
+  760/900px, etc.) — leave those as-is unless you're already touching that file
+  for another reason; this convention is only meant to stop further drift.
 
 ## Before opening a PR, always:
 1. Check your code for obvious errors.
