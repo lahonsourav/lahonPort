@@ -16,7 +16,6 @@ import ScrollProgress from "../ScrollProgress/ScrollProgress";
 import Cursor from "../cursor/Cursor";
 import FlowerVine from "../FlowerVine/FlowerVine";
 import useReveal from "../reveal/useReveal";
-import FloodBanner from "../campaign/FloodBanner";
 
 const Home = () => {
   useReveal();
@@ -25,7 +24,6 @@ const Home = () => {
     <>
       <ScrollProgress />
       <Cursor />
-      <FloodBanner />
       <Nav />
 
       <div className="vine-flow">
