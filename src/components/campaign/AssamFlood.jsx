@@ -197,6 +197,11 @@ const AssamFlood = () => {
         <h1 className="af_title">Thank You For Doubling The Impact</h1>
         <p className="af_tagline">When the water rises, we rise together.</p>
         <p className="af_description">
+          This was a <strong>"double your donation"</strong> drive for Assam's monsoon floods —
+          anyone who sent whatever they could via UPI had it matched rupee for rupee, out of my own
+          pocket, doubling the impact of every contribution.
+        </p>
+        <p className="af_description">
           The campaign is now closed, and I mean it from the bottom of my heart —{" "}
           <strong>thank you</strong> to everyone who sent whatever they could. Every rupee that came
           in before the deadline was matched, out of my own pocket.

@@ -105,6 +105,10 @@
   text-align: justify;
 }
 
+.af_description + .af_description {
+  margin-top: 1rem;
+}
+
 .af_description strong {
   color: var(--ds-text);
 }
