@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MdEmojiEvents } from "react-icons/md";
-import { ACHIEVEMENTS, ACHIEVEMENT_EVENT, getUnlocked } from "../../achievements";
-import { playUnlock } from "../../sound";
+import { ACHIEVEMENTS, ACHIEVEMENT_EVENT, getUnlocked } from "../../lib/achievements";
+import { playUnlock } from "../../lib/sound";
 import "./AchievementsTray.css";
 
 const AchievementsTray = () => {

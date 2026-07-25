@@ -6,7 +6,7 @@ import { GiSkills } from "react-icons/gi";
 import { FaCode } from "react-icons/fa";
 
 import { Link } from "react-scroll";
-import { playClick } from "../../sound";
+import { playClick } from "../../lib/sound";
 
 const Nav = () => {
   return (

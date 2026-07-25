@@ -11,12 +11,12 @@ import Footer from "../footer/Footer";
 
 import HeaderSocials from "../contact/HeaderSocials";
 import Education from "../education/Education";
-import CTA from '../../homePage/CTA';
+import CTA from './CTA';
 import ScrollProgress from "../ScrollProgress/ScrollProgress";
 import Cursor from "../cursor/Cursor";
 import FlowerVine from "../FlowerVine/FlowerVine";
 import useReveal from "../reveal/useReveal";
-import { unlock } from "../../achievements";
+import { unlock } from "../../lib/achievements";
 
 const Home = () => {
   useReveal();

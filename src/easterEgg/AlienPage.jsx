@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './homePage.css';
+import './alienPage.css';
 
 
-const HomePage = () => {
+const AlienPage = () => {
   const navigate = useNavigate(); // Initialize the navigate hook
 
   const [hidden, setHidden] = useState(false);
@@ -93,4 +93,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AlienPage;

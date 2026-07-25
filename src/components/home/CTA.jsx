@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './cts.css';
-import cv from "../assets/resume.pdf";
+import cv from "../../assets/resume.pdf";
 import { useNavigate } from 'react-router-dom';
-import PdfModal from "../additionals/pdfModal/PdfModal";
-import { playClick } from "../sound";
+import PdfModal from "../../additionals/pdfModal/PdfModal";
+import { playClick } from "../../lib/sound";
 
 const CTA = () => {
   const navigate = useNavigate();

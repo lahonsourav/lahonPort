@@ -1,5 +1,5 @@
-import { POSTS } from "./components/blog/posts";
-import resumePdf from "./assets/resume.pdf";
+import { POSTS } from "../components/blog/posts";
+import resumePdf from "../assets/resume.pdf";
 
 const PAGES = [
   { title: "Blog", url: "/blog", type: "page", keywords: "posts writing articles stories" },

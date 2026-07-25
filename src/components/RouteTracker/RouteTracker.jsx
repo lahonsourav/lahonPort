@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { trackProjectVisit } from "../../achievements";
+import { trackProjectVisit } from "../../lib/achievements";
 
 const RouteTracker = () => {
   const location = useLocation();

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { POSTS } from './posts';
 import { readMins } from './readingTime';
-import { trackBlogRead } from '../../achievements';
+import { trackBlogRead } from '../../lib/achievements';
 import MermaidDiagram from './MermaidDiagram';
 import './blog.css';
 

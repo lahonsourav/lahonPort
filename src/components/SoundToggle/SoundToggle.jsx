@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdVolumeUp, MdVolumeOff } from "react-icons/md";
-import { isSoundEnabled, setSoundEnabled, playClick } from "../../sound";
+import { isSoundEnabled, setSoundEnabled, playClick } from "../../lib/sound";
 import "./SoundToggle.css";
 
 const SoundToggle = () => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FiShare2 } from "react-icons/fi";
-import { playClick } from "../../sound";
+import { playClick } from "../../lib/sound";
 import "./ShareButton.css";
 
 const ShareButton = ({ title, className = "" }) => {

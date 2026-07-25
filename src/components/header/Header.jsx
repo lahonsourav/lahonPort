@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
-import { SEARCH_INDEX } from "../../searchIndex";
-import { playClick } from "../../sound";
-import { unlock } from "../../achievements";
+import { SEARCH_INDEX } from "../../lib/searchIndex";
+import { playClick } from "../../lib/sound";
+import { unlock } from "../../lib/achievements";
 import "./header.css";
 
 const PHRASES = [
