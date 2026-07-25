@@ -9,10 +9,10 @@ import assamFront from "../../images/assam-flood-front.png";
 import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
 
-const DONOR_TOTAL = 7824;
-const RAISED = 17824;
-const TOPUP = RAISED - DONOR_TOTAL;
+const RAISED = 7824;
 const DOUBLED = RAISED * 2;
+const TOPUP = 2176;
+const GRAND_TOTAL = DOUBLED + TOPUP;
 const CODE_LINE_1 = `raised = ${RAISED}`;
 const CODE_LINE_2 = "matched = raised * 2";
 
@@ -46,6 +46,7 @@ const AssamFlood = () => {
 
   const [count, setCount] = useState(1);
   const [doubledCount, setDoubledCount] = useState(0);
+  const [grandTotal, setGrandTotal] = useState(0);
   const [codePhase, setCodePhase] = useState("raising");
   const [typedLine1, setTypedLine1] = useState("");
   const [typedLine2, setTypedLine2] = useState("");
@@ -85,31 +86,32 @@ const AssamFlood = () => {
     };
 
     const runSequence = () => {
-      animateCount(1, DONOR_TOTAL, 1400, setCount, () => {
+      animateCount(1, RAISED, 1400, setCount, () => {
         timers.push(
           setTimeout(() => {
-            setCodePhase("boosting");
-            animateCount(DONOR_TOTAL, RAISED, 900, setCount, () => {
+            setCodePhase("typing");
+            typeLine(CODE_LINE_1, setTypedLine1, () => {
               timers.push(
                 setTimeout(() => {
-                  setCodePhase("typing");
-                  typeLine(CODE_LINE_1, setTypedLine1, () => {
+                  typeLine(CODE_LINE_2, setTypedLine2, () => {
                     timers.push(
                       setTimeout(() => {
-                        typeLine(CODE_LINE_2, setTypedLine2, () => {
+                        setCodePhase("executing");
+                        animateCount(0, DOUBLED, 900, setDoubledCount, () => {
+                          setCodePhase("done");
                           timers.push(
                             setTimeout(() => {
-                              setCodePhase("executing");
-                              animateCount(0, DOUBLED, 900, setDoubledCount, () =>
-                                setCodePhase("done")
+                              setCodePhase("toppingup");
+                              animateCount(DOUBLED, GRAND_TOTAL, 700, setGrandTotal, () =>
+                                setCodePhase("grandtotal")
                               );
-                            }, 400)
+                            }, 500)
                           );
                         });
-                      }, 250)
+                      }, 400)
                     );
                   });
-                }, 500)
+                }, 250)
               );
             });
           }, 500)
@@ -199,18 +201,8 @@ const AssamFlood = () => {
       <div className="af_section af_progress" ref={progressRef}>
         <div className="af_double_row">
           <div className="af_counter_card">
-            <span className={`af_counter_value${codePhase === "boosting" ? " af_counter_value--boosting" : ""}`}>
-              ₹{count.toLocaleString("en-IN")}
-            </span>
-            <span className="af_counter_label">
-              {codePhase === "raising" && "raised by donors"}
-              {codePhase === "boosting" && "topping up… 🚀"}
-              {(codePhase === "typing" || codePhase === "executing" || codePhase === "done") &&
-                "total raised"}
-            </span>
-            {(codePhase === "typing" || codePhase === "executing" || codePhase === "done") && (
-              <span className="af_counter_boost">🚀 +₹{TOPUP.toLocaleString("en-IN")} from me</span>
-            )}
+            <span className="af_counter_value">₹{count.toLocaleString("en-IN")}</span>
+            <span className="af_counter_label">total raised</span>
           </div>
 
           <div className="af_double_terminal">
@@ -247,6 +239,21 @@ const AssamFlood = () => {
             <span className="af_counter_label">doubled total</span>
           </div>
         </div>
+
+        {(codePhase === "toppingup" || codePhase === "grandtotal") && (
+          <div className="af_topup_row">
+            <span className="af_topup_connector">+</span>
+            <div className="af_counter_card af_counter_card--topup">
+              <span className="af_counter_value">₹{TOPUP.toLocaleString("en-IN")}</span>
+              <span className="af_counter_label">topped up by me</span>
+            </div>
+            <span className="af_topup_connector">=</span>
+            <div className="af_counter_card af_counter_card--grand">
+              <span className="af_counter_value">₹{grandTotal.toLocaleString("en-IN")}</span>
+              <span className="af_counter_label">grand total</span>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="af_section">
