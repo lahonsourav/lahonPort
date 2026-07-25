@@ -10,7 +10,7 @@ import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
 
 const DONOR_TOTAL = 7824;
-const RAISED = 20000;
+const RAISED = 17824;
 const TOPUP = RAISED - DONOR_TOTAL;
 const DOUBLED = RAISED * 2;
 const CODE_LINE_1 = `raised = ${RAISED}`;
