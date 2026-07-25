@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./Portfolio.css";
 
-import AssamFloodArt from "../../images/assam-flood-front.png";
-
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
 import PdfModal from "../../additionals/pdfModal/PdfModal";
@@ -223,39 +221,6 @@ const Portfolio = () => {
       <div className="portfolio__see-all">
         <div onClick={() => navigate("/work")} className="btn" role="button">
           See all work →
-        </div>
-      </div>
-
-      <h5 data-aos="fade-down">a side project of my heart</h5>
-      <h2 className="tools__heading">Moksha</h2>
-
-      <div className="container forpeople__container">
-        <MaybeTilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image afp-preview">
-              <img src={AssamFloodArt} alt="Stand with Assam" />
-            </div>
-            <h3>Assam Flood Relief</h3>
-            <small>
-              A "double your donation" drive for Assam's monsoon floods — everyone who sent whatever
-              they could had it matched rupee for rupee, out of my own pocket. The campaign has since
-              closed.
-            </small>
-            <div className="portfolio__item-cta">
-              <div
-                onClick={() => navigate("/assam-flood")}
-                className="btn btn-primary"
-              >
-                View Campaign
-              </div>
-            </div>
-          </article>
-        </MaybeTilt>
-      </div>
-
-      <div className="portfolio__see-all moksha__see-all">
-        <div onClick={() => navigate("/moksha")} className="btn" role="button">
-          Learn about Moksha →
         </div>
       </div>
     </section>
