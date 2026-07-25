@@ -14,6 +14,24 @@ const DOUBLED = RAISED * 2;
 const CODE_LINE_1 = "raised = 7824";
 const CODE_LINE_2 = "matched = raised * 2";
 
+const DONORS = [
+  { title: "1st Blood", name: "Tilutpal", amount: 500 },
+  { title: "Cutie", name: "Aditi", amount: 250 },
+  { title: "Solo Century", name: "Bornov", amount: 100 },
+  { title: "Awesome", name: "Saurav", amount: 500 },
+  { title: "Princess", name: "Angana", amount: 30 },
+  { title: "Fitness Botanist", name: "Homen", amount: 200 },
+  { title: "Almighty", name: "Gyan", amount: 2000 },
+  { title: "Big Brained", name: "Bikash", amount: 2000 },
+  { title: "Pyare", name: "Priyanuj", amount: 500 },
+  { title: "Dil Se", name: "Vishal", amount: 10 },
+  { title: "Shandar", name: "Shubham", amount: 500 },
+  { title: "Pritam", name: "Pyare", amount: 150 },
+  { title: "Shady", name: "Sandeep", amount: 1000 },
+  { title: "Conjoos", name: "Tanuj", amount: 1 },
+  { title: "Hats Off", name: "Harinarayan", amount: 83 },
+];
+
 const AssamFlood = () => {
   const navigate = useNavigate();
   const form = useRef();
@@ -277,9 +295,17 @@ const AssamFlood = () => {
 
       <div className="af_section">
         <h2 className="af_section_title">Donor list</h2>
-        <p className="af_note">
-          The full donor list — names, amounts, doubled totals — will be published here shortly.
-        </p>
+        <div className="af_donor_list">
+          {DONORS.map(({ title, name, amount }) => (
+            <div className="af_donor_row" key={name + title}>
+              <span className="af_donor_title">{title}</span>
+              <span className="af_donor_name">{name}</span>
+              <span className="af_donor_amount">₹{amount.toLocaleString("en-IN")}</span>
+              <span className="af_donor_arrow">→</span>
+              <span className="af_donor_doubled">₹{(amount * 2).toLocaleString("en-IN")}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="af_section af_print">
