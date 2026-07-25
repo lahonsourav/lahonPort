@@ -318,6 +318,17 @@ const AssamFlood = () => {
         </div>
       </div>
 
+      <div className="af_section">
+        <h2 className="af_section_title">A note from me</h2>
+        <p className="af_thankyou_text">
+          To everyone on that list, and everyone who reached out even without sending money —{" "}
+          <strong>thank you</strong>. Assam floods almost every year, and it's easy to feel like
+          nothing one person does will matter. You proved that wrong. Every rupee got doubled,
+          every message meant something, and together we did more than I could've alone. See you
+          at the next one. 🙏
+        </p>
+      </div>
+
       <div className="af_section af_print">
         <h2 className="af_section_title">Stand With Assam</h2>
         <div className="af_art_card af_art_card--wide">
