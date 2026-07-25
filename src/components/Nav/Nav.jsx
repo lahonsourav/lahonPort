@@ -1,6 +1,6 @@
 import React from "react";
 import "./nav.css";
-import { BsFillJournalBookmarkFill, BsBriefcaseFill } from "react-icons/bs";
+import { BsBriefcaseFill } from "react-icons/bs";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { GiSkills } from "react-icons/gi";
 import { FaCode } from "react-icons/fa";
@@ -41,17 +41,6 @@ const Nav = () => {
         duration={600}
       >
         <GiSkills />
-      </Link>
-
-      <Link
-        activeClass="active"
-        to="bio"
-        spy={true}
-        smooth={true}
-        offset={-40}
-        duration={600}
-      >
-        <BsFillJournalBookmarkFill />
       </Link>
 
       <Link

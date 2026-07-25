@@ -1,2 +1,4 @@
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *png filter=lfs diff=lfs merge=lfs -text
+src/images/assam-flood-qr-styled.png -filter -diff -merge -text
+src/images/vkfc-acknowledgement.png -filter -diff -merge -text

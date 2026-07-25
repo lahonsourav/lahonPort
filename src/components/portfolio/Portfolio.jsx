@@ -246,7 +246,7 @@ const Portfolio = () => {
                 onClick={() => navigate("/assam-flood")}
                 className="btn btn-primary"
               >
-                Donate Now
+                View Campaign
               </div>
             </div>
           </article>
