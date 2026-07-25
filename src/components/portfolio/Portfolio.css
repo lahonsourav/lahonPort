@@ -469,34 +469,6 @@
   padding: 0.15rem 0.5rem;
 }
 
-/* ── Live clock in card ── */
-.time {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ds-green);
-  font-size: 2.2rem;
-  font-family: var(--ds-font-mono);
-  font-weight: 600;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-}
-
-/* ── Floating music notes (scoped to portfolio card only) ── */
-.portfolio__items .muzieknootjes,
-.portfolio__items .muzieknootjes2 {
-  display: block;
-  margin: auto;
-  position: absolute;
-  width: 50%;
-  min-width: 300px;
-  height: 200px;
-}
-
-.portfolio__items .muzieknootjes  { left: 33rem; }
-.portfolio__items .muzieknootjes2 { left: auto; }
-
 .noot-1, .noot-2, .noot-3, .noot-4 {
   position: absolute;
   animation: notes 2s infinite linear;
@@ -669,18 +641,13 @@
   border-radius: 4px;
 }
 
-.client__link {
-  margin-bottom: 4rem;
-}
-
 /* ── Responsive ── */
 @media screen and (max-width: 1024px) {
   .muzieknootjes { left: 10rem; }
 }
 
 @media screen and (max-width: 600px) {
-  .portfolio__container,
-  .tools__container {
+  .portfolio__container {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
