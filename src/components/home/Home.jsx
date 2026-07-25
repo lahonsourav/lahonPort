@@ -4,6 +4,7 @@ import Header from "../header/Header"
 import Nav from "../Nav/Nav";
 import Experience from "../experience/Experience";
 import Portfolio from "../portfolio/Portfolio";
+import MokshaPreview from "../moksha/MokshaPreview";
 import FeaturedBlogs from "../blog/FeaturedBlogs";
 import Contacts from "../contact/Contact";
 import Footer from "../footer/Footer";
@@ -36,6 +37,8 @@ const Home = () => {
         <Portfolio />
 
         <Experience />
+
+        <MokshaPreview />
 
         <Contacts />
 
