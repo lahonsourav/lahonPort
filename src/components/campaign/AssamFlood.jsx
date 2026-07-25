@@ -163,9 +163,8 @@ const AssamFlood = () => {
         <p className="af_description">
           The campaign is now closed, and I mean it from the bottom of my heart —{" "}
           <strong>thank you</strong> to everyone who sent whatever they could. Every rupee that came
-          in before the deadline was matched, out of my own pocket.*
+          in before the deadline was matched, out of my own pocket.
         </p>
-        <p className="af_note">* My matching contribution was capped at ₹10,000 total.</p>
       </div>
 
       <div className="af_section af_progress" ref={progressRef}>
@@ -224,7 +223,7 @@ const AssamFlood = () => {
           </div>
           <div className="af_step">
             <span className="af_step_n">3</span>
-            <p>Every rupee got matched — double the impact, on me.*</p>
+            <p>Every rupee got matched — double the impact, on me.</p>
           </div>
         </div>
       </div>
