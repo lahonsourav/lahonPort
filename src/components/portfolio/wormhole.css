@@ -72,6 +72,10 @@
   margin-top: 1.75rem;
 }
 
+.wh-share-btn {
+  margin-top: 1.25rem;
+}
+
 .wh-tag {
   font-family: var(--ds-font-mono);
   font-size: 0.72rem;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './wormhole.css';
+import ShareButton from '../share/ShareButton';
 
 // ─── Static phone chat demo ───────────────────────────────────────────────────
 
@@ -79,6 +80,7 @@ const Wormhole = () => {
           </a>
           <span className="wh-coming-pill">🍎 iOS — coming soon</span>
         </div>
+        <ShareButton title="Wormhole — a private line between two phones" className="wh-share-btn" />
       </div>
 
       {/* ── The one-line idea ── */}
