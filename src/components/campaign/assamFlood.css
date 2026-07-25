@@ -102,6 +102,7 @@
   font-size: 1rem;
   line-height: 1.75;
   color: var(--ds-text-muted);
+  text-align: justify;
 }
 
 .af_description strong {
