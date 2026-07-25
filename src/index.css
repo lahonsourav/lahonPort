@@ -30,6 +30,22 @@
   scroll-behavior: smooth;
 }
 
+/* ── Focus states ──
+   The reset above zeroes every default outline, so without this,
+   keyboard users get no focus indicator on any button/link/input.
+   :focus-visible keeps it keyboard-only — no ring on mouse clicks. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--ds-green-btn);
+  outline-offset: 2px;
+  border-radius: var(--ds-radius-sm);
+}
+
 /* ── Base ── */
 html {
   scroll-behavior: smooth;

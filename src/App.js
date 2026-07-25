@@ -40,22 +40,24 @@ function App() {
         <AchievementsTray />
         <RouteTracker />
         <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/contactout" element={<ContactOut />} />
-            <Route path="/mood" element={<Mood />} />
-            <Route path="/lazykit" element={<LazyKit />} />
-            <Route path="/lazyperm" element={<Lazyperm />} />
-            <Route path="/wormhole" element={<Wormhole />} />
-            <Route path="/assam-flood" element={<AssamFlood />} />
-            <Route path="/success-point-gogamukh" element={<SuccessPointGogamukh />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/moksha" element={<Moksha />} />
-            <Route path="/alien" element={<AlienPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/contactout" element={<ContactOut />} />
+              <Route path="/mood" element={<Mood />} />
+              <Route path="/lazykit" element={<LazyKit />} />
+              <Route path="/lazyperm" element={<Lazyperm />} />
+              <Route path="/wormhole" element={<Wormhole />} />
+              <Route path="/assam-flood" element={<AssamFlood />} />
+              <Route path="/success-point-gogamukh" element={<SuccessPointGogamukh />} />
+              <Route path="/work" element={<Work />} />
+              <Route path="/moksha" element={<Moksha />} />
+              <Route path="/alien" element={<AlienPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
         </Suspense>
       </div>
     </Router>
