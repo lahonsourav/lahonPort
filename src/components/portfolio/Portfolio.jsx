@@ -237,9 +237,9 @@ const Portfolio = () => {
             </div>
             <h3>Assam Flood Relief</h3>
             <small>
-              A "double your donation" drive for Assam's monsoon floods — scan the UPI QR, log what
-              you sent, and I match it rupee for rupee out of my own pocket. Open till 25th July,
-              matching capped at ₹10,000.
+              A "double your donation" drive for Assam's monsoon floods — everyone who sent whatever
+              they could had it matched rupee for rupee, out of my own pocket. The campaign has since
+              closed.
             </small>
             <div className="portfolio__item-cta">
               <div
