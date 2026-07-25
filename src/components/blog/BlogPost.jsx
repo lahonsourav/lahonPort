@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { POSTS } from './posts';
+import { readMins } from './readingTime';
 import MermaidDiagram from './MermaidDiagram';
 import './blog.css';
 
@@ -111,6 +112,7 @@ const BlogPost = () => {
             </span>
           )}
           <span className="blog-date">{post.date}</span>
+          <span className="blog-read-time">{readMins(post.content)} min read</span>
         </div>
 
         <h1 className="blog-post-title">{post.title}</h1>
