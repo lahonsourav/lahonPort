@@ -22,7 +22,7 @@ const DONORS = [
   { title: "Solo Century", emoji: "💯", name: "Bornov", amount: 100 },
   { title: "Awesome", emoji: "🌟", name: "Saurav", amount: 500 },
   { title: "Princess", emoji: "👑", name: "Angana", amount: 30 },
-  { title: "Fitness Botanist", emoji: "🌱", name: "Homen", amount: 200 },
+  { title: "Botanist", emoji: "🌱", name: "Homen", amount: 200 },
   { title: "Almighty", emoji: "⚡", name: "Gyan", amount: 2000 },
   { title: "Big Brained", emoji: "🧠", name: "Bikash", amount: 2000 },
   { title: "Pyare", emoji: "💜", name: "Priyanuj", amount: 500 },
