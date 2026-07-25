@@ -47,7 +47,7 @@ const Moksha = () => {
         <MaybeTilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
             <div className="portfolio__item-image afp-preview">
-              <img src={AssamFloodArt} alt="Stand with Assam" />
+              <img src={AssamFloodArt} alt="Stand with Assam" loading="lazy" />
             </div>
             <h3>Assam Flood Relief</h3>
             <small>

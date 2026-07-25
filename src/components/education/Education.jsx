@@ -112,7 +112,7 @@ const Education = () => {
                     <svg className="edu__ring" viewBox="0 0 54 54" aria-hidden="true">
                       <circle cx="27" cy="27" r="25" />
                     </svg>
-                    <img src={e.icon} alt={e.iconAlt} />
+                    <img src={e.icon} alt={e.iconAlt} loading="lazy" />
                   </div>
                 </div>
                 <div className="edu__date">{e.date}</div>
@@ -125,7 +125,7 @@ const Education = () => {
                     <svg className="edu__ring" viewBox="0 0 54 54" aria-hidden="true">
                       <circle cx="27" cy="27" r="25" />
                     </svg>
-                    <img src={e.icon} alt={e.iconAlt} />
+                    <img src={e.icon} alt={e.iconAlt} loading="lazy" />
                   </div>
                 </div>
                 <div className="edu__card">
