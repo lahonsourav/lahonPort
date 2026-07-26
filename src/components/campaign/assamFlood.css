@@ -84,7 +84,7 @@
 }
 
 .af_title {
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--ds-text);
@@ -537,6 +537,6 @@
 
 @media screen and (max-width: 600px) {
   .af_title {
-    font-size: 1.9rem;
+    font-size: 2rem;
   }
 }

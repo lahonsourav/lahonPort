@@ -607,6 +607,9 @@
   .spgp-split.spgp-split--rev .spgp-split-text {
     order: 0;
   }
+  .spgp-hero-title {
+    font-size: 2rem;
+  }
 }
 
 /* ── Feature grid (reusable icon/title/body cards) ── */

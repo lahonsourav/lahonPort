@@ -108,3 +108,9 @@
   color: var(--ds-text-muted);
   margin-bottom: 1rem;
 }
+
+@media (max-width: 768px) {
+  .mk_hero h1 {
+    font-size: 2rem;
+  }
+}
