@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './mood.css';
+import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
 
 // ─── Home screen ──────────────────────────────────────────────────────────────
 
@@ -386,6 +388,7 @@ const Mood = () => {
   const { Comp } = TABS[active];
   return (
     <div className="ic-page">
+      <BackHome />
 
       {/* ── Hero ── */}
       <div className="ic-hero">
@@ -400,6 +403,7 @@ const Mood = () => {
             <span key={t} className="ic-tag">{t}</span>
           ))}
         </div>
+        <ShareButton title="Innercast — your private mood diary" />
       </div>
 
       {/* ── Interactive phone demo ── */}

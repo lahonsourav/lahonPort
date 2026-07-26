@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import "../contact/contact.css";
 import "./assamFlood.css";
 
 import ReactAlert from "../../additionals/customAlerts/CustomAlert";
 import PdfModal from "../../additionals/pdfModal/PdfModal";
+import BackHome from "../shared/BackHome";
 import assamFront from "../../images/assam-flood-front.png";
 import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
@@ -42,7 +42,6 @@ const DONORS = [
 ];
 
 const AssamFlood = () => {
-  const navigate = useNavigate();
   const form = useRef();
 
   const [alertMessage, setAlertMessage] = useState("");
@@ -187,7 +186,7 @@ const AssamFlood = () => {
         <ReactAlert message={alertMessage} onClose={closeAlert} type={alertType} />
       )}
 
-      <button className="af_back" onClick={() => navigate("/")}>← Back</button>
+      <BackHome className="af_back" />
 
       <div className="af_hero">
         <span className="af_eyebrow">Assam Floods · Monsoon 2026</span>

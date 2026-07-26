@@ -21,21 +21,6 @@
   padding: 1.5rem 2rem 0;
 }
 
-.mk_back {
-  background: none;
-  border: none;
-  color: var(--ds-text-muted);
-  font-family: var(--ds-font-mono);
-  font-size: 0.85rem;
-  cursor: pointer;
-  padding: 0;
-  transition: var(--ds-transition);
-}
-
-.mk_back:hover {
-  color: var(--ds-green);
-}
-
 .mk_hero {
   text-align: center;
   padding: 1.5rem 1.5rem 1rem;
