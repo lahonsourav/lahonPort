@@ -19,17 +19,3 @@
   border-color: var(--ds-green-btn);
   background: var(--ds-surface-2);
 }
-
-/* Variant for pages with a fixed dark palette (LazyKit/Lazyperm),
-   not theme-aware, so it can't use the --ds-* tokens above. */
-.share-btn--dark {
-  background: #21262d;
-  border-color: #30363d;
-  color: #e6edf3;
-}
-
-.share-btn--dark:hover {
-  background: #30363d;
-  border-color: #2ea043;
-  color: #7ee787;
-}

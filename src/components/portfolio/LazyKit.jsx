@@ -6,7 +6,7 @@ import BackHome from '../shared/BackHome';
 const LazyKit = () => {
     return (
         <div className="lk_container">
-            <BackHome className="back-home--dark" />
+            <BackHome />
 
             {/* ── Hero ── */}
             <div className="lk_hero">
@@ -24,7 +24,7 @@ const LazyKit = () => {
                 <div className="lk_hero_actions">
                     <a href="https://www.npmjs.com/package/@slahon/lazykit" className="lk_btn lk_btn_primary" target="_blank" rel="noreferrer">npm</a>
                     <a href="https://github.com/lahonsourav/lazykit" className="lk_btn lk_btn_secondary" target="_blank" rel="noreferrer">GitHub</a>
-                    <ShareButton title="LazyKit — drop an issue, get a PR" className="share-btn--dark" />
+                    <ShareButton title="LazyKit — drop an issue, get a PR" />
                 </div>
             </div>
 

@@ -12,13 +12,3 @@
 .back-home:hover {
   color: var(--ds-green);
 }
-
-/* Variant for pages with a fixed dark palette (LazyKit/lazyperm),
-   not theme-aware, so it can't use the --ds-* tokens above. */
-.back-home--dark {
-  color: #8b949e;
-}
-
-.back-home--dark:hover {
-  color: #7ee787;
-}
