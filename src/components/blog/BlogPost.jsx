@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { POSTS } from './posts';
+import { readMins } from './readingTime';
+import { trackBlogRead } from '../../lib/achievements';
 import MermaidDiagram from './MermaidDiagram';
 import './blog.css';
 
@@ -84,6 +86,7 @@ const BlogPost = () => {
     const key = `blog_reads_${slug}`;
     const n = parseInt(localStorage.getItem(key) || '0', 10);
     localStorage.setItem(key, n + 1);
+    trackBlogRead(POSTS.map(p => p.slug));
   }, [slug]);
 
   if (!post) {
@@ -111,6 +114,7 @@ const BlogPost = () => {
             </span>
           )}
           <span className="blog-date">{post.date}</span>
+          <span className="blog-read-time">{readMins(post.content)} min read</span>
         </div>
 
         <h1 className="blog-post-title">{post.title}</h1>

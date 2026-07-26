@@ -1,10 +1,13 @@
 import React from 'react';
 import './lazykit.css';
 import './lazyperm.css';
+import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
 
 const Lazyperm = () => {
     return (
         <div className="lk_container">
+            <BackHome />
 
             {/* ── Hero ── */}
             <div className="lk_hero">
@@ -23,6 +26,7 @@ const Lazyperm = () => {
                     <a href="https://www.npmjs.com/package/lazyperm" className="lk_btn lk_btn_primary" target="_blank" rel="noreferrer">npm</a>
                     <a href="https://marketplace.visualstudio.com/items?itemName=lahonsourav.lazyperm-claude" className="lk_btn lk_btn_secondary" target="_blank" rel="noreferrer">VS Code Extension</a>
                     <a href="https://github.com/lahonsourav/lazyperm" className="lk_btn lk_btn_secondary" target="_blank" rel="noreferrer">GitHub</a>
+                    <ShareButton title="lazyperm — stop babysitting Claude Code" />
                 </div>
                 <p className="lp_hero_ext_note">Also available as an extension — search <strong>lazyperm</strong> in VS Code, Windsurf, or Cursor</p>
             </div>

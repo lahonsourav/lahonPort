@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './successpointgogamukh.css';
+import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
 
 import landingShot from '../../images/spg/landing.webp';
 import courseDetailShot from '../../images/spg/course-detail.webp';
@@ -73,6 +75,7 @@ function FeatureGrid({ items }) {
 const SuccessPointGogamukh = () => {
   return (
     <div className="spgp-page">
+      <BackHome />
       {/* ── Hero ── */}
       <div className="spgp-hero">
         <div className="spgp-hero-logo">
@@ -104,6 +107,7 @@ const SuccessPointGogamukh = () => {
           <Link to="/blog/building-success-point-gogamukh" className="spgp-btn spgp-btn-secondary">
             Read the Tech Deep-Dive
           </Link>
+          <ShareButton title="Success Point Gogamukh — a full coaching-center platform" />
         </div>
         <div className="spgp-client-pill">
           📌 A real, in-production client project — not a template or a demo

@@ -292,6 +292,7 @@ const AssamFlood = () => {
             src={donateQr}
             alt="UPI QR code — donations closed"
             className="af_qr_img af_qr_img--blurred"
+            loading="lazy"
           />
           <p className="af_qr_upi af_qr_upi--blurred">UPI ID: <span>frustratedcollegian@oksbi</span></p>
           <p className="af_qr_hint">This campaign is no longer accepting donations. Thank you for your support!</p>
@@ -368,6 +369,7 @@ const AssamFlood = () => {
               className="af_donation_img"
               width="1640"
               height="2360"
+              loading="lazy"
             />
           </div>
           <div
@@ -405,7 +407,7 @@ const AssamFlood = () => {
       <div className="af_section af_print">
         <h2 className="af_section_title">Stand With Assam</h2>
         <div className="af_art_card af_art_card--wide">
-          <img src={assamBack} alt="Stand with Assam — full print design" className="af_print_img" />
+          <img src={assamBack} alt="Stand with Assam — full print design" className="af_print_img" loading="lazy" />
         </div>
       </div>
     </div>

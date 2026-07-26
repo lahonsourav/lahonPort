@@ -13,6 +13,11 @@
   --spgp-accent-2: #58a6ff;
 }
 
+.spgp-page > .back-home {
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+
 .spgp-section-h {
   font-size: 1.5rem;
   font-weight: 700;
@@ -114,8 +119,8 @@
   font-family: var(--ds-font);
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.65rem 1.3rem;
-  border-radius: var(--ds-radius);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--ds-radius-sm);
   cursor: pointer;
   transition: var(--ds-transition);
   text-decoration: none;
@@ -601,6 +606,9 @@
   }
   .spgp-split.spgp-split--rev .spgp-split-text {
     order: 0;
+  }
+  .spgp-hero-title {
+    font-size: 2rem;
   }
 }
 

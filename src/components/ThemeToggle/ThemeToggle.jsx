@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { BsSunFill, BsMoonStarsFill } from "react-icons/bs";
+import { playToggle } from "../../lib/sound";
+import { unlock } from "../../lib/achievements";
 import "./ThemeToggle.css";
 
 const STORAGE_KEY = "theme";
@@ -19,6 +21,8 @@ const ThemeToggle = () => {
 
   const toggleTheme = () => {
     setTheme((t) => (t === "dark" ? "light" : "dark"));
+    playToggle();
+    unlock("shape-shifter");
   };
 
   return (

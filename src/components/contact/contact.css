@@ -103,6 +103,21 @@
   color: var(--ds-text-muted);
 }
 
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-control--error {
+  border-color: var(--ds-error);
+}
+
+.form-field-error {
+  font-size: 0.78rem;
+  color: var(--ds-error);
+}
+
 /* ── Responsive ── */
 @media screen and (max-width: 1024px) {
   .container.contact__container {

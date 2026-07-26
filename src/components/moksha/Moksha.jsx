@@ -7,6 +7,7 @@ import "./moksha.css";
 import mokshaLogo from "../../assets/mokshaligned.png";
 import AssamFloodArt from "../../images/assam-flood-front.png";
 import useReveal from "../reveal/useReveal";
+import ShareButton from "../share/ShareButton";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
@@ -18,7 +19,10 @@ const Moksha = () => {
 
   return (
     <div className="mk_page">
-      <button className="mk_back" onClick={() => navigate("/")}>← Back</button>
+      <div className="mk_topbar">
+        <button className="mk_back" onClick={() => navigate("/")}>← Back</button>
+        <ShareButton title="Moksha — Sourav Lahon" />
+      </div>
 
       <div className="mk_hero">
         <img src={mokshaLogo} alt="Moksha" className="mk_logo" data-aos="zoom-in" />
@@ -43,7 +47,7 @@ const Moksha = () => {
         <MaybeTilt>
           <article data-aos="zoom-in-up" className="portfolio__items">
             <div className="portfolio__item-image afp-preview">
-              <img src={AssamFloodArt} alt="Stand with Assam" />
+              <img src={AssamFloodArt} alt="Stand with Assam" loading="lazy" />
             </div>
             <h3>Assam Flood Relief</h3>
             <small>

@@ -1,0 +1,14 @@
+.back-home {
+  background: none;
+  border: none;
+  color: var(--ds-text-muted);
+  font-family: var(--ds-font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--ds-transition);
+}
+
+.back-home:hover {
+  color: var(--ds-green);
+}

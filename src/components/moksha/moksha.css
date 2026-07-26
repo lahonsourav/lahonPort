@@ -10,15 +10,25 @@
   padding-bottom: 4rem;
 }
 
+.mk_topbar {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1.5rem 2rem 0;
+}
+
 .mk_back {
-  align-self: flex-start;
   background: none;
   border: none;
   color: var(--ds-text-muted);
   font-family: var(--ds-font-mono);
   font-size: 0.85rem;
   cursor: pointer;
-  padding: 1.5rem 2rem 0;
+  padding: 0;
   transition: var(--ds-transition);
 }
 
@@ -97,4 +107,10 @@
 .mk_cta p {
   color: var(--ds-text-muted);
   margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .mk_hero h1 {
+    font-size: 2rem;
+  }
 }

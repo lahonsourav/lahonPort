@@ -21,6 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# python (ad hoc scripts, e.g. image processing)
+__pycache__/
+*.pyc
 # lazyperm
 .claude/hooks/guard.py
 .claude/hooks/safe_patterns.json

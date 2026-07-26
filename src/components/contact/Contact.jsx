@@ -8,15 +8,39 @@ import emailjs from "@emailjs/browser";
 import ReactAlert from "../../additionals/customAlerts/CustomAlert";
 import BusinessCard from "../businessCard/BusinessCard";
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const Contact = () => {
   const form = useRef();
 
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const validate = (data) => {
+    const next = {};
+    if (!data.get("name")?.trim()) next.name = "Please enter your name.";
+    const email = data.get("email")?.trim();
+    if (email && !EMAIL_RE.test(email)) next.email = "Please enter a valid email address.";
+    if (!data.get("message")?.trim()) next.message = "Please write a message.";
+    return next;
+  };
+
+  const clearError = (field) =>
+    setErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    const data = new FormData(form.current);
+    const validationErrors = validate(data);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setErrors({});
+
     emailjs
       .sendForm(
         "service_afksea8",
@@ -90,22 +114,43 @@ const Contact = () => {
           </article>
         </div>
 
-        <form ref={form} className="contact__form" onSubmit={sendEmail}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Full Name"
-            className="form-control-input"
-            required
-          />
-          <input type="email" name="email" placeholder="Your Email" className="form-control-input" />
-          <textarea
-            name="message"
-            rows="16"
-            placeholder="Write Your Message"
-            className="form-control-text"
-            required
-          ></textarea>
+        <form ref={form} className="contact__form" onSubmit={sendEmail} noValidate>
+          <div className="form-field">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Full Name"
+              className={`form-control-input${errors.name ? " form-control--error" : ""}`}
+              aria-invalid={!!errors.name}
+              onChange={() => clearError("name")}
+            />
+            {errors.name && <p className="form-field-error">{errors.name}</p>}
+          </div>
+
+          <div className="form-field">
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email (optional)"
+              className={`form-control-input${errors.email ? " form-control--error" : ""}`}
+              aria-invalid={!!errors.email}
+              onChange={() => clearError("email")}
+            />
+            {errors.email && <p className="form-field-error">{errors.email}</p>}
+          </div>
+
+          <div className="form-field">
+            <textarea
+              name="message"
+              rows="16"
+              placeholder="Write Your Message"
+              className={`form-control-text${errors.message ? " form-control--error" : ""}`}
+              aria-invalid={!!errors.message}
+              onChange={() => clearError("message")}
+            ></textarea>
+            {errors.message && <p className="form-field-error">{errors.message}</p>}
+          </div>
+
           <button
             type="submit"
             className="btn btn-primary"

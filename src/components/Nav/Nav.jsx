@@ -6,6 +6,7 @@ import { GiSkills } from "react-icons/gi";
 import { FaCode } from "react-icons/fa";
 
 import { Link } from "react-scroll";
+import { playClick } from "../../lib/sound";
 
 const Nav = () => {
   return (
@@ -17,6 +18,7 @@ const Nav = () => {
         smooth={true}
         offset={-40}
         duration={600}
+        onClick={playClick}
       >
         <BsBriefcaseFill />
       </Link>
@@ -28,6 +30,7 @@ const Nav = () => {
         smooth={true}
         offset={-40}
         duration={600}
+        onClick={playClick}
       >
         <FaCode />
       </Link>
@@ -39,6 +42,7 @@ const Nav = () => {
         smooth={true}
         offset={-40}
         duration={600}
+        onClick={playClick}
       >
         <GiSkills />
       </Link>
@@ -50,6 +54,7 @@ const Nav = () => {
         smooth={true}
         offset={-40}
         duration={600}
+        onClick={playClick}
       >
         <MdOutlineContactPhone />
       </Link>
