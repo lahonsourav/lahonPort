@@ -1,0 +1,84 @@
+.cl_page.page-shell {
+  padding: 3rem 1.5rem 4rem;
+}
+
+.cl_page > .back-home {
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+
+/* ── Hero ── */
+.cl_hero {
+  text-align: center;
+  max-width: 640px;
+}
+
+.cl_hero h5 {
+  color: var(--ds-text-muted);
+  font-size: 0.95rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.cl_hero h1 {
+  font-size: var(--ds-text-hero);
+  font-weight: 700;
+  color: var(--ds-text);
+}
+
+.cl_tagline {
+  color: var(--ds-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+
+.cl_share_btn {
+  margin-top: 1.25rem;
+}
+
+/* ── Design principles ── */
+.cl_section {
+  width: 100%;
+  max-width: 860px;
+  margin-top: 4rem;
+}
+
+.cl_principles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.cl_principle {
+  border-left: 2px solid var(--ds-green-btn);
+  padding-left: 1rem;
+}
+
+.cl_principle_n {
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  color: var(--ds-green);
+}
+
+.cl_principle_title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ds-text);
+  margin: 0.4rem 0 0.5rem;
+}
+
+.cl_principle_body {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--ds-text-muted);
+}
+
+@media screen and (max-width: 600px) {
+  .cl_hero h1 {
+    font-size: var(--ds-text-hero-sm);
+  }
+}

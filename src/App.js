@@ -23,6 +23,7 @@ const AssamFlood = lazy(() => import("./components/campaign/AssamFlood"));
 const SuccessPointGogamukh = lazy(() => import("./components/portfolio/SuccessPointGogamukh"));
 const Work = lazy(() => import("./components/portfolio/Work"));
 const Moksha = lazy(() => import("./components/moksha/Moksha"));
+const Colophon = lazy(() => import("./components/colophon/Colophon"));
 const NotFound = lazy(() => import("./components/NotFound/NotFound"));
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
               <Route path="/success-point-gogamukh" element={<SuccessPointGogamukh />} />
               <Route path="/work" element={<Work />} />
               <Route path="/moksha" element={<Moksha />} />
+              <Route path="/colophon" element={<Colophon />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
