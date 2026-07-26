@@ -52,7 +52,6 @@ const Blog = () => {
   <div className="blog-page">
     <div className="blog-topbar">
       <button className="blog-back" onClick={() => navigate('/')}>← Back</button>
-      <a href="/rss.xml" className="blog-rss-link" title="RSS feed">RSS</a>
     </div>
     <div className="blog-hero">
       <h1 className="blog-hero-title">Blog</h1>
