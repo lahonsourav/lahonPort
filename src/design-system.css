@@ -60,9 +60,9 @@
  */
 :root[data-theme="light"] {
   /* ── Backgrounds ── */
-  --ds-bg:        #f7f0df;
-  --ds-surface:   #f0e6d0;
-  --ds-surface-2: #e6d8bd;
+  --ds-bg:        #faf6ee;
+  --ds-surface:   #f4ede0;
+  --ds-surface-2: #ece1cd;
 
   /* ── Borders ── */
   --ds-border:        #ddd0b5;

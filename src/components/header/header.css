@@ -178,4 +178,11 @@ header::after {
   .header__containerpc h1 {
     font-size: 2.75rem;
   }
+
+  /* iOS Safari auto-zooms the page on focus if an input's font-size
+     is under 16px — keep it at 1rem here even though desktop uses
+     a smaller mono size. */
+  .hero-search__input {
+    font-size: 1rem;
+  }
 }

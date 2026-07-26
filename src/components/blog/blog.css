@@ -548,4 +548,10 @@
     padding-left: 1rem;
     padding-right: 1rem;
   }
+
+  /* iOS Safari auto-zooms the page on focus if an input's font-size
+     is under 16px. */
+  .blog-search {
+    font-size: 1rem;
+  }
 }
