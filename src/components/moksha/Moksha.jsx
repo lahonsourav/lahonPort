@@ -9,6 +9,8 @@ import AssamFloodArt from "../../images/assam-flood-front.png";
 import useReveal from "../reveal/useReveal";
 import ShareButton from "../share/ShareButton";
 import BackHome from "../shared/BackHome";
+import PageFooter from "../shared/PageFooter";
+import "../shared/PageShell.css";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
@@ -19,7 +21,7 @@ const Moksha = () => {
   useReveal();
 
   return (
-    <div className="mk_page">
+    <div className="mk_page page-shell">
       <BackHome />
 
       <div className="mk_hero">
@@ -72,6 +74,8 @@ const Moksha = () => {
           Get in touch →
         </div>
       </div>
+
+      <PageFooter>Copyright © 2026 lahon.in/moksha</PageFooter>
     </div>
   );
 };

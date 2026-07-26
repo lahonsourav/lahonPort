@@ -1,15 +1,3 @@
-.work_page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  background: var(--ds-bg);
-  color: var(--ds-text);
-  font-family: var(--ds-font);
-  padding-bottom: 4rem;
-}
-
 .work_page > .back-home {
   align-self: flex-start;
   padding: 1.5rem 2rem 0;

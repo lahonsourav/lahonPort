@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { POSTS } from './posts';
 import { readMins } from './readingTime';
 import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
 import './blog.css';
 
 const TAG_COLORS = {
@@ -85,6 +86,8 @@ const Blog = () => {
         </div>
       )}
     </div>
+
+    <PageFooter>Copyright © 2026 lahon.in/blog</PageFooter>
   </div>
   );
 };

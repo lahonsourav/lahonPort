@@ -10,6 +10,8 @@ import Tilt from "react-parallax-tilt";
 import useReveal from "../reveal/useReveal";
 import PdfModal from "../../additionals/pdfModal/PdfModal";
 import BackHome from "../shared/BackHome";
+import PageFooter from "../shared/PageFooter";
+import "../shared/PageShell.css";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
@@ -23,7 +25,7 @@ const Work = () => {
   useReveal();
 
   return (
-    <div className="work_page">
+    <div className="work_page page-shell">
       <BackHome />
 
       <div className="work_hero">
@@ -396,6 +398,8 @@ const Work = () => {
           onClose={() => setShowThesis(false)}
         />
       )}
+
+      <PageFooter>Copyright © 2026 lahon.in/work</PageFooter>
     </div>
   );
 };

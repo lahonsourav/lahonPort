@@ -3,6 +3,7 @@ import './lazykit.css';
 import './lazyperm.css';
 import ShareButton from '../share/ShareButton';
 import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
 
 const Lazyperm = () => {
     return (
@@ -241,6 +242,8 @@ const Lazyperm = () => {
                     </a>
                 </div>
             </div>
+
+            <PageFooter>Copyright © 2026 lahon.in/lazyperm</PageFooter>
         </div>
     );
 };

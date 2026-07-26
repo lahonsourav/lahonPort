@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './mood.css';
 import ShareButton from '../share/ShareButton';
 import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
 
 // ─── Home screen ──────────────────────────────────────────────────────────────
 
@@ -569,7 +570,7 @@ const Mood = () => {
         </div>
       </div>
 
-      <div className="ic-page-footer">Copyright © 2026 lahon.in/mood</div>
+      <PageFooter>Copyright © 2026 lahon.in/mood</PageFooter>
     </div>
   );
 };
