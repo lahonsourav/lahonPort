@@ -16,6 +16,11 @@
   font-size: 1.1rem;
   cursor: pointer;
   transition: var(--ds-transition);
+  /* iOS Safari drops fixed + backdrop-filter elements from compositing
+     mid-scroll (they blink out during rubber-band bounce) unless forced
+     onto their own GPU layer. */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 :root[data-theme="light"] .theme-toggle {
@@ -25,7 +30,7 @@
 .theme-toggle:hover {
   border-color: var(--ds-green);
   background: var(--ds-surface-2);
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
 }
 
 @media screen and (max-width: 600px) {
