@@ -188,7 +188,7 @@ const AssamFlood = () => {
         <ReactAlert message={alertMessage} onClose={closeAlert} type={alertType} />
       )}
 
-      <BackHome className="af_back" />
+      <BackHome />
 
       <div className="af_hero">
         <span className="af_eyebrow">Assam Floods · Monsoon 2026</span>

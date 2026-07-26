@@ -20,7 +20,7 @@ const Moksha = () => {
 
   return (
     <div className="mk_page">
-      <BackHome className="mk_back" />
+      <BackHome />
 
       <div className="mk_hero">
         <img src={mokshaLogo} alt="Moksha" className="mk_logo" data-aos="zoom-in" />

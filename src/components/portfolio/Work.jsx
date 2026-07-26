@@ -24,7 +24,7 @@ const Work = () => {
 
   return (
     <div className="work_page">
-      <BackHome className="work_back" />
+      <BackHome />
 
       <div className="work_hero">
         <h5 data-aos="fade-down">everything I've</h5>
