@@ -119,8 +119,8 @@
   font-family: var(--ds-font);
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.65rem 1.3rem;
-  border-radius: var(--ds-radius);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--ds-radius-sm);
   cursor: pointer;
   transition: var(--ds-transition);
   text-decoration: none;
