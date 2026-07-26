@@ -3,6 +3,11 @@
   top: 1.25rem;
   right: 4.25rem;
   z-index: var(--ds-z-fixed);
+  /* iOS Safari drops fixed + backdrop-filter elements from compositing
+     mid-scroll (they blink out during rubber-band bounce) unless forced
+     onto their own GPU layer. */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .accent-picker__btn {
