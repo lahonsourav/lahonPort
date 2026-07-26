@@ -323,6 +323,129 @@
   color: var(--ds-error);
 }
 
+.blog-code-block {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  text-align: left;
+  font-family: var(--ds-font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.blog-code-block code {
+  white-space: pre;
+}
+
+/* ── Interactive token playground ── */
+.blog-playground {
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  background: #0d1117;
+  color: #e6edf3;
+  padding: 1.1rem 1.25rem 1.4rem;
+  text-align: left;
+}
+
+.blog-playground-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.blog-playground-label {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: #8b949e;
+}
+
+.blog-playground-mode {
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: var(--ds-radius-sm);
+  color: #e6edf3;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+
+.blog-playground-mode:hover {
+  background: #30363d;
+}
+
+.blog-playground-slider {
+  width: 100%;
+  accent-color: #58a6ff;
+  margin-bottom: 1rem;
+}
+
+.blog-playground-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.9rem;
+}
+
+.blog-playground-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.blog-playground-swatch-color {
+  height: 44px;
+  border-radius: var(--ds-radius-sm);
+  border: 1px solid #30363d;
+}
+
+.blog-playground-swatch code {
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  color: #8b949e;
+}
+
+/* ── Live palette ──
+   Unlike the playground, this follows the reader's actual theme/accent,
+   so it stays on the light/dark surface tokens instead of a fixed card. */
+.blog-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.blog-palette-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.blog-palette-color {
+  width: 100%;
+  height: 56px;
+  border-radius: var(--ds-radius);
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+.blog-palette-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ds-text);
+}
+
+.blog-palette-var {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  color: var(--ds-text-muted);
+}
+
 .blog-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--ds-border);

@@ -60,7 +60,7 @@ const Work = () => {
             </div>
             <h3>Wormhole</h3>
             <small>
-              P2P messaging for exactly two people. Text, photos, and voice/video calls travel phone-to-phone over an end-to-end encrypted WebRTC tunnel — no accounts, no cloud, no servers in between. (React Native, WebRTC, NaCl)
+              P2P messaging for exactly two people. Text, photos, and voice/video calls travel phone-to-phone over an end-to-end encrypted WebRTC tunnel, no accounts, no cloud, no servers in between. (React Native, WebRTC, NaCl)
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -250,7 +250,7 @@ const Work = () => {
             </div>
             <h3>Doggies <span className="work-tag">#5minhack</span></h3>
             <small>
-              A swipe-based dog discovery app with a delightfully simple UI — browse breeds, swipe left or right, and save your favourite matches. Built for Android with smooth, native-feeling gesture navigation. (Flutter, Android)
+              A swipe-based dog discovery app with a delightfully simple UI, browse breeds, swipe left or right, and save your favourite matches. Built for Android with smooth, native-feeling gesture navigation. (Flutter, Android)
             </small>
             <div className="portfolio__item-cta">
               <a
@@ -296,7 +296,7 @@ const Work = () => {
             </div>
             <h3>LazyKit <span className="work-tag">#tool</span></h3>
             <small>
-              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a pull request. No laptop, no IDE, no claude code open, only github.
+              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo: open an issue from anywhere, Claude writes the code and opens a pull request. No laptop, no IDE, no claude code open, only github.
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -338,7 +338,7 @@ const Work = () => {
             </div>
             <h3>lazyperm <span className="work-tag">#tool</span></h3>
             <small>
-              Eliminates repetitive permission prompts in Claude Code. Hooks into PreToolUse to auto-allow safe commands and block dangerous ones — so you only get interrupted when it actually matters.
+              Eliminates repetitive permission prompts in Claude Code. Hooks into PreToolUse to auto-allow safe commands and block dangerous ones, so you only get interrupted when it actually matters.
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -375,7 +375,7 @@ const Work = () => {
             </div>
             <h3>Spend Gate <span className="work-tag">#tool</span></h3>
             <small>
-              A spending gate for impulse buys — type an amount, answer a few honest questions, and get a verdict: buy, wait 72 hours, or skip. Tracks budgets from your bank export and plans savings automatically.
+              A spending gate for impulse buys: type an amount, answer a few honest questions, and get a verdict: buy, wait 72 hours, or skip. Tracks budgets from your bank export and plans savings automatically.
             </small>
             <div className="portfolio__item-cta">
               <a

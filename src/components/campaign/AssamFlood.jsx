@@ -169,7 +169,7 @@ const AssamFlood = () => {
       )
       .then(
         () => {
-          setAlertMessage("Got it — thank you! I'll get back to you soon.");
+          setAlertMessage("Got it: thank you! I'll get back to you soon.");
           setAlertType("success");
           setShowAlert(true);
         },
@@ -201,12 +201,12 @@ const AssamFlood = () => {
         <h1 className="af_title">Thank You For Doubling The Impact</h1>
         <p className="af_tagline">When the water rises, we rise together.</p>
         <p className="af_description">
-          This was a <strong>"double your donation"</strong> drive for Assam's monsoon floods —
+          This was a <strong>"double your donation"</strong> drive for Assam's monsoon floods:
           anyone who sent whatever they could via UPI had it matched rupee for rupee, out of my own
           pocket, doubling the impact of every contribution.
         </p>
         <p className="af_description">
-          The campaign is now closed, and I mean it from the bottom of my heart —{" "}
+          The campaign is now closed, and I mean it from the bottom of my heart, {" "}
           <strong>thank you</strong> to everyone who sent whatever they could. Every rupee that came
           in before the deadline was matched, out of my own pocket.
         </p>
@@ -283,7 +283,7 @@ const AssamFlood = () => {
           </div>
           <div className="af_step">
             <span className="af_step_n">3</span>
-            <p>Every rupee got matched — double the impact, on me.</p>
+            <p>Every rupee got matched: double the impact, on me.</p>
           </div>
         </div>
       </div>
@@ -294,7 +294,7 @@ const AssamFlood = () => {
           <div className="af_qr_closed_overlay">Closed</div>
           <img
             src={donateQr}
-            alt="UPI QR code — donations closed"
+            alt="UPI QR code: donations closed"
             className="af_qr_img af_qr_img--blurred"
             loading="lazy"
           />
@@ -396,7 +396,7 @@ const AssamFlood = () => {
           <div className="af_art_card">
             <img
               src={uttoronPayment}
-              alt="Payment confirmation — ₹7,824 transferred to Uttoron, Gogamukh"
+              alt="Payment confirmation: ₹7,824 transferred to Uttoron, Gogamukh"
               className="af_donation_img"
               width="640"
               height="839"
@@ -416,7 +416,7 @@ const AssamFlood = () => {
           <div className="af_art_card">
             <img
               src={lakhimpurPayment}
-              alt="Payment confirmation — ₹501 transferred to Lakhimpur Hip Hop"
+              alt="Payment confirmation: ₹501 transferred to Lakhimpur Hip Hop"
               className="af_donation_img"
               width="640"
               height="839"
@@ -440,7 +440,7 @@ const AssamFlood = () => {
       <div className="af_section">
         <h2 className="af_section_title">A note from me</h2>
         <p className="af_thankyou_text">
-          To everyone on that list, and everyone who reached out even without sending money —{" "}
+          To everyone on that list, and everyone who reached out even without sending money, {" "}
           <strong>thank you</strong>. Assam floods almost every year, and it's easy to feel like
           nothing one person does will matter. You proved that wrong. Every rupee got doubled,
           every message meant something, and together we did more than I could've alone. See you
@@ -451,7 +451,7 @@ const AssamFlood = () => {
       <div className="af_section af_print">
         <h2 className="af_section_title">Stand With Assam</h2>
         <div className="af_art_card af_art_card--wide">
-          <img src={assamBack} alt="Stand with Assam — full print design" className="af_print_img" loading="lazy" />
+          <img src={assamBack} alt="Stand with Assam: full print design" className="af_print_img" loading="lazy" />
         </div>
       </div>
 

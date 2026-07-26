@@ -40,7 +40,7 @@ const About = () => {
           </div>
 
           <div className="para" data-aos="fade-up" data-aos-delay="200">
-            <p>I am a Computer Science and Engineering Graduate of <a href="https://www.nits.ac.in/" target="_blank" rel="noreferrer">NIT Silchar</a>. Software Engineer at BlackRock — building data pipelines in C#, .NET &amp; Kafka, and automation tools in Python &amp; SQL. Ex Microsoft SWE intern. Full stack (MERN, NestJS), React Native, and ML.</p>
+            <p>I am a Computer Science and Engineering Graduate of <a href="https://www.nits.ac.in/" target="_blank" rel="noreferrer">NIT Silchar</a>. Software Engineer at BlackRock: building data pipelines in C#, .NET &amp; Kafka, and automation tools in Python &amp; SQL. Ex Microsoft SWE intern. Full stack (MERN, NestJS), React Native, and ML.</p>
 
             <p>I make <Link to="/creative">music</Link><span className="muzieknootjes" style={{ display: "inline-block", marginLeft: "4px", verticalAlign: "middle" }}><span className="noot-1">&#9835; &#9833;</span><span className="noot-2">&#9833;</span><span className="noot-3">&#9839; &#9834;</span><span className="noot-4">&#9834;</span></span>, I love thinking about the Universe and Space, the huge stars, the gas giant Jupiter.</p>
 

@@ -29,15 +29,15 @@ const Moksha = () => {
         <h5 data-aos="fade-down">a small side-project of the heart</h5>
         <h1 data-aos="fade-down" data-aos-delay="100">Moksha</h1>
         <p className="mk_tagline" data-aos="fade-up" data-aos-delay="150">
-          Sanskrit for release — from struggle, from waiting, from doing nothing.
+          Sanskrit for release: from struggle, from waiting, from doing nothing.
         </p>
-        <ShareButton title="Moksha — Sourav Lahon" />
+        <ShareButton title="Moksha: Sourav Lahon" />
       </div>
 
       <div className="mk_mission" data-aos="fade-up">
         <p>
           Moksha is where I put money and effort directly into helping people when
-          things get hard — no committee, no overhead, no paperwork. Just find
+          things get hard, no committee, no overhead, no paperwork. Just find
           someone who needs help, and help them.
         </p>
       </div>
@@ -52,7 +52,7 @@ const Moksha = () => {
             </div>
             <h3>Assam Flood Relief</h3>
             <small>
-              A "double your donation" drive for Assam's monsoon floods — everyone who sent whatever
+              A "double your donation" drive for Assam's monsoon floods, everyone who sent whatever
               they could had it matched rupee for rupee, out of my own pocket. The campaign has since
               closed.
             </small>
