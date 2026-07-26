@@ -409,6 +409,43 @@
   color: #8b949e;
 }
 
+/* ── Live palette ──
+   Unlike the playground, this follows the reader's actual theme/accent,
+   so it stays on the light/dark surface tokens instead of a fixed card. */
+.blog-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.blog-palette-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.blog-palette-color {
+  width: 100%;
+  height: 56px;
+  border-radius: var(--ds-radius);
+  border: 1px solid var(--ds-border);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+.blog-palette-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ds-text);
+}
+
+.blog-palette-var {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  color: var(--ds-text-muted);
+}
+
 .blog-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--ds-border);

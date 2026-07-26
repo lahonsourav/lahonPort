@@ -872,10 +872,8 @@ export const POSTS = [
     date: '2026-07-26',
     tag: 'tech',
     excerpt: 'A traditional colophon lists the typeface and the paper stock. Mine lists the actual rules this site follows: one shared token scale, one page shell, and motion that has to earn its keep.',
-    projectLabel: 'See the Colophon page →',
-    projectUrl: '/colophon',
     content: [
-      'A colophon used to be a short note at the back of a book: the typeface, the paper, sometimes the printer\'s mark. Nobody reads a website on paper, so mine covers the closest equivalent: the actual decisions that repeat across every page here, and why I keep making them the same way. This is the long version, with the real code behind each rule, not just the six one-line summaries on the Colophon page.',
+      'A colophon used to be a short note at the back of a book: the typeface, the paper, sometimes the printer\'s mark. Nobody reads a website on paper, so mine covers the closest equivalent: the actual decisions that repeat across every page here, and why I keep making them the same way, with the real code behind each rule.',
 
       { type: 'h2', text: '1. Restraint first' },
 
@@ -904,7 +902,7 @@ export const POSTS = [
 
       { type: 'h2', text: '2. One shell, many projects' },
 
-      'Wormhole is an encrypted messenger. Moksha is a flood-relief campaign. Success Point Gogamukh is a coaching center\'s entire back office. Nothing about those three projects has anything in common, except that all three, plus Assam Flood, Colophon, and the Work page, share the exact same page-shell component: six files, six completely different products, one skeleton underneath. A back button in the same corner, a hero that ends in a share button, a footer that is always last.',
+      'Wormhole is an encrypted messenger. Moksha is a flood-relief campaign. Success Point Gogamukh is a coaching center\'s entire back office. Nothing about those three projects has anything in common, except that all three, plus Assam Flood and the Work page, share the exact same page-shell component: five files, five completely different products, one skeleton underneath. A back button in the same corner, a hero that ends in a share button, a footer that is always last.',
 
       { type: 'code', title: 'shared/PageShell.css, and how a project overrides it', text:
 `.page-shell {
@@ -994,7 +992,9 @@ React.useEffect(() => {
 
       { type: 'playground' },
 
-      'That is the same mechanism the "Accent" swatch on the Colophon page reflects live: it is not a screenshot, it is var(--ds-green) rendered on the page you are reading right now.',
+      'That live-updating "Accent" swatch above is the same mechanism running the actual palette below: not screenshots, var(--ds-bg), var(--ds-green), and the rest, rendered on the page you are reading right now, following your actual theme and accent choice.',
+
+      { type: 'palette' },
 
       { type: 'h2', text: '6. Quiet defaults' },
 
@@ -1027,7 +1027,7 @@ input:focus-visible,
 
       { type: 'h2', text: 'Why write any of this down' },
 
-      'Mostly so I keep following my own rules. It is easy to cut a corner on the tenth project page that felt fine to cut on the first, and much harder to do that once the rule is written down somewhere I might read it again, with the actual code next to it instead of just a vague memory of the intent. If you want the shorter, six-line version of these principles, the Colophon page has it.',
+      'Mostly so I keep following my own rules. It is easy to cut a corner on the tenth project page that felt fine to cut on the first, and much harder to do that once the rule is written down somewhere I might read it again, with the actual code and the live tokens right next to it instead of just a vague memory of the intent.',
     ],
   },
 ];

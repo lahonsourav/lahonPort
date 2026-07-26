@@ -5,6 +5,7 @@ import { readMins } from './readingTime';
 import { trackBlogRead } from '../../lib/achievements';
 import MermaidDiagram from './MermaidDiagram';
 import TokenPlayground from './TokenPlayground';
+import LivePalette from './LivePalette';
 import BackHome from '../shared/BackHome';
 import ShareButton from '../share/ShareButton';
 import PageFooter from '../shared/PageFooter';
@@ -19,10 +20,11 @@ const TAG_COLORS = {
 };
 
 // Posts hold either plain-string paragraphs or typed blocks
-// ({ type: 'h2' | 'h3' | 'diagram' | 'table' | 'list' | 'note' | 'code' | 'playground' }).
+// ({ type: 'h2' | 'h3' | 'diagram' | 'table' | 'list' | 'note' | 'code' | 'playground' | 'palette' }).
 // 'diagram' blocks hold Mermaid syntax, rendered via MermaidDiagram.
 // 'code' blocks hold a plain-text snippet, rendered in a <pre><code>.
 // 'playground' renders the interactive TokenPlayground widget, no params.
+// 'palette' renders the live LivePalette token swatches, no params.
 const renderBlock = (block, i) => {
   if (typeof block === 'string') {
     const spaceIdx = block.indexOf(' ');
@@ -86,6 +88,8 @@ const renderBlock = (block, i) => {
       );
     case 'playground':
       return <TokenPlayground key={i} />;
+    case 'palette':
+      return <LivePalette key={i} />;
     default:
       return null;
   }
