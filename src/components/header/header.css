@@ -128,8 +128,8 @@ header::after {
   border: 1px solid var(--ds-border);
   border-radius: var(--ds-radius);
   overflow: hidden;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
-  z-index: 20;
+  box-shadow: var(--ds-shadow-lg);
+  z-index: var(--ds-z-dropdown);
 }
 
 .hero-search__result {

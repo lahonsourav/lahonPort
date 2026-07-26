@@ -27,7 +27,7 @@
 }
 
 .blog-hero-title {
-  font-size: 2.5rem;
+  font-size: var(--ds-text-hero);
   font-weight: 700;
   color: var(--ds-text);
   letter-spacing: -0.02em;
@@ -518,7 +518,7 @@
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .blog-hero-title {
-    font-size: 2rem;
+    font-size: var(--ds-text-hero-sm);
   }
 
   .blog-post-title {

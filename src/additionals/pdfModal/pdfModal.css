@@ -1,7 +1,7 @@
 .pdf-modal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 5000;
+  z-index: var(--ds-z-modal);
   background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;

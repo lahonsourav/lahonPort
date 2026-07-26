@@ -2,7 +2,7 @@
   position: fixed;
   top: 1.25rem;
   right: 4.25rem;
-  z-index: 3000;
+  z-index: var(--ds-z-fixed);
 }
 
 .accent-picker__btn {

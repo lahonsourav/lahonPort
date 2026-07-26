@@ -2,7 +2,7 @@
   position: fixed;
   top: 1.25rem;
   right: 7.25rem;
-  z-index: 3000;
+  z-index: var(--ds-z-fixed);
   width: 2.75rem;
   height: 2.75rem;
   display: flex;
