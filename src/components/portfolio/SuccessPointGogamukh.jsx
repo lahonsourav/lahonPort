@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './successpointgogamukh.css';
 import ShareButton from '../share/ShareButton';
 import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
+import '../shared/PageShell.css';
 
 import landingShot from '../../images/spg/landing.webp';
 import courseDetailShot from '../../images/spg/course-detail.webp';
@@ -74,7 +76,7 @@ function FeatureGrid({ items }) {
 
 const SuccessPointGogamukh = () => {
   return (
-    <div className="spgp-page">
+    <div className="spgp-page page-shell">
       <BackHome />
       {/* ── Hero ── */}
       <div className="spgp-hero">
@@ -115,7 +117,7 @@ const SuccessPointGogamukh = () => {
 
       {/* ── Public website ── */}
       <div className="spgp-section">
-        <h2 className="spgp-section-h">The Public Website</h2>
+        <h2 className="spgp-section-h section-title">The Public Website</h2>
         <p className="spgp-section-sub">
           The front door: a fast, mobile-first marketing site built to convert a parent
           searching on their phone at night into an admission.
@@ -152,7 +154,7 @@ const SuccessPointGogamukh = () => {
 
       {/* ── Accounts & Auth ── */}
       <div className="spgp-section">
-        <h2 className="spgp-section-h">Accounts & Authentication</h2>
+        <h2 className="spgp-section-h section-title">Accounts & Authentication</h2>
         <p className="spgp-section-sub">
           Students and admins log in with just a phone number and an SMS OTP — no
           passwords to forget or leak. Faculty get a dedicated invite/join flow.
@@ -177,7 +179,7 @@ const SuccessPointGogamukh = () => {
 
       {/* ── Student dashboard ── */}
       <div className="spgp-section">
-        <h2 className="spgp-section-h">Student Dashboard</h2>
+        <h2 className="spgp-section-h section-title">Student Dashboard</h2>
         <p className="spgp-section-sub">
           Everything an enrolled student needs — courses, live classes, recordings, and
           notifications — in one mobile-first dashboard.
@@ -201,7 +203,7 @@ const SuccessPointGogamukh = () => {
 
       {/* ── Live classes ── */}
       <div className="spgp-section">
-        <h2 className="spgp-section-h">Live Online Classes (Staff-run)</h2>
+        <h2 className="spgp-section-h section-title">Live Online Classes (Staff-run)</h2>
         <p className="spgp-section-sub">
           The centerpiece feature — faculty and admins run genuine live classes with
           curriculum structure, watermarked playback, and full attendance logs.
@@ -265,7 +267,7 @@ const SuccessPointGogamukh = () => {
 
       {/* ── Admin dashboard ── */}
       <div className="spgp-section">
-        <h2 className="spgp-section-h">Admin Dashboard</h2>
+        <h2 className="spgp-section-h section-title">Admin Dashboard</h2>
         <p className="spgp-section-sub">
           The operational control center — courses, students, faculty, enrollments,
           announcements, and a fully auditable trail of every change.
@@ -310,7 +312,7 @@ const SuccessPointGogamukh = () => {
 
       {/* ── Master dashboard ── */}
       <div className="spgp-section">
-        <h2 className="spgp-section-h">Master Dashboard — Admin + Developer Billing</h2>
+        <h2 className="spgp-section-h section-title">Master Dashboard — Admin + Developer Billing</h2>
         <p className="spgp-section-sub">
           Everything an admin can do, plus the tools I use myself to track this project's
           costs and the client's payments against them.
@@ -342,7 +344,7 @@ const SuccessPointGogamukh = () => {
 
       {/* ── Notable technical details ── */}
       <div className="spgp-section">
-        <h2 className="spgp-section-h">Under the Hood</h2>
+        <h2 className="spgp-section-h section-title">Under the Hood</h2>
         <p className="spgp-section-sub">
           Built on Next.js App Router with Server Actions and Prisma/PostgreSQL —
           server-driven, no client-side state management framework, no optimistic-UI
@@ -404,7 +406,7 @@ const SuccessPointGogamukh = () => {
         </div>
       </div>
 
-      <div className="spgp-page-footer">Copyright © 2026 lahon.in/success-point-gogamukh</div>
+      <PageFooter>Copyright © 2026 lahon.in/success-point-gogamukh</PageFooter>
     </div>
   );
 };

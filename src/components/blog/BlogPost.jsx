@@ -6,6 +6,7 @@ import { trackBlogRead } from '../../lib/achievements';
 import MermaidDiagram from './MermaidDiagram';
 import BackHome from '../shared/BackHome';
 import ShareButton from '../share/ShareButton';
+import PageFooter from '../shared/PageFooter';
 import './blog.css';
 
 const TAG_COLORS = {
@@ -145,6 +146,8 @@ const BlogPost = () => {
           </div>
         )}
       </div>
+
+      <PageFooter>Copyright © 2026 lahon.in/blog</PageFooter>
     </div>
   );
 };

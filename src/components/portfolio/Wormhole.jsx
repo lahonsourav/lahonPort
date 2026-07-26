@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './wormhole.css';
 import ShareButton from '../share/ShareButton';
 import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
+import '../shared/PageShell.css';
 
 // ─── Static phone chat demo ───────────────────────────────────────────────────
 
@@ -53,7 +55,7 @@ function PhoneDemo() {
 
 const Wormhole = () => {
   return (
-    <div className="wh-page">
+    <div className="wh-page page-shell">
       <BackHome />
 
       {/* ── Hero ── */}
@@ -129,7 +131,7 @@ const Wormhole = () => {
 
       {/* ── How it works ── */}
       <div className="wh-how">
-        <h2 className="wh-section-h">How it works — in plain words</h2>
+        <h2 className="wh-section-h section-title">How it works — in plain words</h2>
         <div className="wh-steps">
           {[
             { n: '01', title: 'Agree on a secret word', body: 'You and your friend pick a shared room word. It’s how your phones find each other — like both walking up to the same meeting point.' },
@@ -148,7 +150,7 @@ const Wormhole = () => {
 
       {/* ── Privacy, honestly ── */}
       <div className="wh-privacy">
-        <h2 className="wh-section-h">Private by design — and honest about it</h2>
+        <h2 className="wh-section-h section-title">Private by design — and honest about it</h2>
         <p className="wh-privacy-sub">No fine print. Here’s exactly where your stuff lives and who can see what.</p>
         <div className="wh-privacy-grid">
           {[
@@ -168,7 +170,7 @@ const Wormhole = () => {
 
       {/* ── Little questions ── */}
       <div className="wh-faq">
-        <h2 className="wh-section-h">Little questions, straight answers</h2>
+        <h2 className="wh-section-h section-title">Little questions, straight answers</h2>
         <div className="wh-faq-list">
           {[
             { q: 'What if my friend is offline?', a: 'Your message waits on your phone with a small 🕐 and sends itself the moment you’re both online. Nothing is lost.' },
@@ -217,7 +219,7 @@ const Wormhole = () => {
         </div>
       </div>
 
-      <div className="wh-page-footer">Copyright © 2026 lahon.in/wormhole</div>
+      <PageFooter>Copyright © 2026 lahon.in/wormhole</PageFooter>
     </div>
   );
 };

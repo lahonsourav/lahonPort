@@ -2,6 +2,7 @@ import React from 'react';
 import './lazykit.css';
 import ShareButton from '../share/ShareButton';
 import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
 
 const LazyKit = () => {
     return (
@@ -345,6 +346,8 @@ const LazyKit = () => {
                     </a>
                 </div>
             </div>
+
+            <PageFooter>Copyright © 2026 lahon.in/lazykit</PageFooter>
         </div>
     );
 };

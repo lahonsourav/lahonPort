@@ -1,0 +1,27 @@
+/* Common outer wrapper for full-page project/campaign detail pages —
+   pair with the page's own class for page-specific overrides, e.g.
+   className="wh-page page-shell", and scope those overrides with
+   `.wh-page.page-shell { ... }` so they reliably beat this rule
+   regardless of CSS bundle order (same specificity as a bare
+   `.wh-page` would tie with this class and depend on source order). */
+.page-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+  background: var(--ds-bg);
+  color: var(--ds-text);
+  font-family: var(--ds-font);
+}
+
+/* Common "section heading" style used across project pages. */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}

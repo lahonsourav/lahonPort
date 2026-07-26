@@ -35,20 +35,34 @@
 }
 .bcard-card--back {
   transform: rotateY(180deg);
-  padding: calc(var(--bc-scale) * 56px) calc(var(--bc-scale) * 60px);
+  padding: calc(var(--bc-scale) * 40px) calc(var(--bc-scale) * 46px);
   display: flex;
   flex-direction: column;
 }
 
-/* quiet maker's tick */
-.bcard-card--front::after {
-  content: "";
+.bcard-contact-row {
   position: absolute;
   left: calc(var(--bc-scale) * 34px);
-  bottom: calc(var(--bc-scale) * 30px);
-  width: calc(var(--bc-scale) * 22px);
-  height: 1px;
-  background: var(--ds-border);
+  bottom: calc(var(--bc-scale) * 24px);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--bc-scale) * 8px);
+  font-size: clamp(8.5px, calc(var(--bc-scale) * 12px), 12px);
+}
+
+.bcard-contact-row a {
+  color: var(--ds-text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+.bcard-contact-row a:hover {
+  color: var(--ds-green);
+  border-bottom-color: var(--ds-green);
+}
+.bcard-contact-row .bcard-dot {
+  color: var(--ds-text-muted);
+  opacity: 0.5;
 }
 
 .bcard-hint {
@@ -110,50 +124,82 @@
   color: var(--ds-green);
 }
 
-/* ---- back ---- */
-.bcard-name {
-  font-size: clamp(13px, calc(var(--bc-scale) * 27px), 27px);
-  font-weight: 500;
-  letter-spacing: 0.5px;
+/* ---- back: contact form ---- */
+.bcard-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: calc(var(--bc-scale) * 12px);
+}
+
+.bcard-form-row {
+  display: flex;
+  gap: calc(var(--bc-scale) * 12px);
+}
+
+.bcard-form-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.bcard-input,
+.bcard-textarea {
+  width: 100%;
+  border: 1px solid var(--ds-border);
+  border-radius: calc(var(--bc-scale) * 6px);
+  background: var(--ds-bg);
   color: var(--ds-text);
-  margin: 0;
+  font-family: var(--ds-font);
+  font-size: clamp(11px, calc(var(--bc-scale) * 14px), 14px);
+  padding: calc(var(--bc-scale) * 8px) calc(var(--bc-scale) * 10px);
+  outline: none;
+  transition: var(--ds-transition);
 }
-.bcard-rule {
-  height: 1px;
-  background: var(--ds-border);
-  margin: calc(var(--bc-scale) * 22px) 0 calc(var(--bc-scale) * 30px);
-}
-.bcard-rows {
-  display: grid;
-  grid-template-columns: calc(var(--bc-scale) * 96px) 1fr;
-  column-gap: calc(var(--bc-scale) * 26px);
-  row-gap: calc(var(--bc-scale) * 20px);
-  align-items: baseline;
-}
-.bcard-k {
-  font-size: clamp(8px, calc(var(--bc-scale) * 11.5px), 11.5px);
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
+.bcard-input::placeholder,
+.bcard-textarea::placeholder {
   color: var(--ds-text-muted);
-  line-height: 1.4;
 }
-.bcard-v {
-  font-size: clamp(10px, calc(var(--bc-scale) * 17px), 17px);
-  color: var(--ds-text);
-  line-height: 1.4;
+.bcard-input:focus,
+.bcard-textarea:focus {
+  border-color: var(--ds-green-btn);
 }
-.bcard-v a {
-  color: var(--ds-green);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.18s ease;
+.bcard-input--error {
+  border-color: var(--ds-error);
 }
-.bcard-v a:hover {
-  border-bottom-color: var(--ds-green);
+
+.bcard-textarea {
+  flex: 1;
+  min-height: 0;
+  resize: none;
 }
-.bcard-back-tick {
-  margin-top: auto;
+
+.bcard-form-error {
+  margin: 0;
+  font-size: clamp(8px, calc(var(--bc-scale) * 10.5px), 10.5px);
+  color: var(--ds-error);
+}
+
+.bcard-send-btn {
   align-self: flex-end;
+  padding: calc(var(--bc-scale) * 8px) calc(var(--bc-scale) * 20px);
+  border: none;
+  border-radius: calc(var(--bc-scale) * 6px);
+  background: var(--ds-green-btn);
+  color: #fff;
+  font-family: var(--ds-font);
+  font-weight: 600;
+  font-size: clamp(11px, calc(var(--bc-scale) * 13px), 13px);
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+.bcard-send-btn:hover {
+  background: var(--ds-green);
+}
+
+.bcard-back-tick {
+  position: absolute;
+  left: calc(var(--bc-scale) * 34px);
+  bottom: calc(var(--bc-scale) * 24px);
   font-size: clamp(8px, calc(var(--bc-scale) * 11.5px), 11.5px);
   letter-spacing: 2.5px;
   text-transform: uppercase;

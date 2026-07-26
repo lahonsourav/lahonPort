@@ -699,13 +699,6 @@
 }
 
 /* ── Footer ── */
-.ic-page-footer {
-  text-align: center;
-  font-size: 0.78rem;
-  color: var(--ds-text-muted);
-  padding-bottom: 1rem;
-}
-
 /* ── Responsive ── */
 @media screen and (max-width: 900px) {
   .ic-features      { grid-template-columns: 1fr 1fr; }

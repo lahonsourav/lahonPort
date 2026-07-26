@@ -6,6 +6,8 @@ import "./assamFlood.css";
 import ReactAlert from "../../additionals/customAlerts/CustomAlert";
 import PdfModal from "../../additionals/pdfModal/PdfModal";
 import BackHome from "../shared/BackHome";
+import PageFooter from "../shared/PageFooter";
+import "../shared/PageShell.css";
 import assamFront from "../../images/assam-flood-front.png";
 import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
@@ -183,7 +185,7 @@ const AssamFlood = () => {
   const closeAlert = () => setShowAlert(false);
 
   return (
-    <div className="af_container">
+    <div className="af_container page-shell">
       {showAlert && (
         <ReactAlert message={alertMessage} onClose={closeAlert} type={alertType} />
       )}
@@ -453,7 +455,7 @@ const AssamFlood = () => {
         </div>
       </div>
 
-      <div className="af_page_footer">A Moksha Initiative</div>
+      <PageFooter>A Moksha Initiative</PageFooter>
     </div>
   );
 };
