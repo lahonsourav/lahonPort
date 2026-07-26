@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
 import "./pdfModal.css";
 
 const PdfModal = ({ src, title, onClose }) => {
@@ -26,7 +27,12 @@ const PdfModal = ({ src, title, onClose }) => {
 
   if (!src) return null;
 
-  return (
+  // Portal straight to <body>: rendering in place would nest the fixed
+  // overlay inside whichever section owns it, and sections on this page
+  // are each their own stacking context (see FlowerVine.css), so a later
+  // sibling section would paint over an in-place overlay despite its
+  // higher z-index.
+  return ReactDOM.createPortal(
     <div className="pdf-modal-overlay" onClick={onClose}>
       <div className="pdf-modal" onClick={(e) => e.stopPropagation()}>
         <div className="pdf-modal-bar">
@@ -37,7 +43,8 @@ const PdfModal = ({ src, title, onClose }) => {
         </div>
         <iframe src={src} title={title} className="pdf-modal-frame" />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
