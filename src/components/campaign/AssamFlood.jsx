@@ -14,9 +14,9 @@ import uttoronPayment from "../../images/uttoron-gogamukh-payment.jpg";
 
 const VKFC_PDF_URL = "https://drive.google.com/file/d/1WB8A3uMzrw0oWYOHHLFw3NHx12rZL9lc/preview";
 
-const RAISED = 7824;
+const RAISED = 8325;
 const DOUBLED = RAISED * 2;
-const TOPUP = 2176;
+const TOPUP = 1675;
 const GRAND_TOTAL = DOUBLED + TOPUP;
 const CODE_LINE_1 = `raised = ${RAISED}`;
 const CODE_LINE_2 = "matched = raised * 2";
@@ -39,6 +39,7 @@ const DONORS = [
   { title: "Shady", emoji: "😎", name: "Sandeep", amount: 1000 },
   { title: "Conjoos", emoji: "🪙", name: "Tanuj", amount: 1 },
   { title: "Hats Off", emoji: "🎩", name: "Harinarayan", amount: 83 },
+  { title: "Devo ka", emoji: "🙏", name: "Dev", amount: 501 },
 ];
 
 const AssamFlood = () => {
