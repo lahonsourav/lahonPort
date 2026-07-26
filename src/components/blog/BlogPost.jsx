@@ -1,9 +1,11 @@
 import React from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { POSTS } from './posts';
 import { readMins } from './readingTime';
 import { trackBlogRead } from '../../lib/achievements';
 import MermaidDiagram from './MermaidDiagram';
+import BackHome from '../shared/BackHome';
+import ShareButton from '../share/ShareButton';
 import './blog.css';
 
 const TAG_COLORS = {
@@ -78,7 +80,6 @@ const renderBlock = (block, i) => {
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const post = POSTS.find(p => p.slug === slug);
 
   React.useEffect(() => {
@@ -93,7 +94,7 @@ const BlogPost = () => {
     return (
       <div className="blog-page">
         <div className="blog-post-wrap">
-          <button className="blog-back" onClick={() => navigate('/blog')}>← Blog</button>
+          <BackHome className="blog-back" to="/blog" label="← Blog" />
           <p className="blog-not-found">Story not found.</p>
         </div>
       </div>
@@ -105,7 +106,7 @@ const BlogPost = () => {
   return (
     <div className="blog-page">
       <div className="blog-post-wrap">
-        <button className="blog-back" onClick={() => navigate('/blog')}>← Blog</button>
+        <BackHome className="blog-back" to="/blog" label="← Blog" />
 
         <div className="blog-post-header">
           {post.tag && (
@@ -115,6 +116,7 @@ const BlogPost = () => {
           )}
           <span className="blog-date">{post.date}</span>
           <span className="blog-read-time">{readMins(post.content)} min read</span>
+          <ShareButton title={post.title} className="blog-share-btn" />
         </div>
 
         <h1 className="blog-post-title">{post.title}</h1>
