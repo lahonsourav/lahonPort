@@ -73,6 +73,10 @@
     justify-content: center;
 }
 
+.lk_share_btn {
+    margin-top: 1.25rem;
+}
+
 /* ── Buttons ── */
 .lk_btn {
     padding: 0.65rem 1.4rem;

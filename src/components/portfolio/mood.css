@@ -514,13 +514,13 @@
   padding: 0 1.5rem;
 }
 
-.ic-section-h {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ds-text);
-  text-align: center;
-  margin: 0 0 2rem;
-  letter-spacing: -0.5px;
+/* Shares font-size/weight/color/text-align/letter-spacing with the
+   shared .section-title — only the larger bottom margin stays
+   page-specific (Mood's sections need more breathing room before the
+   content below). Compound selector so it reliably wins over
+   .section-title regardless of CSS bundle order. */
+.ic-section-h.section-title {
+  margin-bottom: 2rem;
 }
 
 .ic-steps {
@@ -713,7 +713,7 @@
   .ic-features    { grid-template-columns: 1fr; max-width: 420px; }
   .ic-tab-btn     { padding: 0.38rem 0.65rem; font-size: 0.8rem; }
   .ic-phone       { width: 260px; height: 500px; }
-  .ic-section-h   { font-size: 1.25rem; }
+  .ic-section-h.section-title { font-size: 1.25rem; }
   .ic-stack-grid  { grid-template-columns: 1fr; }
   .ic-jp-body     { font-size: 0.9rem; }
 }

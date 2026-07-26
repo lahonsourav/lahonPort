@@ -24,8 +24,8 @@ const LazyKit = () => {
                 <div className="lk_hero_actions">
                     <a href="https://www.npmjs.com/package/@slahon/lazykit" className="lk_btn lk_btn_primary" target="_blank" rel="noreferrer">npm</a>
                     <a href="https://github.com/lahonsourav/lazykit" className="lk_btn lk_btn_secondary" target="_blank" rel="noreferrer">GitHub</a>
-                    <ShareButton title="LazyKit — drop an issue, get a PR" />
                 </div>
+                <ShareButton title="LazyKit — drop an issue, get a PR" className="lk_share_btn" />
             </div>
 
             {/* ── Quickstart ── */}
