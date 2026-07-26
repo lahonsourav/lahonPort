@@ -992,6 +992,8 @@ React.useEffect(() => {
   }
 };` },
 
+      { type: 'playground' },
+
       'That is the same mechanism the "Accent" swatch on the Colophon page reflects live: it is not a screenshot, it is var(--ds-green) rendered on the page you are reading right now.',
 
       { type: 'h2', text: '6. Quiet defaults' },

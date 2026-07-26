@@ -6,6 +6,13 @@ import BackHome from '../shared/BackHome';
 import PageFooter from '../shared/PageFooter';
 import '../shared/PageShell.css';
 
+const STATS = [
+  { n: '6', label: 'pages share this exact shell' },
+  { n: '14', label: 'lazy-loaded routes, one chunk each' },
+  { n: '16', label: 'scroll-triggered fade-up entrances' },
+  { n: '5', label: 'shared token groups in design-system.css' },
+];
+
 const PALETTE = [
   { var: '--ds-bg', label: 'Background' },
   { var: '--ds-surface', label: 'Surface' },
@@ -71,6 +78,18 @@ const Colophon = () => {
               <span className="cl_principle_n">{p.n}</span>
               <h3 className="cl_principle_title">{p.title}</h3>
               <p className="cl_principle_body">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="cl_section">
+        <h2 className="section-title">By the numbers</h2>
+        <div className="cl_stats">
+          {STATS.map((s) => (
+            <div className="cl_stat" key={s.label}>
+              <span className="cl_stat_n">{s.n}</span>
+              <span className="cl_stat_label">{s.label}</span>
             </div>
           ))}
         </div>

@@ -82,6 +82,38 @@
   color: var(--ds-text-muted);
 }
 
+/* ── By the numbers ── */
+.cl_stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.cl_stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg, 12px);
+}
+
+.cl_stat_n {
+  font-family: var(--ds-font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ds-green);
+  line-height: 1;
+}
+
+.cl_stat_label {
+  font-size: 0.85rem;
+  color: var(--ds-text-muted);
+  line-height: 1.5;
+}
+
 /* ── Live palette ── */
 .cl_palette_note {
   font-size: 0.88rem;
