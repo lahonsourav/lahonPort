@@ -3,6 +3,7 @@ import './mood.css';
 import ShareButton from '../share/ShareButton';
 import BackHome from '../shared/BackHome';
 import PageFooter from '../shared/PageFooter';
+import '../shared/PageShell.css';
 
 // ─── Home screen ──────────────────────────────────────────────────────────────
 
@@ -482,7 +483,7 @@ const Mood = () => {
 
       {/* ── How it works ── */}
       <div className="ic-how">
-        <h2 className="ic-section-h">How it works</h2>
+        <h2 className="ic-section-h section-title">How it works</h2>
         <div className="ic-steps">
           {[
             { n: '01', title: 'Check in anytime', body: 'Pick from 35+ emotions — Ecstatic to Anxious. Tap a mood pill, add a private note if you want, and you\'re done. Takes under 10 seconds.' },
@@ -523,7 +524,7 @@ const Mood = () => {
 
       {/* ── Privacy ── */}
       <div className="ic-privacy">
-        <h2 className="ic-section-h">Built private by default</h2>
+        <h2 className="ic-section-h section-title">Built private by default</h2>
         <p className="ic-privacy-sub">Your mood data never leaves your device unless you choose otherwise.</p>
         <div className="ic-privacy-grid">
           {[
@@ -543,7 +544,7 @@ const Mood = () => {
 
       {/* ── Tech stack ── */}
       <div className="ic-stack">
-        <h2 className="ic-section-h">Tech stack</h2>
+        <h2 className="ic-section-h section-title">Tech stack</h2>
         <div className="ic-stack-grid">
           {[
             { label: 'React Native',   sub: 'Cross-platform mobile — single codebase for Android & iOS' },

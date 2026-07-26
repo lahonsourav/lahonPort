@@ -25,7 +25,11 @@
   -webkit-backface-visibility: hidden;
   background: var(--ds-surface);
   border: 1px solid var(--ds-border);
-  border-radius: var(--ds-radius);
+  /* Nested inside .contact__card-wrap's 4px padding, whose own
+     border-radius is --ds-radius-xl — subtracting the padding keeps
+     the two corners concentric instead of the inner one looking
+     tighter than the outer frame it sits inside. */
+  border-radius: calc(var(--ds-radius-xl) - 4px);
   box-shadow: 0 26px 55px -28px rgba(0, 0, 0, 0.55);
 }
 .bcard-card--front {

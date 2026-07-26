@@ -108,11 +108,11 @@ const SuccessPointGogamukh = () => {
           <Link to="/blog/building-success-point-gogamukh" className="spgp-btn spgp-btn-secondary">
             Read the Tech Deep-Dive
           </Link>
-          <ShareButton title="Success Point Gogamukh — a full coaching-center platform" />
         </div>
         <div className="spgp-client-pill">
           📌 A real, in-production client project — not a template or a demo
         </div>
+        <ShareButton title="Success Point Gogamukh — a full coaching-center platform" className="spgp-share-btn" />
       </div>
 
       {/* ── Public website ── */}
