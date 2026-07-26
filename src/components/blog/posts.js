@@ -1,11 +1,25 @@
 import landingShot from '../../images/spg/landing.webp';
 import courseDetailShot from '../../images/spg/course-detail.webp';
+import searchShot from '../../images/spg/search.webp';
 import loginShot from '../../images/spg/login.webp';
+import facultyJoinShot from '../../images/spg/faculty-join.webp';
 import studentDashboardShot from '../../images/spg/student-dashboard.webp';
+import studentRecordingsShot from '../../images/spg/student-recordings.webp';
+import facultyDashboardShot from '../../images/spg/faculty-dashboard.webp';
+import facultyStudentsShot from '../../images/spg/faculty-students.webp';
 import goLiveShot from '../../images/spg/go-live.webp';
 import adminAnnouncementsShot from '../../images/spg/admin-announcements.webp';
 import adminDashboardShot from '../../images/spg/admin-dashboard.webp';
+import adminCoursesShot from '../../images/spg/admin-courses.webp';
+import adminStudentsShot from '../../images/spg/admin-students.webp';
+import adminFacultyShot from '../../images/spg/admin-faculty.webp';
+import adminEnrollmentsShot from '../../images/spg/admin-enrollments.webp';
+import adminAuditLogShot from '../../images/spg/admin-audit-log.webp';
+import adminLoginActivityShot from '../../images/spg/admin-login-activity.webp';
+import adminDevChargeShot from '../../images/spg/admin-dev-charge.webp';
 import masterOverviewShot from '../../images/spg/master-overview.webp';
+import masterServicesShot from '../../images/spg/master-services.webp';
+import masterPaymentsShot from '../../images/spg/master-payments.webp';
 
 export const POSTS = [
   {
@@ -569,12 +583,12 @@ export const POSTS = [
     date: '2026-07-21',
     tag: 'tech',
     excerpt: 'Next.js App Router and Server Actions, a Prisma/PostgreSQL schema built around live classes, phone+OTP auth with per-attempt SMS cost tracking, Web Push, an offline-ready PWA, and an immutable audit log: the full engineering breakdown of a real client platform.',
-    projectLabel: 'Learn more about Success Point Gogamukh →',
-    projectUrl: '/success-point-gogamukh',
+    projectLabel: 'See the full feature tour →',
+    projectUrl: '/blog/coaching-center-management-system',
     downloadLabel: '🎓 Visit Success Point Gogamukh',
     downloadUrl: 'https://www.successpointgogamukh.com/',
     content: [
-      'Success Point Gogamukh started as "build a website for a coaching center" and ended up as a small SaaS: a public marketing site plus four role-based dashboards (student, faculty, admin, master) running live-streamed classes, enrollment workflows, push notifications, and even the developer\'s own billing against the client. This post is the engineering deep-dive: architecture, schema, auth, the live-class join-token design, push, the PWA/service-worker caching strategy, and the audit trail. If you just want the plain-language tour of what the site does, the project page has that version.',
+      'Success Point Gogamukh started as "build a website for a coaching center" and ended up as a small SaaS: a public marketing site plus four role-based dashboards (student, faculty, admin, master) running live-streamed classes, enrollment workflows, push notifications, and even the developer\'s own billing against the client. This post is the engineering deep-dive: architecture, schema, auth, the live-class join-token design, push, the PWA/service-worker caching strategy, and the audit trail. If you just want the plain-language tour of what the site does, with screenshots of every screen, that post is linked below.',
 
       { type: 'h2', text: '1. Architecture Overview' },
 
@@ -778,46 +792,61 @@ export const POSTS = [
     date: '2026-07-22',
     tag: 'business',
     excerpt: 'What I built for Success Point Gogamukh wasn\'t just a website: it\'s a full operating system for a coaching business. Every feature, every screen, and what it would take to build one for your institute.',
-    projectLabel: 'See it live: Success Point Gogamukh →',
-    projectUrl: '/success-point-gogamukh',
     downloadLabel: '🎓 Visit Success Point Gogamukh',
     downloadUrl: 'https://www.successpointgogamukh.com/',
     content: [
-      'When Success Point, a coaching center in Gogamukh, Assam, asked me for "a website," what they actually needed (like most coaching centers running NEET, JEE, board-exam, or government-exam batches) was something much bigger: a way to be found by new students, a way to run live classes without a third-party app, a way to track who owes what, and a way to know who\'s actually logging in. So that\'s what got built: a public site that wins admissions, plus student, faculty, admin, and owner dashboards that run the whole operation behind it. Every screenshot below is the real, running product.',
+      'When Success Point, a coaching center in Gogamukh, Assam, asked me for "a website," what they actually needed (like most coaching centers running NEET, JEE, board-exam, or government-exam batches) was something much bigger: a way to be found by new students, a way to run live classes without a third-party app, a way to track who owes what, and a way to know who\'s actually logging in. So that\'s what got built: a public site that wins admissions, plus student, faculty, admin, and owner dashboards that run the whole operation behind it. Every screenshot below is the real, running product, not a mockup.',
 
       { type: 'h2', text: 'A public website that actually converts' },
 
-      'A parent comparing coaching centers on their phone at 10pm needs three things fast: what it costs, who teaches it, and how to reach a real person. The public site leads with exactly that: exam category badges, program cards, transparent fees with offer pricing shown struck-through against the original, and a floating WhatsApp button that\'s always one tap away.',
+      'A parent comparing coaching centers on their phone at 10pm needs three things fast: what it costs, who teaches it, and how to reach a real person. The public site leads with exactly that: exam category badges, program cards, transparent fees with offer pricing shown struck-through against the original, and a floating WhatsApp button that\'s always one tap away (it auto-hides when the footer scrolls into view so it never covers it).',
 
       { type: 'image', src: landingShot, alt: 'Coaching center landing page with hero, programs, and demo-class CTA', caption: 'Landing page: hero, exam badges, program cards, demo-class CTA' },
 
-      { type: 'image', src: courseDetailShot, alt: 'Course detail page with subjects, fees, and faculty', caption: 'Course detail: subjects, monthly/complete fees, assigned faculty, no "call for pricing"' },
+      { type: 'gallery', items: [
+        { src: courseDetailShot, alt: 'Course detail page with subjects, fees, and faculty', caption: 'Course detail: subjects, monthly/complete fees, assigned faculty, no "call for pricing"' },
+        { src: searchShot, alt: 'Search results page for a course or subject', caption: 'Search: find any course or subject by name from the header' },
+      ] },
 
       { type: 'list', items: [
         'Search: find any course or subject by name from the header',
         'Enrollment requests: students submit a payment receipt number; staff verify or reject it',
-        'SEO: per-page metadata, Open Graph cards, JSON-LD on course pages, sitemap, robots.txt',
+        'SEO: per-page metadata, Open Graph/Twitter cards, JSON-LD on course pages, sitemap, robots.txt, noindex on every authenticated route',
         'Installable PWA: Android/Chrome install prompt, iOS "Add to Home Screen", offline-ready',
         'Location & contact: address, embedded map, click-to-call, pre-filled WhatsApp link',
+        'Floating WhatsApp button: always one tap away, auto-hides over the footer',
       ] },
 
       { type: 'h2', text: 'No passwords, ever' },
 
       'Students and admins log in with a phone number and an SMS OTP, nothing to forget, nothing to leak. Faculty get a separate invite link to verify their phone and set up their account. Every login attempt is logged with device, location, and SMS cost, so the owner always knows who\'s actually using the system.',
 
-      { type: 'image', src: loginShot, alt: 'Phone number login screen', caption: 'Login: phone + OTP, no password anywhere in the system' },
+      { type: 'gallery', items: [
+        { src: loginShot, alt: 'Phone number login screen', caption: 'Login: phone + OTP, no password anywhere in the system' },
+        { src: facultyJoinShot, alt: 'Faculty invite and join page', caption: 'Faculty join: verify by phone, no admin typing in a password for them' },
+      ] },
 
       { type: 'h2', text: 'A dashboard for every role' },
 
       'Four roles, four dashboards: student, faculty, admin, and (unusually) a master role for the owner, layered on top of admin with its own billing tools. Nobody sees more than they need to.',
 
-      { type: 'image', src: studentDashboardShot, alt: 'Student dashboard with enrolled and available courses', caption: 'Student dashboard: enrolled courses, browse and request new enrollments, join live classes' },
+      { type: 'gallery', items: [
+        { src: studentDashboardShot, alt: 'Student dashboard with enrolled and available courses', caption: 'Student dashboard: enrolled courses, browse and request new enrollments, join live classes' },
+        { src: studentRecordingsShot, alt: 'Recordings and materials page filterable by subject and chapter', caption: 'Recordings & materials: filterable by subject, chapter, and topic' },
+      ] },
 
       { type: 'h2', text: 'Live classes without a third-party app' },
 
       'This is the feature that turns a coaching center\'s YouTube-and-WhatsApp workaround into an actual product: staff pick a course → subject → chapter → topic, paste a YouTube video ID, and go live. The same class can be cross-linked to reach students in other batches at once. Ending the class cuts off every watching student automatically. Every past session becomes a searchable recording, every join is logged for attendance, and playback is watermarked with the viewer\'s identity as a leak deterrent.',
 
       { type: 'image', src: goLiveShot, alt: 'Go Live panel with course, subject, chapter, and topic picker', caption: 'Go Live: curriculum picker, cross-linking to other batches, live status at a glance' },
+
+      'Faculty get their own dashboard too: the subjects they\'re assigned to, quick stats, and a roster of every student in those subjects, separate from the admin\'s wider view.',
+
+      { type: 'gallery', items: [
+        { src: facultyDashboardShot, alt: 'Faculty dashboard with assigned subjects and quick stats', caption: 'Faculty dashboard: assigned subjects, quick stats' },
+        { src: facultyStudentsShot, alt: 'Faculty view of their students', caption: "Faculty's student roster" },
+      ] },
 
       { type: 'h2', text: 'Push notifications that actually get read' },
 
@@ -831,22 +860,39 @@ export const POSTS = [
 
       { type: 'image', src: adminDashboardShot, alt: 'Admin dashboard home with stats and management tools', caption: 'Admin dashboard: every management tool, live stats, one click away' },
 
+      { type: 'gallery', items: [
+        { src: adminCoursesShot, alt: 'Manage courses table', caption: 'Manage Courses: pricing, enrollment counts, requests, recordings' },
+        { src: adminStudentsShot, alt: 'Manage students table', caption: 'Manage Students: search, enrollment, per-student edit' },
+        { src: adminFacultyShot, alt: 'Manage faculty page', caption: 'Manage Faculty: subject assignments' },
+        { src: adminEnrollmentsShot, alt: 'Enrollment requests page', caption: 'Enrollment Requests: verify receipts, approve/reject' },
+        { src: adminAuditLogShot, alt: 'Audit log table', caption: 'Audit Log: immutable trail of every change, by actor' },
+        { src: adminLoginActivityShot, alt: 'Login activity table with SMS cost', caption: 'Login Activity: device, location, SMS cost per OTP' },
+        { src: adminDevChargeShot, alt: 'Development charge breakdown, read-only', caption: 'Development Charge: read-only, what\'s owed vs. paid' },
+      ] },
+
       { type: 'table',
         head: ['Tool', 'What it does'],
         rows: [
           ['Manage Courses', 'Create/edit/delete courses and subjects, set fees and offer pricing, assign faculty'],
           ['Manage Students / Faculty', 'View, edit, search, and manage every account'],
+          ['Admins', 'See who has admin access and their activity'],
           ['Enrollment Requests', 'Verify receipt numbers, approve or reject in one click'],
           ['Announcements', 'Push notifications to all students or specific courses'],
           ['Audit Log', 'An immutable trail of every change: who, what, when'],
           ['Login Activity', 'Every OTP attempt with device, location, and SMS cost'],
+          ['Development Charge', 'Read-only: what\'s owed to the developer vs. what\'s been paid, with a site-wide countdown/overdue banner'],
         ] },
 
       { type: 'h2', text: 'And for the owner: what it costs to run' },
 
-      'The master dashboard is the one piece that\'s unusual for a coaching-center product. It\'s where I track what the client owes for building and running their system, and what they\'ve paid, right inside their own app. Live student/course/faculty counts, an itemized services breakdown, and a payment tracker with a due-date countdown the admin sees site-wide.',
+      'The master dashboard is the one piece that\'s unusual for a coaching-center product. It\'s where I track what the client owes for building and running their system, and what they\'ve paid, right inside their own app: the editable counterpart to the read-only Development Charge page admins see. Live student/course/faculty counts, an itemized services breakdown, and a payment tracker with a due-date countdown the admin sees site-wide.',
 
       { type: 'image', src: masterOverviewShot, alt: 'Owner dashboard overview with live counts and billing tools', caption: 'Owner overview: live counts, plus the billing tools behind the scenes' },
+
+      { type: 'gallery', items: [
+        { src: masterServicesShot, alt: 'Services and pricing breakdown', caption: 'Services & Pricing: itemized service vs. development cost breakdown, each active, deferred, or on-demand' },
+        { src: masterPaymentsShot, alt: 'Payment tracking page', caption: 'Payment Tracking: record payments, set the due date that drives the countdown banner' },
+      ] },
 
       { type: 'h2', text: 'Built to actually stay up' },
 
@@ -858,12 +904,13 @@ export const POSTS = [
           ['Auth', 'Phone + SMS OTP (Twilio Verify), no passwords'],
           ['Notifications', 'Web Push (VAPID): standards-based, no third-party push SaaS'],
           ['Offline/installable', 'PWA with a hand-written service worker'],
+          ['Billing', 'Live USD→INR conversion, so SMS cost tracking and the development charge stay accurate day to day'],
           ['Hosting', 'Railway: managed Postgres + app, sized for one institute, not enterprise infra'],
         ] },
 
       'None of the individual pieces are exotic. What makes it worth building is fitting them together into something a coaching center actually runs their business on: real live classes, real fee pages, real SMS cost tracking, a real audit trail nobody can quietly edit.',
 
-      'This exact system (public site, live classes, all four dashboards) is what\'s running in production for Success Point Gogamukh today. If your coaching center, tuition institute, or exam-prep center needs the same thing (a real online presence plus a system to actually run the day-to-day), that\'s what I build. See the live example and the full feature tour below.',
+      'This exact system (public site, live classes, all four dashboards) is what\'s running in production for Success Point Gogamukh today. If your coaching center, tuition institute, or exam-prep center needs the same thing (a real online presence plus a system to actually run the day-to-day), that\'s what I build. The live site is one click away below, and the full engineering write-up (architecture, schema, the join-token design, the audit trail) is its own post.',
     ],
   },
   {
