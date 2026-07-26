@@ -3,7 +3,7 @@ nav {
   border: 1px solid var(--ds-border);
   width: max-content;
   padding: 0.6rem 1.4rem;
-  z-index: 2000;
+  z-index: var(--ds-z-nav);
   position: fixed;
   left: 50%;
   transform: translateX(-50%);

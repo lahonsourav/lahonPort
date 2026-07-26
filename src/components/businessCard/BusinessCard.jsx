@@ -62,6 +62,7 @@ const BusinessCard = () => {
           if (e.target.closest("a")) return;
           setFlipped((f) => !f);
         }}
+        role="button"
       >
         <div className="bcard-card bcard-card--front">
           <div className="bcard-email" ref={emailRef}>

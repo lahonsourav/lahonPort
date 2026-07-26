@@ -131,4 +131,11 @@
   .container.contact__container {
     width: var(--container-width-sm);
   }
+
+  /* iOS Safari auto-zooms the page on focus if an input's font-size
+     is under 16px. */
+  .form-control-text,
+  .form-control-input {
+    font-size: 1rem;
+  }
 }

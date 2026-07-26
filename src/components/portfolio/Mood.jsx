@@ -390,7 +390,6 @@ const Mood = () => {
       {/* ── Hero ── */}
       <div className="ic-hero">
         <div className="ic-hero-logo">
-          <span className="ic-hero-wave">🌊</span>
           <h1 className="ic-hero-title">Innercast</h1>
         </div>
         <p className="ic-hero-sub">

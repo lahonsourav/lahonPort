@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 1.25rem;
   right: 1.25rem;
-  z-index: 3000;
+  z-index: var(--ds-z-fixed);
 }
 
 .achievements-tray__btn {
@@ -59,7 +59,7 @@
   background: var(--ds-surface);
   border: 1px solid var(--ds-border);
   border-radius: var(--ds-radius);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--ds-shadow-lg);
   padding: 0.5rem;
 }
 
@@ -107,6 +107,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+  text-align: left;
 }
 
 .achievements-tray__title {
@@ -125,7 +126,7 @@
   position: fixed;
   bottom: 5.25rem;
   right: 1.25rem;
-  z-index: 3001;
+  z-index: var(--ds-z-toast);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -133,7 +134,7 @@
   border-radius: var(--ds-radius);
   border: 1px solid var(--ds-green-btn);
   background: var(--ds-surface);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--ds-shadow-lg);
   animation: achievement-toast-in 0.3s ease, achievement-toast-out 0.3s ease 3.6s;
 }
 

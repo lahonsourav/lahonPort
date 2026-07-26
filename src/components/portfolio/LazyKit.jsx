@@ -10,7 +10,6 @@ const LazyKit = () => {
 
             {/* ── Hero ── */}
             <div className="lk_hero">
-                <span className="lk_emoji">🦥</span>
                 <h1 className="lk_title">LazyKit</h1>
                 <p className="lk_tagline">Drop an issue, get a PR.</p>
                 <p className="lk_description">

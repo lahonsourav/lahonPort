@@ -79,7 +79,6 @@ const SuccessPointGogamukh = () => {
       {/* ── Hero ── */}
       <div className="spgp-hero">
         <div className="spgp-hero-logo">
-          <span className="spgp-hero-cap">🎓</span>
           <h1 className="spgp-hero-title">Success Point Gogamukh</h1>
         </div>
         <p className="spgp-hero-tagline">"Your Dreams, Our Goal"</p>

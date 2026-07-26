@@ -40,14 +40,8 @@
     border-bottom: 1px solid var(--ds-border);
 }
 
-.lk_emoji {
-    font-size: 5rem;
-    margin-bottom: 1rem;
-    line-height: 1;
-}
-
 .lk_title {
-    font-size: 2.5rem;
+    font-size: var(--ds-text-hero);
     font-weight: 700;
     color: var(--ds-text);
     margin-bottom: 0.5rem;
@@ -595,7 +589,7 @@
 /* ── Responsive ── */
 @media screen and (max-width: 700px) {
     .lk_title {
-        font-size: 2rem;
+        font-size: var(--ds-text-hero-sm);
     }
 
     .lk_tagline {

@@ -26,22 +26,12 @@
   gap: 0.35rem;
   width: fit-content;
   margin: 3.5rem auto 0;
-  padding: 0;
   color: var(--ds-text-muted);
   font-family: var(--ds-font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  cursor: pointer;
   opacity: 0.6;
-  background: none;
-  border: none;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-.cta-scroll-hint:hover {
-  opacity: 1;
-  color: var(--ds-green);
 }
 
 .cta-scroll-chevron {

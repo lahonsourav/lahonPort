@@ -41,6 +41,11 @@
   --ds-font:      'Segoe UI', system-ui, -apple-system, sans-serif;
   --ds-font-mono: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
 
+  /* Type scale — only for sizes reused across multiple components.
+     One-off sizes local to a single element don't need a token here. */
+  --ds-text-hero:    2.5rem;  /* page hero titles (2rem on mobile) */
+  --ds-text-hero-sm: 2rem;
+
   /* ── Shape ── */
   --ds-radius-sm: 6px;
   --ds-radius:    10px;
@@ -49,6 +54,23 @@
 
   /* ── Motion ── */
   --ds-transition: all 0.2s ease;
+
+  /* ── Z-index scale ──
+     Only for elements that compete for stacking across the whole page
+     (fixed chrome, overlays, toasts). Purely local z-index — e.g.
+     lifting a card above its own background sibling — doesn't need a
+     token here; those stay as small plain integers. */
+  --ds-z-dropdown:       20;    /* inline dropdowns/panels scoped to one component */
+  --ds-z-nav:            2000;  /* bottom nav pill */
+  --ds-z-fixed:          3000;  /* fixed chrome: theme/accent/sound/achievements buttons */
+  --ds-z-toast:          3001;  /* achievement unlock toast, above fixed chrome */
+  --ds-z-modal:          5000;  /* modal overlays (PDF viewer, alerts) */
+  --ds-z-scroll-progress: 9999; /* top progress bar, always above modals */
+  --ds-z-cursor:         99999; /* custom cursor, always topmost */
+
+  /* ── Elevation ── */
+  --ds-shadow-sm: 0 4px 18px rgba(0, 0, 0, 0.18);
+  --ds-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.3);
 
   color-scheme: dark;
 }
@@ -60,9 +82,9 @@
  */
 :root[data-theme="light"] {
   /* ── Backgrounds ── */
-  --ds-bg:        #f7f0df;
-  --ds-surface:   #f0e6d0;
-  --ds-surface-2: #e6d8bd;
+  --ds-bg:        #faf6ee;
+  --ds-surface:   #f4ede0;
+  --ds-surface-2: #ece1cd;
 
   /* ── Borders ── */
   --ds-border:        #ddd0b5;

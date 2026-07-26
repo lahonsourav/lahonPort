@@ -11,7 +11,6 @@
 .blog-topbar {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
   max-width: 760px;
   margin: 0 auto;
   padding: 1rem 2rem 0;
@@ -28,7 +27,7 @@
 }
 
 .blog-hero-title {
-  font-size: 2.5rem;
+  font-size: var(--ds-text-hero);
   font-weight: 700;
   color: var(--ds-text);
   letter-spacing: -0.02em;
@@ -203,23 +202,6 @@
 
 .blog-back:hover {
   color: var(--ds-green);
-}
-
-.blog-rss-link {
-  color: var(--ds-text-muted);
-  font-family: var(--ds-font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  border: 1px solid var(--ds-border);
-  border-radius: 100px;
-  padding: 0.25rem 0.65rem;
-  transition: var(--ds-transition);
-}
-
-.blog-rss-link:hover {
-  color: var(--ds-green);
-  border-color: var(--ds-green-btn);
 }
 
 .blog-post-header {
@@ -536,7 +518,7 @@
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .blog-hero-title {
-    font-size: 2rem;
+    font-size: var(--ds-text-hero-sm);
   }
 
   .blog-post-title {
@@ -547,5 +529,11 @@
   .blog-post-wrap {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  /* iOS Safari auto-zooms the page on focus if an input's font-size
+     is under 16px. */
+  .blog-search {
+    font-size: 1rem;
   }
 }

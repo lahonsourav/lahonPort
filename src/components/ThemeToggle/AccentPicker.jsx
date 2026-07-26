@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { MdPalette } from "react-icons/md";
-import { playClick } from "../../lib/sound";
 import { trackAccentTried } from "../../lib/achievements";
 import "./AccentPicker.css";
 
@@ -145,7 +144,6 @@ const AccentPicker = () => {
               onClick={() => {
                 setAccent(a.id);
                 setOpen(false);
-                playClick();
                 trackAccentTried(a.id);
               }}
             />
