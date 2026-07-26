@@ -137,6 +137,10 @@
   color: var(--ds-text);
 }
 
+.af_donation_intro--spaced {
+  margin-top: 2.5rem;
+}
+
 .af_donation_proof {
   display: flex;
   flex-direction: column;
