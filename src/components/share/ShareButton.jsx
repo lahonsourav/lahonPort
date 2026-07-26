@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { FiShare2 } from "react-icons/fi";
-import { playClick } from "../../lib/sound";
 import "./ShareButton.css";
 
 const ShareButton = ({ title, className = "" }) => {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
-    playClick();
     const url = window.location.href;
 
     if (navigator.share) {
