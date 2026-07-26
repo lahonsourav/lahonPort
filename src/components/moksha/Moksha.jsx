@@ -8,6 +8,7 @@ import mokshaLogo from "../../assets/mokshaligned.png";
 import AssamFloodArt from "../../images/assam-flood-front.png";
 import useReveal from "../reveal/useReveal";
 import ShareButton from "../share/ShareButton";
+import BackHome from "../shared/BackHome";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
@@ -20,7 +21,7 @@ const Moksha = () => {
   return (
     <div className="mk_page">
       <div className="mk_topbar">
-        <button className="mk_back" onClick={() => navigate("/")}>← Back</button>
+        <BackHome className="mk_back" />
         <ShareButton title="Moksha — Sourav Lahon" />
       </div>
 

@@ -9,6 +9,7 @@ import SoundToggle from "./components/SoundToggle/SoundToggle.jsx";
 import AchievementsTray from "./components/Achievements/AchievementsTray.jsx";
 import RouteTracker from "./components/RouteTracker/RouteTracker.jsx";
 import ClickSoundListener from "./components/ClickSound/ClickSoundListener.jsx";
+import ScrollManager from "./components/shared/ScrollManager.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
@@ -38,6 +39,7 @@ function App() {
         <AccentPicker />
         <SoundToggle />
         <AchievementsTray />
+        <ScrollManager />
         <RouteTracker />
         <ClickSoundListener />
         <Suspense fallback={<Loading />}>

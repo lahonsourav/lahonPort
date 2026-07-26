@@ -189,19 +189,7 @@
 }
 
 .blog-back {
-  background: none;
-  border: none;
-  color: var(--ds-text-muted);
-  font-family: var(--ds-font-mono);
-  font-size: 0.85rem;
-  cursor: pointer;
-  padding: 0;
   margin-bottom: 2.5rem;
-  transition: color 0.2s ease;
-}
-
-.blog-back:hover {
-  color: var(--ds-green);
 }
 
 .blog-post-header {
@@ -209,6 +197,10 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1rem;
+}
+
+.blog-share-btn {
+  margin-left: auto;
 }
 
 .blog-post-title {

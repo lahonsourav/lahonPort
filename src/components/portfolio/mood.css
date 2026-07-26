@@ -12,6 +12,11 @@
   padding-bottom: 4rem;
 }
 
+.ic-page > .back-home {
+  display: inline-block;
+  margin: 1.5rem 0 0 1.5rem;
+}
+
 /* ── Hero ── */
 .ic-hero {
   text-align: center;
@@ -57,6 +62,10 @@
   color: var(--ds-green);
   border-radius: 100px;
   font-weight: 500;
+}
+
+.ic-hero > .share-btn {
+  margin-top: 1.25rem;
 }
 
 /* ── Demo section ── */

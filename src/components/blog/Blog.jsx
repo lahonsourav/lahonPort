@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { POSTS } from './posts';
 import { readMins } from './readingTime';
+import BackHome from '../shared/BackHome';
 import './blog.css';
 
 const TAG_COLORS = {
@@ -35,7 +36,6 @@ const PostCard = ({ slug, title, date, tag, excerpt, content }) => {
 };
 
 const Blog = () => {
-  const navigate = useNavigate();
   const [query, setQuery] = useState('');
 
   const filtered = useMemo(() => {
@@ -51,7 +51,7 @@ const Blog = () => {
   return (
   <div className="blog-page">
     <div className="blog-topbar">
-      <button className="blog-back" onClick={() => navigate('/')}>← Back</button>
+      <BackHome className="blog-back" />
     </div>
     <div className="blog-hero">
       <h1 className="blog-hero-title">Blog</h1>

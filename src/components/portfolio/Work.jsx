@@ -9,6 +9,7 @@ import PRO6 from "../../images/gamusawhitelow.jpg";
 import Tilt from "react-parallax-tilt";
 import useReveal from "../reveal/useReveal";
 import PdfModal from "../../additionals/pdfModal/PdfModal";
+import BackHome from "../shared/BackHome";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
@@ -23,7 +24,7 @@ const Work = () => {
 
   return (
     <div className="work_page">
-      <button className="work_back" onClick={() => navigate("/")}>← Back</button>
+      <BackHome className="work_back" />
 
       <div className="work_hero">
         <h5 data-aos="fade-down">everything I've</h5>

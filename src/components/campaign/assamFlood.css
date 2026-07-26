@@ -12,18 +12,7 @@
 
 .af_back {
   align-self: flex-start;
-  background: none;
-  border: none;
-  color: var(--ds-text-muted);
-  font-family: var(--ds-font-mono);
-  font-size: 0.85rem;
-  cursor: pointer;
   padding: 1.5rem 2rem 0;
-  transition: var(--ds-transition);
-}
-
-.af_back:hover {
-  color: var(--ds-green);
 }
 
 /* ── Hero ── */
@@ -537,6 +526,18 @@
   width: 100%;
   height: auto;
   border-radius: calc(var(--ds-radius-lg) - 0.5rem);
+}
+
+.af_page_footer {
+  width: 100%;
+  max-width: 560px;
+  margin-top: 4rem;
+  padding: 0 1.5rem;
+  text-align: center;
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  color: var(--ds-text-muted);
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 600px) {
