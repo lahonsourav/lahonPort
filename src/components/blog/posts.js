@@ -875,27 +875,97 @@ export const POSTS = [
     projectLabel: 'See the Colophon page →',
     projectUrl: '/colophon',
     content: [
-      'A colophon used to be a short note at the back of a book: the typeface, the paper, sometimes the printer\'s mark. Nobody reads a website on paper, so mine covers the closest equivalent: the actual decisions that repeat across every page here, and why I keep making them the same way.',
+      'A colophon used to be a short note at the back of a book: the typeface, the paper, sometimes the printer\'s mark. Nobody reads a website on paper, so mine covers the closest equivalent: the actual decisions that repeat across every page here, and why I keep making them the same way. This is the long version, with the real code behind each rule, not just the six one-line summaries on the Colophon page.',
 
-      { type: 'h2', text: 'Restraint first' },
+      { type: 'h2', text: '1. Restraint first' },
 
       'Every page on this site uses the same two backgrounds: a near-black surface in dark mode, a warm cream in light mode, plus one accent color doing all the work of drawing your eye. There is no second or third accent competing for attention. When a new project page needs a highlight color, it gets exactly one, and everything else stays typography and whitespace. Restraint is not the absence of a decision; it is the decision, made once, that I keep re-applying instead of relitigating on every new page.',
 
-      { type: 'h2', text: 'One shell, many projects' },
+      { type: 'code', title: 'design-system.css: the only place a background color is allowed to be defined', text:
+`:root {
+  --ds-bg:        #0d1117;
+  --ds-surface:   #161b22;
+  --ds-surface-2: #21262d;
 
-      'Wormhole is an encrypted messenger. Moksha is a flood-relief campaign. Success Point Gogamukh is a coaching center\'s entire back office. Nothing about those three projects has anything in common, except that all three live inside the exact same page-shell component: a back button in the same corner, a hero that ends in a share button, a footer that is always last. That shared skeleton is what makes jumping between wildly different projects feel like staying on one site instead of visiting three different ones.',
+  --ds-text:       #e6edf3;
+  --ds-text-muted: #8b949e;
 
-      { type: 'h2', text: 'Personality lives in the details' },
+  color-scheme: dark;
+}
 
-      'None of the achievement badges, the sound toggle, the flip business card, or the flower vine that grows down the homepage as you scroll are required to use this site. You can ignore all of them and everything still works. That is deliberate: personality that gets in the way of the actual content is a cost, not a feature. So it lives entirely in the details that reward noticing, never in the parts you have to get past.',
+/* Light theme, applied when <html data-theme="light"> */
+[data-theme="light"] {
+  --ds-bg:      #faf6ee;
+  --ds-surface: #ffffff;
+  /* ...text, border, and shadow tokens follow the same pattern */
+}` },
 
-      { type: 'h2', text: 'Motion has to earn its keep' },
+      'Every component reads --ds-bg and --ds-surface instead of writing a hex value, so a page never has to know which theme is active. Component CSS asks for "the background," not "#0d1117 or #faf6ee depending."',
 
-      'Every animation on this site answers a specific question: what did the user just do? The timeline draws itself as you scroll past it because you scrolled. Cards lift because you hovered. The business card flips instead of navigating away because you clicked it. Nothing plays on a timer just because it can, and nothing animates on page load purely for the sake of a first impression. If I can\'t point to the user action an animation is responding to, it gets cut.',
+      { type: 'h2', text: '2. One shell, many projects' },
 
-      { type: 'h2', text: 'The same tokens everywhere' },
+      'Wormhole is an encrypted messenger. Moksha is a flood-relief campaign. Success Point Gogamukh is a coaching center\'s entire back office. Nothing about those three projects has anything in common, except that all three, plus Assam Flood, Colophon, and the Work page, share the exact same page-shell component: six files, six completely different products, one skeleton underneath. A back button in the same corner, a hero that ends in a share button, a footer that is always last.',
 
-      'Every color, radius, shadow, and z-index on this site comes from one file: design-system.css. A project\'s own accent color sits on top of that shared scale rather than replacing it, which is why switching the theme or the accent color never breaks a project page. Nothing hardcodes a color, spacing value, or stacking order outside that scale, which also means adding a new token is a one-line change instead of a site-wide hunt.',
+      { type: 'code', title: 'shared/PageShell.css, and how a project overrides it', text:
+`.page-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+  background: var(--ds-bg);
+  color: var(--ds-text);
+  font-family: var(--ds-font);
+}
+
+/* Wormhole.jsx: <div className="wh-page page-shell"> */
+.wh-page.page-shell {
+  padding: 2.5rem 1.5rem 4rem;
+}` },
+
+      { type: 'note', text: 'That compound selector, .wh-page.page-shell instead of just .wh-page, is not a style preference. A bare .wh-page and the shared .page-shell rule both have the exact same specificity, so which one wins comes down to which CSS file webpack happened to bundle last, a coin flip that is different on every build. Pairing the project\'s own class with .page-shell in the same selector bumps the specificity above the shared rule on purpose, so page padding never silently reverts depending on build order. I found this the hard way when a page-shell page briefly lost its custom padding after an unrelated change, and it turned into the rule every new project page follows now.' },
+
+      { type: 'h2', text: '3. Personality lives in the details' },
+
+      'None of the following are required to use this site. You can ignore all of them and everything still works exactly the same. That is deliberate: personality that gets in the way of the actual content is a cost, not a feature. So it lives entirely in the details that reward noticing.',
+
+      { type: 'list', items: [
+        'Achievement badges: a small toast (like "Shape Shifter" for changing the accent color) fires from localStorage-backed tracking in src/lib/achievements.js, no account or server involved',
+        'Sound design: a mute-able toggle in the corner plays short UI sounds on interactions, off by default on first visit',
+        'The flip business card: doubles as the entire contact form on the About page, one click flips it instead of navigating to a separate route',
+        'The flower vine: grows down the homepage as you scroll, driven by scroll position, not a fixed animation timeline',
+      ] },
+
+      { type: 'code', title: 'How a blog read quietly becomes an achievement check', text:
+`// BlogPost.jsx, on every post view
+React.useEffect(() => {
+  if (!slug) return;
+  const key = \`blog_reads_\${slug}\`;
+  const n = parseInt(localStorage.getItem(key) || '0', 10);
+  localStorage.setItem(key, n + 1);
+  trackBlogRead(POSTS.map(p => p.slug));
+}, [slug]);` },
+
+      { type: 'h2', text: '4. Motion has to earn its keep' },
+
+      'Every animation on this site answers a specific question: what did the user just do? The timeline draws itself as you scroll past it because you scrolled. Cards lift because you hovered. The business card flips instead of navigating away because you clicked it. Nothing plays on a timer just because it can, and nothing animates on page load purely for the sake of a first impression.',
+
+      { type: 'table',
+        head: ['data-aos value', 'Times used across the site', 'Typical use'],
+        rows: [
+          ['fade-up', '16', 'Content entering from below as you scroll to it'],
+          ['fade-down', '15', 'Hero titles and section headers'],
+          ['zoom-in-up', '14', 'Cards and tiles in a grid'],
+          ['zoom-in', '2', 'Logos and single focal images'],
+          ['fade-up-right / fade-up-left', '1 each', 'Paired elements entering from opposite sides'],
+        ] },
+
+      'If I cannot point to the user action an animation is responding to, it gets cut. That rule has killed more animations than it has approved.',
+
+      { type: 'h2', text: '5. The same tokens everywhere' },
+
+      'Every color, radius, shadow, and z-index on this site comes from one file: design-system.css. A project\'s own accent color sits on top of that shared scale rather than replacing it, which is why switching the theme or the accent color never breaks a project page. Nothing hardcodes a color, spacing value, or stacking order outside that scale.',
 
       { type: 'table',
         head: ['Token group', 'Example', 'Rule'],
@@ -907,13 +977,55 @@ export const POSTS = [
           ['Type', '--ds-text-hero, --ds-text-hero-sm', 'Reused only where the same size actually repeats across components'],
         ] },
 
-      { type: 'h2', text: 'Quiet defaults' },
+      'The accent color you picked with the palette button in the corner is not a fixed swatch, it is a hue rotated into an HSL string at runtime and written directly onto the same --ds-green variable every component already reads:',
 
-      'Images lazy-load. Routes are code-split so visiting Wormhole never downloads the code for Success Point Gogamukh. Every interactive element gets a visible focus ring. None of this is something you notice when it is working, which is exactly the point: the best default is the one you never have to think about.',
+      { type: 'code', title: 'AccentPicker.jsx: one hue in, four CSS variables out', text:
+`const applyDynamicColors = (hue) => {
+  const isLight = document.documentElement.getAttribute("data-theme") === "light";
+  const style = document.documentElement.style;
+  if (isLight) {
+    style.setProperty("--ds-green", \`hsl(\${hue} 75% 38%)\`);
+    style.setProperty("--ds-green-btn", \`hsl(\${hue} 75% 42%)\`);
+  } else {
+    style.setProperty("--ds-green", \`hsl(\${hue} 85% 78%)\`);
+    style.setProperty("--ds-green-btn", \`hsl(\${hue} 70% 38%)\`);
+  }
+};` },
+
+      'That is the same mechanism the "Accent" swatch on the Colophon page reflects live: it is not a screenshot, it is var(--ds-green) rendered on the page you are reading right now.',
+
+      { type: 'h2', text: '6. Quiet defaults' },
+
+      'Images lazy-load. Routes are code-split, fourteen of them, so visiting Wormhole never downloads the code for Success Point Gogamukh. Every interactive element gets a visible focus ring. None of this is something you notice when it is working, which is exactly the point.',
+
+      { type: 'code', title: 'App.js: fourteen routes, fourteen separate chunks', text:
+`const Home = lazy(() => import("./components/home/Home"));
+const Blog = lazy(() => import("./components/blog/Blog"));
+const Mood = lazy(() => import("./components/portfolio/Mood"));
+// ...eleven more, each its own dynamic import
+
+<Suspense fallback={<Loading />}>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/blog" element={<Blog />} />
+    <Route path="/mood" element={<Mood />} />
+  </Routes>
+</Suspense>` },
+
+      { type: 'code', title: 'index.css: keyboard focus, restored on purpose', text:
+`/* The CSS reset zeroes every default outline, so without this,
+   keyboard users get no focus indicator anywhere on the site.
+   :focus-visible keeps it keyboard-only, no ring on mouse clicks. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--ds-green-btn);
+}` },
 
       { type: 'h2', text: 'Why write any of this down' },
 
-      'Mostly so I keep following my own rules. It is easy to cut a corner on the tenth project page that felt fine to cut on the first, and much harder to do that once the rule is written down somewhere I might read it again. If you want the shorter, less wordy version of these six principles, the Colophon page has it.',
+      'Mostly so I keep following my own rules. It is easy to cut a corner on the tenth project page that felt fine to cut on the first, and much harder to do that once the rule is written down somewhere I might read it again, with the actual code next to it instead of just a vague memory of the intent. If you want the shorter, six-line version of these principles, the Colophon page has it.',
     ],
   },
 ];

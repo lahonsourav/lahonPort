@@ -18,8 +18,9 @@ const TAG_COLORS = {
 };
 
 // Posts hold either plain-string paragraphs or typed blocks
-// ({ type: 'h2' | 'h3' | 'diagram' | 'table' | 'list' | 'note' }).
+// ({ type: 'h2' | 'h3' | 'diagram' | 'table' | 'list' | 'note' | 'code' }).
 // 'diagram' blocks hold Mermaid syntax, rendered via MermaidDiagram.
+// 'code' blocks hold a plain-text snippet, rendered in a <pre><code>.
 const renderBlock = (block, i) => {
   if (typeof block === 'string') {
     const spaceIdx = block.indexOf(' ');
@@ -74,6 +75,13 @@ const renderBlock = (block, i) => {
       );
     case 'note':
       return <div key={i} className="blog-note">{block.text}</div>;
+    case 'code':
+      return (
+        <figure key={i} className="blog-figure blog-figure--code">
+          {block.title && <figcaption>{block.title}</figcaption>}
+          <pre className="blog-code-block"><code>{block.text}</code></pre>
+        </figure>
+      );
     default:
       return null;
   }

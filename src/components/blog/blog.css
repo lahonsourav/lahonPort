@@ -323,6 +323,20 @@
   color: var(--ds-error);
 }
 
+.blog-code-block {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  text-align: left;
+  font-family: var(--ds-font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.blog-code-block code {
+  white-space: pre;
+}
+
 .blog-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--ds-border);
