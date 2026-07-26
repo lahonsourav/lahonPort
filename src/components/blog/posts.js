@@ -866,4 +866,54 @@ export const POSTS = [
       'This exact system (public site, live classes, all four dashboards) is what\'s running in production for Success Point Gogamukh today. If your coaching center, tuition institute, or exam-prep center needs the same thing (a real online presence plus a system to actually run the day-to-day), that\'s what I build. See the live example and the full feature tour below.',
     ],
   },
+  {
+    slug: 'the-design-principles-behind-lahon-in',
+    title: 'The Design Principles Behind lahon.in',
+    date: '2026-07-26',
+    tag: 'tech',
+    excerpt: 'A traditional colophon lists the typeface and the paper stock. Mine lists the actual rules this site follows: one shared token scale, one page shell, and motion that has to earn its keep.',
+    projectLabel: 'See the Colophon page →',
+    projectUrl: '/colophon',
+    content: [
+      'A colophon used to be a short note at the back of a book: the typeface, the paper, sometimes the printer\'s mark. Nobody reads a website on paper, so mine covers the closest equivalent: the actual decisions that repeat across every page here, and why I keep making them the same way.',
+
+      { type: 'h2', text: 'Restraint first' },
+
+      'Every page on this site uses the same two backgrounds: a near-black surface in dark mode, a warm cream in light mode, plus one accent color doing all the work of drawing your eye. There is no second or third accent competing for attention. When a new project page needs a highlight color, it gets exactly one, and everything else stays typography and whitespace. Restraint is not the absence of a decision; it is the decision, made once, that I keep re-applying instead of relitigating on every new page.',
+
+      { type: 'h2', text: 'One shell, many projects' },
+
+      'Wormhole is an encrypted messenger. Moksha is a flood-relief campaign. Success Point Gogamukh is a coaching center\'s entire back office. Nothing about those three projects has anything in common, except that all three live inside the exact same page-shell component: a back button in the same corner, a hero that ends in a share button, a footer that is always last. That shared skeleton is what makes jumping between wildly different projects feel like staying on one site instead of visiting three different ones.',
+
+      { type: 'h2', text: 'Personality lives in the details' },
+
+      'None of the achievement badges, the sound toggle, the flip business card, or the flower vine that grows down the homepage as you scroll are required to use this site. You can ignore all of them and everything still works. That is deliberate: personality that gets in the way of the actual content is a cost, not a feature. So it lives entirely in the details that reward noticing, never in the parts you have to get past.',
+
+      { type: 'h2', text: 'Motion has to earn its keep' },
+
+      'Every animation on this site answers a specific question: what did the user just do? The timeline draws itself as you scroll past it because you scrolled. Cards lift because you hovered. The business card flips instead of navigating away because you clicked it. Nothing plays on a timer just because it can, and nothing animates on page load purely for the sake of a first impression. If I can\'t point to the user action an animation is responding to, it gets cut.',
+
+      { type: 'h2', text: 'The same tokens everywhere' },
+
+      'Every color, radius, shadow, and z-index on this site comes from one file: design-system.css. A project\'s own accent color sits on top of that shared scale rather than replacing it, which is why switching the theme or the accent color never breaks a project page. Nothing hardcodes a color, spacing value, or stacking order outside that scale, which also means adding a new token is a one-line change instead of a site-wide hunt.',
+
+      { type: 'table',
+        head: ['Token group', 'Example', 'Rule'],
+        rows: [
+          ['Color', '--ds-green, --ds-blue', 'One accent per theme, swappable without touching component CSS'],
+          ['Shape', '--ds-radius-sm / --ds-radius / --ds-radius-lg / --ds-radius-xl', 'Four sizes cover every rounded corner on the site'],
+          ['Elevation', '--ds-shadow-sm, --ds-shadow-lg', 'Two shadow depths, nothing in between'],
+          ['Z-index', '--ds-z-nav through --ds-z-cursor', 'Only for chrome that competes for stacking across the whole page'],
+          ['Type', '--ds-text-hero, --ds-text-hero-sm', 'Reused only where the same size actually repeats across components'],
+        ] },
+
+      { type: 'h2', text: 'Quiet defaults' },
+
+      'Images lazy-load. Routes are code-split so visiting Wormhole never downloads the code for Success Point Gogamukh. Every interactive element gets a visible focus ring. None of this is something you notice when it is working, which is exactly the point: the best default is the one you never have to think about.',
+
+      { type: 'h2', text: 'Why write any of this down' },
+
+      'Mostly so I keep following my own rules. It is easy to cut a corner on the tenth project page that felt fine to cut on the first, and much harder to do that once the rule is written down somewhere I might read it again. If you want the shorter, less wordy version of these six principles, the Colophon page has it.',
+    ],
+  },
 ];

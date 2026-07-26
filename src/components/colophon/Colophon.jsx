@@ -1,9 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './colophon.css';
 import ShareButton from '../share/ShareButton';
 import BackHome from '../shared/BackHome';
 import PageFooter from '../shared/PageFooter';
 import '../shared/PageShell.css';
+
+const PALETTE = [
+  { var: '--ds-bg', label: 'Background' },
+  { var: '--ds-surface', label: 'Surface' },
+  { var: '--ds-green', label: 'Accent' },
+  { var: '--ds-green-btn', label: 'Accent button' },
+  { var: '--ds-blue', label: 'Secondary' },
+  { var: '--ds-text-muted', label: 'Muted text' },
+];
 
 const PRINCIPLES = [
   {
@@ -63,6 +73,38 @@ const Colophon = () => {
               <p className="cl_principle_body">{p.body}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="cl_section">
+        <h2 className="section-title">The live palette</h2>
+        <p className="cl_palette_note">
+          Not screenshots, the actual CSS variables rendering this page right now. Try
+          the theme and accent buttons in the corner.
+        </p>
+        <div className="cl_palette">
+          {PALETTE.map((t) => (
+            <div className="cl_swatch" key={t.var}>
+              <span className="cl_swatch_color" style={{ background: `var(${t.var})` }} />
+              <span className="cl_swatch_label">{t.label}</span>
+              <code className="cl_swatch_var">{t.var}</code>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="cl_deepdive">
+        <div className="cl_deepdive_card">
+          <div className="cl_deepdive_icon">📖</div>
+          <div className="cl_deepdive_text">
+            <h3>Want the longer version?</h3>
+            <p>
+              Each principle above, expanded, with the actual design tokens behind them.
+            </p>
+          </div>
+          <Link to="/blog/the-design-principles-behind-lahon-in" className="cl_deepdive_btn">
+            Read the full writeup →
+          </Link>
         </div>
       </div>
 
