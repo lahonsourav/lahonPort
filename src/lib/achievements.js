@@ -1,4 +1,4 @@
-export const PROJECT_PATHS = ["/wormhole", "/moksha", "/lazykit", "/lazyperm", "/success-point-gogamukh"];
+export const PROJECT_PATHS = ["/wormhole", "/moksha", "/lazykit", "/lazyperm"];
 
 export const ACHIEVEMENTS = [
   { id: "shape-shifter", icon: "🌗", title: "Shape Shifter", description: "Switched between light and dark mode." },

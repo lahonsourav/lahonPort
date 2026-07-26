@@ -155,7 +155,7 @@ const Portfolio = () => {
                 Visit
               </a>
               <div
-                onClick={() => navigate("/success-point-gogamukh")}
+                onClick={() => navigate("/blog/coaching-center-management-system")}
                 className="btn btn-primary"
               >
                 Learn More

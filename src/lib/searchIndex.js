@@ -10,7 +10,6 @@ const PAGES = [
   { title: "Innercast", url: "/mood", type: "project", keywords: "mental health journal mood diary ai check-in" },
   { title: "LazyKit", url: "/lazykit", type: "project", keywords: "react design system component library" },
   { title: "LazyPerm", url: "/lazyperm", type: "project", keywords: "permissions rbac library" },
-  { title: "Success Point Gogamukh", url: "/success-point-gogamukh", type: "project", keywords: "coaching center website nextjs" },
   { title: "Contact", url: "/contactout", type: "page", keywords: "email reach out get in touch" },
   { title: "Resume", url: resumePdf, type: "file", keywords: "cv download pdf experience" },
 ];

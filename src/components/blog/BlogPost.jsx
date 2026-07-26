@@ -20,11 +20,12 @@ const TAG_COLORS = {
 };
 
 // Posts hold either plain-string paragraphs or typed blocks
-// ({ type: 'h2' | 'h3' | 'diagram' | 'table' | 'list' | 'note' | 'code' | 'playground' | 'palette' }).
+// ({ type: 'h2' | 'h3' | 'diagram' | 'table' | 'list' | 'note' | 'code' | 'playground' | 'palette' | 'gallery' }).
 // 'diagram' blocks hold Mermaid syntax, rendered via MermaidDiagram.
 // 'code' blocks hold a plain-text snippet, rendered in a <pre><code>.
 // 'playground' renders the interactive TokenPlayground widget, no params.
 // 'palette' renders the live LivePalette token swatches, no params.
+// 'gallery' holds items: [{ src, alt, caption }], rendered as a responsive grid.
 const renderBlock = (block, i) => {
   if (typeof block === 'string') {
     const spaceIdx = block.indexOf(' ');
@@ -85,6 +86,17 @@ const renderBlock = (block, i) => {
           {block.title && <figcaption>{block.title}</figcaption>}
           <pre className="blog-code-block"><code>{block.text}</code></pre>
         </figure>
+      );
+    case 'gallery':
+      return (
+        <div key={i} className="blog-gallery">
+          {block.items.map((it) => (
+            <figure key={it.src} className="blog-figure blog-figure--image blog-gallery-item">
+              {it.caption && <figcaption>{it.caption}</figcaption>}
+              <img src={it.src} alt={it.alt ?? ''} loading="lazy" />
+            </figure>
+          ))}
+        </div>
       );
     case 'playground':
       return <TokenPlayground key={i} />;
