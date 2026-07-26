@@ -27,7 +27,7 @@ function PhoneDemo() {
         </div>
         <div className="wh-conn-bar">
           <span className="wh-conn-dot" />
-          Connected — direct line
+          Connected: direct line
           <span className="wh-conn-icons">📞 🎥</span>
         </div>
         <div className="wh-chat">
@@ -65,7 +65,7 @@ const Wormhole = () => {
         </div>
         <p className="wh-hero-sub">
           A private line between two phones. Messages, photos, and calls travel
-          straight from you to them — with no company sitting in the middle.
+          straight from you to them, with no company sitting in the middle.
         </p>
         <div className="wh-tags">
           {['Two people only', 'End-to-end encrypted', 'No account needed', 'Android & iPhone'].map(t => (
@@ -81,9 +81,9 @@ const Wormhole = () => {
           >
             🤖 Download APK for Android
           </a>
-          <span className="wh-coming-pill">🍎 iOS — coming soon</span>
+          <span className="wh-coming-pill">🍎 iOS: coming soon</span>
         </div>
-        <ShareButton title="Wormhole — a private line between two phones" className="wh-share-btn" />
+        <ShareButton title="Wormhole: a private line between two phones" className="wh-share-btn" />
       </div>
 
       {/* ── The one-line idea ── */}
@@ -96,7 +96,7 @@ const Wormhole = () => {
       </div>
       <p className="wh-tunnel-caption">
         Think of it as a tiny wormhole connecting exactly two phones.
-        Whatever goes in one side comes out the other — and nowhere else.
+        Whatever goes in one side comes out the other, and nowhere else.
       </p>
 
       {/* ── Phone demo ── */}
@@ -131,13 +131,13 @@ const Wormhole = () => {
 
       {/* ── How it works ── */}
       <div className="wh-how">
-        <h2 className="wh-section-h section-title">How it works — in plain words</h2>
+        <h2 className="wh-section-h section-title">How it works, in plain words</h2>
         <div className="wh-steps">
           {[
-            { n: '01', title: 'Agree on a secret word', body: 'You and your friend pick a shared room word. It’s how your phones find each other — like both walking up to the same meeting point.' },
-            { n: '02', title: 'Scan each other once', body: 'When you meet, each phone shows a QR code and scans the other’s. That’s a one-time trust handshake — from then on, your phones can prove it’s really each other.' },
+            { n: '01', title: 'Agree on a secret word', body: 'You and your friend pick a shared room word. It’s how your phones find each other: like both walking up to the same meeting point.' },
+            { n: '02', title: 'Scan each other once', body: 'When you meet, each phone shows a QR code and scans the other’s. That’s a one-time trust handshake: from then on, your phones can prove it’s really each other.' },
             { n: '03', title: 'The tunnel opens', body: 'A brief “introduction” service helps your phones locate each other, then steps out of the way. From that moment, everything flows phone-to-phone.' },
-            { n: '04', title: 'Talk freely', body: 'Text, photos, voice and video calls — all through the same locked tunnel. If your friend is offline, messages wait patiently on your phone and deliver when you’re both back.' },
+            { n: '04', title: 'Talk freely', body: 'Text, photos, voice and video calls: all through the same locked tunnel. If your friend is offline, messages wait patiently on your phone and deliver when you’re both back.' },
           ].map(s => (
             <div key={s.n} className="wh-step">
               <div className="wh-step-n">{s.n}</div>
@@ -150,14 +150,14 @@ const Wormhole = () => {
 
       {/* ── Privacy, honestly ── */}
       <div className="wh-privacy">
-        <h2 className="wh-section-h section-title">Private by design — and honest about it</h2>
+        <h2 className="wh-section-h section-title">Private by design, and honest about it</h2>
         <p className="wh-privacy-sub">No fine print. Here’s exactly where your stuff lives and who can see what.</p>
         <div className="wh-privacy-grid">
           {[
             { icon: '🙈', title: 'We couldn’t read your messages if we wanted to', body: 'Messages are locked with keys that exist only on your two phones. There is no master key, no admin view, no “trust us.”' },
             { icon: '📱', title: 'Your history stays on your phone', body: 'Chat history is saved on your device and your friend’s device. Nowhere else. Delete the app, and it’s gone.' },
             { icon: '🤝', title: 'Trust you can check yourself', body: 'The QR scan (or a short safety number you compare out loud) proves no one slipped in between you. It’s like recognising a friend’s face instead of trusting a name tag.' },
-            { icon: '⚖️', title: 'Honest about the limits', body: 'Both phones need to be online at the same time to deliver — there’s no cloud mailbox. And the brief “introduction” step means a helper computer sees that two phones connected, though never what they say.' },
+            { icon: '⚖️', title: 'Honest about the limits', body: 'Both phones need to be online at the same time to deliver: there’s no cloud mailbox. And the brief “introduction” step means a helper computer sees that two phones connected, though never what they say.' },
           ].map(p => (
             <div key={p.title} className="wh-priv-card">
               <div className="wh-priv-icon">{p.icon}</div>
@@ -174,7 +174,7 @@ const Wormhole = () => {
         <div className="wh-faq-list">
           {[
             { q: 'What if my friend is offline?', a: 'Your message waits on your phone with a small 🕐 and sends itself the moment you’re both online. Nothing is lost.' },
-            { q: 'Can a third person join the chat?', a: 'No — and that’s the point. Wormhole is built for exactly two people. No groups, no forwarding, no “added by phone number.”' },
+            { q: 'Can a third person join the chat?', a: 'No, and that’s the point. Wormhole is built for exactly two people. No groups, no forwarding, no “added by phone number.”' },
             { q: 'Does it work between Android and iPhone?', a: 'Yes. An Android phone and an iPhone connect to each other just fine.' },
             { q: 'Photos and calls too?', a: 'Yes. Pictures, voice calls, and video calls all travel through the same locked phone-to-phone tunnel as your texts.' },
           ].map(f => (
@@ -194,7 +194,7 @@ const Wormhole = () => {
             <h3>Curious how it actually works under the hood?</h3>
             <p>
               WebRTC tunnels, NaCl encryption, MITM defense, offline queues, and every
-              diagram from the build — the full engineering story lives on the blog.
+              diagram from the build: the full engineering story lives on the blog.
             </p>
           </div>
           <Link to="/blog/building-wormhole-p2p-messaging" className="wh-deepdive-btn">
@@ -215,7 +215,7 @@ const Wormhole = () => {
           >
             🤖 Download APK for Android
           </a>
-          <span className="wh-coming-pill">🍎 iOS — coming soon</span>
+          <span className="wh-coming-pill">🍎 iOS: coming soon</span>
         </div>
       </div>
 

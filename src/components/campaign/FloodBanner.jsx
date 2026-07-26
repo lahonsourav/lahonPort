@@ -15,7 +15,7 @@ const FloodBanner = () => {
       onKeyDown={(e) => e.key === "Enter" && go()}
     >
       <span className="flood_banner_text">
-        🌊 Assam is flooded — donate anything and I'll <strong>double it</strong>, till 25th July midnight.
+        🌊 Assam is flooded: donate anything and I'll <strong>double it</strong>, till 25th July midnight.
       </span>
       <span className="flood_banner_cta">Donate now →</span>
     </div>

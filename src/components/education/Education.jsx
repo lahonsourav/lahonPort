@@ -11,7 +11,7 @@ const entries = [
     date: "Jul 2025 – Present",
     title: "Software Engineer",
     subtitle: "BlackRock",
-    desc: "Building data transformation tools (Perl, Python, SQL), real-time ingestion pipelines (C#, .NET, Kafka), and automating index creation — cutting build time from 30 min to 5 min.",
+    desc: "Building data transformation tools (Perl, Python, SQL), real-time ingestion pipelines (C#, .NET, Kafka), and automating index creation: cutting build time from 30 min to 5 min.",
   },
   {
     side: "right",
@@ -20,7 +20,7 @@ const entries = [
     date: "Jan 2025 – Jun 2025",
     title: "Data Analyst Intern",
     subtitle: "BlackRock",
-    desc: "Built end-to-end automation in Python, Pandas, Unix & Streamlit — reducing deployment time by 90%. Automated QC reporting across market indexes, cutting manual effort by 80%.",
+    desc: "Built end-to-end automation in Python, Pandas, Unix & Streamlit, reducing deployment time by 90%. Automated QC reporting across market indexes, cutting manual effort by 80%.",
   },
   {
     side: "left",
@@ -29,7 +29,7 @@ const entries = [
     date: "May 2024 – Jul 2024",
     title: "Software Engineer Intern",
     subtitle: "Microsoft",
-    desc: "Built a debug tool for the MSAI-UX team — Response Debugger, Accessibility Debugger, and Performance Analyzer — reducing triage time by 30% and boosting performance by 50%.",
+    desc: "Built a debug tool for the MSAI-UX team: Response Debugger, Accessibility Debugger, and Performance Analyzer, reducing triage time by 30% and boosting performance by 50%.",
   },
 ];
 

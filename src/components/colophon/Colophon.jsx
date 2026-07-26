@@ -14,27 +14,27 @@ const PRINCIPLES = [
   {
     n: '02',
     title: 'One shell, many projects',
-    body: "Every project page shares the same skeleton no matter how different the actual product is — a back button in the same place, a hero that ends with a share button, a footer that's always last. You can jump between wildly different projects and it still feels like one site.",
+    body: "Every project page shares the same skeleton no matter how different the actual product is, a back button in the same place, a hero that ends with a share button, a footer that's always last. You can jump between wildly different projects and it still feels like one site.",
   },
   {
     n: '03',
     title: 'Personality lives in the details',
-    body: 'The achievement badges, the sound toggle, the flip business card that doubles as the entire contact form, the vine that grows down the homepage as you scroll. None of it is required to use the site — all of it rewards noticing.',
+    body: 'The achievement badges, the sound toggle, the flip business card that doubles as the entire contact form, the vine that grows down the homepage as you scroll. None of it is required to use the site: all of it rewards noticing.',
   },
   {
     n: '04',
     title: 'Motion has to earn its keep',
-    body: 'The timeline draws itself as you scroll past it, cards lift on hover, the business card flips instead of navigating away. Animation always answers "what did the user just do" — it never plays just because it can.',
+    body: 'The timeline draws itself as you scroll past it, cards lift on hover, the business card flips instead of navigating away. Animation always answers "what did the user just do", it never plays just because it can.',
   },
   {
     n: '05',
     title: 'The same tokens everywhere',
-    body: "Every project's own accent color sits on top of one shared scale — the same spacing, radius, shadow, and type tokens, whether you're on a flood-relief campaign or a developer tool's docs. Change the theme or accent and nothing breaks, because nothing hardcodes color outside that scale.",
+    body: "Every project's own accent color sits on top of one shared scale, the same spacing, radius, shadow, and type tokens, whether you're on a flood-relief campaign or a developer tool's docs. Change the theme or accent and nothing breaks, because nothing hardcodes color outside that scale.",
   },
   {
     n: '06',
     title: 'Quiet defaults',
-    body: "Images lazy-load, routes are code-split so visiting one project never downloads another's code, and every interactive element gets a visible focus ring. None of this is visible when it's working — that's the point.",
+    body: "Images lazy-load, routes are code-split so visiting one project never downloads another's code, and every interactive element gets a visible focus ring. None of this is visible when it's working: that's the point.",
   },
 ];
 
@@ -47,10 +47,10 @@ const Colophon = () => {
         <h5>How this site is made</h5>
         <h1>Colophon</h1>
         <p className="cl_tagline">
-          A short note on the design principles behind lahon.in — the choices that repeat
+          A short note on the design principles behind lahon.in: the choices that repeat
           everywhere, and why.
         </p>
-        <ShareButton title="Colophon — lahon.in" className="cl_share_btn" />
+        <ShareButton title="Colophon: lahon.in" className="cl_share_btn" />
       </div>
 
       <div className="cl_section">

@@ -84,7 +84,7 @@ const HeroSearch = () => {
         <input
           type="text"
           className="hero-search__input"
-          placeholder="Search the site — projects, posts, resume…"
+          placeholder="Search the site: projects, posts, resume…"
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -113,7 +113,7 @@ const HeroSearch = () => {
               </div>
             ))
           ) : (
-            <div className="hero-search__empty">No matches — try "blog" or "wormhole"</div>
+            <div className="hero-search__empty">No matches, try "blog" or "wormhole"</div>
           )}
         </div>
       )}

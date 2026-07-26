@@ -48,7 +48,7 @@ const Portfolio = () => {
             </div>
             <h3>Wormhole</h3>
             <small>
-              P2P messaging for exactly two people. Text, photos, and voice/video calls travel phone-to-phone over an end-to-end encrypted WebRTC tunnel — no accounts, no cloud, no servers in between. (React Native, WebRTC, NaCl)
+              P2P messaging for exactly two people. Text, photos, and voice/video calls travel phone-to-phone over an end-to-end encrypted WebRTC tunnel, no accounts, no cloud, no servers in between. (React Native, WebRTC, NaCl)
             </small>
             <div className="portfolio__item-cta">
               <div

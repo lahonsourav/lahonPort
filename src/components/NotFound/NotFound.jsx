@@ -10,7 +10,7 @@ const NotFound = () => {
       <p className="nf_code">404</p>
       <h1 className="nf_title">Lost in the wormhole</h1>
       <p className="nf_text">
-        This page doesn't exist — or it moved and I forgot to update the link.
+        This page doesn't exist, or it moved and I forgot to update the link.
       </p>
       <button className="btn btn-primary nf_home" onClick={() => navigate("/")}>
         Back to home
