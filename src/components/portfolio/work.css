@@ -10,7 +10,7 @@
   padding-bottom: 4rem;
 }
 
-.work_back {
+.work_page > .back-home {
   align-self: flex-start;
   padding: 1.5rem 2rem 0;
 }
