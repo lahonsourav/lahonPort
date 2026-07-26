@@ -21,7 +21,7 @@ const CTA = () => {
 
         {showResume && (
           <PdfModal
-            src={cv}
+            src={`https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + cv)}&embedded=true`}
             title="Resume"
             onClose={() => setShowResume(false)}
           />

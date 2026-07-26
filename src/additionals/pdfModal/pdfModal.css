@@ -66,3 +66,13 @@
     height: 90vh;
   }
 }
+
+/* Hide the fixed chrome (theme/accent/sound/achievements buttons, bottom
+   nav pill) while a PDF viewer is open, so it doesn't float on top of it. */
+body.pdf-modal-open .theme-toggle,
+body.pdf-modal-open .accent-picker,
+body.pdf-modal-open .sound-toggle,
+body.pdf-modal-open .achievements-tray,
+body.pdf-modal-open nav {
+  display: none;
+}
