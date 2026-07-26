@@ -59,7 +59,6 @@ const Wormhole = () => {
       {/* ── Hero ── */}
       <div className="wh-hero">
         <div className="wh-hero-logo">
-          <span className="wh-hero-swirl">🌀</span>
           <h1 className="wh-hero-title">Wormhole</h1>
         </div>
         <p className="wh-hero-sub">

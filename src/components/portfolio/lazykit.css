@@ -40,12 +40,6 @@
     border-bottom: 1px solid var(--ds-border);
 }
 
-.lk_emoji {
-    font-size: 5rem;
-    margin-bottom: 1rem;
-    line-height: 1;
-}
-
 .lk_title {
     font-size: 2.5rem;
     font-weight: 700;

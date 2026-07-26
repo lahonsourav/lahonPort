@@ -11,7 +11,6 @@ const Lazyperm = () => {
 
             {/* ── Hero ── */}
             <div className="lk_hero">
-                <span className="lk_emoji">🔐</span>
                 <h1 className="lk_title">lazyperm</h1>
                 <p className="lk_tagline">Stop babysitting Claude Code.</p>
                 <p className="lk_description">
