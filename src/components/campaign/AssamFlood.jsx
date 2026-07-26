@@ -11,6 +11,7 @@ import assamBack from "../../images/assam-flood-back.png";
 import donateQr from "../../images/assam-flood-qr-styled.png";
 import vkfcLetter from "../../images/vkfc-acknowledgement.png";
 import uttoronPayment from "../../images/uttoron-gogamukh-payment.jpg";
+import lakhimpurPayment from "../../images/lakhimpur-hip-hop-payment.jpg";
 
 const VKFC_PDF_URL = "https://drive.google.com/file/d/1WB8A3uMzrw0oWYOHHLFw3NHx12rZL9lc/preview";
 
@@ -386,7 +387,7 @@ const AssamFlood = () => {
         </div>
 
         <p className="af_donation_intro af_donation_intro--spaced">
-          The remaining ₹7,824 was transferred to <strong>Uttoron, Gogamukh</strong> for
+          Another ₹7,824 was transferred to <strong>Uttoron, Gogamukh</strong> for
           on-ground relief work in Assam.
         </p>
         <div className="af_donation_proof">
@@ -402,6 +403,26 @@ const AssamFlood = () => {
           </div>
           <p className="af_donation_contact">
             Point of contact: <a href="tel:+919435277535">+91 94352 77535</a>
+          </p>
+        </div>
+
+        <p className="af_donation_intro af_donation_intro--spaced">
+          The remaining ₹501 was transferred to <strong>Lakhimpur Hip Hop</strong> for
+          on-ground relief work in Assam.
+        </p>
+        <div className="af_donation_proof">
+          <div className="af_art_card">
+            <img
+              src={lakhimpurPayment}
+              alt="Payment confirmation — ₹501 transferred to Lakhimpur Hip Hop"
+              className="af_donation_img"
+              width="640"
+              height="839"
+              loading="lazy"
+            />
+          </div>
+          <p className="af_donation_contact">
+            Point of contact: <a href="tel:+918638722953">+91 86387 22953</a>
           </p>
         </div>
       </div>
@@ -431,6 +452,8 @@ const AssamFlood = () => {
           <img src={assamBack} alt="Stand with Assam — full print design" className="af_print_img" loading="lazy" />
         </div>
       </div>
+
+      <div className="af_page_footer">A Moksha Initiative</div>
     </div>
   );
 };
