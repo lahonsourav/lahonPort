@@ -20,10 +20,7 @@ const Moksha = () => {
 
   return (
     <div className="mk_page">
-      <div className="mk_topbar">
-        <BackHome className="mk_back" />
-        <ShareButton title="Moksha — Sourav Lahon" />
-      </div>
+      <BackHome className="mk_back" />
 
       <div className="mk_hero">
         <img src={mokshaLogo} alt="Moksha" className="mk_logo" data-aos="zoom-in" />
@@ -32,6 +29,7 @@ const Moksha = () => {
         <p className="mk_tagline" data-aos="fade-up" data-aos-delay="150">
           Sanskrit for release — from struggle, from waiting, from doing nothing.
         </p>
+        <ShareButton title="Moksha — Sourav Lahon" />
       </div>
 
       <div className="mk_mission" data-aos="fade-up">
