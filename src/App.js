@@ -52,7 +52,7 @@ function App() {
               <Route path="/lazykit" element={<LazyKit />} />
               <Route path="/lazyperm" element={<Lazyperm />} />
               <Route path="/wormhole" element={<Wormhole />} />
-              <Route path="/assam-flood" element={<AssamFlood />} />
+              <Route path="/assamflood2026" element={<AssamFlood />} />
               <Route path="/work" element={<Work />} />
               <Route path="/moksha" element={<Moksha />} />
               <Route path="*" element={<NotFound />} />

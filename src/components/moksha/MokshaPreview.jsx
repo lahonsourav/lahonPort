@@ -15,7 +15,7 @@ const MokshaPreview = () => {
         <div
           data-aos="fade-up"
           className="blogpreview__row"
-          onClick={() => navigate("/assam-flood")}
+          onClick={() => navigate("/assamflood2026")}
           role="button"
           style={{ "--card-accent": "#f0883e" }}
         >

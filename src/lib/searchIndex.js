@@ -23,7 +23,7 @@ const PAGES = [
   },
   {
     title: "Assam Flood Relief",
-    url: "/assam-flood",
+    url: "/assamflood2026",
     type: "page",
     keywords:
       "donation campaign flood Assam matching double your donation drive matched rupee for rupee UPI " +
