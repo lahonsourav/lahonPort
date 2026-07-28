@@ -90,6 +90,10 @@
   color: var(--ds-text);
 }
 
+.af_share_btn {
+  margin-top: 1.25rem;
+}
+
 .af_thankyou_text {
   font-size: 1rem;
   line-height: 1.75;
