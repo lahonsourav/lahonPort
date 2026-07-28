@@ -4,7 +4,7 @@ import "./floodBanner.css";
 const FloodBanner = () => {
   const navigate = useNavigate();
 
-  const go = () => navigate("/assam-flood");
+  const go = () => navigate("/assamflood2026");
 
   return (
     <div

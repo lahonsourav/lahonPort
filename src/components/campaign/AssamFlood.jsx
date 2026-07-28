@@ -6,6 +6,7 @@ import "./assamFlood.css";
 import ReactAlert from "../../additionals/customAlerts/CustomAlert";
 import PdfModal from "../../additionals/pdfModal/PdfModal";
 import BackHome from "../shared/BackHome";
+import ShareButton from "../share/ShareButton";
 import PageFooter from "../shared/PageFooter";
 import "../shared/PageShell.css";
 import assamFront from "../../images/assam-flood-front.png";
@@ -210,6 +211,7 @@ const AssamFlood = () => {
           <strong>thank you</strong> to everyone who sent whatever they could. Every rupee that came
           in before the deadline was matched, out of my own pocket.
         </p>
+        <ShareButton title="Assam Flood Relief: Sourav Lahon" className="af_share_btn" />
       </div>
 
       <div className="af_section af_progress" ref={progressRef}>

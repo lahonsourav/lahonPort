@@ -58,7 +58,7 @@ const Moksha = () => {
             </small>
             <div className="portfolio__item-cta">
               <div
-                onClick={() => navigate("/assam-flood")}
+                onClick={() => navigate("/assamflood2026")}
                 className="btn btn-primary"
               >
                 View Campaign

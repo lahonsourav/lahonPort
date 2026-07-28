@@ -11,7 +11,8 @@
 
 .pdf-modal {
   width: min(900px, 100%);
-  height: min(85vh, 1100px);
+  max-height: min(85vh, 1100px);
+  height: auto;
   background: var(--ds-surface);
   border: 1px solid var(--ds-border);
   border-radius: var(--ds-radius-lg);
@@ -51,7 +52,14 @@
 }
 
 .pdf-modal-frame {
-  flex: 1;
+  /* Sized to a Letter page's own aspect ratio instead of stretching to
+     fill the modal, so a short (e.g. one-page) PDF doesn't leave a big
+     blank gap below it in the native viewer. flex-shrink lets it give
+     way to .pdf-modal's max-height on short viewports; the native PDF
+     viewer scrolls internally for anything taller than what's visible. */
+  flex: 0 1 auto;
+  min-height: 0;
+  aspect-ratio: 8.5 / 11;
   border: none;
   width: 100%;
   background: #fff;
@@ -63,7 +71,7 @@
   }
 
   .pdf-modal {
-    height: 90vh;
+    max-height: 90vh;
   }
 }
 
