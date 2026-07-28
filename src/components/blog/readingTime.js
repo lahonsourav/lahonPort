@@ -1,4 +1,4 @@
-const blockText = (b) =>
+export const blockText = (b) =>
   typeof b === 'string'
     ? b
     : [b.text, ...(b.items ?? []), ...(b.head ?? []), ...(b.rows ?? []).flat()].filter(Boolean).join(' ');
