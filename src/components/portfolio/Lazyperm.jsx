@@ -1,19 +1,22 @@
 import React from 'react';
 import './lazykit.css';
 import './lazyperm.css';
+import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
 
 const Lazyperm = () => {
     return (
         <div className="lk_container">
+            <BackHome />
 
             {/* ── Hero ── */}
             <div className="lk_hero">
-                <span className="lk_emoji">🔐</span>
                 <h1 className="lk_title">lazyperm</h1>
                 <p className="lk_tagline">Stop babysitting Claude Code.</p>
                 <p className="lk_description">
                     lazyperm is an open-source hook for Claude Code that silently approves safe commands and blocks
-                    dangerous ones — so you only get interrupted when it actually matters.{' '}
+                    dangerous ones, so you only get interrupted when it actually matters.{' '}
                     <strong>No more "Allow git status?" prompts every 30 seconds.</strong>
                 </p>
                 <div className="lk_code_block lp_hero_install">
@@ -24,7 +27,8 @@ const Lazyperm = () => {
                     <a href="https://marketplace.visualstudio.com/items?itemName=lahonsourav.lazyperm-claude" className="lk_btn lk_btn_secondary" target="_blank" rel="noreferrer">VS Code Extension</a>
                     <a href="https://github.com/lahonsourav/lazyperm" className="lk_btn lk_btn_secondary" target="_blank" rel="noreferrer">GitHub</a>
                 </div>
-                <p className="lp_hero_ext_note">Also available as an extension — search <strong>lazyperm</strong> in VS Code, Windsurf, or Cursor</p>
+                <p className="lp_hero_ext_note">Also available as an extension, search <strong>lazyperm</strong> in VS Code, Windsurf, or Cursor</p>
+                <ShareButton title="lazyperm: stop babysitting Claude Code" className="lk_share_btn" />
             </div>
 
             {/* ── Problem ── */}
@@ -32,12 +36,12 @@ const Lazyperm = () => {
                 <h2 className="lk_section_title">The Problem</h2>
                 <p className="lk_section_subtitle">
                     Claude Code's permission system is all-or-nothing by default. Every time Claude wants to run a
-                    shell command — even completely harmless read-only ones — it asks:
+                    shell command: even completely harmless read-only ones: it asks:
                 </p>
                 <div className="lk_code_block lp_prompt_example">
                     <code className="lp_prompt_line">
                         <span className="lp_prompt_icon">❓</span>
-                        Claude wants to run: <span className="lp_prompt_cmd">git status</span> — Allow?
+                        Claude wants to run: <span className="lp_prompt_cmd">git status</span>, Allow?
                     </code>
                 </div>
                 <p className="lk_section_subtitle" style={{ marginTop: '1rem', marginBottom: 0 }}>
@@ -86,7 +90,7 @@ const Lazyperm = () => {
 
                 <div className="lk_callout" style={{ marginTop: '1.5rem' }}>
                     <span className="lk_callout_icon">📋</span>
-                    <span>Patterns are plain regular expressions — fully customizable. Every decision is written to <code className="lk_inline_code">decisions.log</code> for auditing. The deny list is always checked first, so a command matching both lists is always blocked.</span>
+                    <span>Patterns are plain regular expressions: fully customizable. Every decision is written to <code className="lk_inline_code">decisions.log</code> for auditing. The deny list is always checked first, so a command matching both lists is always blocked.</span>
                 </div>
             </div>
 
@@ -110,28 +114,28 @@ const Lazyperm = () => {
 
                     <div className="lk_mode_card lp_install_card">
                         <h3>VS Code Extension</h3>
-                        <p>Install hook, edit safe/deny patterns, and open the decisions log — all from the Command Palette.</p>
+                        <p>Install hook, edit safe/deny patterns, and open the decisions log, all from the Command Palette.</p>
                         <div className="lp_editor_list">
                             <div className="lp_editor_row">
                                 <span className="lp_editor_icon">🆚</span>
-                                <span>VS Code — <a href="https://marketplace.visualstudio.com/items?itemName=lahonsourav.lazyperm-claude" className="lk_link" target="_blank" rel="noreferrer">Marketplace</a></span>
+                                <span>VS Code: <a href="https://marketplace.visualstudio.com/items?itemName=lahonsourav.lazyperm-claude" className="lk_link" target="_blank" rel="noreferrer">Marketplace</a></span>
                             </div>
                             <div className="lp_editor_row">
                                 <span className="lp_editor_icon">🌊</span>
-                                <span>Windsurf — search <code className="lk_inline_code">lazyperm</code> in Extensions</span>
+                                <span>Windsurf: search <code className="lk_inline_code">lazyperm</code> in Extensions</span>
                             </div>
                             <div className="lp_editor_row">
                                 <span className="lp_editor_icon">🖱️</span>
-                                <span>Cursor — search <code className="lk_inline_code">lazyperm</code> in Extensions</span>
+                                <span>Cursor: search <code className="lk_inline_code">lazyperm</code> in Extensions</span>
                             </div>
                             <div className="lp_editor_row">
                                 <span className="lp_editor_icon">🧩</span>
-                                <span>VSCodium / Open VSX — <a href="https://open-vsx.org/extension/lahonsourav/lazyperm-vscode" className="lk_link" target="_blank" rel="noreferrer">Open VSX</a></span>
+                                <span>VSCodium / Open VSX: <a href="https://open-vsx.org/extension/lahonsourav/lazyperm-vscode" className="lk_link" target="_blank" rel="noreferrer">Open VSX</a></span>
                             </div>
                         </div>
                         <div className="lk_callout lp_search_callout">
                             <span className="lk_callout_icon">🔍</span>
-                            <span>Any editor that supports the VS Code Marketplace or Open VSX — just search <strong>lazyperm</strong> in the Extensions panel.</span>
+                            <span>Any editor that supports the VS Code Marketplace or Open VSX, just search <strong>lazyperm</strong> in the Extensions panel.</span>
                         </div>
                     </div>
                 </div>
@@ -148,7 +152,7 @@ const Lazyperm = () => {
                         ["PowerShell read-only", "Get-ChildItem, Get-Content, Test-Path, Format-Table, …"],
                         ["Type checking & lint", "npx tsc, tsc --noEmit, npm run lint, npm test, npm audit"],
                         ["Python tests", "pytest, python -m pytest"],
-                        ["Catch-all", ".* — auto-allow everything not in the deny list (removable)"],
+                        ["Catch-all", ".*: auto-allow everything not in the deny list (removable)"],
                     ].map(([label, desc]) => (
                         <div className="lp_pattern_row" key={label}>
                             <span className="lp_pattern_label lp_label_allow">✓</span>
@@ -238,6 +242,8 @@ const Lazyperm = () => {
                     </a>
                 </div>
             </div>
+
+            <PageFooter>Copyright © 2026 lahon.in/lazyperm</PageFooter>
         </div>
     );
 };

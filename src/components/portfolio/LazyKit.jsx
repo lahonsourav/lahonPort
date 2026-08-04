@@ -1,18 +1,21 @@
 import React from 'react';
 import './lazykit.css';
+import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
 
 const LazyKit = () => {
     return (
         <div className="lk_container">
+            <BackHome />
 
             {/* ── Hero ── */}
             <div className="lk_hero">
-                <span className="lk_emoji">🦥</span>
                 <h1 className="lk_title">LazyKit</h1>
                 <p className="lk_tagline">Drop an issue, get a PR.</p>
                 <p className="lk_description">
                     LazyKit wires Claude AI directly into your GitHub repo. Open an issue from your phone, your
-                    tablet, or anywhere — Claude reads it, writes the code, and opens a pull request entirely in
+                    tablet, or anywhere: Claude reads it, writes the code, and opens a pull request entirely in
                     the cloud.{' '}
                     <strong>No laptop. No terminal. No IDE. Nothing running on your machine.</strong>
                     <br /><br />
@@ -22,6 +25,7 @@ const LazyKit = () => {
                     <a href="https://www.npmjs.com/package/@slahon/lazykit" className="lk_btn lk_btn_primary" target="_blank" rel="noreferrer">npm</a>
                     <a href="https://github.com/lahonsourav/lazykit" className="lk_btn lk_btn_secondary" target="_blank" rel="noreferrer">GitHub</a>
                 </div>
+                <ShareButton title="LazyKit: drop an issue, get a PR" className="lk_share_btn" />
             </div>
 
             {/* ── Quickstart ── */}
@@ -31,7 +35,7 @@ const LazyKit = () => {
                     <code>npx @slahon/lazykit@latest init</code>
                 </div>
                 <p className="lk_note">
-                    Run this from your <strong>project's root directory</strong> — the same folder that contains your <code className="lk_inline_code">.git</code> folder and has a GitHub remote configured. That's it. LazyKit handles everything else automatically.
+                    Run this from your <strong>project's root directory</strong>, the same folder that contains your <code className="lk_inline_code">.git</code> folder and has a GitHub remote configured. That's it. LazyKit handles everything else automatically.
                 </p>
             </div>
 
@@ -42,27 +46,27 @@ const LazyKit = () => {
                     <li><span className="lk_req_icon">✓</span><span>Node.js 18+</span></li>
                     <li>
                         <span className="lk_req_icon">✓</span>
-                        <span>A GitHub repository with a remote set up — <code className="lk_inline_code">git remote -v</code> should show a GitHub URL</span>
+                        <span>A GitHub repository with a remote set up: <code className="lk_inline_code">git remote -v</code> should show a GitHub URL</span>
                     </li>
                     <li>
                         <span className="lk_req_icon">✓</span>
-                        <span>A Claude Pro or Max subscription — <a href="https://claude.ai" target="_blank" rel="noreferrer" className="lk_link">claude.ai</a></span>
+                        <span>A Claude Pro or Max subscription: <a href="https://claude.ai" target="_blank" rel="noreferrer" className="lk_link">claude.ai</a></span>
                     </li>
                     <li>
                         <span className="lk_req_icon">✓</span>
-                        <span><strong>Claude Code CLI</strong> — <code className="lk_inline_code">npm install -g @anthropic-ai/claude-code</code></span>
+                        <span><strong>Claude Code CLI</strong>: <code className="lk_inline_code">npm install -g @anthropic-ai/claude-code</code></span>
                     </li>
                     <li>
                         <span className="lk_req_icon">✓</span>
                         <span>
-                            <strong>GitHub CLI (<code className="lk_inline_code">gh</code>)</strong> — <code className="lk_inline_code">brew install gh</code> or{' '}
+                            <strong>GitHub CLI (<code className="lk_inline_code">gh</code>)</strong>: <code className="lk_inline_code">brew install gh</code> or{' '}
                             <a href="https://cli.github.com" target="_blank" rel="noreferrer" className="lk_link">cli.github.com</a>, then <code className="lk_inline_code">gh auth login</code>
                         </span>
                     </li>
                     <li>
                         <span className="lk_req_icon">✓</span>
                         <span>
-                            <strong>Claude Code GitHub App</strong> installed on your repo —{' '}
+                            <strong>Claude Code GitHub App</strong> installed on your repo:{' '}
                             <a href="https://github.com/apps/claude" target="_blank" rel="noreferrer" className="lk_link">github.com/apps/claude</a>
                             <span className="lk_req_tag">required for the Actions workflow to run</span>
                         </span>
@@ -71,13 +75,13 @@ const LazyKit = () => {
                 <div className="lk_callout" style={{ marginTop: '1.25rem' }}>
                     <span className="lk_callout_icon">📁</span>
                     <span>
-                        <strong>All <code className="lk_inline_code">npx @slahon/lazykit</code> commands must be run from your project's root directory</strong> — the folder where your <code className="lk_inline_code">.git</code> directory lives and your GitHub remote is configured.
+                        <strong>All <code className="lk_inline_code">npx @slahon/lazykit</code> commands must be run from your project's root directory</strong>, the folder where your <code className="lk_inline_code">.git</code> directory lives and your GitHub remote is configured.
                     </span>
                 </div>
                 <div className="lk_callout" style={{ marginTop: '0.75rem' }}>
                     <span className="lk_callout_icon">💡</span>
                     <span>
-                        <code className="lk_inline_code">init</code> checks for <code className="lk_inline_code">gh</code> and <code className="lk_inline_code">claude</code> before proceeding. If either is missing or not authenticated, it will show you exactly what to install and wait for you to confirm before continuing — no need to restart.
+                        <code className="lk_inline_code">init</code> checks for <code className="lk_inline_code">gh</code> and <code className="lk_inline_code">claude</code> before proceeding. If either is missing or not authenticated, it will show you exactly what to install and wait for you to confirm before continuing, no need to restart.
                     </span>
                 </div>
             </div>
@@ -91,7 +95,7 @@ const LazyKit = () => {
                         <div>
                             <h3>Open an issue using the LazyKit Task template</h3>
                             <p>
-                                Go to your repo on GitHub → <strong>Issues → New issue</strong>. You'll see a <strong>"LazyKit Task"</strong> option — click it to get a pre-filled form. Describe what you want Claude to build, then submit. The <code className="lk_inline_code">lazykit</code> label is applied automatically by the template, so you don't need to do anything else.
+                                Go to your repo on GitHub → <strong>Issues → New issue</strong>. You'll see a <strong>"LazyKit Task"</strong> option. Click it to get a pre-filled form. Describe what you want Claude to build, then submit. The <code className="lk_inline_code">lazykit</code> label is applied automatically by the template, so you don't need to do anything else.
                             </p>
                         </div>
                     </div>
@@ -100,7 +104,7 @@ const LazyKit = () => {
                         <div>
                             <h3>GitHub Actions kicks in</h3>
                             <p>
-                                The moment the issue is submitted, GitHub detects the <code className="lk_inline_code">lazykit</code> label and triggers a workflow run. Go to your repo → <strong>Actions tab → "Claude Issue-to-PR" workflow</strong>. You'll see the run appear within seconds. Click into it to follow along in real time — Claude's output streams directly into the Actions log.
+                                The moment the issue is submitted, GitHub detects the <code className="lk_inline_code">lazykit</code> label and triggers a workflow run. Go to your repo → <strong>Actions tab → "Claude Issue-to-PR" workflow</strong>. You'll see the run appear within seconds. Click into it to follow along in real time: Claude's output streams directly into the Actions log.
                             </p>
                         </div>
                     </div>
@@ -146,14 +150,14 @@ const LazyKit = () => {
             <div className="lk_section">
                 <h2 className="lk_section_title">What <code className="lk_title_code">init</code> does</h2>
                 <p className="lk_section_subtitle">
-                    Running <code className="lk_inline_code">npx @slahon/lazykit@latest init</code> fully sets up your repo — no manual steps required.
+                    Running <code className="lk_inline_code">npx @slahon/lazykit@latest init</code> fully sets up your repo, no manual steps required.
                 </p>
                 <div className="lk_init_steps">
                     {[
                         ["Detects repo", "Reads your git remote to find your GitHub repo"],
                         ["Detects stack", "Auto-detects your tech stack from package.json, go.mod, Cargo.toml, etc."],
-                        ["Creates workflow", ".github/workflows/lazykit.yml — the GitHub Actions automation"],
-                        ["Creates issue template", ".github/ISSUE_TEMPLATE/lazykit.md — auto-applies the trigger label"],
+                        ["Creates workflow", ".github/workflows/lazykit.yml: the GitHub Actions automation"],
+                        ["Creates issue template", ".github/ISSUE_TEMPLATE/lazykit.md: auto-applies the trigger label"],
                         ["Creates CLAUDE.md", "Project guide so Claude understands your codebase"],
                         ["Creates label", "Creates the trigger label on GitHub"],
                         ["Enables PR creation", "Grants Actions permission to open pull requests"],
@@ -256,7 +260,7 @@ const LazyKit = () => {
             <div className="lk_section">
                 <h2 className="lk_section_title">Authentication</h2>
                 <p className="lk_section_subtitle">
-                    LazyKit uses your Claude Pro/Max subscription via an OAuth token — <strong>no pay-per-token API billing.</strong>
+                    LazyKit uses your Claude Pro/Max subscription via an OAuth token, <strong>no pay-per-token API billing.</strong>
                 </p>
                 <div className="lk_info_card">
                     <p>
@@ -286,7 +290,7 @@ const LazyKit = () => {
                 <h2 className="lk_section_title">CLAUDE.md</h2>
                 <div className="lk_info_card">
                     <p>
-                        LazyKit creates a <code className="lk_inline_code">CLAUDE.md</code> file at your repo root. This is Claude's project guide — it tells Claude about your stack, coding conventions, and rules to follow.
+                        LazyKit creates a <code className="lk_inline_code">CLAUDE.md</code> file at your repo root. This is Claude's project guide: it tells Claude about your stack, coding conventions, and rules to follow.
                     </p>
                     <p>
                         Edit it to match your actual project for best results. The more context you give, the better Claude's output will be.
@@ -300,7 +304,7 @@ const LazyKit = () => {
                 <div className="lk_callout lk_callout_warn">
                     <span className="lk_callout_icon">⚠️</span>
                     <span>
-                        If your <code className="lk_inline_code">main</code> branch has protection rules enabled, Claude's pull requests will be opened but <strong>cannot be auto-merged</strong> — they will require manual review and approval. LazyKit detects this during <code className="lk_inline_code">init</code> and <code className="lk_inline_code">status</code> and warns you.
+                        If your <code className="lk_inline_code">main</code> branch has protection rules enabled, Claude's pull requests will be opened but <strong>cannot be auto-merged</strong>: they will require manual review and approval. LazyKit detects this during <code className="lk_inline_code">init</code> and <code className="lk_inline_code">status</code> and warns you.
                     </span>
                 </div>
             </div>
@@ -342,6 +346,8 @@ const LazyKit = () => {
                     </a>
                 </div>
             </div>
+
+            <PageFooter>Copyright © 2026 lahon.in/lazykit</PageFooter>
         </div>
     );
 };

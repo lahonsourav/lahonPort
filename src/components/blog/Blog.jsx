@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { POSTS } from './posts';
+import { readMins } from './readingTime';
+import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
 import './blog.css';
 
 const TAG_COLORS = {
@@ -11,41 +14,46 @@ const TAG_COLORS = {
   business: '#f0883e',
 };
 
-const blockText = (b) =>
-  typeof b === 'string'
-    ? b
-    : [b.text, ...(b.items ?? []), ...(b.head ?? []), ...(b.rows ?? []).flat()].filter(Boolean).join(' ');
-
-const readMins = (content) => Math.max(1, Math.round(content.map(blockText).join(' ').split(/\s+/).length / 200));
-
-const PostCard = ({ slug, title, date, tag, excerpt, content }) => {
+const PostCard = ({ slug, title, date, tag, content }) => {
   const navigate = useNavigate();
   const reads = parseInt(localStorage.getItem(`blog_reads_${slug}`) || '0', 10);
+  const meta = `${date} · ${readMins(content)} min${reads > 0 ? ` · ${reads} ${reads === 1 ? 'read' : 'reads'}` : ''}`;
   return (
-    <div className="blog-card" onClick={() => navigate(`/blog/${slug}`)} role="button" style={{ '--card-accent': TAG_COLORS[tag] ?? '#7ee787' }}>
-      <div className="blog-card-meta">
-        {tag && (
-          <span className="blog-tag" style={{ color: TAG_COLORS[tag] ?? '#7ee787', borderColor: (TAG_COLORS[tag] ?? '#7ee787') + '55' }}>
-            {tag}
-          </span>
-        )}
-        <span className="blog-date">{date}</span>
-        <span className="blog-read-time">{readMins(content)} min read</span>
-        {reads > 0 && <span className="blog-reads">{reads} {reads === 1 ? 'read' : 'reads'}</span>}
-      </div>
-      <h2 className="blog-card-title">{title}</h2>
-      <p className="blog-card-excerpt">{excerpt}</p>
-      <span className="blog-card-read">Read →</span>
+    <div
+      className="blog-row"
+      onClick={() => navigate(`/blog/${slug}`)}
+      role="button"
+      style={{ '--card-accent': TAG_COLORS[tag] ?? '#7ee787' }}
+    >
+      {tag && (
+        <span className="blog-tag blog-row-tag" style={{ color: TAG_COLORS[tag] ?? '#7ee787', borderColor: (TAG_COLORS[tag] ?? '#7ee787') + '55' }}>
+          {tag}
+        </span>
+      )}
+      <span className="blog-row-title">{title}</span>
+      <span className="blog-row-meta">{meta}</span>
+      <span className="blog-row-arrow">→</span>
     </div>
   );
 };
 
 const Blog = () => {
-  const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return POSTS;
+    return POSTS.filter(p =>
+      p.title.toLowerCase().includes(q) ||
+      p.excerpt.toLowerCase().includes(q) ||
+      (p.tag ?? '').toLowerCase().includes(q)
+    );
+  }, [query]);
+
   return (
   <div className="blog-page">
     <div className="blog-topbar">
-      <button className="blog-back" onClick={() => navigate('/')}>← Back</button>
+      <BackHome className="blog-back" to="/" label="← Home" alwaysTo />
     </div>
     <div className="blog-hero">
       <h1 className="blog-hero-title">Blog</h1>
@@ -53,17 +61,34 @@ const Blog = () => {
     </div>
 
     <div className="blog-content">
-      {POSTS.length > 0 ? (
+      {POSTS.length > 0 && (
+        <div className="blog-search-wrap">
+          <input
+            type="text"
+            className="blog-search"
+            placeholder="Search posts by title, tag, or topic…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search blog posts"
+          />
+        </div>
+      )}
+
+      {filtered.length > 0 ? (
         <div className="blog-list">
-          {POSTS.map(p => <PostCard key={p.slug} {...p} />)}
+          {filtered.map(p => <PostCard key={p.slug} {...p} />)}
         </div>
       ) : (
         <div className="blog-empty">
-          <span className="blog-empty-icon">✍️</span>
-          <p className="blog-empty-text">First story coming soon.</p>
+          <span className="blog-empty-icon">{POSTS.length > 0 ? '🔍' : '✍️'}</span>
+          <p className="blog-empty-text">
+            {POSTS.length > 0 ? 'No posts match your search.' : 'First story coming soon.'}
+          </p>
         </div>
       )}
     </div>
+
+    <PageFooter>Copyright © 2026 lahon.in/blog</PageFooter>
   </div>
   );
 };

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './mood.css';
+import ShareButton from '../share/ShareButton';
+import BackHome from '../shared/BackHome';
+import PageFooter from '../shared/PageFooter';
+import '../shared/PageShell.css';
 
 // ─── Home screen ──────────────────────────────────────────────────────────────
 
@@ -28,7 +32,7 @@ function HomeScreen() {
           <path d="M 6 50 A 44 44 0 0 1 94 50"  fill="none" stroke="#21262d" strokeWidth="3"  strokeLinecap="round" />
           <path d="M 16 50 A 34 34 0 0 1 84 50" fill="none" stroke="#21262d" strokeWidth="9"  strokeLinecap="round" />
           <path d="M 26 50 A 24 24 0 0 1 74 50" fill="none" stroke="#21262d" strokeWidth="14" strokeLinecap="round" />
-          {/* filled arcs — overall 8.2 / month 7.5 / today 7.0 */}
+          {/* filled arcs: overall 8.2 / month 7.5 / today 7.0 */}
           <path d="M 6 50 A 44 44 0 0 1 87.1 26.4"  fill="none" stroke="url(#icg-home)" strokeWidth="3"  strokeLinecap="round" />
           <path d="M 16 50 A 34 34 0 0 1 74.0 26.0" fill="none" stroke="url(#icg-home)" strokeWidth="9"  strokeLinecap="round" />
           <path d="M 26 50 A 24 24 0 0 1 64.1 30.6" fill="none" stroke="url(#icg-home)" strokeWidth="14" strokeLinecap="round" />
@@ -305,7 +309,7 @@ function CalendarScreen() {
       {/* Journal card */}
       <div className="ics-card">
         <div className="ics-jour-lbl">OVERALL ↑ Joyful</div>
-        <div className="ics-jour-text">"A lovely Saturday — felt genuinely light and grateful through the afternoon..."</div>
+        <div className="ics-jour-text">"A lovely Saturday, felt genuinely light and grateful through the afternoon..."</div>
       </div>
 
       <div style={{ height: '0.4rem' }} />
@@ -386,11 +390,11 @@ const Mood = () => {
   const { Comp } = TABS[active];
   return (
     <div className="ic-page">
+      <BackHome />
 
       {/* ── Hero ── */}
       <div className="ic-hero">
         <div className="ic-hero-logo">
-          <span className="ic-hero-wave">🌊</span>
           <h1 className="ic-hero-title">Innercast</h1>
         </div>
         <p className="ic-hero-sub">
@@ -401,6 +405,7 @@ const Mood = () => {
             <span key={t} className="ic-tag">{t}</span>
           ))}
         </div>
+        <ShareButton title="Innercast: your private mood diary" />
       </div>
 
       {/* ── Interactive phone demo ── */}
@@ -465,7 +470,7 @@ const Mood = () => {
           {
             icon: '🌿',
             title: 'Wellbeing Tools',
-            body:  'Box breathing, 5-4-3-2-1 grounding, body scan, gratitude practice — gentle support built right into the app.',
+            body:  'Box breathing, 5-4-3-2-1 grounding, body scan, gratitude practice: gentle support built right into the app.',
           },
         ].map(f => (
           <div key={f.title} className="ic-feat">
@@ -478,12 +483,12 @@ const Mood = () => {
 
       {/* ── How it works ── */}
       <div className="ic-how">
-        <h2 className="ic-section-h">How it works</h2>
+        <h2 className="ic-section-h section-title">How it works</h2>
         <div className="ic-steps">
           {[
-            { n: '01', title: 'Check in anytime', body: 'Pick from 35+ emotions — Ecstatic to Anxious. Tap a mood pill, add a private note if you want, and you\'re done. Takes under 10 seconds.' },
+            { n: '01', title: 'Check in anytime', body: 'Pick from 35+ emotions: Ecstatic to Anxious. Tap a mood pill, add a private note if you want, and you\'re done. Takes under 10 seconds.' },
             { n: '02', title: 'Patterns surface', body: 'Your triple-arc gauge updates after every entry. Insights reveal your strongest time of day, top moods, and emotional trends across 7, 30, and 90 days.' },
-            { n: '03', title: 'Claude writes your journal', body: 'Each night, Claude AI reads your day\'s check-ins and writes a private journal in your emotional voice — thoughtful, personal, and automatic.' },
+            { n: '03', title: 'Claude writes your journal', body: 'Each night, Claude AI reads your day\'s check-ins and writes a private journal in your emotional voice: thoughtful, personal, and automatic.' },
           ].map(s => (
             <div key={s.n} className="ic-step">
               <div className="ic-step-n">{s.n}</div>
@@ -503,7 +508,7 @@ const Mood = () => {
             <span className="ic-jp-mood">😊 Overall: Joyful · 7.8</span>
           </div>
           <p className="ic-jp-body">
-            "Today felt surprisingly light. The morning started slow — a familiar edge of anxiety creeping in before the day had properly begun — but by afternoon something had shifted. Coffee helped, maybe the walk too. Felt genuinely calm by 2 PM, and later, after talking to a friend, there was a warmth I hadn't expected. Not every day has a neat arc, but today did: from uncertain to grateful. That's enough."
+            "Today felt surprisingly light. The morning started slow (a familiar edge of anxiety creeping in before the day had properly begun) but by afternoon something had shifted. Coffee helped, maybe the walk too. Felt genuinely calm by 2 PM, and later, after talking to a friend, there was a warmth I hadn't expected. Not every day has a neat arc, but today did: from uncertain to grateful. That's enough."
           </p>
           <div className="ic-jp-checkins">
             <div className="ic-jp-ci"><span style={{color:'#f85149'}}>😰</span><span>Anxious</span><span className="ic-jp-ci-t">8:10 AM · feeling edgy before the day started</span></div>
@@ -519,13 +524,13 @@ const Mood = () => {
 
       {/* ── Privacy ── */}
       <div className="ic-privacy">
-        <h2 className="ic-section-h">Built private by default</h2>
+        <h2 className="ic-section-h section-title">Built private by default</h2>
         <p className="ic-privacy-sub">Your mood data never leaves your device unless you choose otherwise.</p>
         <div className="ic-privacy-grid">
           {[
             { icon: '🔒', title: 'All data stored locally', body: 'SQLite stores every check-in, note, and journal entry on your device. No servers. No cloud. No sync.' },
-            { icon: '🤖', title: 'AI gets a summary, not your diary', body: 'Claude receives only a brief structured summary — e.g. "Calm 7.2, Anxious 4.1, note: work stress". Your raw notes stay on-device.' },
-            { icon: '🔐', title: 'Every entry is encrypted', body: 'An account keeps your data tied to you — but every check-in, note, and journal is encrypted. Nothing is readable without your credentials.' },
+            { icon: '🤖', title: 'AI gets a summary, not your diary', body: 'Claude receives only a brief structured summary, e.g. "Calm 7.2, Anxious 4.1, note: work stress". Your raw notes stay on-device.' },
+            { icon: '🔐', title: 'Every entry is encrypted', body: 'An account keeps your data tied to you, but every check-in, note, and journal is encrypted. Nothing is readable without your credentials.' },
             { icon: '✈️', title: 'Works fully offline', body: 'Check in, browse the calendar, and use wellbeing tools with no internet. The AI journal generates when you\'re connected.' },
           ].map(p => (
             <div key={p.title} className="ic-priv-card">
@@ -539,15 +544,15 @@ const Mood = () => {
 
       {/* ── Tech stack ── */}
       <div className="ic-stack">
-        <h2 className="ic-section-h">Tech stack</h2>
+        <h2 className="ic-section-h section-title">Tech stack</h2>
         <div className="ic-stack-grid">
           {[
-            { label: 'React Native',   sub: 'Cross-platform mobile — single codebase for Android & iOS' },
+            { label: 'React Native',   sub: 'Cross-platform mobile: single codebase for Android & iOS' },
             { label: 'Expo Router',    sub: 'File-based navigation with typed tab routes'                },
-            { label: 'SQLite',         sub: 'expo-sqlite — on-device local database, offline-first'      },
-            { label: 'Claude AI',      sub: 'Anthropic — nightly journal generation & wellbeing insights' },
+            { label: 'SQLite',         sub: 'expo-sqlite: on-device local database, offline-first'      },
+            { label: 'Claude AI',      sub: 'Anthropic: nightly journal generation & wellbeing insights' },
             { label: 'Expo Notifs',    sub: 'Daily check-in reminders, fully opt-in'                     },
-            { label: 'TypeScript',     sub: 'Fully typed throughout — components, hooks, schemas'         },
+            { label: 'TypeScript',     sub: 'Fully typed throughout: components, hooks, schemas'         },
           ].map(t => (
             <div key={t.label} className="ic-stack-item">
               <div className="ic-stack-lbl">{t.label}</div>
@@ -561,12 +566,12 @@ const Mood = () => {
       <div className="ic-cta-section">
         <p className="ic-cta-label">In development</p>
         <div className="ic-coming-soon-row">
-          <span className="ic-coming-pill">🤖 Android — coming soon</span>
-          <span className="ic-coming-pill">🍎 iOS — coming soon</span>
+          <span className="ic-coming-pill">🤖 Android: coming soon</span>
+          <span className="ic-coming-pill">🍎 iOS: coming soon</span>
         </div>
       </div>
 
-      <div className="ic-page-footer">Copyright © 2026 lahon.in/mood</div>
+      <PageFooter>Copyright © 2026 lahon.in/mood</PageFooter>
     </div>
   );
 };

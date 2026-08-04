@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Portfolio.css";
-import Pt from './Partnership.pdf'
-
-import PRO4 from "../../images/doggo.jpg";
-import PRO6 from "../../images/gamusawhitelow.jpg";
 
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
+import PdfModal from "../../additionals/pdfModal/PdfModal";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
   isTouch ? <>{children}</> : <Tilt {...props}>{children}</Tilt>;
 
+const AVSR_THESIS_URL = "https://drive.google.com/file/d/12Yy-KGhU3uN-VXC6uvemQuQSAkR_i6Nl/preview";
+
 const Portfolio = () => {
   const navigate = useNavigate();
+  const [showThesis, setShowThesis] = useState(false);
 
   return (
     <section id="portfolio">
@@ -48,7 +48,7 @@ const Portfolio = () => {
             </div>
             <h3>Wormhole</h3>
             <small>
-              P2P messaging for exactly two people. Text, photos, and voice/video calls travel phone-to-phone over an end-to-end encrypted WebRTC tunnel — no accounts, no cloud, no servers in between. (React Native, WebRTC, NaCl)
+              P2P messaging for exactly two people. Text, photos, and voice/video calls travel phone-to-phone over an end-to-end encrypted WebRTC tunnel, no accounts, no cloud, no servers in between. (React Native, WebRTC, NaCl)
             </small>
             <div className="portfolio__item-cta">
               <div
@@ -126,6 +126,46 @@ const Portfolio = () => {
 
         <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="200" className="portfolio__items">
+            <div className="portfolio__item-image spg-preview">
+              <div className="spg-inner">
+                <div className="spg-title-row">
+                  <span className="spg-cap">🎓</span>
+                  <span className="spg-name">Success Point</span>
+                </div>
+                <div className="spg-chips">
+                  <span className="spg-chip">NEET</span>
+                  <span className="spg-chip">JEE</span>
+                  <span className="spg-chip">ADRE</span>
+                  <span className="spg-chip">TET</span>
+                </div>
+                <div className="spg-badge">Admissions Open</div>
+              </div>
+            </div>
+            <h3>Success Point Gogamukh</h3>
+            <small>
+              A coaching center website for Success Point Gogamukh, Assam, covering board-exam tuition for Classes IX–XII plus NEET, JEE, and state government exam prep like ADRE, TET, SSC, and Assam Police. (React, PostgreSQL)
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://www.successpointgogamukh.com/"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit
+              </a>
+              <div
+                onClick={() => navigate("/blog/coaching-center-management-system")}
+                className="btn btn-primary"
+              >
+                Learn More
+              </div>
+            </div>
+          </article>
+        </MaybeTilt>
+
+        <MaybeTilt>
+          <article data-aos="zoom-in-up" data-aos-delay="400" className="portfolio__items">
             <div className="portfolio__item-image avsr-preview">
               <div className="avsr-inner">
                 <div className="avsr-inputs">
@@ -159,275 +199,29 @@ const Portfolio = () => {
               Multi-modal AVSR system fusing audio features (MFCCs) with video features (CNNs) for 25% better accuracy in noisy environments than audio alone. Trained SVM, Random Forest, DNN, and LSTM models, running under 500ms.
             </small>
             <div className="portfolio__item-cta">
-              <a
-                href="https://drive.google.com/file/d/12Yy-KGhU3uN-VXC6uvemQuQSAkR_i6Nl/view"
+              <div
+                onClick={() => setShowThesis(true)}
                 className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
               >
                 Thesis
-              </a>
-            </div>
-          </article>
-        </MaybeTilt>
-
-        <MaybeTilt>
-          <article data-aos="zoom-in-up" data-aos-delay="300" className="portfolio__items">
-            <div className="portfolio__item-image spg-preview">
-              <div className="spg-inner">
-                <div className="spg-title-row">
-                  <span className="spg-cap">🎓</span>
-                  <span className="spg-name">Success Point</span>
-                </div>
-                <div className="spg-chips">
-                  <span className="spg-chip">NEET</span>
-                  <span className="spg-chip">JEE</span>
-                  <span className="spg-chip">ADRE</span>
-                  <span className="spg-chip">TET</span>
-                </div>
-                <div className="spg-badge">Admissions Open</div>
               </div>
-            </div>
-            <h3>Success Point Gogamukh</h3>
-            <small>
-              A coaching center website for Success Point Gogamukh, Assam, covering board-exam tuition for Classes IX–XII plus NEET, JEE, and state government exam prep like ADRE, TET, SSC, and Assam Police. (React, PostgreSQL)
-            </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://www.successpointgogamukh.com/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Visit
-              </a>
-              <div
-                onClick={() => navigate("/success-point-gogamukh")}
-                className="btn btn-primary"
-              >
-                Learn More
-              </div>
-            </div>
-          </article>
-        </MaybeTilt>
-
-        <MaybeTilt>
-          <article data-aos="zoom-in-up" data-aos-delay="400" className="portfolio__items">
-            <div className="portfolio__item-image">
-              <img src={PRO6} alt="" width="1456" height="1068" loading="lazy" />
-            </div>
-            <h3>Assamesedress.shop</h3>
-            <small>
-              An e-commerce platform for Assamese traditional attire, bringing heritage fashion online with a full product catalogue, shopping cart, and checkout flow that promotes indigenous craft to a much wider audience. (MERN Stack)
-            </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://assamesedress.shop/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Visit
-              </a>
-
-              <a
-                href={Pt} download="Gamusa_Partnership"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Partnership
-              </a>
-            </div>
-          </article>
-        </MaybeTilt>
-
-        <MaybeTilt>
-          <article data-aos="zoom-in-up" data-aos-delay="500" className="portfolio__items">
-            <div className="portfolio__item-image">
-              <img src={PRO4} alt="" width="480" height="360" loading="lazy" />
-            </div>
-            <h3>Doggies</h3>
-            <small>
-              A swipe-based dog discovery app with a delightfully simple UI — browse breeds, swipe left or right, and save your favourite matches. Built for Android with smooth, native-feeling gesture navigation. (Flutter, Android)
-            </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://lahonsourav.github.io/doggies/#/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Swipe now
-              </a>
-              <a
-                href="https://drive.google.com/file/d/1uCxXe7biCmFA_i6s9p7n2Y-S4xVwL_Hx/view?usp=drivesdk"
-                className="btn btn-primary"
-                download="Doggies"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Android
-              </a>
             </div>
           </article>
         </MaybeTilt>
       </div>
 
-      <h2 className="tools__heading">Tools</h2>
+      {showThesis && (
+        <PdfModal
+          src={AVSR_THESIS_URL}
+          title="AVSR Thesis"
+          onClose={() => setShowThesis(false)}
+        />
+      )}
 
-      <div className="container tools__container">
-        <MaybeTilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image lk-preview">
-              <div className="lk-flow">
-                <div className="lk-node">
-                  <span className="lk-node-dot lk-node-dot--green" />
-                  <div className="lk-node-title">issue #42</div>
-                  <div className="lk-node-body">Add dark mode</div>
-                </div>
-                <span className="lk-step-arrow">→</span>
-                <div className="lk-bot">🤖</div>
-                <span className="lk-step-arrow">→</span>
-                <div className="lk-node">
-                  <span className="lk-node-dot lk-node-dot--purple" />
-                  <div className="lk-node-title">PR #43</div>
-                  <div className="lk-node-body">feat: dark mode</div>
-                  <div className="lk-merged-badge">merged</div>
-                </div>
-              </div>
-            </div>
-            <h3>LazyKit</h3>
-            <small>
-              Drop an issue, get a PR. LazyKit wires Claude AI into your GitHub repo — open an issue from anywhere, Claude writes the code and opens a pull request. No laptop, no IDE, no claude code open, only github.
-            </small>
-            <div className="portfolio__item-cta">
-              <div
-                onClick={() => navigate("/lazykit")}
-                className="btn btn-primary"
-              >
-                Learn More
-              </div>
-              <a
-                href="https://www.npmjs.com/package/@slahon/lazykit"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                npm
-              </a>
-            </div>
-          </article>
-        </MaybeTilt>
-
-        <MaybeTilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image lazyperm-preview">
-              <div className="lazyperm-terminal">
-                <div className="lazyperm-terminal__bar">
-                  <span /><span /><span />
-                </div>
-                <div className="lazyperm-terminal__body">
-                  <span className="lp-dim">$ </span><span className="lp-cmd">git status</span>
-                  <span className="lp-allow"> ✓ auto-allowed</span>
-                  <br />
-                  <span className="lp-dim">$ </span><span className="lp-cmd">rm -rf dist</span>
-                  <span className="lp-deny"> ✗ blocked</span>
-                  <br />
-                  <span className="lp-dim">$ </span><span className="lp-cmd">npm run build</span>
-                  <span className="lp-prompt"> ↳ prompt</span>
-                </div>
-              </div>
-            </div>
-            <h3>lazyperm</h3>
-            <small>
-              Eliminates repetitive permission prompts in Claude Code. Hooks into PreToolUse to auto-allow safe commands and block dangerous ones — so you only get interrupted when it actually matters.
-            </small>
-            <div className="portfolio__item-cta">
-              <div
-                onClick={() => navigate("/lazyperm")}
-                className="btn btn-primary"
-              >
-                Learn More
-              </div>
-              <a
-                href="https://marketplace.visualstudio.com/items?itemName=lahonsourav.lazyperm-claude"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Extension
-              </a>
-            </div>
-          </article>
-        </MaybeTilt>
-
-        <MaybeTilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image sg-preview">
-              <div className="sg-inner">
-                <div className="sg-brand">Spend<span className="sg-dot">·</span>Gate</div>
-                <div className="sg-verdict">
-                  <span className="sg-verdict-tag">Hold 72h</span>
-                  <div className="sg-verdict-amt">₹18,000</div>
-                  <div className="sg-meter">
-                    <div className="sg-meter-fill" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h3>Spend Gate</h3>
-            <small>
-              A spending gate for impulse buys — type an amount, answer a few honest questions, and get a verdict: buy, wait 72 hours, or skip. Tracks budgets from your bank export and plans savings automatically.
-            </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://lahonsourav.github.io/Spend-Gate/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open App
-              </a>
-            </div>
-          </article>
-        </MaybeTilt>
-
-        <MaybeTilt>
-          <article data-aos="zoom-in-up" className="portfolio__items">
-            <div className="portfolio__item-image rbp-preview">
-              <div className="rbp-inner">
-                <div className="rbp-title-row">
-                  <span className="rbp-emoji">🍽️</span>
-                  <span className="rbp-brand">Rapid Bulk Plan</span>
-                </div>
-                <svg className="rbp-chart" viewBox="0 0 120 46">
-                  <polyline points="4,38 26,32 48,28 70,20 92,12 116,6" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="4" cy="38" r="2.5" fill="#16a34a" />
-                  <circle cx="116" cy="6" r="2.5" fill="#16a34a" />
-                </svg>
-                <div className="rbp-tags">
-                  <span className="rbp-tag">58 → 66kg</span>
-                  <span className="rbp-tag">2,700 kcal/day</span>
-                </div>
-              </div>
-            </div>
-            <h3>Rapid Bulk Plan</h3>
-            <small>
-              An installable, offline-first PWA diet tracker for healthy weight gain — editable meal plan and macros, a weigh-in log with a progress chart, meal reminders, and JSON export/import. No build step, no backend, plain HTML/CSS/JS.
-            </small>
-            <div className="portfolio__item-cta">
-              <a
-                href="https://lahonsourav.github.io/diet/"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open App
-              </a>
-            </div>
-          </article>
-        </MaybeTilt>
+      <div className="portfolio__see-all">
+        <div onClick={() => navigate("/work")} className="btn" role="button">
+          See all work →
+        </div>
       </div>
     </section>
   );

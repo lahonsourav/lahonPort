@@ -1,118 +1,23 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import "./contact.css";
-import { BiMailSend } from "react-icons/bi";
-import { FiPhoneCall } from "react-icons/fi";
-import { BsWhatsapp } from "react-icons/bs";
-import emailjs from "@emailjs/browser";
-
-import ReactAlert from "../../additionals/customAlerts/CustomAlert";
 import BusinessCard from "../businessCard/BusinessCard";
+import useReveal from "../reveal/useReveal";
 
 const Contact = () => {
-  const form = useRef();
-
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertType, setAlertType] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs
-      .sendForm(
-        "service_afksea8",
-        "template_c7chqje",
-        form.current,
-        "0RwgMGfnVh-mwKq1J"
-      )
-      .then(
-        (_result) => {
-          setAlertMessage("Got your Message, You're such a beautiful human");
-          setAlertType("success");
-          setShowAlert(true);
-        },
-        (error) => {
-          setAlertMessage("Oho, The message couldn't be sent, I'll fix it");
-          setAlertType("error");
-          setShowAlert(true);
-        }
-      );
-    e.target.reset();
-  };
-  const closeAlert = () => {
-    setShowAlert(false);
-  };
+  // This component is reused both embedded in Home (which already calls
+  // useReveal for the whole page) and standalone at /contactout, where
+  // nothing else observes its [data-aos] elements. Without this, the
+  // heading and card stay stuck at opacity:0 forever when this page is
+  // reached on its own (e.g. navigating here from another route).
+  useReveal();
 
   return (
     <section id="contact">
-      {showAlert && (
-        <ReactAlert
-          message={alertMessage}
-          onClose={closeAlert}
-          type={alertType}
-        />
-      )}
       <h5 data-aos="fade-down">Get in Touch</h5>
       <h2>Contact Me</h2>
 
       <div className="contact__card-wrap" data-aos="zoom-in">
         <BusinessCard />
-      </div>
-
-      <div className="container contact__container">
-        <div className="contact__options">
-          <article className="contact__option">
-            <BiMailSend className="contact__option-icon" />
-            <h4>Email</h4>
-            <h5>sourav@lahon.in</h5>
-            <a href="mailto:sourav@lahon.in" target="_blank" rel="noreferrer">
-              Send a Mail
-            </a>
-          </article>
-          <article className="contact__option">
-            <FiPhoneCall className="contact__option-icon" />
-            <h4>Call</h4>
-            <h5>Not availble on working hours</h5>
-            <a href="tel:+916001098923" target="_blank" rel="noreferrer">
-              Dial Now
-            </a>
-          </article>
-          <article className="contact__option">
-            <BsWhatsapp className="contact__option-icon" />
-            <h4>WhatsApp</h4>
-            <h5>Available anytime</h5>
-            <a
-              href="https://wa.me/+916001098923"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Send Message
-            </a>
-          </article>
-        </div>
-
-        <form ref={form} className="contact__form" onSubmit={sendEmail}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Full Name"
-            className="form-control-input"
-            required
-          />
-          <input type="email" name="email" placeholder="Your Email" className="form-control-input" />
-          <textarea
-            name="message"
-            rows="16"
-            placeholder="Write Your Message"
-            className="form-control-text"
-            required
-          ></textarea>
-          <button
-            type="submit"
-            className="btn btn-primary"
-          >
-            Send
-          </button>
-        </form>
       </div>
     </section>
   );

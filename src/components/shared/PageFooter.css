@@ -1,0 +1,32 @@
+.page-footer {
+  width: 100%;
+  margin-top: 4rem;
+  padding: 0 1.5rem;
+  text-align: center;
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  color: var(--ds-text-muted);
+}
+
+.page-footer-top {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  color: var(--ds-text-muted);
+  background: transparent;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+
+.page-footer-top:hover {
+  color: var(--ds-green-btn);
+  border-color: var(--ds-green-btn);
+}
+
+.page-footer-copyright {
+  opacity: 0.6;
+}

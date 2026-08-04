@@ -3,9 +3,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { Suspense, lazy, useEffect } from "react";
 
 import Loading from "./additionals/loading/Loading.jsx";
-import HomePage from "./homePage/HomePage.jsx";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle.jsx";
 import AccentPicker from "./components/ThemeToggle/AccentPicker.jsx";
+import SoundToggle from "./components/SoundToggle/SoundToggle.jsx";
+import AchievementsTray from "./components/Achievements/AchievementsTray.jsx";
+import RouteTracker from "./components/RouteTracker/RouteTracker.jsx";
+import ClickSoundListener from "./components/ClickSound/ClickSoundListener.jsx";
+import ScrollManager from "./components/shared/ScrollManager.jsx";
 
 const Home = lazy(() => import("./components/home/Home"));
 const ContactOut = lazy(() => import("./components/contact/Contact"));
@@ -15,7 +19,10 @@ const Mood = lazy(() => import("./components/portfolio/Mood"));
 const LazyKit = lazy(() => import("./components/portfolio/LazyKit"));
 const Lazyperm = lazy(() => import("./components/portfolio/Lazyperm"));
 const Wormhole = lazy(() => import("./components/portfolio/Wormhole"));
-const SuccessPointGogamukh = lazy(() => import("./components/portfolio/SuccessPointGogamukh"));
+const AssamFlood = lazy(() => import("./components/campaign/AssamFlood"));
+const Work = lazy(() => import("./components/portfolio/Work"));
+const Moksha = lazy(() => import("./components/moksha/Moksha"));
+const NotFound = lazy(() => import("./components/NotFound/NotFound"));
 
 function App() {
   useEffect(() => {
@@ -29,19 +36,28 @@ function App() {
       <div className="App">
         <ThemeToggle />
         <AccentPicker />
+        <SoundToggle />
+        <AchievementsTray />
+        <ScrollManager />
+        <RouteTracker />
+        <ClickSoundListener />
         <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/contactout" element={<ContactOut />} />
-            <Route path="/mood" element={<Mood />} />
-            <Route path="/lazykit" element={<LazyKit />} />
-            <Route path="/lazyperm" element={<Lazyperm />} />
-            <Route path="/wormhole" element={<Wormhole />} />
-            <Route path="/success-point-gogamukh" element={<SuccessPointGogamukh />} />
-            <Route path="/alien" element={<HomePage />} />
-          </Routes>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/contactout" element={<ContactOut />} />
+              <Route path="/mood" element={<Mood />} />
+              <Route path="/lazykit" element={<LazyKit />} />
+              <Route path="/lazyperm" element={<Lazyperm />} />
+              <Route path="/wormhole" element={<Wormhole />} />
+              <Route path="/assamflood2026" element={<AssamFlood />} />
+              <Route path="/work" element={<Work />} />
+              <Route path="/moksha" element={<Moksha />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
         </Suspense>
       </div>
     </Router>

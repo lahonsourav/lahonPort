@@ -44,11 +44,11 @@ const Services = () => {
               data-aos-duration="1500"
               className="service__list"
             >
-              <li><span className="svc-emoji">🚀</span><p>Space nerd — black holes, time travel, parallel universes, Fermi paradox</p></li>
+              <li><span className="svc-emoji">🚀</span><p>Space nerd: black holes, time travel, parallel universes, Fermi paradox</p></li>
               <li><span className="svc-emoji">🎬</span><p>Sci-Fi, thriller & horror movie buff</p></li>
-              <li><span className="svc-emoji">🐾</span><p>Dog person. Also cats. And frogs — surprisingly</p></li>
-              <li><span className="svc-emoji">🗣</span><p>Multilingual — Assamese, Hindi, English + a few programming languages</p></li>
-              <li><span className="svc-emoji">🎨</span><p>Photoshop & Canva — creative design & photo editing</p></li>
+              <li><span className="svc-emoji">🐾</span><p>Dog person. Also cats. And frogs, surprisingly</p></li>
+              <li><span className="svc-emoji">🗣</span><p>Multilingual: Assamese, Hindi, English + a few programming languages</p></li>
+              <li><span className="svc-emoji">🎨</span><p>Photoshop & Canva: creative design & photo editing</p></li>
               <li><span className="svc-emoji">🧠</span><p>Creative thinker with an artistic mindset & a love for problem-solving</p></li>
               <li><span className="svc-emoji">🤝</span><p>Leader, event host, natural team player</p></li>
             </ul>
@@ -67,11 +67,11 @@ const Services = () => {
               className="service__list"
             >
               <li><span className="svc-emoji">🎤</span><p>Hosted & managed events across multiple institutes</p></li>
-              <li><span className="svc-emoji">💻</span><p>Mentored people in various tech domains — web, mobile & beyond</p></li>
+              <li><span className="svc-emoji">💻</span><p>Mentored people in various tech domains: web, mobile & beyond</p></li>
               <li><span className="svc-emoji">🎧</span><p>Produced background music for Tecnoesis 2022 event teasers</p></li>
               <li><span className="svc-emoji">🖼</span><p>Painting featured in National Art Exhibition organised by ONGC</p></li>
               <li><span className="svc-emoji">🎵</span><p>Released music videos & performed in live shows</p></li>
-              <li><span className="svc-emoji">🎸</span><p>Head of Symphonits, Music Club — NIT Silchar</p></li>
+              <li><span className="svc-emoji">🎸</span><p>Head of Symphonits, Music Club (NIT Silchar)</p></li>
             </ul>
           </article>
         </MaybeTilt>

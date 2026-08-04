@@ -1,0 +1,44 @@
+.sound-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 7.25rem;
+  z-index: var(--ds-z-fixed);
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--ds-border);
+  background: rgba(13, 17, 23, 0.7);
+  backdrop-filter: blur(16px);
+  color: var(--ds-green);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--ds-transition);
+  /* iOS Safari drops fixed + backdrop-filter elements from compositing
+     mid-scroll (they blink out during rubber-band bounce) unless forced
+     onto their own GPU layer. */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+:root[data-theme="light"] .sound-toggle {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.sound-toggle:hover {
+  border-color: var(--ds-green);
+  background: var(--ds-surface-2);
+  transform: translateY(-2px) translateZ(0);
+}
+
+@media screen and (max-width: 600px) {
+  .sound-toggle {
+    top: 1rem;
+    right: 6.3rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 0.95rem;
+  }
+}

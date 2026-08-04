@@ -1,22 +1,11 @@
-.wh-page {
-  min-height: 100vh;
-  background: var(--ds-bg);
-  color: var(--ds-text);
-  font-family: var(--ds-font);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.wh-page.page-shell {
   padding: 3rem 1.5rem 2rem;
   --wh-accent: #a371f7;
 }
 
-.wh-section-h {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--ds-text);
-  letter-spacing: -0.01em;
-  text-align: center;
-  margin-bottom: 0.5rem;
+.wh-page > .back-home {
+  align-self: flex-start;
+  margin-bottom: 1rem;
 }
 
 /* ── Hero ── */
@@ -34,12 +23,8 @@
   gap: 0.75rem;
 }
 
-.wh-hero-swirl {
-  font-size: 2.4rem;
-}
-
 .wh-hero-title {
-  font-size: 2.6rem;
+  font-size: var(--ds-text-hero);
   font-weight: 700;
   letter-spacing: -0.02em;
   background: linear-gradient(90deg, var(--wh-accent), #58a6ff);
@@ -70,6 +55,10 @@
   align-items: center;
   gap: 0.75rem;
   margin-top: 1.75rem;
+}
+
+.wh-share-btn {
+  margin-top: 1.25rem;
 }
 
 .wh-tag {
@@ -515,14 +504,6 @@
 
 .wh-download-btn:hover {
   opacity: 0.85;
-}
-
-.wh-page-footer {
-  margin-top: 4rem;
-  font-family: var(--ds-font-mono);
-  font-size: 0.72rem;
-  color: var(--ds-text-muted);
-  opacity: 0.6;
 }
 
 /* ── Responsive ── */

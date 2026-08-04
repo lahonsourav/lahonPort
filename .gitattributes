@@ -1,2 +1,8 @@
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *png filter=lfs diff=lfs merge=lfs -text
+src/images/assam-flood-qr-styled.png -filter -diff -merge -text
+src/images/vkfc-acknowledgement.png -filter -diff -merge -text
+src/images/assam-flood-back.png -filter -diff -merge -text
+public/og-preview.png -filter -diff -merge -text
+src/images/uttoron-gogamukh-payment.jpg -filter -diff -merge -text
+src/images/lakhimpur-hip-hop-payment.jpg -filter -diff -merge -text

@@ -210,13 +210,13 @@ const FlowerVine = () => {
     const measure = () => {
       const wrapRect = el.getBoundingClientRect();
       const rel = (r) => ({ top: r.top - wrapRect.top, bottom: r.bottom - wrapRect.top });
-      const q = (sel) => {
-        const s = document.querySelector(sel);
-        return s ? rel(s.getBoundingClientRect()) : null;
-      };
-      const secs = ["#about", "#experience", "#blog-preview", "#portfolio", "#skills", "#bio", "#contact"]
-        .map(q)
-        .filter(Boolean);
+      // Auto-discover sections instead of a hardcoded ID list — every
+      // homepage section renders a <section> as a direct child of
+      // .vine-flow (Header/CTA don't), so this stays correct automatically
+      // as sections are added, removed, or reordered.
+      const secs = Array.from(document.querySelectorAll(".vine-flow > section")).map((s) =>
+        rel(s.getBoundingClientRect())
+      );
       const gapList = [];
       for (let i = 1; i < secs.length; i++) {
         const size = secs[i].top - secs[i - 1].bottom;

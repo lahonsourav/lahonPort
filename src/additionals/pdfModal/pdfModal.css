@@ -1,0 +1,88 @@
+.pdf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.pdf-modal {
+  width: min(900px, 100%);
+  max-height: min(85vh, 1100px);
+  height: auto;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pdf-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.1rem;
+  border-bottom: 1px solid var(--ds-border);
+  flex-shrink: 0;
+}
+
+.pdf-modal-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ds-text);
+}
+
+.pdf-modal-close {
+  background: none;
+  border: none;
+  color: var(--ds-text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem;
+  transition: var(--ds-transition);
+}
+
+.pdf-modal-close:hover {
+  color: var(--ds-error);
+}
+
+.pdf-modal-frame {
+  /* Sized to a Letter page's own aspect ratio instead of stretching to
+     fill the modal, so a short (e.g. one-page) PDF doesn't leave a big
+     blank gap below it in the native viewer. flex-shrink lets it give
+     way to .pdf-modal's max-height on short viewports; the native PDF
+     viewer scrolls internally for anything taller than what's visible. */
+  flex: 0 1 auto;
+  min-height: 0;
+  aspect-ratio: 8.5 / 11;
+  border: none;
+  width: 100%;
+  background: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .pdf-modal-overlay {
+    padding: 0.75rem;
+  }
+
+  .pdf-modal {
+    max-height: 90vh;
+  }
+}
+
+/* Hide the fixed chrome (theme/accent/sound/achievements buttons, bottom
+   nav pill, scroll hint) while a PDF viewer is open, so nothing floats on
+   top of it. */
+body.pdf-modal-open .theme-toggle,
+body.pdf-modal-open .accent-picker,
+body.pdf-modal-open .sound-toggle,
+body.pdf-modal-open .achievements-tray,
+body.pdf-modal-open .cta-scroll-hint,
+body.pdf-modal-open nav {
+  display: none;
+}

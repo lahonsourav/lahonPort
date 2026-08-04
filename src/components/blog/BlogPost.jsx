@@ -1,7 +1,14 @@
 import React from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { POSTS } from './posts';
+import { readMins } from './readingTime';
+import { trackBlogRead } from '../../lib/achievements';
 import MermaidDiagram from './MermaidDiagram';
+import TokenPlayground from './TokenPlayground';
+import LivePalette from './LivePalette';
+import BackHome from '../shared/BackHome';
+import ShareButton from '../share/ShareButton';
+import PageFooter from '../shared/PageFooter';
 import './blog.css';
 
 const TAG_COLORS = {
@@ -13,8 +20,12 @@ const TAG_COLORS = {
 };
 
 // Posts hold either plain-string paragraphs or typed blocks
-// ({ type: 'h2' | 'h3' | 'diagram' | 'table' | 'list' | 'note' }).
+// ({ type: 'h2' | 'h3' | 'diagram' | 'table' | 'list' | 'note' | 'code' | 'playground' | 'palette' | 'gallery' }).
 // 'diagram' blocks hold Mermaid syntax, rendered via MermaidDiagram.
+// 'code' blocks hold a plain-text snippet, rendered in a <pre><code>.
+// 'playground' renders the interactive TokenPlayground widget, no params.
+// 'palette' renders the live LivePalette token swatches, no params.
+// 'gallery' holds items: [{ src, alt, caption }], rendered as a responsive grid.
 const renderBlock = (block, i) => {
   if (typeof block === 'string') {
     const spaceIdx = block.indexOf(' ');
@@ -69,6 +80,28 @@ const renderBlock = (block, i) => {
       );
     case 'note':
       return <div key={i} className="blog-note">{block.text}</div>;
+    case 'code':
+      return (
+        <figure key={i} className="blog-figure blog-figure--code">
+          {block.title && <figcaption>{block.title}</figcaption>}
+          <pre className="blog-code-block"><code>{block.text}</code></pre>
+        </figure>
+      );
+    case 'gallery':
+      return (
+        <div key={i} className="blog-gallery">
+          {block.items.map((it) => (
+            <figure key={it.src} className="blog-figure blog-figure--image blog-gallery-item">
+              {it.caption && <figcaption>{it.caption}</figcaption>}
+              <img src={it.src} alt={it.alt ?? ''} loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      );
+    case 'playground':
+      return <TokenPlayground key={i} />;
+    case 'palette':
+      return <LivePalette key={i} />;
     default:
       return null;
   }
@@ -76,7 +109,6 @@ const renderBlock = (block, i) => {
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const post = POSTS.find(p => p.slug === slug);
 
   React.useEffect(() => {
@@ -84,13 +116,14 @@ const BlogPost = () => {
     const key = `blog_reads_${slug}`;
     const n = parseInt(localStorage.getItem(key) || '0', 10);
     localStorage.setItem(key, n + 1);
+    trackBlogRead(POSTS.map(p => p.slug));
   }, [slug]);
 
   if (!post) {
     return (
       <div className="blog-page">
         <div className="blog-post-wrap">
-          <button className="blog-back" onClick={() => navigate('/blog')}>← Blog</button>
+          <BackHome className="blog-back" to="/blog" label="← Blog" />
           <p className="blog-not-found">Story not found.</p>
         </div>
       </div>
@@ -102,7 +135,7 @@ const BlogPost = () => {
   return (
     <div className="blog-page">
       <div className="blog-post-wrap">
-        <button className="blog-back" onClick={() => navigate('/blog')}>← Blog</button>
+        <BackHome className="blog-back" to="/blog" label="← Blog" />
 
         <div className="blog-post-header">
           {post.tag && (
@@ -111,6 +144,8 @@ const BlogPost = () => {
             </span>
           )}
           <span className="blog-date">{post.date}</span>
+          <span className="blog-read-time">{readMins(post.content)} min read</span>
+          <ShareButton title={post.title} className="blog-share-btn" />
         </div>
 
         <h1 className="blog-post-title">{post.title}</h1>
@@ -139,6 +174,8 @@ const BlogPost = () => {
           </div>
         )}
       </div>
+
+      <PageFooter>Copyright © 2026 lahon.in/blog</PageFooter>
     </div>
   );
 };

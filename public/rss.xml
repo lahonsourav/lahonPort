@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sourav Lahon — Blog</title>
+    <link>https://lahon.in/blog</link>
+    <description>Stories, thoughts, and things worth writing down — engineering deep-dives and notes from building things.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://lahon.in/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>A Complete Coaching Center Management System — Website, Dashboards, Live Classes, Billing</title>
+      <link>https://lahon.in/blog/coaching-center-management-system</link>
+      <guid>https://lahon.in/blog/coaching-center-management-system</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+      <description>What I built for Success Point Gogamukh wasn't just a website — it's a full operating system for a coaching business. Every feature, every screen, and what it would take to build one for your institute.</description>
+    </item>
+
+    <item>
+      <title>Success Point Gogamukh — The Full Technical Build</title>
+      <link>https://lahon.in/blog/building-success-point-gogamukh</link>
+      <guid>https://lahon.in/blog/building-success-point-gogamukh</guid>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Next.js App Router and Server Actions, a Prisma/PostgreSQL schema built around live classes, phone+OTP auth with per-attempt SMS cost tracking, Web Push, an offline-ready PWA, and an immutable audit log — the full engineering breakdown of a real client platform.</description>
+    </item>
+
+    <item>
+      <title>Why It Matters to Digitalise Your Business, Entity, and Identity</title>
+      <link>https://lahon.in/blog/why-digitalise-your-coaching-business</link>
+      <guid>https://lahon.in/blog/why-digitalise-your-coaching-business</guid>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A signboard and word of mouth used to be enough. For coaching centers and schools competing for the same batch of NEET, JEE, and ADRE aspirants, they no longer are.</description>
+    </item>
+
+    <item>
+      <title>Wormhole — Engineering a Serverless, End-to-End Encrypted Messenger</title>
+      <link>https://lahon.in/blog/building-wormhole-p2p-messaging</link>
+      <guid>https://lahon.in/blog/building-wormhole-p2p-messaging</guid>
+      <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A private tunnel between exactly two phones — WebRTC, NaCl encryption, no servers in the middle. Every diagram, flowchart, and hard-won lesson from building it.</description>
+    </item>
+
+    <item>
+      <title>Why I'm Building Innercast</title>
+      <link>https://lahon.in/blog/why-im-building-innercast</link>
+      <guid>https://lahon.in/blog/why-im-building-innercast</guid>
+      <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Mental health is the one thing we track the least about ourselves, yet it shapes everything else. A private, on-device mood diary that checks in daily and writes the story back to you.</description>
+    </item>
+  </channel>
+</rss>

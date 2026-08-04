@@ -4,8 +4,8 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #7ee787, #58a6ff);
-  z-index: 9999;
+  background: linear-gradient(90deg, var(--ds-green-btn), var(--ds-green-btn-hover), var(--ds-green));
+  z-index: var(--ds-z-scroll-progress);
   transform: scaleX(0);
   transform-origin: left;
   will-change: transform;
