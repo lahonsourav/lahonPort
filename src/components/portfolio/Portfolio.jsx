@@ -392,6 +392,42 @@ const Portfolio = () => {
             </div>
           </article>
         </MaybeTilt>
+
+        <MaybeTilt>
+          <article data-aos="zoom-in-up" className="portfolio__items">
+            <div className="portfolio__item-image rbp-preview">
+              <div className="rbp-inner">
+                <div className="rbp-title-row">
+                  <span className="rbp-emoji">🍽️</span>
+                  <span className="rbp-brand">Rapid Bulk Plan</span>
+                </div>
+                <svg className="rbp-chart" viewBox="0 0 120 46">
+                  <polyline points="4,38 26,32 48,28 70,20 92,12 116,6" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="4" cy="38" r="2.5" fill="#16a34a" />
+                  <circle cx="116" cy="6" r="2.5" fill="#16a34a" />
+                </svg>
+                <div className="rbp-tags">
+                  <span className="rbp-tag">58 → 66kg</span>
+                  <span className="rbp-tag">2,700 kcal/day</span>
+                </div>
+              </div>
+            </div>
+            <h3>Rapid Bulk Plan</h3>
+            <small>
+              An installable, offline-first PWA diet tracker for healthy weight gain — editable meal plan and macros, a weigh-in log with a progress chart, meal reminders, and JSON export/import. No build step, no backend, plain HTML/CSS/JS.
+            </small>
+            <div className="portfolio__item-cta">
+              <a
+                href="https://lahonsourav.github.io/diet/"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open App
+              </a>
+            </div>
+          </article>
+        </MaybeTilt>
       </div>
     </section>
   );
