@@ -26,7 +26,7 @@ const Work = () => {
 
   return (
     <div className="work_page page-shell">
-      <BackHome />
+      <BackHome to="/" label="← Home" alwaysTo />
 
       <div className="work_hero">
         <h5 data-aos="fade-down">everything I've</h5>

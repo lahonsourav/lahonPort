@@ -53,7 +53,7 @@ const Blog = () => {
   return (
   <div className="blog-page">
     <div className="blog-topbar">
-      <BackHome className="blog-back" />
+      <BackHome className="blog-back" to="/" label="← Home" alwaysTo />
     </div>
     <div className="blog-hero">
       <h1 className="blog-hero-title">Blog</h1>
