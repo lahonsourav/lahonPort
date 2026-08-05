@@ -582,7 +582,7 @@ export const POSTS = [
     title: 'Success Point Gogamukh: The Full Technical Build',
     date: '2026-07-21',
     tag: 'tech',
-    excerpt: 'Next.js App Router and Server Actions, a Prisma/PostgreSQL schema built around live classes, phone+OTP auth with per-attempt SMS cost tracking, Web Push, an offline-ready PWA, and an immutable audit log: the full engineering breakdown of a real client platform.',
+    excerpt: 'Next.js App Router and Server Actions, a Prisma/PostgreSQL schema built around live classes, phone+OTP verified onboarding backed by bcrypt password logins with per-attempt SMS cost tracking, Web Push, an offline-ready PWA, and an immutable audit log: the full engineering breakdown of a real client platform.',
     projectLabel: 'See the full feature tour →',
     projectUrl: '/blog/coaching-center-management-system',
     downloadLabel: '🎓 Visit Success Point Gogamukh',
@@ -613,10 +613,10 @@ export const POSTS = [
           ['Framework', 'Next.js 16 (App Router)', 'Server Actions remove the need for a hand-rolled API layer; file-based routing matches the site/dashboard split cleanly'],
           ['UI', 'React 19 + TypeScript + Tailwind CSS v4', 'Type safety across server actions and components; utility CSS keeps the design system consistent without a component library'],
           ['ORM / DB', 'Prisma 7 (driver adapters) + PostgreSQL', 'Typed schema, migrations as first-class citizens, and the new driver-adapter mode (@prisma/adapter-pg) for a lighter runtime'],
-          ['Auth', 'Twilio Verify (SMS OTP) + jose (JWT)', 'No password storage/reset flow to build or secure; jose signs short-lived session and join tokens'],
+          ['Auth', 'Twilio Verify (SMS OTP) + jose (JWT)', 'OTP verifies the phone once, at signup, faculty join, or forgot-password; jose signs the session cookie and short-lived join tokens'],
           ['Push', 'web-push (VAPID) + browser Push API', 'Standards-based, no third-party push SaaS or its recurring bill'],
           ['Validation', 'zod', 'Schema validation at every Server Action boundary, not just on the client form'],
-          ['Passwords/tokens', 'bcryptjs', 'Hashing anywhere a secret does need to be stored at rest'],
+          ['Passwords/tokens', 'bcryptjs', 'Bcrypt-hashed passwords (10 salt rounds) for every return login, plus hashing anywhere else a secret needs to be stored at rest'],
           ['Hosting', 'Railway (railway.toml)', 'Managed Postgres + app deploy from one provider, sized right for a single coaching center, not enterprise infra'],
         ] },
 
@@ -646,7 +646,7 @@ export const POSTS = [
       { type: 'table',
         head: ['Model', 'Notable fields', 'Purpose'],
         rows: [
-          ['AuthEvent', 'type, purpose, ip/city/region/country, costInr', 'Every OTP send/verify/fail: the login-activity trail'],
+          ['AuthEvent', 'type, purpose, ip/city/region/country, costInr', 'Every OTP send/verify/fail and every password verify/fail: the login-activity trail'],
           ['AuditLog', 'actorId (nullable), actorName, actorRole, action, entityType, summary, metadata', 'Immutable trail of every admin/faculty mutation, write-once, no update/delete path exposed anywhere'],
           ['PushSubscription', 'endpoint (unique), p256dh, auth', 'One row per browser/device Web Push registration'],
           ['ServiceItem / ClientPayment / BillingSettings', 'category, status, amountInr / paidAt / dueDate', 'The master-only developer-billing system: what\'s owed vs. what\'s been paid'],
@@ -657,9 +657,9 @@ export const POSTS = [
 
       { type: 'h2', text: '4. Authentication' },
 
-      'There\'s no password anywhere in the student/admin flow. Login is phone number + a 6-digit SMS OTP sent through Twilio Verify; Twilio owns OTP generation and expiry, the app just asks it to send and verify. On success, a signed JWT session cookie is issued via jose. Faculty go through a separate invite/join link, a one-time URL that lets them verify their phone and set up the account, rather than an admin typing in a password for them.',
+      'Auth went through a real redesign partway through the project. Phone-only OTP login was secure but meant a 6-digit SMS code, and its cost, on every single login. The current design uses OTP for what it\'s actually good at: proving phone ownership once. A new student or faculty member verifies their phone via Twilio Verify, then sets a password (entered twice, matched server-side and hashed with bcrypt); every login after that is just phone number + password, no SMS involved. Accounts created before this shipped get migrated the same way: their first login after the change routes them to set a password instead of straight into the dashboard. Faculty still go through a separate invite/join link, a one-time URL that runs the same OTP-then-password flow, rather than an admin typing in a password for them. On success, a signed JWT session cookie is issued via jose, now valid for six months instead of the original seven days, since re-typing a password that often was more friction than the security bought back.',
 
-      { type: 'diagram', title: 'Phone + OTP login, with every attempt logged', text:
+      { type: 'diagram', title: 'Phone verification once: signup, faculty join, migration, or forgot-password', text:
 `sequenceDiagram
     participant U as User
     participant App as Server Action
@@ -674,6 +674,10 @@ export const POSTS = [
     alt code correct
         Tw-->>App: approved
         App->>DB: AuthEvent(type: otp_verified)
+        App-->>U: set password (entered twice)
+        U->>App: submit password + confirm
+        App->>App: bcrypt.hash(password, 10 rounds)
+        App->>DB: store passwordHash on User
         App->>App: sign JWT session cookie (jose)
         App-->>U: redirect to role's dashboard
     else code wrong/expired
@@ -682,7 +686,24 @@ export const POSTS = [
         App-->>U: show error, allow retry
     end` },
 
-      'Every one of those AuthEvent rows carries IP address, user agent, and geolocation resolved to city/region/country, plus, for otp_sent, the SMS cost in INR, converted from Twilio\'s USD pricing at the live exchange rate at send time. Admins get a Login Activity page built entirely from this table: who tried to log in, from where, and what it cost.',
+      { type: 'diagram', title: 'Every login after that: phone + password, no SMS involved', text:
+`sequenceDiagram
+    participant U as User
+    participant App as Server Action
+    participant DB as Postgres
+    U->>App: submit phone + password
+    App->>DB: look up User by phone
+    App->>App: bcrypt.compare(password, passwordHash)
+    alt password correct
+        App->>DB: AuthEvent(type: password_verified)
+        App->>App: sign JWT session cookie (jose), 6-month expiry
+        App-->>U: redirect to role's dashboard
+    else password wrong
+        App->>DB: AuthEvent(type: password_failed)
+        App-->>U: show error, offer "Forgot password?"
+    end` },
+
+      'Forgot password reuses the exact same phone-verification step as signup, under a distinct password_reset purpose: prove you still control the phone via OTP, then set a new password. It\'s entirely self-service, no admin, faculty member, or master role can trigger a reset on someone else\'s behalf, which keeps the audit trail honest about who actually initiated it. Every one of those AuthEvent rows, otp_sent/otp_verified/otp_failed and now password_verified/password_failed, carries IP address, user agent, and geolocation resolved to city/region/country, plus, for otp_sent, the SMS cost in INR, converted from Twilio\'s USD pricing at the live exchange rate at send time. Admins get a Login Activity page built entirely from this table: who tried to log in, from where, what it cost, and whether it was an OTP step or a password attempt; the stats cards count both.',
 
       { type: 'h2', text: '5. Roles & Permissions' },
 
@@ -781,7 +802,7 @@ export const POSTS = [
 
       { type: 'h2', text: 'Closing Thoughts' },
 
-      'None of the individual pieces here are exotic: OTP auth, Server Actions, a service worker, Web Push. What made this project interesting was fitting them together for a genuinely operational system: a coaching center actually runs live classes through this, actually gets paid through the fee pages it advertises, and actually tracks its own SMS spend against a monthly figure that used to be invisible. The join-token design and the audit log are the two pieces I\'d point to as the most "engineering," but the boring parts (cascading deletes that don\'t leave orphaned rows, a service worker that refuses to cache a dashboard, a payments table nobody can quietly edit after the fact) are what actually make it trustworthy enough for a real client to run their business on.',
+      'None of the individual pieces here are exotic: OTP-verified password auth, Server Actions, a service worker, Web Push. What made this project interesting was fitting them together for a genuinely operational system: a coaching center actually runs live classes through this, actually gets paid through the fee pages it advertises, and actually tracks its own SMS spend against a monthly figure that used to be invisible. The join-token design and the audit log are the two pieces I\'d point to as the most "engineering," but the boring parts (cascading deletes that don\'t leave orphaned rows, a service worker that refuses to cache a dashboard, a payments table nobody can quietly edit after the fact) are what actually make it trustworthy enough for a real client to run their business on.',
 
       'If you want the plain-language tour of what the platform does for the coaching center and its students (no schemas, no JWTs), the project page has that version.',
     ],
@@ -817,13 +838,13 @@ export const POSTS = [
         'Floating WhatsApp button: always one tap away, auto-hides over the footer',
       ] },
 
-      { type: 'h2', text: 'No passwords, ever' },
+      { type: 'h2', text: 'Phone-verified, then a password: the best of both' },
 
-      'Students and admins log in with a phone number and an SMS OTP, nothing to forget, nothing to leak. Faculty get a separate invite link to verify their phone and set up their account. Every login attempt is logged with device, location, and SMS cost, so the owner always knows who\'s actually using the system.',
+      'The SMS code proves you own the phone once, at signup, at faculty join, or if you ever forget your password, and a password handles every login after that, so nobody\'s waiting on a text message just to check their dashboard. New students and faculty verify their phone with a one-time OTP, then set a password (typed twice, so no fat-fingered logout later). Everyone who already had an account got carried over automatically: their next login just asks them to set a password first. Forgot it? The same OTP step proves it\'s still you, entirely self-service, no admin has to get involved. Sessions now stay signed in for six months, so returning students and faculty aren\'t re-authenticating every week. Every step, OTP and password alike, is logged with device, location, and (for the SMS step) cost, so the owner always knows who\'s actually using the system.',
 
       { type: 'gallery', items: [
-        { src: loginShot, alt: 'Phone number login screen', caption: 'Login: phone + OTP, no password anywhere in the system' },
-        { src: facultyJoinShot, alt: 'Faculty invite and join page', caption: 'Faculty join: verify by phone, no admin typing in a password for them' },
+        { src: loginShot, alt: 'Phone number and password login screen', caption: 'Login: phone + password for every return visit' },
+        { src: facultyJoinShot, alt: 'Faculty invite and join page', caption: 'Faculty join: verify by phone via OTP, then set a password, no admin typing one in for them' },
       ] },
 
       { type: 'h2', text: 'A dashboard for every role' },
@@ -856,7 +877,7 @@ export const POSTS = [
 
       { type: 'h2', text: 'One dashboard that runs the whole institute' },
 
-      'Manage courses and pricing, students, faculty, admins, and enrollment requests. Every price change, faculty assignment, and enrollment approval writes to an immutable audit log, a permanent, write-once record of who did what, when. Login activity shows every device and location an OTP was sent to, with the SMS cost attached.',
+      'Manage courses and pricing, students, faculty, admins, and enrollment requests. Every price change, faculty assignment, and enrollment approval writes to an immutable audit log, a permanent, write-once record of who did what, when. Login activity shows every device and location for both OTP steps and password logins, with the SMS cost attached where one was actually sent. There\'s also a copyable faculty invite link right on the Manage Faculty page, and a per-course roster of every enrolled student, one click from the course list.',
 
       { type: 'image', src: adminDashboardShot, alt: 'Admin dashboard home with stats and management tools', caption: 'Admin dashboard: every management tool, live stats, one click away' },
 
@@ -866,7 +887,7 @@ export const POSTS = [
         { src: adminFacultyShot, alt: 'Manage faculty page', caption: 'Manage Faculty: subject assignments' },
         { src: adminEnrollmentsShot, alt: 'Enrollment requests page', caption: 'Enrollment Requests: verify receipts, approve/reject' },
         { src: adminAuditLogShot, alt: 'Audit log table', caption: 'Audit Log: immutable trail of every change, by actor' },
-        { src: adminLoginActivityShot, alt: 'Login activity table with SMS cost', caption: 'Login Activity: device, location, SMS cost per OTP' },
+        { src: adminLoginActivityShot, alt: 'Login activity table with SMS cost', caption: 'Login Activity: device, location, and SMS cost, across OTP and password events alike' },
         { src: adminDevChargeShot, alt: 'Development charge breakdown, read-only', caption: 'Development Charge: read-only, what\'s owed vs. paid' },
       ] },
 
@@ -879,7 +900,7 @@ export const POSTS = [
           ['Enrollment Requests', 'Verify receipt numbers, approve or reject in one click'],
           ['Announcements', 'Push notifications to all students or specific courses'],
           ['Audit Log', 'An immutable trail of every change: who, what, when'],
-          ['Login Activity', 'Every OTP attempt with device, location, and SMS cost'],
+          ['Login Activity', 'Every OTP and password attempt with device, location, and SMS cost where applicable'],
           ['Development Charge', 'Read-only: what\'s owed to the developer vs. what\'s been paid, with a site-wide countdown/overdue banner'],
         ] },
 
@@ -901,7 +922,7 @@ export const POSTS = [
         rows: [
           ['Framework', 'Next.js (App Router, Server Actions) + TypeScript + Tailwind'],
           ['Database', 'PostgreSQL via Prisma'],
-          ['Auth', 'Phone + SMS OTP (Twilio Verify), no passwords'],
+          ['Auth', 'Phone + SMS OTP (Twilio Verify) to verify, bcrypt-hashed password to log in, 6-month sessions'],
           ['Notifications', 'Web Push (VAPID): standards-based, no third-party push SaaS'],
           ['Offline/installable', 'PWA with a hand-written service worker'],
           ['Billing', 'Live USD→INR conversion, so SMS cost tracking and the development charge stay accurate day to day'],
