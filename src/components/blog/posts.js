@@ -20,6 +20,7 @@ import adminDevChargeShot from '../../images/spg/admin-dev-charge.webp';
 import masterOverviewShot from '../../images/spg/master-overview.webp';
 import masterServicesShot from '../../images/spg/master-services.webp';
 import masterPaymentsShot from '../../images/spg/master-payments.webp';
+import askQuestionShot from '../../images/spg/ask-question.webp';
 
 export const POSTS = [
   {
@@ -651,6 +652,8 @@ export const POSTS = [
           ['PushSubscription', 'endpoint (unique), p256dh, auth', 'One row per browser/device Web Push registration'],
           ['ServiceItem / ClientPayment / BillingSettings', 'category, status, amountInr / paidAt / dueDate', 'The master-only developer-billing system: what\'s owed vs. what\'s been paid'],
           ['EnrollmentRequest', 'type, receiptNumber, status', 'Student-submitted enrollment pending admin verification'],
+          ['Announcement / AnnouncementReply / AnnouncementLike(+Reply)', 'audience, audienceLabel, recipientCount', 'Staff-only feed: a push notice plus a reply thread and 👍 acknowledgements'],
+          ['Question / QuestionComment / QuestionCommentReaction', 'courses[], subjects[] (both many-to-many)', 'The Ask Question feed: a question tagged to courses/subjects, answered in threaded comments, each reaction correct/incorrect'],
         ] },
 
       { type: 'note', text: 'AuthEvent and AuditLog both keep a denormalized actor name/phone alongside a nullable foreign key (onDelete: SetNull). Deleting a user account later never breaks (or silently rewrites) the historical trail.' },
@@ -800,6 +803,26 @@ export const POSTS = [
 
       'The app deploys to Railway from a railway.toml, alongside a managed PostgreSQL instance. Prisma migrations run as part of the deploy step rather than by hand against production. It\'s intentionally boring infrastructure for what it is (one coaching center, not a multi-tenant platform) and boring is the right call: nothing here needs a Kubernetes cluster, and every extra moving part is one more thing to debug at 11pm before an admissions season starts.',
 
+      { type: 'h2', text: '13. Announcements & Ask Question: Two Feeds, Two Access Models' },
+
+      'Two features got added after the initial build, and they\'re a useful contrast in access control on the same codebase. Announcements started as a fire-and-forget push (admin writes a message, students receive a notification, nothing persisted). It\'s now a real Announcement row with a reply thread (AnnouncementReply) and a toggleable 👍 (AnnouncementLike / AnnouncementReplyLike, one per user per target via a compound unique index), but the whole thread is staff-only: isStaffRole gates reading, replying, and reacting, same boundary as the page itself. Ask Question is the opposite shape on purpose: students post, and visibility is scoped by enrollment (a student only sees a Question if it\'s tagged with a course they\'re enrolled in), while faculty/admin/master can see and answer every question regardless of which course they teach.',
+
+      { type: 'diagram', title: 'Tagging a subject pulls in every course that teaches it', text:
+`flowchart TD
+    A["Student submits: title, body,<br/>courseIds[], subjectNames[]"] --> B{"Poster is staff?"}
+    B -->|"no"| C["Check: every courseId is one they're<br/>enrolled in, every subjectName exists<br/>under one of those courses"]
+    B -->|"yes"| D["No restriction: any active<br/>course/subject"]
+    C -->|"fails"| E["Reject: tag only your own courses/subjects"]
+    C -->|"passes"| F
+    D --> F["Look up ALL Subject rows matching<br/>the requested subjectNames — across<br/>every course, not just the ones tagged"]
+    F --> G["Union: explicit courseIds<br/>+ courseId of every matching Subject"]
+    G --> H["Question.courses = expanded set<br/>Question.subjects = matching Subject rows"]
+    H --> I["Push recipients = students enrolled in,<br/>and faculty teaching, ANY course in the<br/>expanded set"]` },
+
+      { type: 'note', text: 'Concretely: a Class XI student tags "Physics" on a question. Physics is also taught under Class XII, NEET, and JEE as separate Subject rows (same name, different courseId, since Subject has no global uniqueness on name). The expansion step pulls all of them in, so the question — and its push notification — reaches every student and faculty member studying Physics anywhere on the platform, not just the asker\'s own batch. The same course/subject resolution logic runs again on edit, driven off whatever courses/subjects are still checked, so removing a subject tag correctly un-expands the course list too.' },
+
+      'Edit and delete on a Question split the same way access does, but flipped: canModifyQuestion returns true for staff on anything, or for a non-staff user only on their own authorId. It\'s a two-line helper, but it\'s checked server-side inside the editQuestion and deleteQuestion actions themselves, not just used to decide whether to render the ✎/✕ buttons — the UI hiding them for other students\' questions is a courtesy, the action re-checks regardless of what the client sends.',
+
       { type: 'h2', text: 'Closing Thoughts' },
 
       'None of the individual pieces here are exotic: OTP-verified password auth, Server Actions, a service worker, Web Push. What made this project interesting was fitting them together for a genuinely operational system: a coaching center actually runs live classes through this, actually gets paid through the fee pages it advertises, and actually tracks its own SMS spend against a monthly figure that used to be invisible. The join-token design and the audit log are the two pieces I\'d point to as the most "engineering," but the boring parts (cascading deletes that don\'t leave orphaned rows, a service worker that refuses to cache a dashboard, a payments table nobody can quietly edit after the fact) are what actually make it trustworthy enough for a real client to run their business on.',
@@ -869,11 +892,19 @@ export const POSTS = [
         { src: facultyStudentsShot, alt: 'Faculty view of their students', caption: "Faculty's student roster" },
       ] },
 
-      { type: 'h2', text: 'Push notifications that actually get read' },
+      { type: 'h2', text: 'Announcements that talk back' },
 
-      'A class going live pushes a notification straight to every enrolled student automatically. On top of that, staff can broadcast an announcement (a title, a message, and an optional link to a form or payment page) to all students or to specific courses, all from one composer.',
+      'A class going live pushes a notification straight to every enrolled student automatically. On top of that, staff can broadcast an announcement (a title, a message, and an optional link to a form or payment page) from one composer, to all students, specific courses, students who haven\'t enrolled in anything yet, the staff team, or literally everyone. What used to be a one-way push is now a real thread: faculty, admin, and master can reply to any announcement and tap a 👍 to acknowledge it, so "did the team see this" stops being a guessing game answered over WhatsApp.',
 
-      { type: 'image', src: adminAnnouncementsShot, alt: 'Announcements composer with title, message, link, and audience selector', caption: 'Announcements: compose once, send to all students or specific courses' },
+      { type: 'image', src: adminAnnouncementsShot, alt: 'Announcements feed with audience selector, a staff reply, and like reactions', caption: 'Announcements: five audience options, plus a reply thread and 👍 reactions right under each one' },
+
+      { type: 'h2', text: 'Ask Question: a Q&A feed built into every dashboard' },
+
+      'Students don\'t just receive information, they can ask for it. Any student can post a question tagged to one or more of their enrolled courses and, optionally, a subject, right on their own dashboard. Faculty, admin, and master can answer any question on the platform, not just the ones under courses they teach, so a Class XI student\'s Physics doubt can get picked up by whichever faculty member is free, not only their assigned teacher. Every answer gets a ✅ correct / ❌ incorrect reaction from anyone who can see the thread, so the right explanation floats to the top without a moderator having to referee it.',
+
+      'The clever bit is what happens when a subject gets tagged: the question automatically extends to every other course that teaches a subject by that same name. Tag "Physics" from a Class XI question and it\'s instantly visible to Class XII, NEET, and JEE students too, because they all study Physics, even though nobody explicitly picked those courses. A dedicated Ask Question page lists every question the viewer can see with subject-filter tabs to narrow it down, and the person who posted a question (or staff, for any question) can edit or delete it later.',
+
+      { type: 'image', src: askQuestionShot, alt: 'Ask Question feed with course and subject tags, a correct-marked answer, and subject filter tabs', caption: 'Ask Question: subject filter tabs up top, course + subject tags on the question, ✅/❌ reactions on each answer' },
 
       { type: 'h2', text: 'One dashboard that runs the whole institute' },
 
@@ -898,7 +929,8 @@ export const POSTS = [
           ['Manage Students / Faculty', 'View, edit, search, and manage every account'],
           ['Admins', 'See who has admin access and their activity'],
           ['Enrollment Requests', 'Verify receipt numbers, approve or reject in one click'],
-          ['Announcements', 'Push notifications to all students or specific courses'],
+          ['Announcements', 'Push to students, staff, or everyone — with replies and 👍 reactions from the team'],
+          ['Ask Question', 'The student/staff Q&A feed: course + subject tags, ✅/❌ answer reactions, subject filters'],
           ['Audit Log', 'An immutable trail of every change: who, what, when'],
           ['Login Activity', 'Every OTP and password attempt with device, location, and SMS cost where applicable'],
           ['Development Charge', 'Read-only: what\'s owed to the developer vs. what\'s been paid, with a site-wide countdown/overdue banner'],
