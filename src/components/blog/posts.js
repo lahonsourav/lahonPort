@@ -20,6 +20,7 @@ import adminDevChargeShot from '../../images/spg/admin-dev-charge.webp';
 import masterOverviewShot from '../../images/spg/master-overview.webp';
 import masterServicesShot from '../../images/spg/master-services.webp';
 import masterPaymentsShot from '../../images/spg/master-payments.webp';
+import askQuestionShot from '../../images/spg/ask-question.webp';
 
 export const POSTS = [
   {
@@ -582,7 +583,7 @@ export const POSTS = [
     title: 'Success Point Gogamukh: The Full Technical Build',
     date: '2026-07-21',
     tag: 'tech',
-    excerpt: 'Next.js App Router and Server Actions, a Prisma/PostgreSQL schema built around live classes, phone+OTP auth with per-attempt SMS cost tracking, Web Push, an offline-ready PWA, and an immutable audit log: the full engineering breakdown of a real client platform.',
+    excerpt: 'Next.js App Router and Server Actions, a Prisma/PostgreSQL schema built around live classes, phone+OTP verified onboarding backed by bcrypt password logins with per-attempt SMS cost tracking, Web Push, an offline-ready PWA, and an immutable audit log: the full engineering breakdown of a real client platform.',
     projectLabel: 'See the full feature tour →',
     projectUrl: '/blog/coaching-center-management-system',
     downloadLabel: '🎓 Visit Success Point Gogamukh',
@@ -613,10 +614,10 @@ export const POSTS = [
           ['Framework', 'Next.js 16 (App Router)', 'Server Actions remove the need for a hand-rolled API layer; file-based routing matches the site/dashboard split cleanly'],
           ['UI', 'React 19 + TypeScript + Tailwind CSS v4', 'Type safety across server actions and components; utility CSS keeps the design system consistent without a component library'],
           ['ORM / DB', 'Prisma 7 (driver adapters) + PostgreSQL', 'Typed schema, migrations as first-class citizens, and the new driver-adapter mode (@prisma/adapter-pg) for a lighter runtime'],
-          ['Auth', 'Twilio Verify (SMS OTP) + jose (JWT)', 'No password storage/reset flow to build or secure; jose signs short-lived session and join tokens'],
+          ['Auth', 'Twilio Verify (SMS OTP) + jose (JWT)', 'OTP verifies the phone once, at signup, faculty join, or forgot-password; jose signs the session cookie and short-lived join tokens'],
           ['Push', 'web-push (VAPID) + browser Push API', 'Standards-based, no third-party push SaaS or its recurring bill'],
           ['Validation', 'zod', 'Schema validation at every Server Action boundary, not just on the client form'],
-          ['Passwords/tokens', 'bcryptjs', 'Hashing anywhere a secret does need to be stored at rest'],
+          ['Passwords/tokens', 'bcryptjs', 'Bcrypt-hashed passwords (10 salt rounds) for every return login, plus hashing anywhere else a secret needs to be stored at rest'],
           ['Hosting', 'Railway (railway.toml)', 'Managed Postgres + app deploy from one provider, sized right for a single coaching center, not enterprise infra'],
         ] },
 
@@ -646,20 +647,22 @@ export const POSTS = [
       { type: 'table',
         head: ['Model', 'Notable fields', 'Purpose'],
         rows: [
-          ['AuthEvent', 'type, purpose, ip/city/region/country, costInr', 'Every OTP send/verify/fail: the login-activity trail'],
+          ['AuthEvent', 'type, purpose, ip/city/region/country, costInr', 'Every OTP send/verify/fail and every password verify/fail: the login-activity trail'],
           ['AuditLog', 'actorId (nullable), actorName, actorRole, action, entityType, summary, metadata', 'Immutable trail of every admin/faculty mutation, write-once, no update/delete path exposed anywhere'],
           ['PushSubscription', 'endpoint (unique), p256dh, auth', 'One row per browser/device Web Push registration'],
           ['ServiceItem / ClientPayment / BillingSettings', 'category, status, amountInr / paidAt / dueDate', 'The master-only developer-billing system: what\'s owed vs. what\'s been paid'],
           ['EnrollmentRequest', 'type, receiptNumber, status', 'Student-submitted enrollment pending admin verification'],
+          ['Announcement / AnnouncementReply / AnnouncementLike(+Reply)', 'audience, audienceLabel, recipientCount', 'Staff-only feed: a push notice plus a reply thread and 👍 acknowledgements'],
+          ['Question / QuestionComment / QuestionCommentReaction', 'courses[], subjects[] (both many-to-many)', 'The Ask Question feed: a question tagged to courses/subjects, answered in threaded comments, each reaction correct/incorrect'],
         ] },
 
       { type: 'note', text: 'AuthEvent and AuditLog both keep a denormalized actor name/phone alongside a nullable foreign key (onDelete: SetNull). Deleting a user account later never breaks (or silently rewrites) the historical trail.' },
 
       { type: 'h2', text: '4. Authentication' },
 
-      'There\'s no password anywhere in the student/admin flow. Login is phone number + a 6-digit SMS OTP sent through Twilio Verify; Twilio owns OTP generation and expiry, the app just asks it to send and verify. On success, a signed JWT session cookie is issued via jose. Faculty go through a separate invite/join link, a one-time URL that lets them verify their phone and set up the account, rather than an admin typing in a password for them.',
+      'Auth went through a real redesign partway through the project. Phone-only OTP login was secure but meant a 6-digit SMS code, and its cost, on every single login. The current design uses OTP for what it\'s actually good at: proving phone ownership once. A new student or faculty member verifies their phone via Twilio Verify, then sets a password (entered twice, matched server-side and hashed with bcrypt); every login after that is just phone number + password, no SMS involved. Accounts created before this shipped get migrated the same way: their first login after the change routes them to set a password instead of straight into the dashboard. Faculty still go through a separate invite/join link, a one-time URL that runs the same OTP-then-password flow, rather than an admin typing in a password for them. On success, a signed JWT session cookie is issued via jose, now valid for six months instead of the original seven days, since re-typing a password that often was more friction than the security bought back.',
 
-      { type: 'diagram', title: 'Phone + OTP login, with every attempt logged', text:
+      { type: 'diagram', title: 'Phone verification once: signup, faculty join, migration, or forgot-password', text:
 `sequenceDiagram
     participant U as User
     participant App as Server Action
@@ -674,6 +677,10 @@ export const POSTS = [
     alt code correct
         Tw-->>App: approved
         App->>DB: AuthEvent(type: otp_verified)
+        App-->>U: set password (entered twice)
+        U->>App: submit password + confirm
+        App->>App: bcrypt.hash(password, 10 rounds)
+        App->>DB: store passwordHash on User
         App->>App: sign JWT session cookie (jose)
         App-->>U: redirect to role's dashboard
     else code wrong/expired
@@ -682,7 +689,24 @@ export const POSTS = [
         App-->>U: show error, allow retry
     end` },
 
-      'Every one of those AuthEvent rows carries IP address, user agent, and geolocation resolved to city/region/country, plus, for otp_sent, the SMS cost in INR, converted from Twilio\'s USD pricing at the live exchange rate at send time. Admins get a Login Activity page built entirely from this table: who tried to log in, from where, and what it cost.',
+      { type: 'diagram', title: 'Every login after that: phone + password, no SMS involved', text:
+`sequenceDiagram
+    participant U as User
+    participant App as Server Action
+    participant DB as Postgres
+    U->>App: submit phone + password
+    App->>DB: look up User by phone
+    App->>App: bcrypt.compare(password, passwordHash)
+    alt password correct
+        App->>DB: AuthEvent(type: password_verified)
+        App->>App: sign JWT session cookie (jose), 6-month expiry
+        App-->>U: redirect to role's dashboard
+    else password wrong
+        App->>DB: AuthEvent(type: password_failed)
+        App-->>U: show error, offer "Forgot password?"
+    end` },
+
+      'Forgot password reuses the exact same phone-verification step as signup, under a distinct password_reset purpose: prove you still control the phone via OTP, then set a new password. It\'s entirely self-service, no admin, faculty member, or master role can trigger a reset on someone else\'s behalf, which keeps the audit trail honest about who actually initiated it. Every one of those AuthEvent rows, otp_sent/otp_verified/otp_failed and now password_verified/password_failed, carries IP address, user agent, and geolocation resolved to city/region/country, plus, for otp_sent, the SMS cost in INR, converted from Twilio\'s USD pricing at the live exchange rate at send time. Admins get a Login Activity page built entirely from this table: who tried to log in, from where, what it cost, and whether it was an OTP step or a password attempt; the stats cards count both.',
 
       { type: 'h2', text: '5. Roles & Permissions' },
 
@@ -779,9 +803,29 @@ export const POSTS = [
 
       'The app deploys to Railway from a railway.toml, alongside a managed PostgreSQL instance. Prisma migrations run as part of the deploy step rather than by hand against production. It\'s intentionally boring infrastructure for what it is (one coaching center, not a multi-tenant platform) and boring is the right call: nothing here needs a Kubernetes cluster, and every extra moving part is one more thing to debug at 11pm before an admissions season starts.',
 
+      { type: 'h2', text: '13. Announcements & Ask Question: Two Feeds, Two Access Models' },
+
+      'Two features got added after the initial build, and they\'re a useful contrast in access control on the same codebase. Announcements started as a fire-and-forget push (admin writes a message, students receive a notification, nothing persisted). It\'s now a real Announcement row with a reply thread (AnnouncementReply) and a toggleable 👍 (AnnouncementLike / AnnouncementReplyLike, one per user per target via a compound unique index), but the whole thread is staff-only: isStaffRole gates reading, replying, and reacting, same boundary as the page itself. Ask Question is the opposite shape on purpose: students post, and visibility is scoped by enrollment (a student only sees a Question if it\'s tagged with a course they\'re enrolled in), while faculty/admin/master can see and answer every question regardless of which course they teach.',
+
+      { type: 'diagram', title: 'Tagging a subject pulls in every course that teaches it', text:
+`flowchart TD
+    A["Student submits: title, body,<br/>courseIds[], subjectNames[]"] --> B{"Poster is staff?"}
+    B -->|"no"| C["Check: every courseId is one they're<br/>enrolled in, every subjectName exists<br/>under one of those courses"]
+    B -->|"yes"| D["No restriction: any active<br/>course/subject"]
+    C -->|"fails"| E["Reject: tag only your own courses/subjects"]
+    C -->|"passes"| F
+    D --> F["Look up ALL Subject rows matching<br/>the requested subjectNames — across<br/>every course, not just the ones tagged"]
+    F --> G["Union: explicit courseIds<br/>+ courseId of every matching Subject"]
+    G --> H["Question.courses = expanded set<br/>Question.subjects = matching Subject rows"]
+    H --> I["Push recipients = students enrolled in,<br/>and faculty teaching, ANY course in the<br/>expanded set"]` },
+
+      { type: 'note', text: 'Concretely: a Class XI student tags "Physics" on a question. Physics is also taught under Class XII, NEET, and JEE as separate Subject rows (same name, different courseId, since Subject has no global uniqueness on name). The expansion step pulls all of them in, so the question — and its push notification — reaches every student and faculty member studying Physics anywhere on the platform, not just the asker\'s own batch. The same course/subject resolution logic runs again on edit, driven off whatever courses/subjects are still checked, so removing a subject tag correctly un-expands the course list too.' },
+
+      'Edit and delete on a Question split the same way access does, but flipped: canModifyQuestion returns true for staff on anything, or for a non-staff user only on their own authorId. It\'s a two-line helper, but it\'s checked server-side inside the editQuestion and deleteQuestion actions themselves, not just used to decide whether to render the ✎/✕ buttons — the UI hiding them for other students\' questions is a courtesy, the action re-checks regardless of what the client sends.',
+
       { type: 'h2', text: 'Closing Thoughts' },
 
-      'None of the individual pieces here are exotic: OTP auth, Server Actions, a service worker, Web Push. What made this project interesting was fitting them together for a genuinely operational system: a coaching center actually runs live classes through this, actually gets paid through the fee pages it advertises, and actually tracks its own SMS spend against a monthly figure that used to be invisible. The join-token design and the audit log are the two pieces I\'d point to as the most "engineering," but the boring parts (cascading deletes that don\'t leave orphaned rows, a service worker that refuses to cache a dashboard, a payments table nobody can quietly edit after the fact) are what actually make it trustworthy enough for a real client to run their business on.',
+      'None of the individual pieces here are exotic: OTP-verified password auth, Server Actions, a service worker, Web Push. What made this project interesting was fitting them together for a genuinely operational system: a coaching center actually runs live classes through this, actually gets paid through the fee pages it advertises, and actually tracks its own SMS spend against a monthly figure that used to be invisible. The join-token design and the audit log are the two pieces I\'d point to as the most "engineering," but the boring parts (cascading deletes that don\'t leave orphaned rows, a service worker that refuses to cache a dashboard, a payments table nobody can quietly edit after the fact) are what actually make it trustworthy enough for a real client to run their business on.',
 
       'If you want the plain-language tour of what the platform does for the coaching center and its students (no schemas, no JWTs), the project page has that version.',
     ],
@@ -817,13 +861,13 @@ export const POSTS = [
         'Floating WhatsApp button: always one tap away, auto-hides over the footer',
       ] },
 
-      { type: 'h2', text: 'No passwords, ever' },
+      { type: 'h2', text: 'Phone-verified, then a password: the best of both' },
 
-      'Students and admins log in with a phone number and an SMS OTP, nothing to forget, nothing to leak. Faculty get a separate invite link to verify their phone and set up their account. Every login attempt is logged with device, location, and SMS cost, so the owner always knows who\'s actually using the system.',
+      'The SMS code proves you own the phone once, at signup, at faculty join, or if you ever forget your password, and a password handles every login after that, so nobody\'s waiting on a text message just to check their dashboard. New students and faculty verify their phone with a one-time OTP, then set a password (typed twice, so no fat-fingered logout later). Everyone who already had an account got carried over automatically: their next login just asks them to set a password first. Forgot it? The same OTP step proves it\'s still you, entirely self-service, no admin has to get involved. Sessions now stay signed in for six months, so returning students and faculty aren\'t re-authenticating every week. Every step, OTP and password alike, is logged with device, location, and (for the SMS step) cost, so the owner always knows who\'s actually using the system.',
 
       { type: 'gallery', items: [
-        { src: loginShot, alt: 'Phone number login screen', caption: 'Login: phone + OTP, no password anywhere in the system' },
-        { src: facultyJoinShot, alt: 'Faculty invite and join page', caption: 'Faculty join: verify by phone, no admin typing in a password for them' },
+        { src: loginShot, alt: 'Phone number and password login screen', caption: 'Login: phone + password for every return visit' },
+        { src: facultyJoinShot, alt: 'Faculty invite and join page', caption: 'Faculty join: verify by phone via OTP, then set a password, no admin typing one in for them' },
       ] },
 
       { type: 'h2', text: 'A dashboard for every role' },
@@ -848,15 +892,23 @@ export const POSTS = [
         { src: facultyStudentsShot, alt: 'Faculty view of their students', caption: "Faculty's student roster" },
       ] },
 
-      { type: 'h2', text: 'Push notifications that actually get read' },
+      { type: 'h2', text: 'Announcements that talk back' },
 
-      'A class going live pushes a notification straight to every enrolled student automatically. On top of that, staff can broadcast an announcement (a title, a message, and an optional link to a form or payment page) to all students or to specific courses, all from one composer.',
+      'A class going live pushes a notification straight to every enrolled student automatically. On top of that, staff can broadcast an announcement (a title, a message, and an optional link to a form or payment page) from one composer, to all students, specific courses, students who haven\'t enrolled in anything yet, the staff team, or literally everyone. What used to be a one-way push is now a real thread: faculty, admin, and master can reply to any announcement and tap a 👍 to acknowledge it, so "did the team see this" stops being a guessing game answered over WhatsApp.',
 
-      { type: 'image', src: adminAnnouncementsShot, alt: 'Announcements composer with title, message, link, and audience selector', caption: 'Announcements: compose once, send to all students or specific courses' },
+      { type: 'image', src: adminAnnouncementsShot, alt: 'Announcements feed with audience selector, a staff reply, and like reactions', caption: 'Announcements: five audience options, plus a reply thread and 👍 reactions right under each one' },
+
+      { type: 'h2', text: 'Ask Question: a Q&A feed built into every dashboard' },
+
+      'Students don\'t just receive information, they can ask for it. Any student can post a question tagged to one or more of their enrolled courses and, optionally, a subject, right on their own dashboard. Faculty, admin, and master can answer any question on the platform, not just the ones under courses they teach, so a Class XI student\'s Physics doubt can get picked up by whichever faculty member is free, not only their assigned teacher. Every answer gets a ✅ correct / ❌ incorrect reaction from anyone who can see the thread, so the right explanation floats to the top without a moderator having to referee it.',
+
+      'The clever bit is what happens when a subject gets tagged: the question automatically extends to every other course that teaches a subject by that same name. Tag "Physics" from a Class XI question and it\'s instantly visible to Class XII, NEET, and JEE students too, because they all study Physics, even though nobody explicitly picked those courses. A dedicated Ask Question page lists every question the viewer can see with subject-filter tabs to narrow it down, and the person who posted a question (or staff, for any question) can edit or delete it later.',
+
+      { type: 'image', src: askQuestionShot, alt: 'Ask Question feed with course and subject tags, a correct-marked answer, and subject filter tabs', caption: 'Ask Question: subject filter tabs up top, course + subject tags on the question, ✅/❌ reactions on each answer' },
 
       { type: 'h2', text: 'One dashboard that runs the whole institute' },
 
-      'Manage courses and pricing, students, faculty, admins, and enrollment requests. Every price change, faculty assignment, and enrollment approval writes to an immutable audit log, a permanent, write-once record of who did what, when. Login activity shows every device and location an OTP was sent to, with the SMS cost attached.',
+      'Manage courses and pricing, students, faculty, admins, and enrollment requests. Every price change, faculty assignment, and enrollment approval writes to an immutable audit log, a permanent, write-once record of who did what, when. Login activity shows every device and location for both OTP steps and password logins, with the SMS cost attached where one was actually sent. There\'s also a copyable faculty invite link right on the Manage Faculty page, and a per-course roster of every enrolled student, one click from the course list.',
 
       { type: 'image', src: adminDashboardShot, alt: 'Admin dashboard home with stats and management tools', caption: 'Admin dashboard: every management tool, live stats, one click away' },
 
@@ -866,7 +918,7 @@ export const POSTS = [
         { src: adminFacultyShot, alt: 'Manage faculty page', caption: 'Manage Faculty: subject assignments' },
         { src: adminEnrollmentsShot, alt: 'Enrollment requests page', caption: 'Enrollment Requests: verify receipts, approve/reject' },
         { src: adminAuditLogShot, alt: 'Audit log table', caption: 'Audit Log: immutable trail of every change, by actor' },
-        { src: adminLoginActivityShot, alt: 'Login activity table with SMS cost', caption: 'Login Activity: device, location, SMS cost per OTP' },
+        { src: adminLoginActivityShot, alt: 'Login activity table with SMS cost', caption: 'Login Activity: device, location, and SMS cost, across OTP and password events alike' },
         { src: adminDevChargeShot, alt: 'Development charge breakdown, read-only', caption: 'Development Charge: read-only, what\'s owed vs. paid' },
       ] },
 
@@ -877,9 +929,10 @@ export const POSTS = [
           ['Manage Students / Faculty', 'View, edit, search, and manage every account'],
           ['Admins', 'See who has admin access and their activity'],
           ['Enrollment Requests', 'Verify receipt numbers, approve or reject in one click'],
-          ['Announcements', 'Push notifications to all students or specific courses'],
+          ['Announcements', 'Push to students, staff, or everyone — with replies and 👍 reactions from the team'],
+          ['Ask Question', 'The student/staff Q&A feed: course + subject tags, ✅/❌ answer reactions, subject filters'],
           ['Audit Log', 'An immutable trail of every change: who, what, when'],
-          ['Login Activity', 'Every OTP attempt with device, location, and SMS cost'],
+          ['Login Activity', 'Every OTP and password attempt with device, location, and SMS cost where applicable'],
           ['Development Charge', 'Read-only: what\'s owed to the developer vs. what\'s been paid, with a site-wide countdown/overdue banner'],
         ] },
 
@@ -901,7 +954,7 @@ export const POSTS = [
         rows: [
           ['Framework', 'Next.js (App Router, Server Actions) + TypeScript + Tailwind'],
           ['Database', 'PostgreSQL via Prisma'],
-          ['Auth', 'Phone + SMS OTP (Twilio Verify), no passwords'],
+          ['Auth', 'Phone + SMS OTP (Twilio Verify) to verify, bcrypt-hashed password to log in, 6-month sessions'],
           ['Notifications', 'Web Push (VAPID): standards-based, no third-party push SaaS'],
           ['Offline/installable', 'PWA with a hand-written service worker'],
           ['Billing', 'Live USD→INR conversion, so SMS cost tracking and the development charge stay accurate day to day'],
