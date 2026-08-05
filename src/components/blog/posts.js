@@ -21,6 +21,8 @@ import masterOverviewShot from '../../images/spg/master-overview.webp';
 import masterServicesShot from '../../images/spg/master-services.webp';
 import masterPaymentsShot from '../../images/spg/master-payments.webp';
 import askQuestionShot from '../../images/spg/ask-question.webp';
+import askQuestionFeedShot from '../../images/spg/ask-question-feed.webp';
+import courseMaterialsQuestionsShot from '../../images/spg/course-materials-questions.webp';
 
 export const POSTS = [
   {
@@ -823,6 +825,36 @@ export const POSTS = [
 
       'Edit and delete on a Question split the same way access does, but flipped: canModifyQuestion returns true for staff on anything, or for a non-staff user only on their own authorId. It\'s a two-line helper, but it\'s checked server-side inside the editQuestion and deleteQuestion actions themselves, not just used to decide whether to render the ✎/✕ buttons — the UI hiding them for other students\' questions is a courtesy, the action re-checks regardless of what the client sends.',
 
+      'The feed itself went through a UI pass too: each question now leads with an avatar, initials on a role-coloured circle, next to the author line, and answers stay collapsed behind a "View N answers" toggle instead of always rendering the full thread open, closer to a social timeline than a form. The write-an-answer box is deliberately not gated behind that toggle, it\'s always rendered, only the list of past answers collapses, since gating it too meant expanding a whole thread just to add one reply to it. And the same feed component got embedded a second time, scoped to a single course, at the bottom of that course\'s Recordings & Materials page: getQuestionFeed picked up a courseId filter for this, combined with the existing staff/enrollment visibility rule through an explicit AND array of conditions rather than spreading two objects that both happen to key off courses, which would have let the later one silently overwrite the earlier one instead of narrowing the query.',
+
+      { type: 'h2', text: '14. Two Production Bugs: A Double-Tap Race and a Silent Push Subscription' },
+
+      'Two real bugs shipped and got fixed within a day of the features above going live, both worth writing down because neither showed up in normal testing, only under the specific conditions real usage creates.',
+
+      'The first: reactToComment, toggleAnnouncementLike, and toggleAnnouncementReplyLike all followed the same shape, read the current reaction/like row, then delete(), update(), or create() it by id depending on what was found. That\'s correct for one request. It\'s not correct for two, and a fast double-tap on a touchscreen reaction button, easy to do by accident, fires exactly two overlapping requests before the first one\'s response re-renders the button. Both read the same "nothing exists yet" state, both try to create() the same row, and the second one hits the unique constraint on (commentId, userId) and throws. An unhandled Prisma exception inside a Server Action crashes the whole page, not just that click, in production it surfaced as a bare "A server error occurred" screen on what looked like a totally unrelated button tap.',
+
+      { type: 'diagram', title: 'A double-tap races two requests against the same row', text:
+`sequenceDiagram
+    participant U as User (double-tap)
+    participant A as Request A
+    participant B as Request B
+    participant DB as Postgres
+    U->>A: tap ✅ (t = 0ms)
+    U->>B: tap ✅ (t = 40ms, before A's response repaints the button)
+    A->>DB: findUnique(commentId, userId) → none
+    B->>DB: findUnique(commentId, userId) → none
+    A->>DB: create(reaction)
+    DB-->>A: 200 OK
+    B->>DB: create(reaction) — same unique key
+    DB-->>B: P2002 unique constraint violation
+    Note over B: unhandled exception →<br/>whole page shows a server error` },
+
+      'The fix wasn\'t a debounce or a disabled-while-pending flag (the buttons already had one of those, it doesn\'t close the window fully), it was swapping the operations for ones Postgres itself makes race-proof: deleteMany instead of delete (matches zero rows without throwing, instead of requiring the row to still exist), and upsert instead of a manual create-or-update branch (the database resolves the conflict atomically via ON CONFLICT, so a second concurrent write updates instead of erroring). Same fix, three call sites.',
+
+      'The second bug was quieter: it never threw anything. PushNotificationToggle checked, on mount, whether the browser already had a Push subscription and only called the server\'s subscribeToPush action the first time a device turned notifications on. A browser-level Push subscription survives logout, though, so testing multiple roles on one phone (admin, then faculty, then student) meant every account after the first saw the toggle as already "on," while the server\'s PushSubscription row for that device stayed pointed at whichever account subscribed first. No error, no failed request, questions and announcements just silently never reached whoever was actually logged in on that device. The fix was to stop treating "a subscription exists" and "it\'s associated with this account" as the same fact, re-upserting the subscription (same endpoint, current userId) on every mount fixes the association without ever showing the user a permission prompt twice.',
+
+      'Both bugs are the same shape underneath: state read once and treated as still true a moment later, when either a second request or a second login has since changed it. Nothing about the individual lines of code was wrong in isolation, they just weren\'t safe under something the original single-request, single-session test never exercised.',
+
       { type: 'h2', text: 'Closing Thoughts' },
 
       'None of the individual pieces here are exotic: OTP-verified password auth, Server Actions, a service worker, Web Push. What made this project interesting was fitting them together for a genuinely operational system: a coaching center actually runs live classes through this, actually gets paid through the fee pages it advertises, and actually tracks its own SMS spend against a monthly figure that used to be invisible. The join-token design and the audit log are the two pieces I\'d point to as the most "engineering," but the boring parts (cascading deletes that don\'t leave orphaned rows, a service worker that refuses to cache a dashboard, a payments table nobody can quietly edit after the fact) are what actually make it trustworthy enough for a real client to run their business on.',
@@ -904,7 +936,14 @@ export const POSTS = [
 
       'The clever bit is what happens when a subject gets tagged: the question automatically extends to every other course that teaches a subject by that same name. Tag "Physics" from a Class XI question and it\'s instantly visible to Class XII, NEET, and JEE students too, because they all study Physics, even though nobody explicitly picked those courses. A dedicated Ask Question page lists every question the viewer can see with subject-filter tabs to narrow it down, and the person who posted a question (or staff, for any question) can edit or delete it later.',
 
-      { type: 'image', src: askQuestionShot, alt: 'Ask Question feed with course and subject tags, a correct-marked answer, and subject filter tabs', caption: 'Ask Question: subject filter tabs up top, course + subject tags on the question, ✅/❌ reactions on each answer' },
+      { type: 'image', src: askQuestionFeedShot, alt: 'Ask Question feed showing collapsed questions with author avatars and subject tags', caption: 'The feed reads like a social timeline: an avatar and subject tag per question, answers collapsed until you tap in' },
+
+      'It\'s styled and behaves like a social feed on purpose: each question carries an avatar (initials, colour-coded by role) next to the author\'s name instead of a form-like block of text. Answers stay collapsed behind a "💬 View N answers" toggle so a thread with a dozen replies doesn\'t push every other question off the screen, but the answer box itself is always right there, no need to expand a thread just to add to it. And it\'s not siloed off on its own page either: the exact same feed, scoped to just that course, sits at the bottom of every course\'s Recordings & Materials page, so a doubt about the chapter you\'re watching lives right next to the recording, not three clicks away.',
+
+      { type: 'gallery', items: [
+        { src: askQuestionShot, alt: 'An expanded Ask Question thread with a faculty answer marked correct', caption: 'Expanded: faculty avatar, the answer, and a ✅ correct reaction, with the answer box always available below' },
+        { src: courseMaterialsQuestionsShot, alt: 'Questions section embedded at the bottom of a course Recordings and Materials page', caption: 'The same feed, scoped to one course, living right under its recordings and materials' },
+      ] },
 
       { type: 'h2', text: 'One dashboard that runs the whole institute' },
 
@@ -930,7 +969,7 @@ export const POSTS = [
           ['Admins', 'See who has admin access and their activity'],
           ['Enrollment Requests', 'Verify receipt numbers, approve or reject in one click'],
           ['Announcements', 'Push to students, staff, or everyone — with replies and 👍 reactions from the team'],
-          ['Ask Question', 'The student/staff Q&A feed: course + subject tags, ✅/❌ answer reactions, subject filters'],
+          ['Ask Question', 'A social-style Q&A feed with avatars and ✅/❌ answer reactions, on every dashboard and embedded per-course on Recordings & Materials'],
           ['Audit Log', 'An immutable trail of every change: who, what, when'],
           ['Login Activity', 'Every OTP and password attempt with device, location, and SMS cost where applicable'],
           ['Development Charge', 'Read-only: what\'s owed to the developer vs. what\'s been paid, with a site-wide countdown/overdue banner'],
