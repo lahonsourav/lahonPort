@@ -80,6 +80,22 @@ const renderBlock = (block, i) => {
       );
     case 'note':
       return <div key={i} className="blog-note">{block.text}</div>;
+    case 'downloads':
+      return (
+        <div key={i} className="blog-downloads">
+          {block.title && <p className="blog-downloads-title">{block.title}</p>}
+          <ul className="blog-downloads-list">
+            {block.items.map((it) => (
+              <li key={it.href}>
+                <a href={it.href} className="blog-download-link" download>
+                  <span className="blog-download-name">{it.label}</span>
+                  {it.meta && <span className="blog-download-meta">{it.meta}</span>}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
     case 'code':
       return (
         <figure key={i} className="blog-figure blog-figure--code">
