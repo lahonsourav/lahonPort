@@ -268,6 +268,14 @@ const Work = () => {
               A single button for parents: tap it, a photo of their kid shows up. No feed to scroll, no app to figure out, just one photo, arriving. Multi-family from day one, with a 30-day trial and a WhatsApp-based paywall built in. (Node, Express, PostgreSQL, PWA)
             </small>
             <div className="portfolio__item-cta">
+              <a
+                href="https://hereiam.lahon.in"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Install
+              </a>
               <div
                 onClick={() => navigate("/hereiam")}
                 className="btn btn-primary"

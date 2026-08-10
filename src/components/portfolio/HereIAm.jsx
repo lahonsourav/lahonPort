@@ -40,12 +40,12 @@ const HereIAm = () => {
           </p>
           <div className="hia_hero_actions">
             <a
-              href="https://github.com/lahonsourav/hereiam"
+              href="https://hereiam.lahon.in"
               className="hia_btn hia_btn_primary"
               target="_blank"
               rel="noreferrer"
             >
-              GitHub
+              Install
             </a>
           </div>
           <ShareButton title="Here I am: one tap, a photo of your kid" className="hia_share_btn" />
@@ -267,12 +267,12 @@ const HereIAm = () => {
       <div className="hia_footer">
         <p>📸 One tap. A photo of your kid.</p>
         <a
-          href="https://github.com/lahonsourav/hereiam"
+          href="https://hereiam.lahon.in"
           className="hia_btn hia_btn_primary"
           target="_blank"
           rel="noreferrer"
         >
-          View on GitHub
+          Install
         </a>
       </div>
 
