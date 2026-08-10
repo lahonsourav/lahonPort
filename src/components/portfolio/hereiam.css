@@ -1,0 +1,453 @@
+.hia_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  /* Here I am's brand identity is a fixed marigold, independent of the
+     site-wide accent picker (same pattern as LazyKit's --lk-accent,
+     Wormhole's --wh-accent, and Success Point's --spgp-accent) — only
+     light/dark follows theme. */
+  --hia-accent: #e8a33d;
+  --hia-accent-btn: #c9832a;
+  --hia-accent-btn-hover: #a8661f;
+  --hia-rose: #e4767a;
+}
+
+:root[data-theme="light"] .hia_container {
+  --hia-accent: #b8752a;
+  --hia-accent-btn: #c9832a;
+  --hia-accent-btn-hover: #b8752a;
+  --hia-rose: #c95a5e;
+}
+
+.hia_container > .back-home {
+  align-self: flex-start;
+  padding: 1.5rem 2rem 0;
+}
+
+/* ── Hero ── */
+.hia_hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5rem;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem 2rem 3.5rem;
+  box-sizing: border-box;
+}
+
+.hia_hero_text {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+.hia_title {
+  font-size: var(--ds-text-hero);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 0.5rem;
+}
+
+.hia_tagline {
+  font-size: 1.3rem;
+  color: var(--hia-accent);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.hia_description {
+  font-size: 1.02rem;
+  color: var(--ds-text-muted);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+  max-width: 560px;
+}
+
+.hia_hero_actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hia_share_btn {
+  margin-top: 1.25rem;
+}
+
+.hia_hero_visual {
+  flex: 0 0 auto;
+}
+
+.hia_hero_visual .hia_shot {
+  max-width: 220px;
+}
+
+/* ── Buttons ── */
+.hia_btn {
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--ds-radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: var(--ds-transition);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.hia_btn_primary {
+  background: var(--hia-accent-btn);
+  color: #fff;
+  border: 1px solid var(--hia-accent-btn-hover);
+}
+
+.hia_btn_primary:hover {
+  background: var(--hia-accent-btn-hover);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ── Sections ── */
+.hia_section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+  width: 100%;
+  border-top: 1px solid var(--ds-border-subtle);
+  box-sizing: border-box;
+}
+
+.hia_section_title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 0.6rem;
+  text-align: center;
+}
+
+.hia_section_subtitle {
+  color: var(--ds-text-muted);
+  font-size: 0.97rem;
+  line-height: 1.65;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2.25rem;
+}
+
+.hia_inline_code {
+  font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  color: var(--ds-text-code);
+}
+
+/* ── Role cards ── */
+.hia_role_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.hia_role_card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+
+.hia_role_emoji {
+  font-size: 1.9rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.hia_role_card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ds-text);
+  margin-bottom: 0.5rem;
+}
+
+.hia_role_card p {
+  font-size: 0.9rem;
+  color: var(--ds-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Walkthrough (alternating step + screenshot rows) ── */
+.hia_walkthrough {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.hia_walk_row {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hia_walk_row--reverse {
+  flex-direction: row-reverse;
+}
+
+.hia_walk_text {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.hia_walk_row .hia_shot {
+  flex: 0 0 auto;
+  max-width: 240px;
+}
+
+.hia_step_num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  background: var(--hia-accent-btn);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.hia_walk_text h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ds-text);
+  margin-bottom: 0.5rem;
+}
+
+.hia_walk_text p {
+  font-size: 0.95rem;
+  color: var(--ds-text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Screenshot figure ── */
+.hia_shot {
+  margin: 0;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+  background: #211f35;
+  overflow: hidden;
+}
+
+.hia_shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hia_shot figcaption {
+  font-family: var(--ds-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: var(--ds-text-muted);
+  padding: 0.5rem 0.85rem;
+  border-top: 1px solid var(--ds-border);
+  background: var(--ds-surface);
+}
+
+/* ── Feature grid ── */
+.hia_feature_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+}
+
+.hia_feature_card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: 10px;
+  padding: 1.4rem 1.25rem;
+}
+
+.hia_feature_icon {
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.hia_feature_card h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ds-text);
+  margin-bottom: 0.4rem;
+}
+
+.hia_feature_card p {
+  font-size: 0.85rem;
+  color: var(--ds-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Numbered steps (trial/paywall) ── */
+.hia_steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hia_step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.4rem;
+}
+
+.hia_step_circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  background: var(--hia-rose);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 0.1rem;
+}
+
+.hia_step p {
+  color: var(--ds-text-muted);
+  font-size: 0.93rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.hia_step strong {
+  color: var(--ds-text);
+}
+
+.hia_section .hia_shot {
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+/* ── Tech table ── */
+.hia_tech_table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--ds-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.hia_tech_row {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--ds-border-subtle);
+  background: var(--ds-surface);
+}
+
+.hia_tech_row:last-child {
+  border-bottom: none;
+}
+
+.hia_tech_label {
+  flex: 0 0 150px;
+  font-weight: 600;
+  color: var(--ds-text);
+  font-size: 0.9rem;
+}
+
+.hia_tech_desc {
+  color: var(--ds-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.hia_footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 3.5rem 2rem;
+  text-align: center;
+}
+
+.hia_footer p {
+  font-size: 1.1rem;
+  color: var(--ds-text);
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 768px) {
+  .hia_title {
+    font-size: var(--ds-text-hero-sm);
+  }
+
+  .hia_hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 3rem 1.25rem 2.5rem;
+    gap: 2rem;
+  }
+
+  .hia_description {
+    max-width: none;
+  }
+
+  .hia_hero_actions {
+    justify-content: center;
+  }
+
+  .hia_role_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hia_walk_row,
+  .hia_walk_row--reverse {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hia_walk_row .hia_shot {
+    max-width: 260px;
+  }
+
+  .hia_feature_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hia_tech_row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .hia_tech_label {
+    flex: none;
+  }
+
+  .hia_section {
+    padding: 2.5rem 1.25rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hia_feature_grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -245,6 +245,41 @@ const Work = () => {
 
         <MaybeTilt>
           <article data-aos="zoom-in-up" data-aos-delay="500" className="portfolio__items">
+            <div className="portfolio__item-image hia-preview">
+              <div className="hia-inner">
+                <div className="hia-title-row">
+                  <span className="hia-cam">📸</span>
+                  <span className="hia-name">Here I am</span>
+                </div>
+                <div className="hia-row">
+                  <div className="hia-button" />
+                  <div className="hia-polaroid">
+                    <div className="hia-polaroid-photo" />
+                  </div>
+                </div>
+                <div className="hia-chips">
+                  <span className="hia-chip">tap → photo</span>
+                  <span className="hia-chip">multi-family</span>
+                </div>
+              </div>
+            </div>
+            <h3>Here I am</h3>
+            <small>
+              A single button for parents: tap it, a photo of their kid shows up. No feed to scroll, no app to figure out, just one photo, arriving. Multi-family from day one, with a 30-day trial and a WhatsApp-based paywall built in. (Node, Express, PostgreSQL, PWA)
+            </small>
+            <div className="portfolio__item-cta">
+              <div
+                onClick={() => navigate("/hereiam")}
+                className="btn btn-primary"
+              >
+                Learn More
+              </div>
+            </div>
+          </article>
+        </MaybeTilt>
+
+        <MaybeTilt>
+          <article data-aos="zoom-in-up" data-aos-delay="0" className="portfolio__items">
             <div className="portfolio__item-image">
               <img src={PRO4} alt="" width="480" height="360" loading="lazy" />
             </div>
@@ -275,7 +310,7 @@ const Work = () => {
         </MaybeTilt>
 
         <MaybeTilt>
-          <article data-aos="zoom-in-up" data-aos-delay="0" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="100" className="portfolio__items">
             <div className="portfolio__item-image lk-preview">
               <div className="lk-flow">
                 <div className="lk-node">
@@ -318,7 +353,7 @@ const Work = () => {
         </MaybeTilt>
 
         <MaybeTilt>
-          <article data-aos="zoom-in-up" data-aos-delay="100" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="200" className="portfolio__items">
             <div className="portfolio__item-image lazyperm-preview">
               <div className="lazyperm-terminal">
                 <div className="lazyperm-terminal__bar">
@@ -360,7 +395,7 @@ const Work = () => {
         </MaybeTilt>
 
         <MaybeTilt>
-          <article data-aos="zoom-in-up" data-aos-delay="200" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="300" className="portfolio__items">
             <div className="portfolio__item-image sg-preview">
               <div className="sg-inner">
                 <div className="sg-brand">Spend<span className="sg-dot">·</span>Gate</div>
@@ -391,7 +426,7 @@ const Work = () => {
         </MaybeTilt>
 
         <MaybeTilt>
-          <article data-aos="zoom-in-up" data-aos-delay="300" className="portfolio__items">
+          <article data-aos="zoom-in-up" data-aos-delay="400" className="portfolio__items">
             <div className="portfolio__item-image rbp-preview">
               <div className="rbp-inner">
                 <div className="rbp-title-row">

@@ -19,6 +19,7 @@ const Mood = lazy(() => import("./components/portfolio/Mood"));
 const LazyKit = lazy(() => import("./components/portfolio/LazyKit"));
 const Lazyperm = lazy(() => import("./components/portfolio/Lazyperm"));
 const Wormhole = lazy(() => import("./components/portfolio/Wormhole"));
+const HereIAm = lazy(() => import("./components/portfolio/HereIAm"));
 const AssamFlood = lazy(() => import("./components/campaign/AssamFlood"));
 const Work = lazy(() => import("./components/portfolio/Work"));
 const Moksha = lazy(() => import("./components/moksha/Moksha"));
@@ -52,6 +53,7 @@ function App() {
               <Route path="/lazykit" element={<LazyKit />} />
               <Route path="/lazyperm" element={<Lazyperm />} />
               <Route path="/wormhole" element={<Wormhole />} />
+              <Route path="/hereiam" element={<HereIAm />} />
               <Route path="/assamflood2026" element={<AssamFlood />} />
               <Route path="/work" element={<Work />} />
               <Route path="/moksha" element={<Moksha />} />

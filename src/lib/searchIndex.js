@@ -10,7 +10,7 @@ const PAGES = [
     type: "page",
     keywords:
       "everything I've built projects portfolio Wormhole Innercast AVSR Success Point Gogamukh " +
-      "Assamesedress.shop Doggies LazyKit lazyperm Spend Gate audio-visual speech recognition thesis " +
+      "Assamesedress.shop Doggies Here I am LazyKit lazyperm Spend Gate audio-visual speech recognition thesis " +
       "swipe dog discovery Flutter Android e-commerce Assamese traditional attire MERN impulse buys budgets",
   },
   {
@@ -48,6 +48,16 @@ const PAGES = [
       "journal entry box breathing 5-4-3-2-1 grounding body scan gratitude practice wellbeing tools patterns " +
       "triple-arc gauge insights trends 7 30 90 days privacy SQLite offline encrypted Expo Router push " +
       "notifications Android iOS coming soon React Native TypeScript",
+  },
+  {
+    title: "Here I am",
+    url: "/hereiam",
+    type: "project",
+    keywords:
+      "photo sharing app parents kids family single button tap for a photo installable PWA multi-tenant " +
+      "child parent owner dashboard phone OTP Twilio Verify family code polaroid reveal pin a photo " +
+      "reactions per-parent view tracking push notifications VAPID trial paywall WhatsApp unlock " +
+      "Express Postgres Neon S3 no build step Node",
   },
   {
     title: "LazyKit",
