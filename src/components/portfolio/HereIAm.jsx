@@ -45,7 +45,7 @@ const HereIAm = () => {
               target="_blank"
               rel="noreferrer"
             >
-              Try it live
+              Install
             </a>
           </div>
           <ShareButton title="Here I am: one tap, a photo of your kid" className="hia_share_btn" />
@@ -272,7 +272,7 @@ const HereIAm = () => {
           target="_blank"
           rel="noreferrer"
         >
-          Try it live
+          Install
         </a>
       </div>
 
