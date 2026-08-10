@@ -469,6 +469,91 @@
   padding: 0.15rem 0.5rem;
 }
 
+/* ── Here I am preview ── */
+.hia-preview {
+  background: #0d1117;
+  padding: 0;
+  align-items: stretch;
+}
+
+.hia-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+}
+
+.hia-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hia-cam {
+  font-size: 0.9rem;
+}
+
+.hia-name {
+  font-family: var(--ds-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e8a33d;
+}
+
+.hia-button {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f0b862, #c9832a 78%);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 4px rgba(232, 163, 61, 0.12);
+}
+
+.hia-polaroid {
+  width: 34px;
+  height: 40px;
+  background: #f6ede0;
+  border-radius: 2px;
+  padding: 3px 3px 7px;
+  transform: rotate(-6deg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.hia-polaroid-photo {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #7c9070, #211f35);
+  border-radius: 1px;
+}
+
+.hia-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hia-chips {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hia-chip {
+  font-family: var(--ds-font-mono);
+  font-size: 0.5rem;
+  color: #e8a33d;
+  border: 1px solid rgba(232, 163, 61, 0.35);
+  background: rgba(232, 163, 61, 0.1);
+  border-radius: 100px;
+  padding: 0.12rem 0.45rem;
+}
+
 .noot-1, .noot-2, .noot-3, .noot-4 {
   position: absolute;
   animation: notes 2s infinite linear;
@@ -821,6 +906,15 @@
   animation: rbp-grow 1.8s ease-in-out infinite;
 }
 
+@keyframes hia-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(232, 163, 61, 0.12); }
+  50%      { box-shadow: 0 0 0 8px rgba(232, 163, 61, 0.05); }
+}
+
+.hia-button {
+  animation: hia-pulse 2.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .whp-line,
   .whp-lock,
@@ -832,7 +926,8 @@
   .spg-badge,
   .lp-prompt,
   .sg-meter-fill,
-  .rbp-chart-end {
+  .rbp-chart-end,
+  .hia-button {
     animation: none;
   }
 }
