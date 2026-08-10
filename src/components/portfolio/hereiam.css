@@ -263,7 +263,7 @@
 /* ── Feature grid ── */
 .hia_feature_grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.1rem;
 }
 
@@ -429,7 +429,7 @@
   }
 
   .hia_feature_grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .hia_tech_row {
@@ -443,11 +443,5 @@
 
   .hia_section {
     padding: 2.5rem 1.25rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .hia_feature_grid {
-    grid-template-columns: 1fr;
   }
 }

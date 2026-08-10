@@ -118,11 +118,10 @@ const HereIAm = () => {
               <h3>Give your parents the code</h3>
               <p>
                 The dashboard shows a 6-character family code — give it to your parents once.
-                Watch who's seen what and when, see reactions next to their name, and pin one
-                photo to override the rotation for something time-sensitive.
+                Watch who's seen what and when, with reactions shown next to their name.
               </p>
             </div>
-            <Shot src={childViewedShot} alt="Dashboard showing a pinned photo, per-parent view times, and a reaction" />
+            <Shot src={childViewedShot} alt="Dashboard showing per-parent view times and a reaction" />
           </div>
         </div>
       </div>
@@ -188,11 +187,6 @@ const HereIAm = () => {
           All optional, and all designed to add nothing extra for the parent tapping the button.
         </p>
         <div className="hia_feature_grid">
-          <div className="hia_feature_card">
-            <span className="hia_feature_icon">📌</span>
-            <h3>Pin a photo</h3>
-            <p>Override the rotation so every parent gets one exact photo — a new grandkid, a big update — until it's unpinned. Only one at a time.</p>
-          </div>
           <div className="hia_feature_card">
             <span className="hia_feature_icon">🤍</span>
             <h3>Reactions</h3>
