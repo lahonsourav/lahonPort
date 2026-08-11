@@ -7,6 +7,7 @@ export const ACHIEVEMENTS = [
   { id: "bookworm", icon: "📚", title: "Bookworm", description: "Read every blog post." },
   { id: "full-tour", icon: "🗺️", title: "Full Tour", description: "Visited every project page." },
   { id: "deep-diver", icon: "⬇️", title: "Deep Diver", description: "Scrolled all the way down to Contact." },
+  { id: "note-taker", icon: "📌", title: "Note Taker", description: "Tried sticky note mode." },
 ];
 
 const STORAGE_KEY = "achievements";
