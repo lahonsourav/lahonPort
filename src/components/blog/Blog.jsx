@@ -16,8 +16,7 @@ const TAG_COLORS = {
 
 const PostCard = ({ slug, title, date, tag, content }) => {
   const navigate = useNavigate();
-  const reads = parseInt(localStorage.getItem(`blog_reads_${slug}`) || '0', 10);
-  const meta = `${date} · ${readMins(content)} min${reads > 0 ? ` · ${reads} ${reads === 1 ? 'read' : 'reads'}` : ''}`;
+  const meta = `${date} · ${readMins(content)} min`;
   return (
     <div
       className="blog-row"

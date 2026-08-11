@@ -172,7 +172,13 @@ html[data-mode="sticky"] .blogpreview__row {
   border-radius: 3px;
   margin-bottom: 0.5rem;
   padding: 0.85rem 1rem;
+  transition: transform 0.15s ease;
 }
+
+html[data-mode="sticky"] .blog-row:nth-child(5n+2), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+2) { background: var(--paper-sky); }
+html[data-mode="sticky"] .blog-row:nth-child(5n+3), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+3) { background: var(--paper-amber); }
+html[data-mode="sticky"] .blog-row:nth-child(5n+4), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+4) { background: var(--paper-mint); }
+html[data-mode="sticky"] .blog-row:nth-child(5n+5), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+5) { background: var(--paper-rose); }
 
 html[data-mode="sticky"] .blog-row-title,
 html[data-mode="sticky"] .blogpreview__row-title {
@@ -188,8 +194,8 @@ html[data-mode="sticky"] .blogpreview__row-arrow {
 
 html[data-mode="sticky"] .blog-row:hover,
 html[data-mode="sticky"] .blogpreview__row:hover {
-  background: var(--paper-amber);
   border-left-color: transparent;
+  transform: translateX(2px);
 }
 
 html[data-mode="sticky"] .blog-search {
@@ -254,6 +260,62 @@ html[data-mode="sticky"] nav a.active {
   border-color: transparent;
 }
 
+/* ── Skill pills: kraft flag tags, not rounded pills ── */
+html[data-mode="sticky"] .skills__pill {
+  position: relative;
+  background: var(--paper-kraft);
+  color: var(--paper-ink);
+  border: none;
+  font-family: var(--ds-font-mono);
+  padding: 0.3rem 0.75rem 0.3rem 1.1rem;
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0 50%);
+  box-shadow: var(--ds-shadow-sm);
+  transform: rotate(-1deg);
+  transition: transform 0.15s ease;
+}
+
+html[data-mode="sticky"] .skills__pill::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ds-surface);
+  transform: translateY(-50%);
+}
+
+html[data-mode="sticky"] .skills__pill:nth-child(5n+2) { background: var(--paper-sky);   transform: rotate(1deg); }
+html[data-mode="sticky"] .skills__pill:nth-child(5n+3) { background: var(--paper-amber); transform: rotate(-1.5deg); }
+html[data-mode="sticky"] .skills__pill:nth-child(5n+4) { background: var(--paper-mint);  transform: rotate(1.5deg); }
+html[data-mode="sticky"] .skills__pill:nth-child(5n+5) { background: var(--paper-rose);  transform: rotate(-1deg); }
+
+html[data-mode="sticky"] .skills__pill:hover {
+  color: var(--paper-ink);
+  transform: rotate(0deg) translateY(-2px);
+}
+
+/* ── Social icons: small pinned paper badges instead of plain circles ── */
+html[data-mode="sticky"] .header__socials a {
+  background: var(--paper-kraft);
+  color: var(--paper-ink);
+  border: none;
+  box-shadow: var(--ds-shadow-sm);
+  transform: rotate(-4deg);
+  transition: transform 0.15s ease;
+}
+
+html[data-mode="sticky"] .header__socials a:nth-child(2) { background: var(--paper-sky);   transform: rotate(3deg); }
+html[data-mode="sticky"] .header__socials a:nth-child(3) { background: var(--paper-amber); transform: rotate(-3deg); }
+html[data-mode="sticky"] .header__socials a:nth-child(4) { background: var(--paper-mint);  transform: rotate(4deg); }
+html[data-mode="sticky"] .header__socials a:nth-child(5) { background: var(--paper-rose);  transform: rotate(-2deg); }
+
+html[data-mode="sticky"] .header__socials a:hover {
+  color: var(--paper-ink);
+  transform: rotate(0deg) translateY(-2px);
+}
+
 /* ── Form inputs (Contact, AssamFlood): notebook-line style ── */
 html[data-mode="sticky"] .form-control-text,
 html[data-mode="sticky"] .form-control-input {
@@ -273,7 +335,9 @@ html[data-mode="sticky"] .form-control-input:focus {
   html[data-mode="sticky"] .portfolio__items,
   html[data-mode="sticky"] .btn,
   html[data-mode="sticky"] .blog-row,
-  html[data-mode="sticky"] .blogpreview__row {
+  html[data-mode="sticky"] .blogpreview__row,
+  html[data-mode="sticky"] .skills__pill,
+  html[data-mode="sticky"] .header__socials a {
     transition: none;
   }
 }

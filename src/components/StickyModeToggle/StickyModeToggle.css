@@ -1,7 +1,10 @@
 .sticky-mode-toggle {
+  /* Stacked below ThemeToggle instead of extending the top-right row
+     further left — a 4th icon in that row ran out of room on narrow
+     phones and started overlapping page content (back links, pills). */
   position: fixed;
-  top: 1.25rem;
-  right: 10.25rem;
+  top: 4.75rem;
+  right: 1.25rem;
   z-index: var(--ds-z-fixed);
   width: 2.75rem;
   height: 2.75rem;
@@ -45,8 +48,8 @@
 
 @media screen and (max-width: 600px) {
   .sticky-mode-toggle {
-    top: 1rem;
-    right: 8.95rem;
+    top: 4rem;
+    right: 1rem;
     width: 2.4rem;
     height: 2.4rem;
     font-size: 0.95rem;
