@@ -4,8 +4,8 @@
 }
 
 .wh-page > .back-home {
-  align-self: flex-start;
-  margin-bottom: 1rem;
+  align-self: center;
+  padding: 1.5rem 2rem 0;
 }
 
 /* ── Hero ── */

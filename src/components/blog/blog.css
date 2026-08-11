@@ -203,8 +203,14 @@
   width: 100%;
 }
 
+/* Used both inside .blog-topbar (a row flex, where margin:auto on the
+   sole child centers it the same way) and directly inside
+   .blog-post-wrap (not flex, so it needs its own block + fit-content
+   width for the auto margins to have room to center it). */
 .blog-back {
-  margin-bottom: 2.5rem;
+  display: block;
+  width: fit-content;
+  margin: 0 auto 2.5rem;
 }
 
 .blog-post-header {

@@ -1171,6 +1171,50 @@ input:focus-visible,
   outline: 2px solid var(--ds-green-btn);
 }` },
 
+      { type: 'h2', text: '7. A second skin, same architecture' },
+
+      'The dark/light toggle and the accent picker both work by stamping an attribute onto <html> and letting every component read the CSS variables that follow. Sticky note mode, the whole site redrawn as paper notes pinned to a corkboard desk, is built exactly the same way: a third attribute, data-mode="sticky", read by one new stylesheet. No parallel theming system, no sticky/ variant of every component to keep in sync with the real one.',
+
+      { type: 'code', title: 'sticky-mode.css: the same trick used everywhere else, one attribute further', text:
+`html[data-mode="sticky"] {
+  --paper-ink:   #2b2620;
+  --paper-amber: #f2d878;
+  --paper-sky:   #c9dcf3;
+  --ds-font-hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+}
+
+html[data-mode="sticky"] .portfolio__items {
+  background: var(--paper-sky);
+  transform: rotate(-1.5deg);
+  /* ...pin, corner-fold, and a per-project paper color follow */
+}` },
+
+      { type: 'note', text: 'One deliberate departure from the theme/accent pattern: every selector in that file is written html[data-mode="sticky"] rather than :root[data-mode="sticky"]. Both match the same element, but html is a type selector and :root is a pseudo-class, so html carries slightly more specificity. A few existing rules, like the translucent background on the fixed nav pill, are already scoped to :root[data-theme="light"] nav. Without the extra specificity, whichever rule webpack happened to bundle last would win when both are active at once, a coin flip I did not want to depend on. Writing html[data-mode="sticky"] everywhere means sticky mode always wins on purpose, regardless of build order, the same fix the page-shell specificity note above describes for a different pair of rules.' },
+
+      'The marker-pen headline face, Caveat, ships as a real .woff2 file in src/assets/fonts, not inlined as base64 in the stylesheet. @font-face only fetches a font the first time something on the page actually renders in it, so the roughly 50KB file never touches the network for visitors who never turn sticky mode on.',
+
+      'Sticky mode defaults to off. Turning it on, and taking the site guide below, each add an entry to the same achievement system section 3 covers: Note Taker and Well Oriented.',
+
+      { type: 'h2', text: '8. A guide that only interrupts once' },
+
+      'The site has always had things a first-time visitor would not discover on their own: the accent picker, the sound toggle, sticky mode, the achievement tray. Rather than a permanent tooltip or an onboarding checklist that lingers, a five-step spotlight tour runs once, automatically, about a second after a genuinely new visitor lands, and never again unless they ask for it.',
+
+      { type: 'code', title: 'Guide.jsx: the tour targets real elements, not fixed pixel positions', text:
+`const STEPS = [
+  { selector: ".theme-toggle", title: "Light & dark" },
+  { selector: ".accent-picker__btn", title: "Pick a color" },
+  { selector: ".sound-toggle", title: "Sound" },
+  { selector: ".sticky-mode-toggle", title: "Sticky note mode" },
+  { selector: ".achievements-tray__btn", title: "Achievements" },
+];
+
+useEffect(() => {
+  const el = document.querySelector(STEPS[step].selector);
+  setRect(el ? el.getBoundingClientRect() : null);
+}, [step]);` },
+
+      'Because every step is a real querySelector against the fixed chrome instead of a hardcoded position, the tour works identically on any page and any viewport, and keeps working if a button ever moves. Its "seen" state lives in localStorage under guideSeen, the same pattern as the theme and mode flags, so dismissing or finishing it once is enough, forever, on that device. A small button next to the achievement tray replays it on demand for anyone who wants a second look.',
+
       { type: 'h2', text: 'Why write any of this down' },
 
       'Mostly so I keep following my own rules. It is easy to cut a corner on the tenth project page that felt fine to cut on the first, and much harder to do that once the rule is written down somewhere I might read it again, with the actual code and the live tokens right next to it instead of just a vague memory of the intent.',
