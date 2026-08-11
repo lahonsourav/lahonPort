@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BsPinAngleFill, BsPinAngle } from "react-icons/bs";
+import { BsStickyFill, BsSticky } from "react-icons/bs";
 import { playToggle } from "../../lib/sound";
 import { unlock } from "../../lib/achievements";
 import "./StickyModeToggle.css";
@@ -7,11 +7,7 @@ import "./StickyModeToggle.css";
 const STORAGE_KEY = "mode";
 
 const getInitialMode = () => {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  // Sticky mode is the default look for first-time visitors; once someone
-  // has actually toggled it, their explicit choice (either way) sticks.
-  if (stored === "sticky" || stored === "normal") return stored;
-  return "sticky";
+  return localStorage.getItem(STORAGE_KEY) === "sticky" ? "sticky" : "normal";
 };
 
 const StickyModeToggle = () => {
@@ -41,7 +37,7 @@ const StickyModeToggle = () => {
       aria-label={mode === "sticky" ? "Turn off sticky note mode" : "Turn on sticky note mode"}
       title={mode === "sticky" ? "Turn off sticky note mode" : "Turn on sticky note mode"}
     >
-      {mode === "sticky" ? <BsPinAngleFill /> : <BsPinAngle />}
+      {mode === "sticky" ? <BsStickyFill /> : <BsSticky />}
     </button>
   );
 };
