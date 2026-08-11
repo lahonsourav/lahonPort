@@ -1,7 +1,7 @@
 .sound-toggle {
   position: fixed;
   top: 1.25rem;
-  right: 7.25rem;
+  right: 4.25rem;
   z-index: var(--ds-z-fixed);
   width: 2.75rem;
   height: 2.75rem;
@@ -36,7 +36,7 @@
 @media screen and (max-width: 600px) {
   .sound-toggle {
     top: 1rem;
-    right: 6.3rem;
+    right: 3.65rem;
     width: 2.4rem;
     height: 2.4rem;
     font-size: 0.95rem;

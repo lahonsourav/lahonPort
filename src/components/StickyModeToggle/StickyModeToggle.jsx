@@ -7,7 +7,11 @@ import "./StickyModeToggle.css";
 const STORAGE_KEY = "mode";
 
 const getInitialMode = () => {
-  return localStorage.getItem(STORAGE_KEY) === "sticky" ? "sticky" : "normal";
+  const stored = localStorage.getItem(STORAGE_KEY);
+  // Sticky mode is the default look for first-time visitors; once someone
+  // has actually toggled it, their explicit choice (either way) sticks.
+  if (stored === "sticky" || stored === "normal") return stored;
+  return "sticky";
 };
 
 const StickyModeToggle = () => {
