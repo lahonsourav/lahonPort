@@ -12,9 +12,14 @@
   padding-bottom: 4rem;
 }
 
+/* .ic-page isn't a flex container (unlike the other project pages), so
+   align-self can't center this — block + a fit-content width + auto
+   margins does the same job without it. */
 .ic-page > .back-home {
-  display: inline-block;
-  margin: 1.5rem 0 0 1.5rem;
+  display: block;
+  width: fit-content;
+  margin: 1.5rem auto 0;
+  padding: 0 2rem;
 }
 
 /* ── Hero ── */
