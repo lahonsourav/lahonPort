@@ -1,7 +1,7 @@
 .accent-picker {
   position: fixed;
   top: 1.25rem;
-  right: 4.25rem;
+  left: 4.25rem;
   z-index: var(--ds-z-fixed);
   /* iOS Safari drops fixed + backdrop-filter elements from compositing
      mid-scroll (they blink out during rubber-band bounce) unless forced
@@ -39,7 +39,7 @@
 .accent-picker__panel {
   position: absolute;
   top: calc(100% + 0.6rem);
-  right: 0;
+  left: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.6rem;
@@ -84,7 +84,7 @@
 @media screen and (max-width: 600px) {
   .accent-picker {
     top: 1rem;
-    right: 3.65rem;
+    left: 3.65rem;
   }
 
   .accent-picker__btn {

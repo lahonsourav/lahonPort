@@ -163,22 +163,52 @@ html[data-mode="sticky"] .portfolio__item-image {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* ── Blog list rows: kraft-paper strips, no rotation — still a list to scan ── */
+/* ── Blog list rows: pinned paper notes, one per post ── */
 html[data-mode="sticky"] .blog-row,
 html[data-mode="sticky"] .blogpreview__row {
+  position: relative;
   background: var(--paper-kraft);
   color: var(--paper-ink);
   border-bottom: none;
-  border-radius: 3px;
-  margin-bottom: 0.5rem;
-  padding: 0.85rem 1rem;
-  transition: transform 0.15s ease;
+  border-radius: 2px 12px 3px 10px;
+  margin-bottom: 0.85rem;
+  padding: 0.85rem 1rem 0.85rem 1.4rem;
+  box-shadow: var(--ds-shadow-sm);
+  transform: rotate(-1deg);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-html[data-mode="sticky"] .blog-row:nth-child(5n+2), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+2) { background: var(--paper-sky); }
-html[data-mode="sticky"] .blog-row:nth-child(5n+3), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+3) { background: var(--paper-amber); }
-html[data-mode="sticky"] .blog-row:nth-child(5n+4), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+4) { background: var(--paper-mint); }
-html[data-mode="sticky"] .blog-row:nth-child(5n+5), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+5) { background: var(--paper-rose); }
+html[data-mode="sticky"] .blog-row::before,
+html[data-mode="sticky"] .blogpreview__row::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--card-accent, var(--ds-green-btn));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  transform: translateY(-50%);
+}
+
+html[data-mode="sticky"] .blog-row::after,
+html[data-mode="sticky"] .blogpreview__row::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 14px 14px;
+  border-color: transparent transparent rgba(0, 0, 0, 0.16) transparent;
+}
+
+html[data-mode="sticky"] .blog-row:nth-child(5n+2), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+2) { background: var(--paper-sky);   transform: rotate(1deg); }
+html[data-mode="sticky"] .blog-row:nth-child(5n+3), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+3) { background: var(--paper-amber); transform: rotate(-1.5deg); }
+html[data-mode="sticky"] .blog-row:nth-child(5n+4), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+4) { background: var(--paper-mint);  transform: rotate(1.5deg); }
+html[data-mode="sticky"] .blog-row:nth-child(5n+5), html[data-mode="sticky"] .blogpreview__row:nth-child(5n+5) { background: var(--paper-rose);  transform: rotate(-1deg); }
 
 html[data-mode="sticky"] .blog-row-title,
 html[data-mode="sticky"] .blogpreview__row-title {
@@ -195,7 +225,18 @@ html[data-mode="sticky"] .blogpreview__row-arrow {
 html[data-mode="sticky"] .blog-row:hover,
 html[data-mode="sticky"] .blogpreview__row:hover {
   border-left-color: transparent;
-  transform: translateX(2px);
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+/* Tag pill color/border are set inline per-post (TAG_COLORS), so on a
+   colored paper card the pill's near-transparent fill blends straight
+   into the background — force an opaque chip so the tag's own hue
+   still reads clearly regardless of which paper color it lands on. */
+html[data-mode="sticky"] .blog-tag {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border-width: 1.5px !important;
+  font-weight: 700;
 }
 
 html[data-mode="sticky"] .blog-search {
@@ -228,6 +269,14 @@ html[data-mode="sticky"] .blog-list-block,
 html[data-mode="sticky"] .blog-table td,
 html[data-mode="sticky"] .blog-not-found {
   color: var(--paper-ink);
+}
+
+/* Mermaid renders its labels as real <p> tags inside the diagram, which
+   the broad ".blog-post-body p" ink rule above was catching — turning
+   them dark-on-dark against the diagram's fixed #0d1117 background.
+   This selector is one class more specific, so it wins back over it. */
+html[data-mode="sticky"] .blog-post-body .blog-figure--diagram p {
+  color: #e6edf3;
 }
 
 @media screen and (max-width: 600px) {
