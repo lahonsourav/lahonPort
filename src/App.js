@@ -6,6 +6,7 @@ import Loading from "./additionals/loading/Loading.jsx";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle.jsx";
 import AccentPicker from "./components/ThemeToggle/AccentPicker.jsx";
 import SoundToggle from "./components/SoundToggle/SoundToggle.jsx";
+import StickyModeToggle from "./components/StickyModeToggle/StickyModeToggle.jsx";
 import AchievementsTray from "./components/Achievements/AchievementsTray.jsx";
 import RouteTracker from "./components/RouteTracker/RouteTracker.jsx";
 import ClickSoundListener from "./components/ClickSound/ClickSoundListener.jsx";
@@ -38,6 +39,7 @@ function App() {
         <ThemeToggle />
         <AccentPicker />
         <SoundToggle />
+        <StickyModeToggle />
         <AchievementsTray />
         <ScrollManager />
         <RouteTracker />

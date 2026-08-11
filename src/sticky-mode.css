@@ -1,0 +1,279 @@
+/*
+ * ── Sticky note mode ──
+ * Toggled by StickyModeToggle, which stamps data-mode="sticky" on <html>.
+ * Every rule below is scoped with `html[data-mode="sticky"]` rather than
+ * `:root[data-mode="sticky"]` on purpose: `html` is a type selector so it
+ * adds specificity `:root` (a pseudo-class) doesn't, which is what lets
+ * these rules beat the existing `:root[data-theme="light"] .foo`
+ * overrides (equal specificity otherwise) whenever both are active at
+ * once, regardless of CSS import order.
+ *
+ * Scope of this pass: the corkboard backdrop and the handful of
+ * components reused across every page (headings, buttons, project
+ * cards, the blog list + reading page, the nav pill, form inputs).
+ * Each project's own bespoke detail-page sections (hero layouts,
+ * feature grids, walkthroughs) keep their existing look for now.
+ */
+
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/caveat-700.woff2') format('woff2');
+}
+
+html[data-mode="sticky"] {
+  --paper-ink:      #2b2620;
+  --paper-ink-soft: #55493a;
+  --paper-amber: #f2d878;
+  --paper-rose:  #f0c3ca;
+  --paper-mint:  #c3e6cc;
+  --paper-sky:   #c9dcf3;
+  --paper-kraft: #d8c7a1;
+  --paper-photo: #f7f1e3;
+  --ds-font-hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+}
+
+/* ── Desk backdrop: a faint code-editor grid, not cork weave — this is
+   a developer's desk, applies everywhere since body wraps every page. ── */
+html[data-mode="sticky"] body {
+  background-color: var(--ds-bg);
+  background-image:
+    repeating-linear-gradient(0deg, var(--ds-border-subtle) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(90deg, var(--ds-border-subtle) 0 1px, transparent 1px 28px);
+}
+
+/* ── Headings: marker-pen face everywhere except long-form reading ── */
+html[data-mode="sticky"] h1,
+html[data-mode="sticky"] h2,
+html[data-mode="sticky"] h3,
+html[data-mode="sticky"] h4,
+html[data-mode="sticky"] h5 {
+  font-family: var(--ds-font-hand);
+  font-weight: 700;
+}
+
+html[data-mode="sticky"] .blog-post-body h2,
+html[data-mode="sticky"] .blog-post-body h3 {
+  font-family: var(--ds-font);
+  font-weight: 700;
+}
+
+/* ── Buttons: a torn paper tag instead of an outlined pill ── */
+html[data-mode="sticky"] .btn {
+  background: var(--paper-kraft);
+  color: var(--paper-ink);
+  border: none;
+  border-radius: 2px 10px 2px 10px;
+  box-shadow: var(--ds-shadow-sm);
+  font-family: var(--ds-font-mono);
+  transform: rotate(-1.5deg);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+html[data-mode="sticky"] .btn:hover {
+  background: var(--paper-kraft);
+  color: var(--paper-ink);
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+html[data-mode="sticky"] .btn-primary {
+  background: var(--paper-amber);
+  color: var(--paper-ink);
+  transform: rotate(1.5deg);
+}
+
+html[data-mode="sticky"] .btn-primary:hover {
+  background: var(--paper-amber);
+  color: var(--paper-ink);
+  transform: rotate(0deg) translateY(-2px);
+}
+
+/* ── Project cards: pinned notes, the preview mockup kept as a taped-in
+   photo (its bespoke per-project art stays untouched) ── */
+html[data-mode="sticky"] .portfolio__items {
+  --pin: var(--ds-green-btn);
+  background: var(--paper-sky);
+  color: var(--paper-ink);
+  border: none;
+  border-radius: 2px 16px 4px 12px;
+  box-shadow: var(--ds-shadow-sm);
+  padding: 1.5rem 1.4rem 1.6rem;
+  position: relative;
+  transform: rotate(-1.5deg);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* Each card is individually wrapped by react-parallax-tilt, so
+   :nth-child never sees real siblings — color by the project's own
+   preview class instead. Where a project has a fixed brand accent
+   elsewhere on the site (Wormhole, Here I am, LazyKit), the pin reuses
+   that same color; everything else gets the site's default accent. */
+html[data-mode="sticky"] .portfolio__items:has(.whp-preview)       { background: var(--paper-sky);   --pin: #a371f7; transform: rotate(-2deg); }
+html[data-mode="sticky"] .portfolio__items:has(.mdp)               { background: var(--paper-mint);  transform: rotate(1.5deg); }
+html[data-mode="sticky"] .portfolio__items:has(.avsr-preview)      { background: var(--paper-kraft); transform: rotate(-1deg); }
+html[data-mode="sticky"] .portfolio__items:has(.spg-preview)       { background: var(--paper-amber); transform: rotate(2deg); }
+html[data-mode="sticky"] .portfolio__items:has(.hia-preview)       { background: var(--paper-amber); --pin: #e8a33d; transform: rotate(-1.5deg); }
+html[data-mode="sticky"] .portfolio__items:has(.lk-preview)        { background: var(--paper-mint);  --pin: #7ee787; transform: rotate(1deg); }
+html[data-mode="sticky"] .portfolio__items:has(.lazyperm-preview)  { background: var(--paper-rose);  --pin: #7ee787; transform: rotate(-2deg); }
+html[data-mode="sticky"] .portfolio__items:has(.sg-preview)        { background: var(--paper-sky);   transform: rotate(1.5deg); }
+html[data-mode="sticky"] .portfolio__items:has(.rbp-preview)       { background: var(--paper-rose);  transform: rotate(-1deg); }
+
+html[data-mode="sticky"] .portfolio__items::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 28px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+    var(--pin);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 -3px 4px rgba(0, 0, 0, 0.25);
+}
+
+html[data-mode="sticky"] .portfolio__items::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 22px 22px;
+  border-color: transparent transparent rgba(0, 0, 0, 0.16) transparent;
+}
+
+html[data-mode="sticky"] .portfolio__items:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: var(--ds-shadow-lg);
+}
+
+html[data-mode="sticky"] .portfolio__items h3,
+html[data-mode="sticky"] .portfolio__items small {
+  color: var(--paper-ink);
+}
+
+html[data-mode="sticky"] .portfolio__item-image {
+  border: 6px solid var(--paper-photo);
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Blog list rows: kraft-paper strips, no rotation — still a list to scan ── */
+html[data-mode="sticky"] .blog-row,
+html[data-mode="sticky"] .blogpreview__row {
+  background: var(--paper-kraft);
+  color: var(--paper-ink);
+  border-bottom: none;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+  padding: 0.85rem 1rem;
+}
+
+html[data-mode="sticky"] .blog-row-title,
+html[data-mode="sticky"] .blogpreview__row-title {
+  color: var(--paper-ink);
+}
+
+html[data-mode="sticky"] .blog-row-meta,
+html[data-mode="sticky"] .blog-row-arrow,
+html[data-mode="sticky"] .blogpreview__row-meta,
+html[data-mode="sticky"] .blogpreview__row-arrow {
+  color: var(--paper-ink-soft);
+}
+
+html[data-mode="sticky"] .blog-row:hover,
+html[data-mode="sticky"] .blogpreview__row:hover {
+  background: var(--paper-amber);
+  border-left-color: transparent;
+}
+
+html[data-mode="sticky"] .blog-search {
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed var(--ds-border);
+  border-radius: 0;
+}
+
+/* ── Blog post: one calm paper page, not a rotated note — long-form
+   reading keeps its system font and justified body copy as-is. The
+   fixed-dark technical panels (.blog-figure, .blog-code-block,
+   .blog-playground) already carry their own colors and are untouched. ── */
+html[data-mode="sticky"] .blog-post-wrap {
+  background: var(--paper-sky);
+  color: var(--paper-ink);
+  border-radius: 4px;
+  box-shadow: var(--ds-shadow-sm);
+  padding: 3rem 3rem 4rem;
+}
+
+html[data-mode="sticky"] .blog-post-title,
+html[data-mode="sticky"] .blog-post-body,
+html[data-mode="sticky"] .blog-post-body p,
+html[data-mode="sticky"] .blog-h2,
+html[data-mode="sticky"] .blog-tag,
+html[data-mode="sticky"] .blog-date,
+html[data-mode="sticky"] .blog-read-time,
+html[data-mode="sticky"] .blog-list-block,
+html[data-mode="sticky"] .blog-table td,
+html[data-mode="sticky"] .blog-not-found {
+  color: var(--paper-ink);
+}
+
+@media screen and (max-width: 600px) {
+  html[data-mode="sticky"] .blog-post-wrap {
+    padding: 1.75rem 1.5rem 2.5rem;
+  }
+}
+
+/* ── Bottom nav pill (Home) ── */
+html[data-mode="sticky"] nav {
+  background: var(--paper-kraft);
+  border: none;
+  box-shadow: var(--ds-shadow-sm);
+  backdrop-filter: none;
+}
+
+html[data-mode="sticky"] nav a {
+  color: var(--paper-ink-soft);
+}
+
+html[data-mode="sticky"] nav a:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--paper-ink);
+  border-color: transparent;
+}
+
+html[data-mode="sticky"] nav a.active {
+  background: var(--paper-ink);
+  color: var(--paper-kraft);
+  border-color: transparent;
+}
+
+/* ── Form inputs (Contact, AssamFlood): notebook-line style ── */
+html[data-mode="sticky"] .form-control-text,
+html[data-mode="sticky"] .form-control-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed var(--ds-border);
+  border-radius: 0;
+}
+
+html[data-mode="sticky"] .form-control-text:focus,
+html[data-mode="sticky"] .form-control-input:focus {
+  background: transparent;
+  border-color: var(--ds-green-btn);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-mode="sticky"] .portfolio__items,
+  html[data-mode="sticky"] .btn,
+  html[data-mode="sticky"] .blog-row,
+  html[data-mode="sticky"] .blogpreview__row {
+    transition: none;
+  }
+}
