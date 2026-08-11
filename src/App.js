@@ -8,6 +8,7 @@ import AccentPicker from "./components/ThemeToggle/AccentPicker.jsx";
 import SoundToggle from "./components/SoundToggle/SoundToggle.jsx";
 import StickyModeToggle from "./components/StickyModeToggle/StickyModeToggle.jsx";
 import AchievementsTray from "./components/Achievements/AchievementsTray.jsx";
+import Guide from "./components/Guide/Guide.jsx";
 import RouteTracker from "./components/RouteTracker/RouteTracker.jsx";
 import ClickSoundListener from "./components/ClickSound/ClickSoundListener.jsx";
 import ScrollManager from "./components/shared/ScrollManager.jsx";
@@ -41,6 +42,7 @@ function App() {
         <SoundToggle />
         <StickyModeToggle />
         <AchievementsTray />
+        <Guide />
         <ScrollManager />
         <RouteTracker />
         <ClickSoundListener />

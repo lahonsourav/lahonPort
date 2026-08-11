@@ -1,0 +1,187 @@
+.guide-trigger {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 4.25rem;
+  z-index: var(--ds-z-fixed);
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--ds-border);
+  background: rgba(13, 17, 23, 0.7);
+  backdrop-filter: blur(16px);
+  color: var(--ds-green);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--ds-transition);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+:root[data-theme="light"] .guide-trigger {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.guide-trigger:hover {
+  border-color: var(--ds-green);
+  background: var(--ds-surface-2);
+  transform: translateY(-2px) translateZ(0);
+}
+
+@media screen and (max-width: 600px) {
+  .guide-trigger {
+    bottom: 1rem;
+    right: 3.65rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ── Overlay ── */
+.guide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+}
+
+.guide-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  animation: guide-fade-in 0.25s ease;
+}
+
+.guide-spotlight {
+  position: fixed;
+  border-radius: 50%;
+  border: 2px solid var(--ds-green);
+  box-shadow: 0 0 0 4px rgba(126, 231, 135, 0.18), 0 0 24px rgba(126, 231, 135, 0.35);
+  pointer-events: none;
+  transition: top 0.3s ease, left 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.guide-card {
+  position: fixed;
+  bottom: 6.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(22rem, calc(100vw - 2.5rem));
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-lg);
+  padding: 1.5rem 1.5rem 1.25rem;
+  animation: guide-card-in 0.3s ease;
+}
+
+.guide-card:focus {
+  outline: none;
+}
+
+.guide-step-count {
+  font-family: var(--ds-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--ds-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.guide-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.guide-card p:not(.guide-step-count) {
+  font-size: 0.9rem;
+  color: var(--ds-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.guide-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.guide-skip {
+  background: none;
+  border: none;
+  color: var(--ds-text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.guide-skip:hover {
+  color: var(--ds-text);
+}
+
+.guide-nav {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.guide-back,
+.guide-next {
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--ds-radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+
+.guide-back {
+  background: transparent;
+  border: 1px solid var(--ds-border);
+  color: var(--ds-text);
+}
+
+.guide-back:hover {
+  border-color: var(--ds-green-btn);
+}
+
+.guide-next {
+  background: var(--ds-green-btn);
+  border: 1px solid var(--ds-green-btn);
+  color: var(--ds-text-on-accent);
+}
+
+.guide-next:hover {
+  background: var(--ds-green-btn-hover);
+  border-color: var(--ds-green-btn-hover);
+}
+
+@keyframes guide-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes guide-card-in {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media screen and (max-width: 600px) {
+  .guide-card {
+    bottom: 1.25rem;
+    padding: 1.25rem 1.25rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-backdrop,
+  .guide-card {
+    animation: none;
+  }
+
+  .guide-spotlight {
+    transition: none;
+  }
+}
