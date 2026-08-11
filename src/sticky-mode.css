@@ -271,6 +271,14 @@ html[data-mode="sticky"] .blog-not-found {
   color: var(--paper-ink);
 }
 
+/* Mermaid renders its labels as real <p> tags inside the diagram, which
+   the broad ".blog-post-body p" ink rule above was catching — turning
+   them dark-on-dark against the diagram's fixed #0d1117 background.
+   This selector is one class more specific, so it wins back over it. */
+html[data-mode="sticky"] .blog-post-body .blog-figure--diagram p {
+  color: #e6edf3;
+}
+
 @media screen and (max-width: 600px) {
   html[data-mode="sticky"] .blog-post-wrap {
     padding: 1.75rem 1.5rem 2.5rem;
