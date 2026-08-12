@@ -4,11 +4,12 @@ import searchShot from '../../images/spg/search.webp';
 import loginShot from '../../images/spg/login.webp';
 import facultyJoinShot from '../../images/spg/faculty-join.webp';
 import studentDashboardShot from '../../images/spg/student-dashboard.webp';
-import studentRecordingsShot from '../../images/spg/student-recordings.webp';
+import materialsTreeShot from '../../images/spg/materials-tree.webp';
 import facultyDashboardShot from '../../images/spg/faculty-dashboard.webp';
 import facultyStudentsShot from '../../images/spg/faculty-students.webp';
 import goLiveShot from '../../images/spg/go-live.webp';
-import adminAnnouncementsShot from '../../images/spg/admin-announcements.webp';
+import adminAppNotificationsShot from '../../images/spg/admin-app-notifications.webp';
+import adminAnnouncementShot from '../../images/spg/admin-homepage-announcement.webp';
 import adminDashboardShot from '../../images/spg/admin-dashboard.webp';
 import adminCoursesShot from '../../images/spg/admin-courses.webp';
 import adminStudentsShot from '../../images/spg/admin-students.webp';
@@ -884,7 +885,7 @@ export const POSTS = [
 
       'A parent comparing coaching centers on their phone at 10pm needs three things fast: what it costs, who teaches it, and how to reach a real person. The public site leads with exactly that: exam category badges, program cards, transparent fees with offer pricing shown struck-through against the original, and a floating WhatsApp button that\'s always one tap away (it auto-hides when the footer scrolls into view so it never covers it).',
 
-      { type: 'image', src: landingShot, alt: 'Coaching center landing page with hero, programs, and demo-class CTA', caption: 'Landing page: hero, exam badges, program cards, demo-class CTA' },
+      { type: 'image', src: landingShot, alt: 'Coaching center landing page with a staff-posted announcement banner in the hero, exam badges, programs, and demo-class CTA', caption: 'Landing page: the hero now shows whatever staff last posted to Homepage Announcement, plus exam badges, program cards, and a demo-class CTA' },
 
       { type: 'gallery', items: [
         { src: courseDetailShot, alt: 'Course detail page with subjects, fees, and faculty', caption: 'Course detail: subjects, monthly/complete fees, assigned faculty, no "call for pricing"' },
@@ -915,7 +916,7 @@ export const POSTS = [
 
       { type: 'gallery', items: [
         { src: studentDashboardShot, alt: 'Student dashboard with enrolled and available courses', caption: 'Student dashboard: enrolled courses, browse and request new enrollments, join live classes' },
-        { src: studentRecordingsShot, alt: 'Materials page showing a course\'s full subject/chapter/topic tree', caption: 'Materials: every subject, chapter, and topic\'s recordings and files, one expanded tree per course' },
+        { src: materialsTreeShot, alt: 'Materials page showing a course\'s full subject/chapter/topic tree', caption: 'Materials: every subject, chapter, and topic\'s recordings and files, one expanded tree per course' },
       ] },
 
       'Recordings and study materials now live on their own Materials page, split out from Online Class, and browsing changed with it: instead of clicking down through course → subject → chapter → topic one level at a time, the whole tree for a course renders expanded at once, so a student can scan everything available without a series of extra taps.',
@@ -937,9 +938,11 @@ export const POSTS = [
 
       'A class going live pushes a notification straight to every enrolled student automatically. On top of that, staff can broadcast a push notification (a title, a message, and an optional link to a form or payment page) from one composer, to all students, specific courses, students who haven\'t enrolled in anything yet, the staff team, or literally everyone. What used to be a one-way push is now a real thread: faculty, admin, and master can reply to any notification and tap a 👍 to acknowledge it, so "did the team see this" stops being a guessing game answered over WhatsApp. (This feature used to be called "Announcements" — it\'s now App Notifications, freeing up the name for the feature below.)',
 
-      { type: 'image', src: adminAnnouncementsShot, alt: 'App Notifications feed with audience selector, a staff reply, and like reactions', caption: 'App Notifications: five audience options, plus a reply thread and 👍 reactions right under each one' },
+      { type: 'image', src: adminAppNotificationsShot, alt: 'App Notifications composer with five audience options, a posted notification, and a staff reply', caption: 'App Notifications: five audience options in the composer, plus a reply thread and 👍 reactions on every notification below it' },
 
       'The homepage itself got its own, unrelated Announcement: a single image and caption that staff post from the dashboard, replacing the hero illustration with something the institute actually controls, an admission deadline, an exam result, a photo from a recent event. An optional two-character badge (say, "50" or "SI") stamps a small red circle over the corner of the image when there\'s something worth calling out. Posting a new one replaces the last; editing just updates the caption, badge, or image in place.',
+
+      { type: 'image', src: adminAnnouncementShot, alt: 'Homepage Announcement admin panel showing the current banner and a form to post a new one', caption: 'Homepage Announcement: the current banner, plus a form to replace or edit it, right from the dashboard' },
 
       { type: 'h2', text: 'Ask Question: a Q&A feed built into every dashboard' },
 
