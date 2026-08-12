@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { POSTS } from './posts';
 import { readMins } from './readingTime';
 import { trackBlogRead } from '../../lib/achievements';
+import useDocumentMeta from '../../lib/useDocumentMeta';
 import MermaidDiagram from './MermaidDiagram';
 import TokenPlayground from './TokenPlayground';
 import LivePalette from './LivePalette';
@@ -126,6 +127,10 @@ const renderBlock = (block, i) => {
 const BlogPost = () => {
   const { slug } = useParams();
   const post = POSTS.find(p => p.slug === slug);
+
+  useDocumentMeta(
+    post ? { title: `${post.title} | Sourav Lahon`, description: post.excerpt } : {}
+  );
 
   React.useEffect(() => {
     if (!slug) return;

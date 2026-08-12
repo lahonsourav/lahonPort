@@ -654,7 +654,8 @@ export const POSTS = [
           ['PushSubscription', 'endpoint (unique), p256dh, auth', 'One row per browser/device Web Push registration'],
           ['ServiceItem / ClientPayment / BillingSettings', 'category, status, amountInr / paidAt / dueDate', 'The master-only developer-billing system: what\'s owed vs. what\'s been paid'],
           ['EnrollmentRequest', 'type, receiptNumber, status', 'Student-submitted enrollment pending admin verification'],
-          ['Announcement / AnnouncementReply / AnnouncementLike(+Reply)', 'audience, audienceLabel, recipientCount', 'Staff-only feed: a push notice plus a reply thread and 👍 acknowledgements'],
+          ['AppNotification / AppNotificationReply / AppNotificationLike(+Reply)', 'audience, audienceLabel, recipientCount', 'Staff-only feed (renamed from Announcement): a push notice plus a reply thread and 👍 acknowledgements'],
+          ['Announcement', 'caption, badgeText, storedName/fileName/mimeType', 'A different thing entirely, despite the name it inherited: the single image + caption banner on the public homepage. postAnnouncement() deletes any existing row before creating the new one, so posting always replaces rather than accumulating history'],
           ['Question / QuestionComment / QuestionCommentReaction', 'courses[], subjects[] (both many-to-many)', 'The Ask Question feed: a question tagged to courses/subjects, answered in threaded comments, each reaction correct/incorrect'],
         ] },
 
@@ -765,7 +766,7 @@ export const POSTS = [
     A["Student taps Allow Notifications"] --> B["Browser Push API generates subscription"]
     B --> C["Store PushSubscription: endpoint, p256dh, auth"]
     D["Trigger 1: staff goes live"] --> E["Push to every student enrolled in that class's course(s)"]
-    F["Trigger 2: staff posts an Announcement"] --> G["Push to all students, or to selected courses' students"]
+    F["Trigger 2: staff posts an App Notification"] --> G["Push to all students, or to selected courses' students"]
     E --> H["web-push signs payload with VAPID keys"]
     G --> H
     H --> I["Push service delivers to the browser"]
@@ -805,9 +806,15 @@ export const POSTS = [
 
       'The app deploys to Railway from a railway.toml, alongside a managed PostgreSQL instance. Prisma migrations run as part of the deploy step rather than by hand against production. It\'s intentionally boring infrastructure for what it is (one coaching center, not a multi-tenant platform) and boring is the right call: nothing here needs a Kubernetes cluster, and every extra moving part is one more thing to debug at 11pm before an admissions season starts.',
 
-      { type: 'h2', text: '13. Announcements & Ask Question: Two Feeds, Two Access Models' },
+      { type: 'h2', text: '13. App Notifications & Ask Question: Two Feeds, Two Access Models' },
 
-      'Two features got added after the initial build, and they\'re a useful contrast in access control on the same codebase. Announcements started as a fire-and-forget push (admin writes a message, students receive a notification, nothing persisted). It\'s now a real Announcement row with a reply thread (AnnouncementReply) and a toggleable 👍 (AnnouncementLike / AnnouncementReplyLike, one per user per target via a compound unique index), but the whole thread is staff-only: isStaffRole gates reading, replying, and reacting, same boundary as the page itself. Ask Question is the opposite shape on purpose: students post, and visibility is scoped by enrollment (a student only sees a Question if it\'s tagged with a course they\'re enrolled in), while faculty/admin/master can see and answer every question regardless of which course they teach.',
+      'Two features got added after the initial build, and they\'re a useful contrast in access control on the same codebase. What\'s now called App Notifications started as a fire-and-forget push (admin writes a message, students receive a notification, nothing persisted). It\'s now a real AppNotification row with a reply thread (AppNotificationReply) and a toggleable 👍 (AppNotificationLike / AppNotificationReplyLike, one per user per target via a compound unique index), but the whole thread is staff-only: isStaffRole gates reading, replying, and reacting, same boundary as the page itself. (This model was originally just called Announcement, and got renamed to AppNotification once a second, unrelated feature needed that name more — see below.) Ask Question is the opposite shape on purpose: students post, and visibility is scoped by enrollment (a student only sees a Question if it\'s tagged with a course they\'re enrolled in), while faculty/admin/master can see and answer every question regardless of which course they teach.',
+
+      'The homepage picked up a real Announcement of its own in the meantime: a single image + caption banner, posted from the dashboard, that replaces the static hero illustration. It\'s deliberately a singleton, postAnnouncement() deletes any existing row before creating the new one, so posting always replaces rather than accumulating a history, while editAnnouncement() updates that same row in place for caption/image tweaks that shouldn\'t count as a new post. An optional badgeText field (capped at two characters in the form) renders as a small red circular stamp over the top corner of the image, "50", "SI", whatever the moment calls for, and is left off entirely when empty rather than rendering a blank badge.',
+
+      'Recordings and study materials also got pulled out of Online Class into their own Materials page and given a different browsing model: instead of clicking down through course → subject → chapter → topic one level at a time, Materials now renders the whole tree expanded for a course at once. The chapter/topic Server Actions in curriculum.ts (createChapter, deleteChapter, createTopic, deleteTopic) stayed shared between both pages rather than being forked, they now take a redirectTo string parameter and append their own query params (chapterId=, topicId=) onto whichever path called them, so the same mutation logic redirects back to Online Class or to Materials depending on where the request came from, instead of a hardcoded path baked into the action.',
+
+      'A staff-facing Changelog page rounds out this batch: a plain, statically defined list of dated entries (newest first, no database table) describing every update shipped to the site, from launch through the App Notifications rename and the Materials split themselves. It exists mainly so faculty and admins, who don\'t read commit history, have somewhere to see what changed without someone explaining it over WhatsApp.',
 
       { type: 'diagram', title: 'Tagging a subject pulls in every course that teaches it', text:
 `flowchart TD
@@ -825,13 +832,13 @@ export const POSTS = [
 
       'Edit and delete on a Question split the same way access does, but flipped: canModifyQuestion returns true for staff on anything, or for a non-staff user only on their own authorId. It\'s a two-line helper, but it\'s checked server-side inside the editQuestion and deleteQuestion actions themselves, not just used to decide whether to render the ✎/✕ buttons — the UI hiding them for other students\' questions is a courtesy, the action re-checks regardless of what the client sends.',
 
-      'The feed itself went through a UI pass too: each question now leads with an avatar, initials on a role-coloured circle, next to the author line, and answers stay collapsed behind a "View N answers" toggle instead of always rendering the full thread open, closer to a social timeline than a form. The write-an-answer box is deliberately not gated behind that toggle, it\'s always rendered, only the list of past answers collapses, since gating it too meant expanding a whole thread just to add one reply to it. And the same feed component got embedded a second time, scoped to a single course, at the bottom of that course\'s Recordings & Materials page: getQuestionFeed picked up a courseId filter for this, combined with the existing staff/enrollment visibility rule through an explicit AND array of conditions rather than spreading two objects that both happen to key off courses, which would have let the later one silently overwrite the earlier one instead of narrowing the query.',
+      'The feed itself went through a UI pass too: each question now leads with an avatar, initials on a role-coloured circle, next to the author line, and answers stay collapsed behind a "View N answers" toggle instead of always rendering the full thread open, closer to a social timeline than a form. The write-an-answer box is deliberately not gated behind that toggle, it\'s always rendered, only the list of past answers collapses, since gating it too meant expanding a whole thread just to add one reply to it. And the same feed component got embedded a second time, scoped to a single course, at the bottom of that course\'s Materials page: getQuestionFeed picked up a courseId filter for this, combined with the existing staff/enrollment visibility rule through an explicit AND array of conditions rather than spreading two objects that both happen to key off courses, which would have let the later one silently overwrite the earlier one instead of narrowing the query.',
 
       { type: 'h2', text: '14. Two Production Bugs: A Double-Tap Race and a Silent Push Subscription' },
 
       'Two real bugs shipped and got fixed within a day of the features above going live, both worth writing down because neither showed up in normal testing, only under the specific conditions real usage creates.',
 
-      'The first: reactToComment, toggleAnnouncementLike, and toggleAnnouncementReplyLike all followed the same shape, read the current reaction/like row, then delete(), update(), or create() it by id depending on what was found. That\'s correct for one request. It\'s not correct for two, and a fast double-tap on a touchscreen reaction button, easy to do by accident, fires exactly two overlapping requests before the first one\'s response re-renders the button. Both read the same "nothing exists yet" state, both try to create() the same row, and the second one hits the unique constraint on (commentId, userId) and throws. An unhandled Prisma exception inside a Server Action crashes the whole page, not just that click, in production it surfaced as a bare "A server error occurred" screen on what looked like a totally unrelated button tap.',
+      'The first: reactToComment, toggleAppNotificationLike, and toggleAppNotificationReplyLike all followed the same shape, read the current reaction/like row, then delete(), update(), or create() it by id depending on what was found. That\'s correct for one request. It\'s not correct for two, and a fast double-tap on a touchscreen reaction button, easy to do by accident, fires exactly two overlapping requests before the first one\'s response re-renders the button. Both read the same "nothing exists yet" state, both try to create() the same row, and the second one hits the unique constraint on (commentId, userId) and throws. An unhandled Prisma exception inside a Server Action crashes the whole page, not just that click, in production it surfaced as a bare "A server error occurred" screen on what looked like a totally unrelated button tap.',
 
       { type: 'diagram', title: 'A double-tap races two requests against the same row', text:
 `sequenceDiagram
@@ -908,12 +915,14 @@ export const POSTS = [
 
       { type: 'gallery', items: [
         { src: studentDashboardShot, alt: 'Student dashboard with enrolled and available courses', caption: 'Student dashboard: enrolled courses, browse and request new enrollments, join live classes' },
-        { src: studentRecordingsShot, alt: 'Recordings and materials page filterable by subject and chapter', caption: 'Recordings & materials: filterable by subject, chapter, and topic' },
+        { src: studentRecordingsShot, alt: 'Materials page showing a course\'s full subject/chapter/topic tree', caption: 'Materials: every subject, chapter, and topic\'s recordings and files, one expanded tree per course' },
       ] },
+
+      'Recordings and study materials now live on their own Materials page, split out from Online Class, and browsing changed with it: instead of clicking down through course → subject → chapter → topic one level at a time, the whole tree for a course renders expanded at once, so a student can scan everything available without a series of extra taps.',
 
       { type: 'h2', text: 'Live classes without a third-party app' },
 
-      'This is the feature that turns a coaching center\'s YouTube-and-WhatsApp workaround into an actual product: staff pick a course → subject → chapter → topic, paste a YouTube video ID, and go live. The same class can be cross-linked to reach students in other batches at once. Ending the class cuts off every watching student automatically. Every past session becomes a searchable recording, every join is logged for attendance, and playback is watermarked with the viewer\'s identity as a leak deterrent.',
+      'This is the feature that turns a coaching center\'s YouTube-and-WhatsApp workaround into an actual product: staff pick a course → subject → chapter → topic, paste a YouTube video ID, and go live. The same class can be cross-linked to reach students in other batches at once. Ending the class cuts off every watching student automatically. Every past session becomes a searchable recording on the Materials page, every join is logged for attendance, and playback is watermarked with the viewer\'s identity as a leak deterrent.',
 
       { type: 'image', src: goLiveShot, alt: 'Go Live panel with course, subject, chapter, and topic picker', caption: 'Go Live: curriculum picker, cross-linking to other batches, live status at a glance' },
 
@@ -924,11 +933,13 @@ export const POSTS = [
         { src: facultyStudentsShot, alt: 'Faculty view of their students', caption: "Faculty's student roster" },
       ] },
 
-      { type: 'h2', text: 'Announcements that talk back' },
+      { type: 'h2', text: 'App Notifications that talk back, and a banner on the homepage' },
 
-      'A class going live pushes a notification straight to every enrolled student automatically. On top of that, staff can broadcast an announcement (a title, a message, and an optional link to a form or payment page) from one composer, to all students, specific courses, students who haven\'t enrolled in anything yet, the staff team, or literally everyone. What used to be a one-way push is now a real thread: faculty, admin, and master can reply to any announcement and tap a 👍 to acknowledge it, so "did the team see this" stops being a guessing game answered over WhatsApp.',
+      'A class going live pushes a notification straight to every enrolled student automatically. On top of that, staff can broadcast a push notification (a title, a message, and an optional link to a form or payment page) from one composer, to all students, specific courses, students who haven\'t enrolled in anything yet, the staff team, or literally everyone. What used to be a one-way push is now a real thread: faculty, admin, and master can reply to any notification and tap a 👍 to acknowledge it, so "did the team see this" stops being a guessing game answered over WhatsApp. (This feature used to be called "Announcements" — it\'s now App Notifications, freeing up the name for the feature below.)',
 
-      { type: 'image', src: adminAnnouncementsShot, alt: 'Announcements feed with audience selector, a staff reply, and like reactions', caption: 'Announcements: five audience options, plus a reply thread and 👍 reactions right under each one' },
+      { type: 'image', src: adminAnnouncementsShot, alt: 'App Notifications feed with audience selector, a staff reply, and like reactions', caption: 'App Notifications: five audience options, plus a reply thread and 👍 reactions right under each one' },
+
+      'The homepage itself got its own, unrelated Announcement: a single image and caption that staff post from the dashboard, replacing the hero illustration with something the institute actually controls, an admission deadline, an exam result, a photo from a recent event. An optional two-character badge (say, "50" or "SI") stamps a small red circle over the corner of the image when there\'s something worth calling out. Posting a new one replaces the last; editing just updates the caption, badge, or image in place.',
 
       { type: 'h2', text: 'Ask Question: a Q&A feed built into every dashboard' },
 
@@ -938,16 +949,16 @@ export const POSTS = [
 
       { type: 'image', src: askQuestionFeedShot, alt: 'Ask Question feed showing collapsed questions with author avatars and subject tags', caption: 'The feed reads like a social timeline: an avatar and subject tag per question, answers collapsed until you tap in' },
 
-      'It\'s styled and behaves like a social feed on purpose: each question carries an avatar (initials, colour-coded by role) next to the author\'s name instead of a form-like block of text. Answers stay collapsed behind a "💬 View N answers" toggle so a thread with a dozen replies doesn\'t push every other question off the screen, but the answer box itself is always right there, no need to expand a thread just to add to it. And it\'s not siloed off on its own page either: the exact same feed, scoped to just that course, sits at the bottom of every course\'s Recordings & Materials page, so a doubt about the chapter you\'re watching lives right next to the recording, not three clicks away.',
+      'It\'s styled and behaves like a social feed on purpose: each question carries an avatar (initials, colour-coded by role) next to the author\'s name instead of a form-like block of text. Answers stay collapsed behind a "💬 View N answers" toggle so a thread with a dozen replies doesn\'t push every other question off the screen, but the answer box itself is always right there, no need to expand a thread just to add to it. And it\'s not siloed off on its own page either: the exact same feed, scoped to just that course, sits at the bottom of every course\'s Materials page, so a doubt about the chapter you\'re watching lives right next to the recording, not three clicks away.',
 
       { type: 'gallery', items: [
         { src: askQuestionShot, alt: 'An expanded Ask Question thread with a faculty answer marked correct', caption: 'Expanded: faculty avatar, the answer, and a ✅ correct reaction, with the answer box always available below' },
-        { src: courseMaterialsQuestionsShot, alt: 'Questions section embedded at the bottom of a course Recordings and Materials page', caption: 'The same feed, scoped to one course, living right under its recordings and materials' },
+        { src: courseMaterialsQuestionsShot, alt: 'Questions section embedded at the bottom of a course Materials page', caption: 'The same feed, scoped to one course, living right under its Materials page' },
       ] },
 
       { type: 'h2', text: 'One dashboard that runs the whole institute' },
 
-      'Manage courses and pricing, students, faculty, admins, and enrollment requests. Every price change, faculty assignment, and enrollment approval writes to an immutable audit log, a permanent, write-once record of who did what, when. Login activity shows every device and location for both OTP steps and password logins, with the SMS cost attached where one was actually sent. There\'s also a copyable faculty invite link right on the Manage Faculty page, and a per-course roster of every enrolled student, one click from the course list.',
+      'Manage courses and pricing, students, faculty, admins, and enrollment requests. Every price change, faculty assignment, and enrollment approval writes to an immutable audit log, a permanent, write-once record of who did what, when. Login activity shows every device and location for both OTP steps and password logins, with the SMS cost attached where one was actually sent. There\'s also a copyable faculty invite link right on the Manage Faculty page, a per-course roster of every enrolled student one click from the course list, and a staff-only Changelog page listing every update shipped to the site, dated, newest first, so faculty and admins can see what changed without asking.',
 
       { type: 'image', src: adminDashboardShot, alt: 'Admin dashboard home with stats and management tools', caption: 'Admin dashboard: every management tool, live stats, one click away' },
 
@@ -968,11 +979,14 @@ export const POSTS = [
           ['Manage Students / Faculty', 'View, edit, search, and manage every account'],
           ['Admins', 'See who has admin access and their activity'],
           ['Enrollment Requests', 'Verify receipt numbers, approve or reject in one click'],
-          ['Announcements', 'Push to students, staff, or everyone — with replies and 👍 reactions from the team'],
-          ['Ask Question', 'A social-style Q&A feed with avatars and ✅/❌ answer reactions, on every dashboard and embedded per-course on Recordings & Materials'],
+          ['App Notifications', 'Push to students, staff, or everyone — with replies and 👍 reactions from the team (formerly "Announcements")'],
+          ['Homepage Announcement', 'Post the image + caption banner shown on the public homepage, with an optional red stamp badge'],
+          ['Materials', 'Every course\'s recordings and study materials, expanded in one tree per subject/chapter/topic'],
+          ['Ask Question', 'A social-style Q&A feed with avatars and ✅/❌ answer reactions, on every dashboard and embedded per-course on Materials'],
           ['Audit Log', 'An immutable trail of every change: who, what, when'],
           ['Login Activity', 'Every OTP and password attempt with device, location, and SMS cost where applicable'],
           ['Development Charge', 'Read-only: what\'s owed to the developer vs. what\'s been paid, with a site-wide countdown/overdue banner'],
+          ['Changelog', 'Every update shipped to the site, dated, newest first'],
         ] },
 
       { type: 'h2', text: 'And for the owner: what it costs to run' },
