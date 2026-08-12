@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Portfolio.css";
 
 import Tilt from "react-parallax-tilt";
 import { useNavigate } from "react-router-dom";
 import PdfModal from "../../additionals/pdfModal/PdfModal";
-import { SKILL_SELECT_EVENT, SKILL_PROJECTS } from "../../lib/skillFilter";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
@@ -15,22 +14,6 @@ const AVSR_THESIS_URL = "https://drive.google.com/file/d/12Yy-KGhU3uN-VXC6uvemQu
 const Portfolio = () => {
   const navigate = useNavigate();
   const [showThesis, setShowThesis] = useState(false);
-  const [activeSkill, setActiveSkill] = useState(null);
-
-  useEffect(() => {
-    const onSelect = (e) => {
-      setActiveSkill(e.detail);
-      if (e.detail) {
-        document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    };
-    window.addEventListener(SKILL_SELECT_EVENT, onSelect);
-    return () => window.removeEventListener(SKILL_SELECT_EVENT, onSelect);
-  }, []);
-
-  const clearSkillFilter = () => window.dispatchEvent(new CustomEvent(SKILL_SELECT_EVENT, { detail: null }));
-  const matchingProjects = activeSkill ? (SKILL_PROJECTS[activeSkill] || []) : null;
-  const isDimmed = (id) => matchingProjects !== null && !matchingProjects.includes(id);
 
   return (
     <section id="portfolio">
@@ -38,27 +21,12 @@ const Portfolio = () => {
 
       <h2>My Projects</h2>
 
-      {activeSkill && (
-        <p className="portfolio__filter-note">
-          {matchingProjects.length > 0 ? (
-            <>Showing projects using <strong>{activeSkill}</strong></>
-          ) : (
-            <>
-              None of these use <strong>{activeSkill}</strong> — see the{" "}
-              <span onClick={() => navigate("/work")} role="button" tabIndex={0}>full Work page</span>
-            </>
-          )}
-          {" · "}
-          <button type="button" onClick={clearSkillFilter}>Clear</button>
-        </p>
-      )}
-
       <div className="container portfolio__container">
         <MaybeTilt>
           <article
             data-aos="zoom-in-up"
             data-aos-delay="0"
-            className={`portfolio__items${isDimmed("wormhole") ? " portfolio__items--dim" : ""}`}
+            className="portfolio__items"
           >
             <div className="portfolio__item-image whp-preview">
               <div className="whp-inner">
@@ -107,7 +75,7 @@ const Portfolio = () => {
           <article
             data-aos="zoom-in-up"
             data-aos-delay="100"
-            className={`portfolio__items${isDimmed("mood") ? " portfolio__items--dim" : ""}`}
+            className="portfolio__items"
           >
             <div className="portfolio__item-image mdp">
               <div className="mdp__inner">
@@ -168,7 +136,7 @@ const Portfolio = () => {
           <article
             data-aos="zoom-in-up"
             data-aos-delay="200"
-            className={`portfolio__items${isDimmed("spg") ? " portfolio__items--dim" : ""}`}
+            className="portfolio__items"
           >
             <div className="portfolio__item-image spg-preview">
               <div className="spg-inner">
@@ -212,7 +180,7 @@ const Portfolio = () => {
           <article
             data-aos="zoom-in-up"
             data-aos-delay="400"
-            className={`portfolio__items${isDimmed("avsr") ? " portfolio__items--dim" : ""}`}
+            className="portfolio__items"
           >
             <div className="portfolio__item-image avsr-preview">
               <div className="avsr-inner">
