@@ -12,6 +12,15 @@ const PHRASES = [
   "building tools for devs",
 ];
 
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 5) return "Still up? I'm";
+  if (hour < 12) return "Good morning, I'm";
+  if (hour < 17) return "Good afternoon, I'm";
+  if (hour < 21) return "Good evening, I'm";
+  return "Still up? I'm";
+};
+
 const TYPE_LABELS = {
   page: "page",
   project: "project",
@@ -126,6 +135,7 @@ const Header = () => {
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [erasing, setErasing] = useState(false);
+  const [greeting] = useState(getGreeting);
 
   useEffect(() => {
     const phrase = PHRASES[phraseIdx];
@@ -154,7 +164,7 @@ const Header = () => {
   return (
     <header id="header">
       <div className="header__containerpc">
-        <h5>Hi, I'm</h5>
+        <h5>{greeting}</h5>
         <h1>
           LA<span className="h">H</span>ON
         </h1>

@@ -50,6 +50,11 @@ select:focus-visible,
 /* ── Base ── */
 html {
   scroll-behavior: smooth;
+  /* Only body had a background — html itself stayed transparent, so
+     mobile Safari's rubber-band overscroll bounce (past the top or
+     bottom) revealed the browser's own white canvas through it for a
+     moment. Same fix as always giving body an explicit background. */
+  background: var(--ds-bg);
 }
 
 html, body {

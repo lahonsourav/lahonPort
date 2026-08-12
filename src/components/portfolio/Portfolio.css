@@ -21,6 +21,50 @@
   transform: translateY(-2px);
 }
 
+.portfolio__items--dim {
+  /* Beats [data-aos].reveal-in (same specificity, unpredictable load order
+     across code-split chunks) which otherwise pins opacity to 1. */
+  opacity: 0.35 !important;
+}
+
+.portfolio__items--dim:hover {
+  opacity: 0.6 !important;
+}
+
+.portfolio__filter-note {
+  text-align: center;
+  font-family: var(--ds-font-mono);
+  font-size: 0.85rem;
+  color: var(--ds-text-muted);
+  margin: -2rem auto 2rem;
+}
+
+.portfolio__filter-note strong {
+  color: var(--ds-green);
+}
+
+.portfolio__filter-note span[role="button"] {
+  color: var(--ds-blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.portfolio__filter-note button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--ds-text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.portfolio__filter-note button:hover {
+  color: var(--ds-green);
+}
+
 .portfolio__item-image {
   position: relative;
   border-radius: var(--ds-radius-sm);

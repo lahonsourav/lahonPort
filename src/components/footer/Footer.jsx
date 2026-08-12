@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Changelog from "./Changelog";
 import "./footer.css";
 
 const Footer = () => {
   return (
     <footer>
+      <Changelog />
       <div className="permalinks">
         <Link to="/blog/the-design-principles-behind-lahon-in">Colophon</Link>
       </div>

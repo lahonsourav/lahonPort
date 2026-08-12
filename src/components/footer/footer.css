@@ -19,6 +19,53 @@ footer {
   border-radius: 20px;
 }
 
+/* ── Changelog strip ── */
+.changelog {
+  max-width: 420px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.changelog__label {
+  font-family: var(--ds-font-mono);
+  font-size: 0.68rem;
+  color: var(--ds-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+  margin-bottom: 0.6rem;
+}
+
+.changelog__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 9.5rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0 0.25rem 0.25rem;
+  mask-image: linear-gradient(to bottom, black calc(100% - 20px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 20px), transparent 100%);
+}
+
+.changelog__list::-webkit-scrollbar {
+  display: none;
+}
+
+.changelog__date {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  color: var(--ds-text-muted);
+  opacity: 0.75;
+  margin-right: 0.6rem;
+}
+
+.changelog__text {
+  font-size: 0.82rem;
+  color: var(--ds-text-muted);
+}
+
 .permalinks {
   display: flex;
   flex-wrap: wrap;
