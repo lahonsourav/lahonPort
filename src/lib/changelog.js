@@ -1,7 +1,7 @@
 // Real, dated entries — pulled from actual commits, not invented copy.
 // Newest first. Add to the top when something worth mentioning ships.
 export const CHANGELOG = [
-  { date: "2026-08-12", text: "Skill pills on the homepage are clickable — click one to filter the projects that use it." },
+  { date: "2026-08-12", text: "Fixed a white flash on mobile Safari's overscroll bounce, most noticeable on shorter pages like LazyKit and lazyperm." },
   { date: "2026-08-11", text: "The back button is centered on every page, not just project pages." },
   { date: "2026-08-11", text: "Sticky note mode: an opt-in toggle that reskins the whole site as a corkboard desk, plus a first-visit guide." },
   { date: "2026-08-10", text: "Here I am joined the Work page." },
