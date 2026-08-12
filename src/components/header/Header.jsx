@@ -4,6 +4,7 @@ import { MdSearch } from "react-icons/md";
 import { SEARCH_INDEX } from "../../lib/searchIndex";
 import { playClick } from "../../lib/sound";
 import { unlock } from "../../lib/achievements";
+import { PROJECTS_SHIPPED, BLOG_POST_COUNT, daysSinceLastUpdate } from "../../lib/stats";
 import "./header.css";
 
 const PHRASES = [
@@ -11,6 +12,17 @@ const PHRASES = [
   "a beats producer & musician",
   "building tools for devs",
 ];
+
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 5) return "Still up? I'm";
+  if (hour < 12) return "Good morning, I'm";
+  if (hour < 17) return "Good afternoon, I'm";
+  if (hour < 21) return "Good evening, I'm";
+  return "Still up? I'm";
+};
+
+const NOW_TEXT = "building out Success Point Gogamukh's coaching platform, and shipping small homepage experiments here.";
 
 const TYPE_LABELS = {
   page: "page",
@@ -126,6 +138,8 @@ const Header = () => {
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [erasing, setErasing] = useState(false);
+  const [greeting] = useState(getGreeting);
+  const [daysLive] = useState(daysSinceLastUpdate);
 
   useEffect(() => {
     const phrase = PHRASES[phraseIdx];
@@ -154,7 +168,7 @@ const Header = () => {
   return (
     <header id="header">
       <div className="header__containerpc">
-        <h5>Hi, I'm</h5>
+        <h5>{greeting}</h5>
         <h1>
           LA<span className="h">H</span>ON
         </h1>
@@ -162,6 +176,26 @@ const Header = () => {
           <div className="typing-demo">{displayed}</div>
         </div>
         <HeroSearch />
+
+        <p className="header__now">
+          <span className="header__now-dot" />
+          Now: {NOW_TEXT}
+        </p>
+
+        <div className="header__stats">
+          <div className="header__stat">
+            <span className="header__stat-num">{PROJECTS_SHIPPED}</span>
+            <span className="header__stat-label">projects shipped</span>
+          </div>
+          <div className="header__stat">
+            <span className="header__stat-num">{BLOG_POST_COUNT}</span>
+            <span className="header__stat-label">blog posts</span>
+          </div>
+          <div className="header__stat">
+            <span className="header__stat-num">{daysLive}d</span>
+            <span className="header__stat-label">since last update</span>
+          </div>
+        </div>
       </div>
     </header>
   );

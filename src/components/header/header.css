@@ -169,6 +169,60 @@ header::after {
   color: var(--ds-text);
 }
 
+/* ── "Now" line ── */
+.header__now {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 480px;
+  margin-top: 1.5rem;
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  color: var(--ds-text-muted);
+  line-height: 1.5;
+}
+
+.header__now-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ds-green);
+  animation: header-now-pulse 2s ease-in-out infinite;
+}
+
+@keyframes header-now-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* ── Stat strip ── */
+.header__stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.header__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__stat-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ds-text);
+}
+
+.header__stat-label {
+  font-size: 0.7rem;
+  color: var(--ds-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.2rem;
+}
+
 @media screen and (max-width: 600px) {
   header {
     padding-top: 4rem;
@@ -184,5 +238,18 @@ header::after {
      a smaller mono size. */
   .hero-search__input {
     font-size: 1rem;
+  }
+
+  .header__now {
+    text-align: left;
+    padding: 0 1rem;
+  }
+
+  .header__stats {
+    gap: 1.5rem;
+  }
+
+  .header__stat-num {
+    font-size: 1.3rem;
   }
 }
