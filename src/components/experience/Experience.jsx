@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./experience.css";
 import Tilt from "react-parallax-tilt";
-import { SKILL_SELECT_EVENT } from "../../lib/skillFilter";
 
 const isTouch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
 const MaybeTilt = ({ children, ...props }) =>
@@ -27,19 +26,6 @@ const SKILL_GROUPS = [
 ];
 
 const Experience = () => {
-  const [selected, setSelected] = useState(null);
-
-  useEffect(() => {
-    const onSelect = (e) => setSelected(e.detail);
-    window.addEventListener(SKILL_SELECT_EVENT, onSelect);
-    return () => window.removeEventListener(SKILL_SELECT_EVENT, onSelect);
-  }, []);
-
-  const selectSkill = (skill) => {
-    const next = selected === skill ? null : skill;
-    window.dispatchEvent(new CustomEvent(SKILL_SELECT_EVENT, { detail: next }));
-  };
-
   return (
     <section id="skills">
       <h5 data-aos="fade-down">things I work with</h5>
@@ -139,16 +125,19 @@ const Experience = () => {
                 <p className="skills__category">{category}</p>
                 <div className="skills__pills">
                   {skills.map(skill => (
+                    // No filtering/selection behavior — role="button" here is
+                    // just so the site's global ClickSoundListener (which
+                    // delegates off `[role="button"]`) picks up clicks and
+                    // plays the click sound.
                     <span
                       key={skill}
-                      className={`skills__pill${selected === skill ? " skills__pill--active" : ""}`}
+                      className="skills__pill"
                       role="button"
                       tabIndex={0}
-                      onClick={() => selectSkill(skill)}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();
-                          selectSkill(skill);
+                          e.currentTarget.click();
                         }
                       }}
                     >
