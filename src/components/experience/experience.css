@@ -47,13 +47,25 @@
   background: var(--ds-bg);
   color: var(--ds-text-muted);
   transition: var(--ds-transition);
-  cursor: default;
+  cursor: pointer;
 }
 
 .skills__pill:hover {
   border-color: var(--ds-green-btn);
   color: var(--ds-green);
   background: var(--ds-surface-2);
+}
+
+.skills__pill--active {
+  border-color: var(--ds-green-btn);
+  background: var(--ds-green-btn);
+  color: var(--ds-text-on-accent);
+}
+
+.skills__pill--active:hover {
+  background: var(--ds-green-btn-hover);
+  border-color: var(--ds-green-btn-hover);
+  color: var(--ds-text-on-accent);
 }
 
 /* ── Snow decoration ── */
