@@ -1025,7 +1025,7 @@ export const POSTS = [
 
       { type: 'downloads', title: 'Coaching & college management platform \u2014 pitch deck', items: [
         { label: 'Read the pitch deck', href: '/files/coaching-management-platform-pitch.pdf', meta: 'PDF \u00b7 16 slides \u00b7 1.4 MB' },
-        { label: 'PowerPoint version', href: '/files/coaching-management-platform-pitch.pptx', meta: 'PPTX \u00b7 3.4 MB' },
+        { label: 'PowerPoint version', href: '/files/coaching-management-platform-pitch.pptx', meta: 'PPTX \u00b7 2.0 MB' },
       ] },
     ],
   },
