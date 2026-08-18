@@ -47,7 +47,7 @@
     pointer-events: none;
 }
 
-.ail_preview_card > * {
+.ail_preview_card > *:not(.ail_glow) {
     position: relative;
 }
 
