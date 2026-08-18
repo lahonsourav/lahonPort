@@ -31,10 +31,10 @@ const AilPreview = () => {
         </h3>
 
         <p className="ail_description">
-          A chat-based AI assistant with a dedicated expert for 26 different tasks: resumes,
-          coding rounds, thesis chapters, dissertations, school assignments, legal review, and
-          more. Tokens never expire, and you get manual control over how much context each
-          conversation carries.
+          Built for students, professionals, content creators, and more — a dedicated AI expert
+          for 26 different tasks: resumes, coding rounds, thesis chapters, dissertations, legal
+          review, and beyond. Tokens never expire, and you get manual control over how much
+          context each conversation carries.
         </p>
 
         <span className="ail_preview_actions">
