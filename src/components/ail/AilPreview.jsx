@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../blog/blog.css";
+import "./ail.css";
 
 const AilPreview = () => {
   const navigate = useNavigate();
@@ -11,32 +11,31 @@ const AilPreview = () => {
 
       <h2 data-aos="fade-down" data-aos-delay="100">AIL</h2>
 
-      <div className="container blogpreview__list">
-        <div
-          data-aos="fade-up"
-          className="blogpreview__row"
-          onClick={() => navigate("/ail")}
-          role="button"
-          style={{ "--card-accent": "#3b82f6" }}
-        >
-          <span
-            className="blog-tag blogpreview__row-tag"
-            style={{ color: "#3b82f6", borderColor: "#3b82f655" }}
-          >
-            live product
-          </span>
-          <span className="blogpreview__row-title">AI writing. Pay per task, not per month.</span>
-          <span className="blogpreview__row-meta">ai.lahon.in</span>
-          <span className="blogpreview__row-arrow">→</span>
-        </div>
-      </div>
-
       <div
         data-aos="fade-up"
+        className="ail_preview_card"
         onClick={() => navigate("/ail")}
-        className="btn btn-primary blogpreview__cta"
+        role="button"
       >
-        Learn about AIL →
+        <div className="ail_glow" aria-hidden="true" />
+
+        <span className="ail_badge">
+          <span className="ail_badge_dot" />
+          26 domains · live product
+        </span>
+
+        <h3 className="ail_title">
+          AI writing. <span className="ail_title_accent">Pay per task,</span> not per month.
+        </h3>
+
+        <p className="ail_description">
+          A chat-based writing assistant with a dedicated AI expert for 26 different tasks:
+          résumés, thesis chapters, legal review, and more.
+        </p>
+
+        <span className="ail_preview_meta">
+          ai.lahon.in <span className="ail_arrow">→</span>
+        </span>
       </div>
     </section>
   );
