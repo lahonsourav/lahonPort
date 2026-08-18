@@ -3,6 +3,7 @@ import "./ail.css";
 import ShareButton from "../share/ShareButton";
 import BackHome from "../shared/BackHome";
 import PageFooter from "../shared/PageFooter";
+import { DOMAIN_GROUPS, STEPS, WHY, FEATURES, FAQS } from "./ailData";
 
 const CheckIcon = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -11,65 +12,25 @@ const CheckIcon = () => (
   </svg>
 );
 
-const STEPS = [
-  {
-    title: "Pick a domain",
-    desc: "26 specialised writing domains: thesis, resume, legal review, shayari, government forms, and more.",
-  },
-  {
-    title: "Try it free",
-    desc: "Every domain gives 5 free AI responses. No credit card required. Judge the quality before spending anything.",
-  },
-  {
-    title: "Buy what you need",
-    desc: "Purchase a token-budget package for that specific task. Chat until the work is done. Tokens never expire.",
-  },
-];
-
-const WHY = [
-  {
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </svg>
-    ),
-    title: "No subscription trap",
-    desc: "Pay only for the task in front of you — no monthly charges draining a wallet during the months you don't need AI help.",
-  },
-  {
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" />
-        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
-      </svg>
-    ),
-    title: "Unlimited revisions",
-    desc: "Go back and forth as many times as needed within a token budget — no per-message charges, no revision limits.",
-  },
-  {
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      </svg>
-    ),
-    title: "Your data stays yours",
-    desc: "Conversations are never used to train AI models. BYO API keys are encrypted at rest with AES-256-GCM.",
-  },
-  {
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-      </svg>
-    ),
-    title: "Best-in-class models",
-    desc: "Fast (Haiku), balanced (Sonnet), or most capable (Opus) — matched to the task automatically.",
-  },
-];
-
 const Ail = () => {
   return (
     <div className="ail_page">
       <BackHome />
+
+      {/* ── Nav ── */}
+      <nav className="ail_nav">
+        <span className="ail_nav_brand">ail</span>
+        <div className="ail_nav_links">
+          <a href="#ail-how">How it works</a>
+          <a href="#ail-domains">Domains</a>
+          <a href="#ail-pricing">Pricing</a>
+          <a href="#ail-features">Features</a>
+          <a href="#ail-faq">FAQ</a>
+        </div>
+        <a href="https://ai.lahon.in" className="ail_btn ail_btn_primary" target="_blank" rel="noreferrer" style={{ padding: "0.5rem 1.1rem", fontSize: "0.82rem" }}>
+          Visit ail →
+        </a>
+      </nav>
 
       {/* ── Hero ── */}
       <div className="ail_hero">
@@ -93,7 +54,10 @@ const Ail = () => {
 
         <div className="ail_hero_actions">
           <a href="https://ai.lahon.in" className="ail_btn ail_btn_primary" target="_blank" rel="noreferrer">
-            Visit ail →
+            Try for free, no card needed
+          </a>
+          <a href="https://ai.lahon.in" className="ail_btn ail_btn_secondary" target="_blank" rel="noreferrer">
+            Bring your own API key
           </a>
         </div>
 
@@ -125,7 +89,7 @@ const Ail = () => {
       </div>
 
       {/* ── How it works ── */}
-      <div className="ail_section">
+      <div className="ail_section" id="ail-how">
         <p className="ail_eyebrow">How it works</p>
         <h2 className="ail_section_title">Three steps from sign-up to done</h2>
         <div className="ail_steps">
@@ -141,6 +105,103 @@ const Ail = () => {
         </div>
       </div>
 
+      {/* ── Domains ── */}
+      <div className="ail_section" id="ail-domains">
+        <p className="ail_eyebrow">Domains</p>
+        <h2 className="ail_section_title">26 specialised AIs</h2>
+        <p className="ail_section_subtitle">
+          Not a generic chatbot. Each domain has a dedicated AI expert. Pick a task, get a specialist.
+        </p>
+        {DOMAIN_GROUPS.map((group) => (
+          <div className="ail_domain_group" key={group.label}>
+            <p className="ail_domain_group_label">{group.label}</p>
+            <p className="ail_domain_group_desc">{group.desc}</p>
+            <div className="ail_domain_pills">
+              {group.domains.map((d) => (
+                <a
+                  key={d}
+                  href="https://ai.lahon.in"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="ail_domain_pill"
+                >
+                  {d}
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Pricing ── */}
+      <div className="ail_section" id="ail-pricing">
+        <p className="ail_eyebrow">Pricing</p>
+        <h2 className="ail_section_title">Simple, honest pricing</h2>
+        <p className="ail_section_subtitle">Two plans. No hidden fees. No auto-renewal. No expiry.</p>
+
+        <div className="ail_pricing_grid">
+          <div className="ail_pricing_card">
+            <div>
+              <p className="ail_pricing_kicker">Pay per package</p>
+              <div className="ail_pricing_price">
+                <strong>₹29</strong>
+                <span>onwards</span>
+              </div>
+              <p className="ail_pricing_note">one-time · no renewal</p>
+            </div>
+            <ul className="ail_pricing_list">
+              {[
+                "Pick any domain, buy the tier you need",
+                "Unlimited back-and-forth within your token budget",
+                "Upload documents: PDF, Word, images",
+                "Tokens never expire",
+                "5 free responses per domain before purchase",
+              ].map((item) => (
+                <li key={item}><CheckIcon />{item}</li>
+              ))}
+            </ul>
+            <a href="https://ai.lahon.in" className="ail_btn ail_btn_primary" target="_blank" rel="noreferrer" style={{ textAlign: "center" }}>
+              Start free trial
+            </a>
+          </div>
+
+          <div className="ail_pricing_card ail_pricing_card--featured">
+            <span className="ail_pricing_badge">For power users</span>
+            <div>
+              <p className="ail_pricing_kicker">Bring your own key</p>
+              <div className="ail_pricing_price">
+                <strong>₹49</strong>
+                <span>/ conversation</span>
+              </div>
+              <p className="ail_pricing_note">platform fee · use your Anthropic key</p>
+            </div>
+            <ul className="ail_pricing_list">
+              {[
+                "Connect your own Anthropic API key",
+                "Unlimited messages per conversation",
+                "Credits never expire",
+                "3 free trial conversations",
+                "Full control over model selection",
+              ].map((item) => (
+                <li key={item}><CheckIcon />{item}</li>
+              ))}
+            </ul>
+            <a href="https://ai.lahon.in" className="ail_btn ail_btn_secondary" target="_blank" rel="noreferrer" style={{ textAlign: "center" }}>
+              Start with BYO
+            </a>
+          </div>
+        </div>
+
+        <div className="ail_credit_packs">
+          <p>BYO credit packs</p>
+          <div className="ail_credit_packs_row">
+            <span><strong>5 conversations</strong> · ₹249</span>
+            <span><strong>15 conversations</strong> · ₹729</span>
+            <span><strong>35 conversations</strong> · ₹1,699</span>
+          </div>
+        </div>
+      </div>
+
       {/* ── Why AIL ── */}
       <div className="ail_section">
         <p className="ail_eyebrow">Why AIL</p>
@@ -151,12 +212,89 @@ const Ail = () => {
         <div className="ail_grid">
           {WHY.map((item) => (
             <div className="ail_card" key={item.title}>
-              <div className="ail_card_icon">{item.icon}</div>
+              <div className="ail_card_icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /></svg>
+              </div>
               <div>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Features ── */}
+      <div className="ail_section" id="ail-features">
+        <p className="ail_eyebrow">Features</p>
+        <h2 className="ail_section_title">More than a chat box</h2>
+        <p className="ail_section_subtitle">
+          Tools built into the conversation itself — no extra tabs, no separate apps.
+        </p>
+        <div className="ail_grid">
+          {FEATURES.map((item) => (
+            <div className="ail_card" key={item.title}>
+              <div className="ail_card_icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="3" /></svg>
+              </div>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Developer API ── */}
+      <div className="ail_section">
+        <p className="ail_eyebrow">For developers</p>
+        <h2 className="ail_section_title">Automate with the API, plug in your own retrieval</h2>
+        <div className="ail_two_col">
+          <div>
+            <h3>API access</h3>
+            <p>
+              Send messages to conversations programmatically, from a script or a cron job. No
+              separate API pricing — it draws from the same token budget already paid for.
+            </p>
+            <ul>
+              {[
+                "Generate a key in seconds from your dashboard",
+                "Same budget, same limits, nothing new to buy",
+                "Revoke a key instantly, anytime",
+              ].map((item) => <li key={item}><CheckIcon />{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h3>Bring your own RAG</h3>
+            <p>
+              Point ail at a retrieval endpoint and every message calls it first, injecting what
+              it returns as extra context before the AI answers — documents stay wherever they're hosted.
+            </p>
+            <ul>
+              {[
+                "Any HTTPS endpoint — vector DB, search index, internal API",
+                "Optional bearer token, encrypted at rest",
+                "Fails open: a retriever outage never blocks a message",
+              ].map((item) => <li key={item}><CheckIcon />{item}</li>)}
+            </ul>
+          </div>
+        </div>
+        <a href="https://ai.lahon.in" className="ail_btn ail_btn_primary" target="_blank" rel="noreferrer">
+          Get started free →
+        </a>
+      </div>
+
+      {/* ── FAQ ── */}
+      <div className="ail_section" id="ail-faq">
+        <p className="ail_eyebrow">FAQ</p>
+        <h2 className="ail_section_title">Questions, answered</h2>
+        <div className="ail_faq">
+          {FAQS.map((item) => (
+            <details className="ail_faq_item" key={item.q}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
           ))}
         </div>
       </div>
