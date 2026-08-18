@@ -1,0 +1,727 @@
+/* AIL's brand identity — deep near-black + indigo, independent of the
+   site-wide light/dark toggle, same pattern as lazyperm's scoped green
+   (see lazykit.css). This mirrors the actual ail.lahon.in homepage, which
+   is dark-only regardless of its own theme toggle. */
+.ail_page,
+.ail_preview_card {
+    --ail-bg: #030712;
+    --ail-surface: #0d1220;
+    --ail-surface-2: #161d30;
+    --ail-border: rgba(255, 255, 255, 0.06);
+    --ail-text: #f3f4f6;
+    --ail-text-muted: #9198a8;
+    --ail-accent: #818cf8;
+    --ail-accent-btn: #4f46e5;
+    --ail-accent-btn-hover: #6366f1;
+    --ail-accent-bg: #1e1b4b;
+    --ail-accent-border: rgba(99, 102, 241, 0.45);
+}
+
+.ail_page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--ail-bg);
+    color: var(--ail-text);
+    font-family: var(--ds-font);
+}
+
+.ail_page .back-home {
+    align-self: center;
+    padding: 1.5rem 2rem 0;
+}
+
+.ail_page .back-home a,
+.ail_page .back-home button {
+    color: var(--ail-text-muted);
+}
+
+/* ── Hero ── */
+.ail_hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4.5rem 1.5rem 3.5rem;
+    overflow: hidden;
+}
+
+.ail_glow {
+    position: absolute;
+    top: -8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 420px;
+    background: var(--ail-accent-bg);
+    opacity: 0.55;
+    border-radius: 999px;
+    filter: blur(90px);
+    pointer-events: none;
+}
+
+.ail_hero > * {
+    position: relative;
+}
+
+.ail_badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ail-accent);
+    background: var(--ail-accent-bg);
+    border: 1px solid var(--ail-accent-border);
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+}
+
+.ail_badge_dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ail-accent);
+    animation: ail-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ail-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+.ail_title {
+    font-size: clamp(2rem, 6vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ail-text);
+    margin: 0 0 1.25rem;
+}
+
+.ail_title_accent {
+    color: var(--ail-accent);
+}
+
+.ail_description {
+    max-width: 640px;
+    font-size: 1rem;
+    color: var(--ail-text-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.ail_hero_actions {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1.75rem;
+}
+
+.ail_share_btn {
+    margin-top: 0;
+}
+
+.ail_btn {
+    padding: 0.75rem 1.6rem;
+    border-radius: var(--ds-radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: var(--ds-transition);
+    cursor: pointer;
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+.ail_btn_primary {
+    background: var(--ail-accent-btn);
+    color: #ffffff;
+}
+
+.ail_btn_primary:hover {
+    background: var(--ail-accent-btn-hover);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.ail_btn_secondary {
+    background: transparent;
+    color: var(--ail-text-muted);
+    border-color: var(--ail-border);
+}
+
+.ail_btn_secondary:hover {
+    color: var(--ail-text);
+    border-color: var(--ail-accent-border);
+    text-decoration: none;
+}
+
+.ail_trust {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--ail-text-muted);
+}
+
+.ail_trust span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* ── Stats ── */
+.ail_stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--ail-border);
+    border-bottom: 1px solid var(--ail-border);
+    text-align: center;
+}
+
+.ail_stat_value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--ail-text);
+}
+
+.ail_stat_label {
+    font-size: 0.7rem;
+    color: var(--ail-text-muted);
+    margin-top: 0.25rem;
+}
+
+/* ── Sections ── */
+.ail_section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ail_eyebrow {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ail-accent);
+    margin-bottom: 0.75rem;
+}
+
+.ail_section_title {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ail-text);
+    margin: 0 0 0.75rem;
+}
+
+.ail_section_subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--ail-text-muted);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+}
+
+/* ── Steps ── */
+.ail_steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.ail_step {
+    padding: 1.5rem;
+    border-radius: var(--ds-radius-lg);
+    background: var(--ail-surface);
+    border: 1px solid var(--ail-border);
+}
+
+.ail_step_head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.ail_step_num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--ail-accent-bg);
+    border: 1px solid var(--ail-accent-border);
+    color: var(--ail-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.ail_step h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ail-text);
+    margin: 0;
+}
+
+.ail_step p {
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── Why cards ── */
+.ail_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.ail_card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: var(--ds-radius-lg);
+    background: var(--ail-surface);
+    border: 1px solid var(--ail-border);
+    transition: var(--ds-transition);
+}
+
+.ail_card:hover {
+    border-color: var(--ail-accent-border);
+}
+
+.ail_card_icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--ds-radius);
+    background: var(--ail-accent-bg);
+    border: 1px solid var(--ail-accent-border);
+    color: var(--ail-accent);
+}
+
+.ail_card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ail-text);
+    margin: 0 0 0.35rem;
+}
+
+.ail_card p {
+    font-size: 0.8rem;
+    color: var(--ail-text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── Bottom CTA ── */
+.ail_cta {
+    text-align: center;
+    padding: 4rem 1.5rem 5rem;
+    border-top: 1px solid var(--ail-border);
+    background: linear-gradient(180deg, transparent 0%, var(--ail-accent-bg) 220%);
+}
+
+.ail_cta p {
+    color: var(--ail-text-muted);
+    font-size: 0.9rem;
+    margin: 0.75rem 0 1.75rem;
+}
+
+.ail_page .page-footer,
+.ail_page .page-footer * {
+    color: var(--ail-text-muted) !important;
+}
+
+@media (max-width: 768px) {
+    .ail_stats { grid-template-columns: repeat(2, 1fr); }
+    .ail_steps { grid-template-columns: 1fr; }
+    .ail_grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .ail_hero { padding: 3.5rem 1.25rem 2.5rem; }
+    .ail_section { padding: 2.5rem 1.25rem; }
+}
+
+/* ── Nav ── */
+.ail_nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--ail-border);
+}
+
+.ail_nav_brand {
+    font-weight: 700;
+    color: var(--ail-text);
+    flex-shrink: 0;
+}
+
+.ail_nav_links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ail_nav_links a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.ail_nav_links a:hover {
+    color: var(--ail-text);
+}
+
+/* ── Domains ── */
+.ail_domain_group {
+    margin-bottom: 2.5rem;
+}
+
+.ail_domain_group:last-child {
+    margin-bottom: 0;
+}
+
+.ail_domain_group_label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ail-accent);
+    margin-bottom: 0.5rem;
+}
+
+.ail_domain_group_desc {
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+    max-width: 520px;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+}
+
+.ail_domain_pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.ail_domain_pill {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.82rem;
+    color: var(--ail-text-muted);
+    background: var(--ail-surface);
+    border: 1px solid var(--ail-border);
+    border-radius: 999px;
+    transition: var(--ds-transition);
+}
+
+.ail_domain_pill:hover {
+    color: var(--ail-text);
+    border-color: var(--ail-accent-border);
+}
+
+/* ── Pricing ── */
+.ail_pricing_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.ail_pricing_card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.75rem;
+    border-radius: var(--ds-radius-lg);
+    background: var(--ail-surface);
+    border: 1px solid var(--ail-border);
+}
+
+.ail_pricing_card--featured {
+    border-color: var(--ail-accent-border);
+}
+
+.ail_pricing_badge {
+    position: absolute;
+    top: -0.75rem;
+    right: 1.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    background: var(--ail-accent-btn);
+    color: #fff;
+    border-radius: 999px;
+}
+
+.ail_pricing_kicker {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ail-text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.ail_pricing_price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+}
+
+.ail_pricing_price strong {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--ail-text);
+}
+
+.ail_pricing_price span {
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+}
+
+.ail_pricing_note {
+    font-size: 0.75rem;
+    color: var(--ail-text-muted);
+    margin-top: 0.25rem;
+}
+
+.ail_pricing_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+.ail_pricing_list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+}
+
+.ail_pricing_list svg {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--ail-accent);
+}
+
+.ail_credit_packs {
+    padding: 1.25rem;
+    border-radius: var(--ds-radius);
+    background: var(--ail-surface);
+    border: 1px solid var(--ail-border);
+    text-align: center;
+}
+
+.ail_credit_packs p {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ail-text-muted);
+    margin: 0 0 0.75rem;
+}
+
+.ail_credit_packs_row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+}
+
+.ail_credit_packs_row strong {
+    color: var(--ail-text);
+}
+
+/* ── Developer API (two-col) ── */
+.ail_two_col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.ail_two_col h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ail-text);
+    margin: 0 0 0.6rem;
+}
+
+.ail_two_col p {
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+    line-height: 1.65;
+    margin: 0 0 1rem;
+}
+
+.ail_two_col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.ail_two_col li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+}
+
+.ail_two_col svg {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--ail-accent);
+}
+
+/* ── FAQ ── */
+.ail_faq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.ail_faq_item {
+    padding: 1.1rem 1.25rem;
+    border-radius: var(--ds-radius);
+    background: var(--ail-surface);
+    border: 1px solid var(--ail-border);
+}
+
+.ail_faq_item summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ail-text);
+    list-style: none;
+}
+
+.ail_faq_item summary::-webkit-details-marker {
+    display: none;
+}
+
+.ail_faq_item summary::before {
+    content: "+";
+    display: inline-block;
+    width: 1rem;
+    color: var(--ail-accent);
+    font-weight: 700;
+}
+
+.ail_faq_item[open] summary::before {
+    content: "–";
+}
+
+.ail_faq_item p {
+    font-size: 0.85rem;
+    color: var(--ail-text-muted);
+    line-height: 1.6;
+    margin: 0.75rem 0 0 1rem;
+}
+
+@media (max-width: 768px) {
+    .ail_pricing_grid { grid-template-columns: 1fr; }
+    .ail_two_col { grid-template-columns: 1fr; gap: 2rem; }
+    .ail_nav_links { display: none; }
+}
+
+/* ── Homepage preview card ── */
+.ail_preview_card {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem;
+    border-radius: var(--ds-radius-xl);
+    background: var(--ail-bg, #030712);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--ds-transition);
+}
+
+.ail_preview_card:hover {
+    border-color: rgba(99, 102, 241, 0.45);
+    transform: translateY(-2px);
+}
+
+.ail_preview_card .ail_glow {
+    width: 480px;
+    height: 260px;
+    top: -6rem;
+}
+
+.ail_preview_card .ail_title {
+    font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+    margin-bottom: 0.6rem;
+}
+
+.ail_preview_card .ail_description {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.ail_preview_meta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: #9198a8;
+}
+
+.ail_preview_meta .ail_arrow {
+    color: #818cf8;
+    transition: transform 0.2s ease;
+}
+
+.ail_preview_card:hover .ail_arrow {
+    transform: translateX(3px);
+}

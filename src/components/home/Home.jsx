@@ -12,6 +12,7 @@ import Footer from "../footer/Footer";
 import HeaderSocials from "../contact/HeaderSocials";
 import Education from "../education/Education";
 import CTA from './CTA';
+import AilPreview from '../ail/AilPreview';
 import ScrollProgress from "../ScrollProgress/ScrollProgress";
 import Cursor from "../cursor/Cursor";
 import FlowerVine from "../FlowerVine/FlowerVine";
@@ -46,6 +47,7 @@ const Home = () => {
       <div className="vine-flow">
         <Header />
         <CTA />
+        <AilPreview />
 
         <Education />
 
