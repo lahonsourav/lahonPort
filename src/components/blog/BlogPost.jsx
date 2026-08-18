@@ -173,9 +173,15 @@ const BlogPost = () => {
         {(post.projectUrl || post.downloadUrl) && (
           <div className="blog-post-links">
             {post.projectUrl && (
-              <Link to={post.projectUrl} className="blog-project-link">
-                {post.projectLabel ?? 'View project →'}
-              </Link>
+              /^https?:\/\//.test(post.projectUrl) ? (
+                <a href={post.projectUrl} className="blog-project-link" target="_blank" rel="noreferrer">
+                  {post.projectLabel ?? 'View project →'}
+                </a>
+              ) : (
+                <Link to={post.projectUrl} className="blog-project-link">
+                  {post.projectLabel ?? 'View project →'}
+                </Link>
+              )
             )}
             {post.downloadUrl && (
               <a

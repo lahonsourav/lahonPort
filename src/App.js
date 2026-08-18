@@ -25,7 +25,6 @@ const HereIAm = lazy(() => import("./components/portfolio/HereIAm"));
 const AssamFlood = lazy(() => import("./components/campaign/AssamFlood"));
 const Work = lazy(() => import("./components/portfolio/Work"));
 const Moksha = lazy(() => import("./components/moksha/Moksha"));
-const Ail = lazy(() => import("./components/ail/Ail"));
 const NotFound = lazy(() => import("./components/NotFound/NotFound"));
 
 function App() {
@@ -62,7 +61,6 @@ function App() {
               <Route path="/assamflood2026" element={<AssamFlood />} />
               <Route path="/work" element={<Work />} />
               <Route path="/moksha" element={<Moksha />} />
-              <Route path="/ail" element={<Ail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
