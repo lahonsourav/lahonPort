@@ -1,16 +1,13 @@
-/* Ail's brand identity for the homepage preview card — deep near-black +
-   indigo, independent of the site-wide light/dark toggle, same pattern as
-   lazyperm's scoped green (see lazykit.css). Mirrors the real ai.lahon.in
-   site, which is dark-only regardless of its own theme toggle. */
+/* Ail's homepage preview card. Structure/text/border follow the site's
+   own --ds-* tokens so it works in both themes, same as every other card
+   on the site — only the indigo accent is fixed as Ail's own brand hue,
+   same pattern lazyperm uses for its green (see lazykit.css). */
 .ail_preview_card {
-    --ail-bg: #030712;
-    --ail-text: #f3f4f6;
-    --ail-text-muted: #9198a8;
     --ail-accent: #818cf8;
     --ail-accent-btn: #4f46e5;
     --ail-accent-btn-hover: #6366f1;
-    --ail-accent-bg: #1e1b4b;
-    --ail-accent-border: rgba(99, 102, 241, 0.45);
+    --ail-accent-bg: rgba(99, 102, 241, 0.16);
+    --ail-accent-border: rgba(99, 102, 241, 0.4);
 
     display: block;
     position: relative;
@@ -18,14 +15,21 @@
     margin: 0 auto;
     padding: 2.75rem 1.5rem;
     border-radius: var(--ds-radius-xl);
-    background: var(--ail-bg);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: var(--ds-surface);
+    color: var(--ds-text);
+    border: 1px solid var(--ds-border);
     overflow: hidden;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
     transition: var(--ds-transition);
     font-family: var(--ds-font);
+}
+
+:root[data-theme="light"] .ail_preview_card {
+    --ail-accent: #4f46e5;
+    --ail-accent-bg: rgba(79, 70, 229, 0.1);
+    --ail-accent-border: rgba(79, 70, 229, 0.3);
 }
 
 .ail_preview_card:hover {
@@ -41,21 +45,20 @@
     width: 480px;
     height: 260px;
     background: var(--ail-accent-bg);
-    opacity: 0.55;
     border-radius: 999px;
     filter: blur(90px);
     pointer-events: none;
 }
 
-.ail_preview_card > * {
+.ail_preview_card > *:not(.ail_glow) {
     position: relative;
 }
 
 .ail_logo {
     width: 3rem;
     height: 3rem;
+    margin: 0 auto 1rem;
     border-radius: 50%;
-    margin-bottom: 1rem;
 }
 
 .ail_badge {
@@ -90,7 +93,7 @@
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -0.02em;
-    color: var(--ail-text);
+    color: var(--ds-text);
     margin: 0 0 0.6rem;
 }
 
@@ -102,7 +105,7 @@
     max-width: 520px;
     margin: 0 auto 1.5rem;
     font-size: 0.9rem;
-    color: var(--ail-text-muted);
+    color: var(--ds-text-muted);
     line-height: 1.65;
 }
 
@@ -120,7 +123,7 @@
     gap: 0.4rem;
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--ail-text);
+    color: var(--ds-text-on-accent);
     padding: 0.65rem 1.3rem;
     background: var(--ail-accent-btn);
     border-radius: var(--ds-radius);
@@ -133,13 +136,13 @@
 
 .ail_preview_secondary {
     font-size: 0.82rem;
-    color: var(--ail-text-muted);
+    color: var(--ds-text-muted);
     text-decoration: none;
     transition: var(--ds-transition);
 }
 
 .ail_preview_secondary:hover {
-    color: var(--ail-text);
+    color: var(--ds-text);
     text-decoration: none;
 }
 
@@ -150,4 +153,83 @@
 
 .ail_preview_card:hover .ail_arrow {
     transform: translateX(3px);
+}
+
+/* ── Sticky note mode: a pinned paper note, same treatment as
+   .portfolio__items in sticky-mode.css, but pinned top-center since
+   this card's content is centered rather than left-aligned. ── */
+html[data-mode="sticky"] .ail_preview_card {
+    background: var(--paper-sky);
+    color: var(--paper-ink);
+    border: none;
+    border-radius: 2px 16px 4px 12px;
+    box-shadow: var(--ds-shadow-sm);
+    transform: rotate(-1.5deg);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+html[data-mode="sticky"] .ail_preview_card:hover {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: var(--ds-shadow-lg);
+}
+
+html[data-mode="sticky"] .ail_preview_card .ail_glow {
+    display: none;
+}
+
+html[data-mode="sticky"] .ail_preview_card::before {
+    content: "";
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+        var(--ail-accent-btn, #4f46e5);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 -3px 4px rgba(0, 0, 0, 0.25);
+}
+
+html[data-mode="sticky"] .ail_title,
+html[data-mode="sticky"] .ail_description {
+    color: var(--paper-ink);
+}
+
+html[data-mode="sticky"] .ail_badge {
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--paper-ink);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+html[data-mode="sticky"] .ail_badge_dot {
+    background: var(--paper-ink);
+}
+
+html[data-mode="sticky"] .ail_preview_meta {
+    background: var(--paper-amber);
+    color: var(--paper-ink);
+    border-radius: 2px 10px 2px 10px;
+    box-shadow: var(--ds-shadow-sm);
+    font-family: var(--ds-font-mono);
+    transform: rotate(1.5deg);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+html[data-mode="sticky"] .ail_preview_card:hover .ail_preview_meta {
+    background: var(--paper-amber);
+    color: var(--paper-ink);
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: var(--ds-shadow-lg);
+}
+
+html[data-mode="sticky"] .ail_preview_secondary {
+    color: var(--paper-ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-mode="sticky"] .ail_preview_card {
+        transition: none;
+    }
 }

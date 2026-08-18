@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { POSTS } from './posts';
 import { readMins } from './readingTime';
 import BackHome from '../shared/BackHome';
@@ -60,6 +60,12 @@ const Blog = () => {
     </div>
 
     <div className="blog-content">
+      {POSTS.some(p => p.slug === 'building-ail') && (
+        <Link to="/blog/building-ail" className="blog-featured-link">
+          🚀 New: Building AIL — an AI assistant for students, professionals, and content creators →
+        </Link>
+      )}
+
       {POSTS.length > 0 && (
         <div className="blog-search-wrap">
           <input

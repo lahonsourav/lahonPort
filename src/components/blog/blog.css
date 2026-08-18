@@ -51,6 +51,27 @@
   border-top: 1px solid var(--ds-border);
 }
 
+.blog-featured-link {
+  display: block;
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ds-green);
+  background: var(--ds-green-bg);
+  border: 1px solid var(--ds-green-btn);
+  border-radius: var(--ds-radius);
+  text-align: center;
+  text-decoration: none;
+  transition: var(--ds-transition);
+}
+
+.blog-featured-link:hover {
+  background: var(--ds-green-btn);
+  color: var(--ds-text-on-accent);
+  text-decoration: none;
+}
+
 .blog-search-wrap {
   margin-bottom: 1.5rem;
 }
