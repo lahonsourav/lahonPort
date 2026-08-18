@@ -208,12 +208,20 @@ html[data-mode="sticky"] .ail_badge_dot {
 }
 
 html[data-mode="sticky"] .ail_preview_meta {
-    background: var(--paper-ink);
-    color: var(--paper-sky);
+    background: var(--paper-amber);
+    color: var(--paper-ink);
+    border-radius: 2px 10px 2px 10px;
+    box-shadow: var(--ds-shadow-sm);
+    font-family: var(--ds-font-mono);
+    transform: rotate(1.5deg);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 html[data-mode="sticky"] .ail_preview_card:hover .ail_preview_meta {
-    background: var(--paper-ink);
+    background: var(--paper-amber);
+    color: var(--paper-ink);
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: var(--ds-shadow-lg);
 }
 
 html[data-mode="sticky"] .ail_preview_secondary {
