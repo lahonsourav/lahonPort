@@ -12,7 +12,7 @@ const Ail = () => {
       {/* ── Hero ── */}
       <div className="lk_hero">
         <h1 className="lk_title">AIL</h1>
-        <p className="lk_tagline">AI at Lahon — a domain-specific AI writing assistant.</p>
+        <p className="lk_tagline">AI writing. Pay per task, not per month.</p>
         <p className="lk_description">
           AIL is a chat-based writing assistant built on Claude, with dozens of purpose-built
           modules instead of one generic chatbox: résumés and cover letters, thesis and research
@@ -46,8 +46,8 @@ const Ail = () => {
       <div className="lk_section">
         <h2 className="lk_section_title">How it works</h2>
         <p className="lk_section_subtitle">
-          No subscriptions. Try a domain free, then buy a prepaid token budget for it and use it
-          until it runs out — tokens don't expire.
+          Pay per task, not per month: try a domain free, then buy a prepaid token budget and use
+          it until it runs out. No subscription, and tokens don't expire.
         </p>
         <div className="lk_callout">
           <span className="lk_callout_icon">💡</span>
@@ -60,7 +60,7 @@ const Ail = () => {
 
       {/* ── Footer ── */}
       <div className="lk_footer">
-        <p>An AI writing assistant, one domain at a time.</p>
+        <p>AI writing. Pay per task, not per month.</p>
         <div className="lk_hero_actions">
           <a href="https://ai.lahon.in" className="lk_btn lk_btn_primary" target="_blank" rel="noreferrer">
             Visit ail →

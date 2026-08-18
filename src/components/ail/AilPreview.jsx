@@ -7,9 +7,9 @@ const AilPreview = () => {
 
   return (
     <section id="ail-preview">
-      <h5 data-aos="fade-down">what I'm building</h5>
+      <h5 data-aos="fade-down">Founder of AIL</h5>
 
-      <h2 data-aos="fade-down" data-aos-delay="100">Building AIL (AI at Lahon)</h2>
+      <h2 data-aos="fade-down" data-aos-delay="100">AIL</h2>
 
       <div className="container blogpreview__list">
         <div
@@ -25,7 +25,7 @@ const AilPreview = () => {
           >
             live product
           </span>
-          <span className="blogpreview__row-title">AIL — domain-specific AI writing assistant</span>
+          <span className="blogpreview__row-title">AI writing. Pay per task, not per month.</span>
           <span className="blogpreview__row-meta">ai.lahon.in</span>
           <span className="blogpreview__row-arrow">→</span>
         </div>
