@@ -15,10 +15,9 @@
     margin: 0 auto;
     padding: 2.75rem 1.5rem;
     border-radius: var(--ds-radius-xl);
-    background: var(--ds-surface);
+    background: transparent;
     color: var(--ds-text);
-    border: 1px solid var(--ds-border);
-    overflow: hidden;
+    border: none;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
@@ -33,7 +32,6 @@
 }
 
 .ail_preview_card:hover {
-    border-color: var(--ail-accent-border);
     transform: translateY(-2px);
 }
 
