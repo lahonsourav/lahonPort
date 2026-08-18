@@ -12,6 +12,7 @@
     --ail-accent-bg: #1e1b4b;
     --ail-accent-border: rgba(99, 102, 241, 0.45);
 
+    display: block;
     position: relative;
     max-width: 760px;
     margin: 0 auto;
@@ -22,6 +23,7 @@
     overflow: hidden;
     text-align: center;
     cursor: pointer;
+    text-decoration: none;
     transition: var(--ds-transition);
     font-family: var(--ds-font);
 }
