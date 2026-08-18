@@ -1231,6 +1231,8 @@ useEffect(() => {
     content: [
       'AIL is a chat-based AI assistant, live at ai.lahon.in, built around one idea: you should pay for the task in front of you, not for a month you barely used. It runs 26 separate domains, resumes, thesis chapters, dissertations, legal review, coding rounds, government forms, and more, each with its own tuned system prompt instead of one generic chatbox pretending to be an expert at everything.',
 
+      'It is not built for one kind of user. Students and academics get thesis, research, and exam-prep domains. Professionals get resumes, interview prep, and technical writing. Content creators get social captions, bios, and podcast scripts. There are domains for careful legal, medical, and government drafting, and for translation and culturally-aware writing. Whoever you are, the domain you land on is tuned for that specific kind of work, not a generic assistant guessing at your context.',
+
       { type: 'h2', text: 'Why I built it' },
 
       'The pattern was always the same. I would need serious AI help for a resume rewrite, a legal document, or a coding round, use it hard for two or three days, and then not touch it again for a month. Every tool in the space wanted a subscription for that: pay every month whether you show up or not, and the meter never distinguishes between a heavy week and a dead one. It is a fine model for a tool you use daily. It is a bad deal for a tool you use in bursts, which is exactly how most serious writing and research work actually happens.',
