@@ -39,7 +39,7 @@ const AilPreview = () => {
 
         <span className="ail_preview_actions">
           <span className="ail_preview_meta">
-            ai.lahon.in <span className="ail_arrow">→</span>
+            ailighthouse.in <span className="ail_arrow">→</span>
           </span>
         </span>
       </a>
