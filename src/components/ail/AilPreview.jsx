@@ -13,7 +13,7 @@ const AilPreview = () => {
       <a
         data-aos="fade-up"
         className="ail_preview_card"
-        href="https://ai.lahon.in"
+        href="https://ailighthouse.in"
         target="_blank"
         rel="noreferrer"
       >
