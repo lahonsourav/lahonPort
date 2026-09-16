@@ -23,7 +23,7 @@ const AilPreview = () => {
 
         <span className="ail_badge">
           <span className="ail_badge_dot" />
-          26 domains · live product
+          32 domains · desktop, mobile & CLI
         </span>
 
         <h3 className="ail_title">
@@ -32,9 +32,12 @@ const AilPreview = () => {
 
         <p className="ail_description">
           Built for students, professionals, content creators, and more — a dedicated AI expert
-          for 26 different tasks: resumes, coding rounds, thesis chapters, dissertations, legal
-          review, and beyond. Tokens never expire, and you get manual control over how much
-          context each conversation carries.
+          for 32 different tasks: resumes, coding rounds, thesis chapters, dissertations, legal
+          review, and beyond. Generates real PPTs, PDFs, DOCX, and Excel files — not just text —
+          and pulls in live web search when a task needs current information. Tokens never
+          expire, and you get manual control over how much context each conversation carries.
+          Now available as a desktop app (Windows/Mac), Android app, terminal CLI, and developer
+          API.
         </p>
 
         <span className="ail_preview_actions">
