@@ -6,7 +6,7 @@ import ailLogo from "../../images/ail/ail-logo-circle.png";
 const AilPreview = () => {
   return (
     <section id="ail-preview">
-      <h5 data-aos="fade-down">Founder of</h5>
+      <h5 data-aos="fade-down">Building</h5>
 
       <h2 data-aos="fade-down" data-aos-delay="100">AIL</h2>
 
