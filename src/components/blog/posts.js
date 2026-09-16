@@ -1225,13 +1225,13 @@ useEffect(() => {
     title: 'Building AIL: An AI Assistant You Pay For By The Task',
     date: '2026-08-18',
     tag: 'tech',
-    excerpt: 'Every AI writing tool I tried wanted a monthly subscription for the two days a month I actually needed it. AIL is the tool I built instead: 26 specialised domains, a prepaid token budget that never expires, and no recurring charge.',
+    excerpt: 'Every AI writing tool I tried wanted a monthly subscription for the two days a month I actually needed it. AIL is the tool I built instead: 32 specialised domains, real file generation, a prepaid token budget that never expires, and no recurring charge.',
     projectLabel: 'Visit ail →',
-    projectUrl: 'https://ai.lahon.in',
+    projectUrl: 'https://ailighthouse.in',
     content: [
-      'AIL is a chat-based AI assistant, live at ai.lahon.in, built around one idea: you should pay for the task in front of you, not for a month you barely used. It runs 26 separate domains, resumes, thesis chapters, dissertations, legal review, coding rounds, government forms, and more, each with its own tuned system prompt instead of one generic chatbox pretending to be an expert at everything.',
+      'AIL is a chat-based AI assistant, live at ailighthouse.in, built around one idea: you should pay for the task in front of you, not for a month you barely used. It runs 32 separate domains, resumes, thesis chapters, dissertations, legal review, coding rounds, government forms, and more, each with its own tuned system prompt instead of one generic chatbox pretending to be an expert at everything.',
 
-      'It is not built for one kind of user. Students and academics get thesis, research, and exam-prep domains. Professionals get resumes, interview prep, and technical writing. Content creators get social captions, bios, and podcast scripts. There are domains for careful legal, medical, and government drafting, and for translation and culturally-aware writing. Whoever you are, the domain you land on is tuned for that specific kind of work, not a generic assistant guessing at your context.',
+      'It is not built for one kind of user. Students and academics get thesis, research, and exam-prep domains. Professionals get resumes, interview prep, and technical writing. Content creators get social captions, bios, and podcast scripts. There are domains for careful legal, medical, and government drafting, for translation and culturally-aware writing, and for generating real office files, PowerPoint decks, PDFs, Word docs, Excel sheets, directly from a prompt. Whoever you are, the domain you land on is tuned for that specific kind of work, not a generic assistant guessing at your context.',
 
       { type: 'h2', text: 'Why I built it' },
 
@@ -1243,29 +1243,36 @@ useEffect(() => {
 
       'The stack is Next.js on the App Router, Prisma over Postgres, and Anthropic\'s Claude models doing the actual writing. Every message goes through a model-tier router: a fast, cheap tier for simple asks, and progressively stronger tiers for harder ones, capped by whichever package tier was paid for so a request never silently upgrades past what was bought. Prompt caching on the system blocks keeps repeat-turn costs down inside a long conversation.',
 
+      'When a message needs current information, prices, news, anything time-sensitive, AIL detects that automatically (or you can force it with /web) and pulls live, cited results into context before the model answers, instead of guessing from training data.',
+
       { type: 'diagram', title: 'One chat message, start to finish', text:
 `sequenceDiagram
     participant U as User
     participant A as API route
     participant R as Redis
+    participant W as Web search
     participant C as Claude API
     U->>A: send message
     A->>A: resolve model tier
     A->>R: check rate limit + circuit
     R-->>A: ok
-    A->>C: generate (system prompt + cached context)
+    A->>W: fetch live context (auto or /web)
+    W-->>A: cited results
+    A->>C: generate (cached system prompt + web context)
     C-->>A: response + usage
     A->>A: deduct token budget, log usage
     A-->>U: streamed reply`
       },
 
-      'A circuit breaker sits in front of every Claude call: if the API starts failing repeatedly, it trips open for a short cooldown instead of letting every user\'s request queue up against a dependency that is already struggling. Redis backs that circuit breaker along with rate limiting and a bit of response caching, but the app is written to degrade gracefully without it, a cache miss, not a crash, if Redis is ever unavailable. Razorpay handles payment collection, Sentry catches what breaks in production, and the whole thing deploys on Railway with migrations running automatically on every deploy.',
+      'A circuit breaker sits in front of every Claude call: if the API starts failing repeatedly, it trips open for a short cooldown instead of letting every user\'s request queue up against a dependency that is already struggling. Redis backs that circuit breaker along with rate limiting and response caching, but the app is written to degrade gracefully without it, a cache miss, not a crash, if Redis is ever unavailable. Razorpay handles payment collection, Sentry catches what breaks in production, and the whole thing deploys on Railway with migrations running automatically on every deploy. The desktop apps (Windows/Mac) are packaged with Tauri and ship a native auto-updater; the Android app and a terminal CLI cover the rest of where people actually work.',
 
       { type: 'table', head: ['Piece', 'What it does'],
         rows: [
           ['Next.js + Prisma/Postgres', 'App framework, data model, and the source of truth for every token spent'],
           ['Anthropic Claude', 'Haiku / Sonnet / Opus tiers, routed automatically by task complexity and package tier'],
+          ['Tavily', 'Live web search with cited sources, auto-triggered or forced with /web'],
           ['Redis', 'Rate limiting, circuit breaker state, response caching — optional, fails open'],
+          ['Tauri', 'Native Windows/Mac desktop app with auto-update, built on the same web codebase'],
           ['Razorpay', 'UPI, cards, and net banking for the Indian market'],
           ['Sentry', 'Error tracking across edge, server, and browser'],
           ['Railway', 'Hosting, with migrations applied automatically on every deploy'],
@@ -1274,13 +1281,17 @@ useEffect(() => {
 
       { type: 'h2', text: 'What it actually does' },
 
-      'Twenty-six domains is the headline number, but the part I care more about is what happens inside a single conversation once you are in one:',
+      'Thirty-two domains is the headline number, but the part I care more about is what happens inside a single conversation once you are in one:',
 
       { type: 'list', items: [
         'Tokens never expire — a package bought in January still has its budget in July',
         'Manual context control — choose how much conversation history each reply carries (low, mid, high, max, or a custom window), trading recall for lower cost on demand',
+        'Real file generation, not just text — generate an actual downloadable PowerPoint deck, PDF, Word doc, or Excel spreadsheet from a plain-language prompt, either in a dedicated maker domain or inside any conversation via a one-time plugin unlock',
+        'Live web search — auto-detected from your message, or forced with /web, with cited sources pulled into the answer instead of relying on stale training data',
         'Bring your own Anthropic key, anytime, mid-conversation, and pay Anthropic directly instead of the token budget',
         'Bring your own retrieval endpoint (RAG) — AIL calls it before answering and injects whatever context it returns, and a retriever outage never blocks the message',
+        'A developer API — issue API keys and script conversations programmatically outside the chat UI',
+        'Desktop, mobile, and CLI — native apps for Windows and Mac, an Android app, and a terminal CLI for scripting tasks from a shell',
         'An ATS resume score and job-description keyword match, built into the Resume & Cover Letter domain',
         'One-click citation formatting (APA, MLA, Chicago) inside thesis and research conversations',
         'Upload PDFs, Word docs, and images directly into the conversation',
@@ -1288,7 +1299,7 @@ useEffect(() => {
         'A 5-response free trial on every domain, so you can judge the quality before spending anything',
       ] },
 
-      { type: 'note', text: 'The full build is documented properly, an internal engineering and business handbook covering the frontend, the API, the database schema, security, pricing, growth, and incident response, gated to admins and staff at ail.lahon.in/docs. This post is the short version.' },
+      { type: 'note', text: 'The full build is documented properly, an internal engineering and business handbook covering the frontend, the API, the database schema, security, pricing, growth, and incident response, gated to admins and staff at ailighthouse.in/docs. This post is the short version.' },
 
       { type: 'h2', text: 'Where it is now' },
 
