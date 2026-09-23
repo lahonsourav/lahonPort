@@ -1,0 +1,311 @@
+.tr_container {
+  --tr-land: var(--ds-surface);
+  --tr-land-stroke: var(--ds-border);
+  --tr-trip: var(--ds-blue);
+}
+
+.tr_container > .back-home {
+  align-self: center;
+  padding: 1.5rem 2rem 0;
+}
+
+/* ── Hero ── */
+.tr_hero {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tr_title {
+  font-size: var(--ds-text-hero);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 0.5rem;
+}
+
+.tr_tagline {
+  font-size: 1.15rem;
+  color: var(--ds-text-muted);
+  margin-bottom: 1.75rem;
+}
+
+.tr_stats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tr_stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 96px;
+  padding: 0.85rem 1.25rem;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius);
+}
+
+.tr_stat_num {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ds-green);
+  line-height: 1.1;
+}
+
+.tr_stat_label {
+  font-size: 0.8rem;
+  color: var(--ds-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tr_share_btn {
+  margin-top: 1.25rem;
+}
+
+/* ── Map + side panel ── */
+.tr_map_section {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 2rem 3.5rem;
+  border-top: 1px solid var(--ds-border-subtle);
+  box-sizing: border-box;
+}
+
+.tr_map_wrap {
+  flex: 1 1 480px;
+  min-width: 0;
+}
+
+.tr_map {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.tr_land {
+  fill: var(--tr-land);
+  stroke: var(--tr-land-stroke);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.tr_island {
+  fill: var(--tr-land-stroke);
+}
+
+/* ── Pins ── */
+.tr_pin {
+  cursor: pointer;
+  outline: none;
+}
+
+.tr_pin_dot {
+  fill: var(--ds-green);
+  stroke: var(--ds-bg);
+  stroke-width: 2;
+  transition: r 0.2s ease;
+}
+
+.tr_pin--trip .tr_pin_dot {
+  fill: var(--tr-trip);
+}
+
+.tr_pin_pulse {
+  fill: var(--ds-green);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tr_pin--trip .tr_pin_pulse {
+  fill: var(--tr-trip);
+}
+
+.tr_pin--active .tr_pin_pulse {
+  animation: tr-pulse 1.8s ease-out infinite;
+}
+
+.tr_pin:focus-visible .tr_pin_dot {
+  stroke: var(--ds-text);
+}
+
+@keyframes tr-pulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr_pin--active .tr_pin_pulse {
+    animation: none;
+    opacity: 0.25;
+    transform: scale(1.8);
+  }
+}
+
+.tr_pin_label {
+  font-family: var(--ds-font);
+  font-size: 15px;
+  font-weight: 600;
+  fill: var(--ds-text);
+  stroke: var(--ds-bg);
+  stroke-width: 4px;
+  paint-order: stroke;
+  pointer-events: none;
+}
+
+/* ── Legend ── */
+.tr_legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--ds-text-muted);
+}
+
+.tr_legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.tr_legend_dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tr_legend_dot--home {
+  background: var(--ds-green);
+}
+
+.tr_legend_dot--trip {
+  background: var(--tr-trip);
+}
+
+/* ── Side panel ── */
+.tr_side {
+  flex: 0 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tr_detail {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  padding: 1.4rem 1.5rem;
+}
+
+.tr_detail_kind {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ds-green);
+}
+
+.tr_detail_name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  margin: 0.35rem 0 0.15rem;
+}
+
+.tr_detail_state {
+  font-size: 0.9rem;
+  color: var(--ds-text-muted);
+  margin: 0;
+}
+
+.tr_detail_note {
+  font-size: 0.93rem;
+  color: var(--ds-text);
+  line-height: 1.65;
+  margin: 0.9rem 0 0;
+}
+
+.tr_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.tr_list_state {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ds-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.tr_list_items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tr_chip {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--ds-border);
+  background: var(--ds-surface);
+  color: var(--ds-text);
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+
+.tr_chip:hover {
+  border-color: var(--ds-green);
+}
+
+.tr_chip--active {
+  background: var(--ds-green-btn);
+  border-color: var(--ds-green-btn);
+  color: var(--ds-text-on-accent);
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 768px) {
+  .tr_title {
+    font-size: var(--ds-text-hero-sm);
+  }
+
+  .tr_hero {
+    padding: 3rem 1.25rem 1.5rem;
+  }
+
+  .tr_map_section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .tr_side {
+    flex: none;
+  }
+}
