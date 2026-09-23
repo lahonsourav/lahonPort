@@ -2,6 +2,14 @@
    own --ds-* tokens so it works in both themes, same as every other card
    on the site — only the indigo accent is fixed as Ail's own brand hue,
    same pattern lazyperm uses for its green (see lazykit.css). */
+
+/* Tighter than the site-wide `section > h2` margin-bottom (3rem): the
+   card right below already has its own top padding, so the default
+   spacing left an oversized gap before the logo. */
+#ail-preview h2 {
+    margin-bottom: 1rem;
+}
+
 .ail_preview_card {
     --ail-accent: #818cf8;
     --ail-accent-btn: #4f46e5;

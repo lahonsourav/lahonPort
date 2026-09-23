@@ -1,7 +1,20 @@
 .tr_container {
   --tr-land: var(--ds-surface);
   --tr-land-stroke: var(--ds-border);
+  /* Lived vs. visited pins need to stay visually distinct no matter which
+     accent the user has picked. --ds-green *is* the accent token (see
+     design-system.css), so under the "blue" accent it lands on the same
+     hue as --ds-blue and the two pin kinds become indistinguishable.
+     --tr-home is a fixed hue instead, same pattern as LazyKit's brand
+     color (lazykit.css) — only light/dark follows theme. */
+  --tr-home: #7ee787;
   --tr-trip: var(--ds-blue);
+  --tr-bike: #ffa657;
+}
+
+:root[data-theme="light"] .tr_container {
+  --tr-home: #1a7f37;
+  --tr-bike: #bc4c00;
 }
 
 .tr_container > .back-home {
@@ -32,46 +45,12 @@
   margin-bottom: 1.75rem;
 }
 
-.tr_stats {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.tr_stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 96px;
-  padding: 0.85rem 1.25rem;
-  background: var(--ds-surface);
-  border: 1px solid var(--ds-border);
-  border-radius: var(--ds-radius);
-}
-
-.tr_stat_num {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--ds-green);
-  line-height: 1.1;
-}
-
-.tr_stat_label {
-  font-size: 0.8rem;
-  color: var(--ds-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
 .tr_share_btn {
   margin-top: 1.25rem;
 }
 
-/* ── Map + side panel ── */
+/* ── Map ── */
 .tr_map_section {
-  display: flex;
-  align-items: flex-start;
-  gap: 2.5rem;
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
@@ -81,27 +60,77 @@
 }
 
 .tr_map_wrap {
-  flex: 1 1 480px;
+  position: relative;
   min-width: 0;
 }
 
 .tr_map {
   display: block;
   width: 100%;
-  max-width: 560px;
+  max-width: 640px;
   height: auto;
   margin: 0 auto;
+  /* At rest, a swipe over the map should keep scrolling the page (down to
+     the photo gallery) rather than getting stuck — only pan-y is allowed,
+     which also disables native pinch-zoom so a two-finger gesture still
+     reaches our custom pinch handler below. Once actually zoomed in,
+     .tr_map--zoomed takes over and a single-finger drag pans the map
+     instead of scrolling the page. */
+  touch-action: pan-y;
+  cursor: default;
 }
 
-.tr_land {
-  fill: var(--tr-land);
-  stroke: var(--tr-land-stroke);
-  stroke-width: 1.5;
-  stroke-linejoin: round;
+.tr_map--zoomed {
+  touch-action: none;
+  cursor: grab;
+}
+
+.tr_map--zoomed:active {
+  cursor: grabbing;
+}
+
+/* ── Zoom controls ── */
+.tr_zoom_controls {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: var(--ds-z-dropdown);
+}
+
+.tr_zoom_controls button {
+  width: 2.1rem;
+  height: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  font-family: var(--ds-font);
+  color: var(--ds-text);
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-sm);
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+
+.tr_zoom_controls button:hover {
+  border-color: var(--ds-green);
 }
 
 .tr_island {
   fill: var(--tr-land-stroke);
+}
+
+.tr_state_border {
+  /* fill is set inline per-state (STATE_FILLS in Travel.jsx) */
+  stroke: var(--tr-land-stroke);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  pointer-events: none;
 }
 
 /* ── Pins ── */
@@ -111,7 +140,7 @@
 }
 
 .tr_pin_dot {
-  fill: var(--ds-green);
+  fill: var(--tr-home);
   stroke: var(--ds-bg);
   stroke-width: 2;
   transition: r 0.2s ease;
@@ -121,8 +150,12 @@
   fill: var(--tr-trip);
 }
 
+.tr_pin--bike .tr_pin_dot {
+  fill: var(--tr-bike);
+}
+
 .tr_pin_pulse {
-  fill: var(--ds-green);
+  fill: var(--tr-home);
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
@@ -130,6 +163,10 @@
 
 .tr_pin--trip .tr_pin_pulse {
   fill: var(--tr-trip);
+}
+
+.tr_pin--bike .tr_pin_pulse {
+  fill: var(--tr-bike);
 }
 
 .tr_pin--active .tr_pin_pulse {
@@ -170,6 +207,21 @@
   pointer-events: none;
 }
 
+.tr_pin_label--auto {
+  animation: tr-label-fade 0.4s ease;
+}
+
+@keyframes tr-label-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr_pin_label--auto {
+    animation: none;
+  }
+}
+
 /* ── Legend ── */
 .tr_legend {
   display: flex;
@@ -194,27 +246,199 @@
 }
 
 .tr_legend_dot--home {
-  background: var(--ds-green);
+  background: var(--tr-home);
 }
 
 .tr_legend_dot--trip {
   background: var(--tr-trip);
 }
 
-/* ── Side panel ── */
-.tr_side {
-  flex: 0 1 320px;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.tr_legend_dot--bike {
+  background: var(--tr-bike);
 }
 
-.tr_detail {
+.tr_map_note {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ds-text-muted);
+}
+
+/* ── Photo gallery ──
+   Always the pinned-polaroid look, independent of the site's light/dark/
+   sticky-note theme toggle — a printed photo's cream border, ink caption,
+   and corkboard pin don't change with the UI chrome around it. Fixed
+   colors on purpose here rather than the --ds-*/--paper-* theme tokens. */
+.tr_gallery_section {
+  max-width: 1000px;
+  width: 100%;
+  /* .tr_container (page-shell) is a column flexbox, and flex items default
+     to min-width:auto — without this, the grid below refuses to shrink
+     past its content's natural minimum and the whole page overflows
+     horizontally on narrow screens instead of wrapping to fewer columns. */
+  min-width: 0;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 3.5rem;
+  border-top: 1px solid var(--ds-border-subtle);
+  box-sizing: border-box;
+}
+
+.tr_gallery_heading {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  margin: 0 0 2.25rem;
+}
+
+.tr_gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 2rem 1.5rem;
+}
+
+.tr_gallery_item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 0.6rem 0.9rem;
+  border: none;
+  border-radius: 2px;
+  background: #f7f1e3;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  font: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tr_gallery_item:nth-child(4n+1) { transform: rotate(-2deg); }
+.tr_gallery_item:nth-child(4n+2) { transform: rotate(1.5deg); }
+.tr_gallery_item:nth-child(4n+3) { transform: rotate(-1deg); }
+.tr_gallery_item:nth-child(4n+4) { transform: rotate(2deg); }
+
+.tr_gallery_item:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
+}
+
+/* Corkboard pin holding the photo up, colored by lived/visited/bike-trip —
+   same fixed hues as the map pins (--tr-home / --tr-trip / --tr-bike). */
+.tr_gallery_item::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+    var(--tr-trip);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.tr_gallery_item--home::before {
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+    var(--tr-home);
+}
+
+.tr_gallery_item--bike::before {
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+    var(--tr-bike);
+}
+
+.tr_gallery_img_wrap {
+  display: block;
+  overflow: hidden;
+}
+
+.tr_gallery_img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.tr_gallery_caption {
+  margin-top: 0.65rem;
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2b2620;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr_gallery_item {
+    transition: none;
+  }
+}
+
+/* ── Detail modal ── */
+.tr_modal_overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.tr_modal {
+  position: relative;
+  width: min(420px, 100%);
   background: var(--ds-surface);
   border: 1px solid var(--ds-border);
   border-radius: var(--ds-radius-lg);
-  padding: 1.4rem 1.5rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.tr_modal_close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--ds-transition);
+}
+
+.tr_modal_close:hover {
+  background: var(--ds-error);
+}
+
+/* Fixed aspect ratio + object-fit: cover keeps every place's photo the same
+   size in the modal regardless of the source image's own dimensions. */
+.tr_modal_image_wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--ds-surface-2);
+}
+
+.tr_modal_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tr_modal_body {
+  padding: 1.5rem 1.75rem 1.5rem;
 }
 
 .tr_detail_kind {
@@ -222,7 +446,15 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--ds-green);
+  color: var(--tr-trip);
+}
+
+.tr_detail_kind--home {
+  color: var(--tr-home);
+}
+
+.tr_detail_kind--bike {
+  color: var(--tr-bike);
 }
 
 .tr_detail_name {
@@ -245,47 +477,15 @@
   margin: 0.9rem 0 0;
 }
 
-.tr_list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-.tr_list_state {
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ds-text-muted);
-  margin-bottom: 0.5rem;
-}
-
-.tr_list_items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.tr_chip {
-  font: inherit;
-  font-size: 0.85rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid var(--ds-border);
-  background: var(--ds-surface);
-  color: var(--ds-text);
-  cursor: pointer;
-  transition: var(--ds-transition);
-}
-
-.tr_chip:hover {
-  border-color: var(--ds-green);
-}
-
-.tr_chip--active {
-  background: var(--ds-green-btn);
-  border-color: var(--ds-green-btn);
-  color: var(--ds-text-on-accent);
+/* Hide the fixed chrome while the place modal is open, same treatment as
+   the PDF viewer (pdfModal.css). */
+body.tr-modal-open .theme-toggle,
+body.tr-modal-open .accent-picker,
+body.tr-modal-open .sound-toggle,
+body.tr-modal-open .achievements-tray,
+body.tr-modal-open .cta-scroll-hint,
+body.tr-modal-open nav {
+  display: none;
 }
 
 /* ── Responsive ── */
@@ -299,13 +499,38 @@
   }
 
   .tr_map_section {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2rem;
     padding: 1.5rem 1rem 2.5rem;
   }
 
-  .tr_side {
-    flex: none;
+  .tr_gallery_section {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  /* Smaller pins on mobile — the full map renders at a smaller physical
+     size there, so the same radii used on desktop look oversized and
+     crowd the closely-packed clusters even more. CSS `r` overrides the
+     radius set inline in Travel.jsx (a presentation attribute always
+     loses to a stylesheet rule). */
+  .tr_pin_dot {
+    r: 4;
+  }
+
+  .tr_pin--active .tr_pin_dot {
+    r: 5;
+  }
+
+  .tr_pin_pulse {
+    r: 5;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Smaller photo cards on small phones — the 140px minimum column size
+     was tight enough against the viewport for auto-fill's column count
+     to round up past what actually fits, pushing the grid a few px past
+     the screen edge. */
+  .tr_gallery {
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    gap: 1.5rem 0.85rem;
   }
 }

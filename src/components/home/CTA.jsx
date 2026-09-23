@@ -17,6 +17,9 @@ const CTA = () => {
         <div className="btn btn-primary" onClick={() => navigate("/blog")}>
           Blog
         </div>
+        <div className="btn" onClick={() => navigate("/travel")}>
+          Travel
+        </div>
 
         {showResume && (
           <PdfModal

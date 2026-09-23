@@ -9,7 +9,6 @@ const Footer = () => {
       <Changelog />
       <div className="permalinks">
         <Link to="/blog/the-design-principles-behind-lahon-in">Colophon</Link>
-        <Link to="/travel">Travel</Link>
       </div>
       <div className="footer__copyright">
         <small>&copy; lahon.in 2026</small>

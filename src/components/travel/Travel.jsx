@@ -1,12 +1,16 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 import "./travel.css";
 import ShareButton from "../share/ShareButton";
 import BackHome from "../shared/BackHome";
 import PageFooter from "../shared/PageFooter";
 import "../shared/PageShell.css";
+import { playClick } from "../../lib/sound";
+import { BiReset } from "react-icons/bi";
 
 import { PLACES } from "./places";
-import { MAINLAND, ISLANDS } from "./indiaOutline";
+import { ISLANDS } from "./indiaOutline";
+import { STATE_BORDERS } from "./stateBorders";
 
 // Equirectangular projection, with longitude squashed by cos(23°) (India's
 // mid-latitude) so the country keeps roughly its real proportions.
@@ -25,28 +29,277 @@ const project = (lng, lat) => [
   (MAX_LAT - lat) * SCALE,
 ];
 
-const OUTLINE_PATH =
-  MAINLAND.map(([lng, lat], i) => {
-    const [x, y] = project(lng, lat);
-    return `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`;
-  }).join(" ") + " Z";
+const STATE_BORDER_PATHS = STATE_BORDERS.map(({ name, path }) => ({
+  name,
+  d:
+    path.map(([lng, lat], i) => {
+      const [x, y] = project(lng, lat);
+      return `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(" ") + " Z",
+}));
+
+// One hue per state, spread evenly around the wheel (golden-angle step
+// avoids similar hues landing next to each other). Fill is derived from the
+// hue at render time so the currently-highlighted place's state can shade
+// darker without needing a second, hand-kept color list.
+const STATE_HUES = STATE_BORDER_PATHS.map((_, i) => Math.round((i * 137.508) % 360));
+
+const stateFill = (hue, isActive) =>
+  isActive ? `hsl(${hue}deg 55% 42% / 0.7)` : `hsl(${hue}deg 65% 75% / 0.45)`;
+
+// places.js uses the shorter, familiar "Daman and Diu" for display, but the
+// border data (merged into one UT in 2020) calls it by its full current
+// name — alias it so the highlight still matches.
+const STATE_NAME_ALIASES = {
+  "Daman and Diu": "Dadra and Nagar Haveli and Daman and Diu",
+};
+
+// Order for the idle auto-cycle: round-robin North → East → West → South
+// (by position relative to the map's center) instead of PLACES' own order,
+// which is grouped by region and would otherwise dwell in one corner of
+// the map for several cycles in a row before jumping elsewhere.
+const CYCLE_ORDER = (() => {
+  const buckets = { North: [], East: [], West: [], South: [] };
+  PLACES.forEach((p) => {
+    const [x, y] = project(p.lng, p.lat);
+    const dx = x - WIDTH / 2;
+    const dy = y - HEIGHT / 2;
+    const dir =
+      Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? "East" : "West") : dy > 0 ? "South" : "North";
+    buckets[dir].push(p);
+  });
+  const dirs = ["North", "East", "West", "South"];
+  const order = [];
+  let i = 0;
+  while (order.length < PLACES.length) {
+    const dir = dirs[i % dirs.length];
+    if (buckets[dir].length) order.push(buckets[dir].shift());
+    i += 1;
+  }
+  return order;
+})();
+
+const PLACES_WITH_IMAGES = PLACES.filter((p) => p.image);
+
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 4;
+const DRAG_THRESHOLD = 6; // px of pointer movement before a tap counts as a drag
+const AUTO_CYCLE_MS = 2200;
+
+// Clamp panning so the zoomed content always still covers the viewport.
+const clampView = (scale, tx, ty) => ({
+  scale,
+  tx: Math.min(0, Math.max(WIDTH * (1 - scale), tx)),
+  ty: Math.min(0, Math.max(HEIGHT * (1 - scale), ty)),
+});
 
 const Travel = () => {
-  const [activeName, setActiveName] = useState(PLACES[0]?.name ?? null);
-  const active = PLACES.find((p) => p.name === activeName);
+  const [hoverName, setHoverName] = useState(null);
+  const [selected, setSelected] = useState(null);
+  const [view, setView] = useState({ scale: 1, tx: 0, ty: 0 });
+  const [autoIndex, setAutoIndex] = useState(0);
 
-  const byState = useMemo(() => {
-    const groups = {};
-    PLACES.forEach((p) => {
-      (groups[p.state] = groups[p.state] || []).push(p);
-    });
-    return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b));
+  // While idle (nothing hovered/focused, no modal open), cycle the
+  // highlighted pin so every name gets its moment — handy for spotting a
+  // place buried in a crowded cluster without having to hunt for it.
+  useEffect(() => {
+    if (hoverName || selected) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const id = setInterval(() => {
+      setAutoIndex((i) => (i + 1) % CYCLE_ORDER.length);
+    }, AUTO_CYCLE_MS);
+    return () => clearInterval(id);
+  }, [hoverName, selected]);
+
+  const activeName = hoverName || (selected ? null : CYCLE_ORDER[autoIndex]?.name);
+  const active = PLACES.find((p) => p.name === activeName);
+  const activeStateName = active && (STATE_NAME_ALIASES[active.state] || active.state);
+
+  const svgRef = useRef(null);
+  const viewRef = useRef(view);
+  viewRef.current = view;
+  const pointersRef = useRef(new Map()); // pointerId -> last {x, y} (client coords)
+  const gestureRef = useRef(null);
+  const didDragRef = useRef(false);
+  const downPlaceRef = useRef(null);
+
+  // Lock body scroll while the modal is open — plain `overflow:hidden` isn't
+  // enough on iOS Safari, which still rubber-bands the page behind a fixed
+  // overlay (see PdfModal for the same fix).
+  useEffect(() => {
+    if (!selected) return;
+
+    const onKey = (e) => {
+      if (e.key === "Escape") setSelected(null);
+    };
+    window.addEventListener("keydown", onKey);
+
+    const scrollY = window.scrollY;
+    document.body.classList.add("tr-modal-open");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.classList.remove("tr-modal-open");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollY);
+    };
+  }, [selected]);
+
+  // Mouse wheel zoom, anchored under the cursor. Needs a non-passive native
+  // listener — React's onWheel is passive, so preventDefault() there is a
+  // silent no-op and the page would scroll while the map tries to zoom.
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+
+    const onWheel = (e) => {
+      // At rest (not zoomed), let the wheel/trackpad scroll the page as
+      // normal — otherwise scrolling past the map on the way to the photo
+      // gallery below would get hijacked into zooming it instead. Once
+      // already zoomed in (via the +/- buttons, double-click, or a pinch),
+      // wheel keeps adjusting that zoom.
+      if (viewRef.current.scale <= 1) return;
+      e.preventDefault();
+      const rect = svg.getBoundingClientRect();
+      const k = WIDTH / rect.width;
+      const fx = (e.clientX - rect.left) * k;
+      const fy = (e.clientY - rect.top) * k;
+      const factor = e.deltaY < 0 ? 1.2 : 1 / 1.2;
+      zoomAtPoint(fx, fy, viewRef.current.scale * factor);
+    };
+
+    svg.addEventListener("wheel", onWheel, { passive: false });
+    return () => svg.removeEventListener("wheel", onWheel);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onPinKey = (e, name) => {
+  const toFinalPoint = (clientX, clientY) => {
+    const rect = svgRef.current.getBoundingClientRect();
+    const k = WIDTH / rect.width;
+    return { x: (clientX - rect.left) * k, y: (clientY - rect.top) * k };
+  };
+
+  // Zoom so that the content point currently under viewport point (fx, fy)
+  // stays under it — i.e. zoom "into" wherever the cursor/pinch-center is.
+  const zoomAtPoint = (fx, fy, nextScale) => {
+    const { scale, tx, ty } = viewRef.current;
+    const clamped = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nextScale));
+    const rawX = (fx - tx) / scale;
+    const rawY = (fy - ty) / scale;
+    setView(clampView(clamped, fx - clamped * rawX, fy - clamped * rawY));
+  };
+
+  const resetZoom = () => setView({ scale: 1, tx: 0, ty: 0 });
+
+  const onPointerDown = (e) => {
+    // Read the real hit-tested target *before* setPointerCapture below —
+    // once the svg captures the pointer, the browser retargets the
+    // resulting click (and every further pointer event) to the svg itself,
+    // so a pin's own onClick never fires. Remembering which pin (if any)
+    // the pointer actually started on lets onPointerUp select it manually.
+    const pinEl = e.target.closest && e.target.closest(".tr_pin");
+    downPlaceRef.current = pinEl ? pinEl.dataset.place : null;
+
+    e.currentTarget.setPointerCapture(e.pointerId);
+    pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    didDragRef.current = false;
+
+    if (pointersRef.current.size === 1) {
+      const { x, y } = toFinalPoint(e.clientX, e.clientY);
+      const { scale, tx, ty } = viewRef.current;
+      gestureRef.current = {
+        mode: "pan",
+        grabRaw: { x: (x - tx) / scale, y: (y - ty) / scale },
+        startClient: { x: e.clientX, y: e.clientY },
+      };
+    } else if (pointersRef.current.size === 2) {
+      const pts = Array.from(pointersRef.current.values());
+      const mid = { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 };
+      const midFinal = toFinalPoint(mid.x, mid.y);
+      const { scale, tx, ty } = viewRef.current;
+      gestureRef.current = {
+        mode: "pinch",
+        rawMid: { x: (midFinal.x - tx) / scale, y: (midFinal.y - ty) / scale },
+        dist0: Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y),
+        scale0: scale,
+      };
+    }
+  };
+
+  const onPointerMove = (e) => {
+    if (!pointersRef.current.has(e.pointerId)) return;
+    pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    const g = gestureRef.current;
+    if (!g) return;
+
+    if (g.mode === "pan" && pointersRef.current.size === 1) {
+      const dx = e.clientX - g.startClient.x;
+      const dy = e.clientY - g.startClient.y;
+      if (Math.hypot(dx, dy) > DRAG_THRESHOLD) didDragRef.current = true;
+      if (viewRef.current.scale <= 1) return;
+      const { x, y } = toFinalPoint(e.clientX, e.clientY);
+      setView((v) => clampView(v.scale, x - v.scale * g.grabRaw.x, y - v.scale * g.grabRaw.y));
+    } else if (g.mode === "pinch" && pointersRef.current.size === 2) {
+      didDragRef.current = true;
+      const pts = Array.from(pointersRef.current.values());
+      const mid = { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 };
+      const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+      const newScale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, g.scale0 * (dist / g.dist0)));
+      const midFinal = toFinalPoint(mid.x, mid.y);
+      setView(clampView(newScale, midFinal.x - newScale * g.rawMid.x, midFinal.y - newScale * g.rawMid.y));
+    }
+  };
+
+  const onPointerUp = (e) => {
+    pointersRef.current.delete(e.pointerId);
+    if (pointersRef.current.size === 0) {
+      gestureRef.current = null;
+      if (!didDragRef.current && downPlaceRef.current) {
+        const p = PLACES.find((pl) => pl.name === downPlaceRef.current);
+        if (p) {
+          // Pointer capture (needed for pinch/pan) retargets the native
+          // click away from the pin, so the site-wide delegated click
+          // sound (ClickSoundListener) never sees it here — play it
+          // directly instead.
+          playClick();
+          setSelected(p);
+        }
+      }
+      downPlaceRef.current = null;
+    } else {
+      const [[, p]] = pointersRef.current.entries();
+      const { x, y } = toFinalPoint(p.x, p.y);
+      const { scale, tx, ty } = viewRef.current;
+      gestureRef.current = {
+        mode: "pan",
+        grabRaw: { x: (x - tx) / scale, y: (y - ty) / scale },
+        startClient: { x: p.x, y: p.y },
+      };
+    }
+  };
+
+  const onDoubleClick = (e) => {
+    if (viewRef.current.scale > 1) {
+      resetZoom();
+      return;
+    }
+    const { x, y } = toFinalPoint(e.clientX, e.clientY);
+    zoomAtPoint(x, y, 2.5);
+  };
+
+  const zoomButton = (factor) => zoomAtPoint(WIDTH / 2, HEIGHT / 2, view.scale * factor);
+
+  const onPinKey = (e, p) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setActiveName(name);
+      playClick();
+      setSelected(p);
     }
   };
 
@@ -57,111 +310,147 @@ const Travel = () => {
       {/* ── Hero ── */}
       <div className="tr_hero">
         <h1 className="tr_title">Travel</h1>
-        <p className="tr_tagline">Places I've been, pinned on the map.</p>
-        <div className="tr_stats">
-          <div className="tr_stat">
-            <span className="tr_stat_num">{PLACES.length}</span>
-            <span className="tr_stat_label">{PLACES.length === 1 ? "place" : "places"}</span>
-          </div>
-          <div className="tr_stat">
-            <span className="tr_stat_num">{byState.length}</span>
-            <span className="tr_stat_label">{byState.length === 1 ? "state" : "states"}</span>
-          </div>
-        </div>
+        <p className="tr_tagline">Places I've been, pinned on the map. Click a dot for the story.</p>
         <ShareButton title="Places I've been in India" className="tr_share_btn" />
       </div>
 
-      {/* ── Map + details ── */}
+      {/* ── Map ── */}
       <div className="tr_map_section">
         <div className="tr_map_wrap">
           <svg
-            className="tr_map"
+            ref={svgRef}
+            className={`tr_map${view.scale > 1 ? " tr_map--zoomed" : ""}`}
             viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
             role="img"
-            aria-label={`Map of India with ${PLACES.length} visited places highlighted`}
+            aria-label={`Map of India with ${PLACES.length} visited places highlighted. Pinch or scroll to zoom in for easier tapping.`}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+            onDoubleClick={onDoubleClick}
           >
-            <path className="tr_land" d={OUTLINE_PATH} />
-            {ISLANDS.map(([lng, lat]) => {
-              const [x, y] = project(lng, lat);
-              return <circle key={`${lng},${lat}`} className="tr_island" cx={x} cy={y} r={3} />;
-            })}
+            <g transform={`translate(${view.tx.toFixed(2)} ${view.ty.toFixed(2)}) scale(${view.scale.toFixed(4)})`}>
+              {STATE_BORDER_PATHS.map((s, i) => (
+                <path
+                  key={s.name}
+                  className="tr_state_border"
+                  d={s.d}
+                  style={{ fill: stateFill(STATE_HUES[i], s.name === activeStateName) }}
+                />
+              ))}
+              {ISLANDS.map(([lng, lat]) => {
+                const [x, y] = project(lng, lat);
+                return <circle key={`${lng},${lat}`} className="tr_island" cx={x} cy={y} r={3} />;
+              })}
 
-            {PLACES.map((p) => {
-              const [x, y] = project(p.lng, p.lat);
-              const isActive = p.name === activeName;
-              return (
-                <g
-                  key={p.name}
-                  className={`tr_pin tr_pin--${p.kind}${isActive ? " tr_pin--active" : ""}`}
-                  transform={`translate(${x.toFixed(1)} ${y.toFixed(1)})`}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`${p.name}, ${p.state}`}
-                  aria-pressed={isActive}
-                  onClick={() => setActiveName(p.name)}
-                  onMouseEnter={() => setActiveName(p.name)}
-                  onFocus={() => setActiveName(p.name)}
-                  onKeyDown={(e) => onPinKey(e, p.name)}
-                >
-                  <circle className="tr_pin_pulse" r={7} />
-                  <circle className="tr_pin_dot" r={isActive ? 7 : 5.5} />
-                </g>
-              );
-            })}
+              {PLACES.map((p) => {
+                const [x, y] = project(p.lng, p.lat);
+                const isActive = p.name === activeName;
+                return (
+                  <g
+                    key={p.name}
+                    className={`tr_pin tr_pin--${p.kind}${isActive ? " tr_pin--active" : ""}`}
+                    transform={`translate(${x.toFixed(1)} ${y.toFixed(1)})`}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${p.name}, ${p.state}`}
+                    data-place={p.name}
+                    onMouseEnter={() => setHoverName(p.name)}
+                    onMouseLeave={() => setHoverName((n) => (n === p.name ? null : n))}
+                    onFocus={() => setHoverName(p.name)}
+                    onBlur={() => setHoverName((n) => (n === p.name ? null : n))}
+                    onKeyDown={(e) => onPinKey(e, p)}
+                  >
+                    <circle className="tr_pin_pulse" r={7} />
+                    <circle className="tr_pin_dot" r={isActive ? 7 : 5.5} />
+                  </g>
+                );
+              })}
 
-            {/* Label drawn last so it sits above every pin. */}
-            {active && (() => {
-              const [x, y] = project(active.lng, active.lat);
-              const anchorEnd = x > WIDTH * 0.65;
-              return (
-                <text
-                  className="tr_pin_label"
-                  x={anchorEnd ? x - 12 : x + 12}
-                  y={y + 5}
-                  textAnchor={anchorEnd ? "end" : "start"}
-                >
-                  {active.name}
-                </text>
-              );
-            })()}
+              {/* Label drawn last so it sits above every pin. */}
+              {active && (() => {
+                const [x, y] = project(active.lng, active.lat);
+                const anchorEnd = x > WIDTH * 0.65;
+                return (
+                  <text
+                    key={active.name}
+                    className={`tr_pin_label${hoverName ? "" : " tr_pin_label--auto"}`}
+                    x={anchorEnd ? x - 12 : x + 12}
+                    y={y + 5}
+                    textAnchor={anchorEnd ? "end" : "start"}
+                  >
+                    {active.name}
+                  </text>
+                );
+              })()}
+            </g>
           </svg>
+
+          <div className="tr_zoom_controls">
+            <button type="button" onClick={() => zoomButton(1.5)} aria-label="Zoom in">+</button>
+            <button type="button" onClick={() => zoomButton(1 / 1.5)} aria-label="Zoom out">−</button>
+            {view.scale > 1 && (
+              <button type="button" className="tr_zoom_reset" onClick={resetZoom} aria-label="Reset zoom">
+                <BiReset />
+              </button>
+            )}
+          </div>
+
           <div className="tr_legend">
             <span><i className="tr_legend_dot tr_legend_dot--home" /> Lived</span>
             <span><i className="tr_legend_dot tr_legend_dot--trip" /> Visited</span>
+            <span><i className="tr_legend_dot tr_legend_dot--bike" /> Bike trip</span>
           </div>
+          <p className="tr_map_note">
+            Map is not to scale; boundaries may not be accurate. Pinch, scroll, or use +/− to zoom in on crowded areas.
+          </p>
         </div>
+      </div>
 
-        <aside className="tr_side">
-          {active && (
-            <div className="tr_detail" aria-live="polite">
-              <span className="tr_detail_kind">{active.kind === "home" ? "Lived here" : "Visited"}</span>
-              <h2 className="tr_detail_name">{active.name}</h2>
-              <p className="tr_detail_state">{active.state}</p>
-              {active.note && <p className="tr_detail_note">{active.note}</p>}
-            </div>
-          )}
-
-          <div className="tr_list">
-            {byState.map(([state, places]) => (
-              <div className="tr_list_group" key={state}>
-                <h3 className="tr_list_state">{state}</h3>
-                <div className="tr_list_items">
-                  {places.map((p) => (
-                    <button
-                      type="button"
-                      key={p.name}
-                      className={`tr_chip${p.name === activeName ? " tr_chip--active" : ""}`}
-                      onClick={() => setActiveName(p.name)}
-                    >
-                      {p.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
+      {PLACES_WITH_IMAGES.length > 0 && (
+        <div className="tr_gallery_section">
+          <h3 className="tr_gallery_heading">Photos</h3>
+          <div className="tr_gallery">
+            {PLACES_WITH_IMAGES.map((p) => (
+              <button
+                type="button"
+                key={p.name}
+                className={`tr_gallery_item tr_gallery_item--${p.kind}`}
+                onClick={() => setSelected(p)}
+              >
+                <span className="tr_gallery_img_wrap">
+                  <img src={p.image} alt={p.name} className="tr_gallery_img" loading="lazy" />
+                </span>
+                <span className="tr_gallery_caption">{p.name}</span>
+              </button>
             ))}
           </div>
-        </aside>
-      </div>
+        </div>
+      )}
+
+      {selected && ReactDOM.createPortal(
+        <div className="tr_modal_overlay" onClick={() => setSelected(null)}>
+          <div className="tr_modal" onClick={(e) => e.stopPropagation()}>
+            <button className="tr_modal_close" onClick={() => setSelected(null)} aria-label="Close">
+              ✕
+            </button>
+            {selected.image && (
+              <div className="tr_modal_image_wrap">
+                <img src={selected.image} alt={selected.name} className="tr_modal_image" loading="lazy" />
+              </div>
+            )}
+            <div className="tr_modal_body">
+              <span className={`tr_detail_kind tr_detail_kind--${selected.kind}`}>
+                {selected.kind === "home" ? "Lived here" : "Visited"}
+              </span>
+              <h2 className="tr_detail_name">{selected.name}</h2>
+              <p className="tr_detail_state">{selected.state}</p>
+              {selected.note && <p className="tr_detail_note">{selected.note}</p>}
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
 
       <PageFooter>Copyright © 2026 lahon.in/travel</PageFooter>
     </div>
