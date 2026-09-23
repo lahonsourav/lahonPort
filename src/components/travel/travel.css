@@ -268,7 +268,7 @@
    Always the pinned-polaroid look, independent of the site's light/dark/
    sticky-note theme toggle — a printed photo's cream border, ink caption,
    and corkboard pin don't change with the UI chrome around it. Fixed
-   colors on purpose here rather than the --ds-*/--paper-* theme tokens. */
+   colors on purpose here rather than the --ds-* or --paper-* theme tokens. */
 .tr_gallery_section {
   max-width: 1000px;
   width: 100%;
