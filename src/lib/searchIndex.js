@@ -77,6 +77,12 @@ const PAGES = [
       "patterns git status npm test allow block sudo rm rf git push force DROP TABLE decisions log audit " +
       "npx lazyperm VS Code extension Windsurf Cursor VSCodium Open VSX marketplace",
   },
+  {
+    title: "Travel",
+    url: "/travel",
+    type: "page",
+    keywords: "travel places visited map of India trips states cities been to Assam Gogamukh Silchar Gurgaon",
+  },
   { title: "Contact", url: "/contactout", type: "page", keywords: "email reach out get in touch" },
   { title: "Resume", url: resumePdf, type: "file", keywords: "cv download pdf experience education skills" },
   {
