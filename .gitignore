@@ -25,9 +25,3 @@ yarn-error.log*
 # python (ad hoc scripts, e.g. image processing)
 __pycache__/
 *.pyc
-# lazyperm
-.claude/hooks/guard.py
-.claude/hooks/safe_patterns.json
-.claude/hooks/deny_patterns.json
-.claude/hooks/cache.json
-.claude/hooks/decisions.log
