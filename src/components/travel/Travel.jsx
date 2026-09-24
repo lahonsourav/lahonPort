@@ -7,6 +7,8 @@ import PageFooter from "../shared/PageFooter";
 import "../shared/PageShell.css";
 import { playClick } from "../../lib/sound";
 import { BiReset } from "react-icons/bi";
+import { BsInstagram } from "react-icons/bs";
+import useReveal from "../reveal/useReveal";
 
 import { PLACES } from "./places";
 import { ISLANDS } from "./indiaOutline";
@@ -54,6 +56,13 @@ const STATE_NAME_ALIASES = {
   "Daman and Diu": "Dadra and Nagar Haveli and Daman and Diu",
 };
 
+// Same per-state hue the map's borders use, looked up by name — colors the
+// timeline's paper tags by state without a second palette to maintain.
+const STATE_HUE_BY_NAME = Object.fromEntries(
+  STATE_BORDER_PATHS.map(({ name }, i) => [name, STATE_HUES[i]])
+);
+const stateHueFor = (state) => STATE_HUE_BY_NAME[STATE_NAME_ALIASES[state] || state];
+
 // Order for the idle auto-cycle: round-robin North → East → West → South
 // (by position relative to the map's center) instead of PLACES' own order,
 // which is grouped by region and would otherwise dwell in one corner of
@@ -81,6 +90,44 @@ const CYCLE_ORDER = (() => {
 
 const PLACES_WITH_IMAGES = PLACES.filter((p) => p.image);
 
+// Strip the map/pin-only "- bike" suffix for prose contexts (gallery
+// captions, timeline entries) where the pin color already says as much.
+const displayName = (name) => name.replace(/ - bike$/, "");
+
+// `visited` is either a single "Month Year" string or, for a place visited
+// more than once, an array of them.
+const visitedDates = (visited) => (Array.isArray(visited) ? visited : visited ? [visited] : []);
+
+// Gallery/modal display — every visit, oldest first.
+const formatVisited = (visited) => visitedDates(visited).join(" & ");
+
+const MONTH_INDEX = {
+  Jan: 0, Feb: 1, March: 2, April: 3, May: 4, June: 5,
+  July: 6, Aug: 7, Sept: 8, Oct: 9, Nov: 10, Dec: 11,
+};
+
+// Chronological trip timeline, grouped by year then by month (one row per
+// month), built from the same `visited` field the gallery/modal show — no
+// separate data to keep in sync. A place visited twice contributes one
+// timeline entry per visit.
+const TIMELINE_BY_YEAR = (() => {
+  const entries = PLACES_WITH_IMAGES
+    .flatMap((p) => visitedDates(p.visited).map((visited) => {
+      const [month, year] = visited.split(" ");
+      return { ...p, month, year: Number(year), order: Number(year) * 12 + MONTH_INDEX[month] };
+    }))
+    .sort((a, b) => a.order - b.order);
+
+  const byYear = new Map();
+  entries.forEach((p) => {
+    if (!byYear.has(p.year)) byYear.set(p.year, new Map());
+    const byMonth = byYear.get(p.year);
+    if (!byMonth.has(p.month)) byMonth.set(p.month, []);
+    byMonth.get(p.month).push(p);
+  });
+  return Array.from(byYear.entries()).map(([year, byMonth]) => [year, Array.from(byMonth.entries())]);
+})();
+
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 4;
 const DRAG_THRESHOLD = 6; // px of pointer movement before a tap counts as a drag
@@ -94,6 +141,8 @@ const clampView = (scale, tx, ty) => ({
 });
 
 const Travel = () => {
+  useReveal();
+
   const [hoverName, setHoverName] = useState(null);
   const [selected, setSelected] = useState(null);
   const [view, setView] = useState({ scale: 1, tx: 0, ty: 0 });
@@ -409,8 +458,18 @@ const Travel = () => {
 
       {PLACES_WITH_IMAGES.length > 0 && (
         <div className="tr_gallery_section">
-          <h3 className="tr_gallery_heading">Photos</h3>
-          <div className="tr_gallery">
+          <h3 className="tr_gallery_heading" data-aos="fade-down">Photos</h3>
+          <div className="tr_legend tr_legend--gallery" data-aos="fade-down" data-aos-delay="100">
+            <span><i className="tr_legend_dot tr_legend_dot--home" /> Lived</span>
+            <span><i className="tr_legend_dot tr_legend_dot--trip" /> Visited</span>
+            <span><i className="tr_legend_dot tr_legend_dot--bike" /> Bike trip</span>
+          </div>
+          {/* Reveal the whole grid as one block, not card-by-card — each
+              card already carries a permanent nth-child rotation for the
+              corkboard look, and the reveal utility resets `transform` on
+              enter, which would fight (and win a specificity tie against)
+              that rotation if applied per card. */}
+          <div className="tr_gallery" data-aos="fade-up" data-aos-delay="150">
             {PLACES_WITH_IMAGES.map((p) => (
               <button
                 type="button"
@@ -421,8 +480,44 @@ const Travel = () => {
                 <span className="tr_gallery_img_wrap">
                   <img src={p.image} alt={p.name} className="tr_gallery_img" loading="lazy" />
                 </span>
-                <span className="tr_gallery_caption">{p.name}</span>
+                <span className="tr_gallery_caption">{displayName(p.name)}</span>
+                {/* Only the first visit — a repeat trip belongs on the timeline, not cluttering the card. */}
+                {p.visited && <span className="tr_gallery_date">{visitedDates(p.visited)[0]}</span>}
               </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {TIMELINE_BY_YEAR.length > 0 && (
+        <div className="tr_timeline_section">
+          <h3 className="tr_gallery_heading" data-aos="fade-down">Timeline</h3>
+          <div className="tr_timeline">
+            {TIMELINE_BY_YEAR.map(([year, months], i) => (
+              <div className="tr_timeline_year_group" key={year} data-aos="fade-up" data-aos-delay={(i % 5) * 80}>
+                <div className="tr_timeline_year">{year}</div>
+                <div className="tr_timeline_months">
+                  {months.map(([month, entries]) => (
+                    <div className="tr_timeline_month_row" key={month}>
+                      <span className="tr_timeline_month">{month}</span>
+                      <div className="tr_timeline_entries">
+                        {entries.map((p) => (
+                          <button
+                            type="button"
+                            key={p.name}
+                            className={`tr_timeline_entry tr_timeline_entry--${p.kind}`}
+                            style={{ "--pill-hue": `${stateHueFor(p.state)}deg` }}
+                            onClick={() => setSelected(p)}
+                          >
+                            <span className="tr_timeline_dot" />
+                            <span className="tr_timeline_name">{displayName(p.name)}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -444,13 +539,25 @@ const Travel = () => {
                 {selected.kind === "home" ? "Lived here" : "Visited"}
               </span>
               <h2 className="tr_detail_name">{selected.name}</h2>
-              <p className="tr_detail_state">{selected.state}</p>
+              <p className="tr_detail_state">
+                {selected.state}
+                {selected.visited && <span className="tr_detail_date"> · {formatVisited(selected.visited)}</span>}
+              </p>
               {selected.note && <p className="tr_detail_note">{selected.note}</p>}
             </div>
           </div>
         </div>,
         document.body
       )}
+
+      <a
+        href="https://www.instagram.com/la_h_on/"
+        target="_blank"
+        rel="noreferrer"
+        className="tr_footer_ig"
+      >
+        <BsInstagram /> @la_h_on
+      </a>
 
       <PageFooter>Copyright © 2026 lahon.in/travel</PageFooter>
     </div>
