@@ -9,6 +9,7 @@ import SoundToggle from "./components/SoundToggle/SoundToggle.jsx";
 import StickyModeToggle from "./components/StickyModeToggle/StickyModeToggle.jsx";
 import AchievementsTray from "./components/Achievements/AchievementsTray.jsx";
 import Guide from "./components/Guide/Guide.jsx";
+import Chatbot from "./components/Chatbot/Chatbot.jsx";
 import RouteTracker from "./components/RouteTracker/RouteTracker.jsx";
 import ClickSoundListener from "./components/ClickSound/ClickSoundListener.jsx";
 import ScrollManager from "./components/shared/ScrollManager.jsx";
@@ -44,6 +45,7 @@ function App() {
         <StickyModeToggle />
         <AchievementsTray />
         <Guide />
+        <Chatbot />
         <ScrollManager />
         <RouteTracker />
         <ClickSoundListener />

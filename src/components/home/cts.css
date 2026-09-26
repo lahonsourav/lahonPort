@@ -6,7 +6,7 @@
   flex-wrap: wrap;
 }
 
-/* Primary CTA: resume — outlined green */
+/* CTA buttons — outlined green */
 .cta .btn {
   color: var(--ds-green);
   border: 1px solid var(--ds-green-btn);

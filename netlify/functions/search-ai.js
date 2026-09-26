@@ -14,6 +14,9 @@ const GROQ_MODEL = "openai/gpt-oss-20b";
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const CLAUDE_MODEL = "claude-haiku-4-5";
 const MAX_QUESTION_LENGTH = 300;
+// The chatbot sends recent turns for context; cap what one request can carry.
+const MAX_HISTORY_MESSAGES = 8;
+const MAX_HISTORY_LENGTH = 1200;
 
 // Every real destination the AI is allowed to point someone to — kept as an
 // explicit whitelist (rather than letting the model invent a URL) so a
@@ -186,9 +189,6 @@ CONTACT (/contactout)
   (sourav@ + this site's domain), phone/WhatsApp +91 60010 98923, and a
   message form on the back of the card.
 
-RESUME
-- A downloadable resume/CV PDF is available via the site's search bar
-  (search "resume" or "cv") — there is no dedicated /resume page to link to.
 `.trim();
 
 const SYSTEM_PROMPT = `You ARE Sourav Lahon, answering a visitor in the "Ask me anything" search box on your own portfolio site (lahon.in). You're only shown after their search didn't match anything in the site's index, so answer their question about you, your work, skills, projects, blog, or how to reach you, using the facts below.
@@ -231,7 +231,34 @@ function parseAiJson(raw) {
   return raw.trim() ? { answer: raw.trim(), links: [] } : null;
 }
 
-async function askGroq(query) {
+// Normalises the request into a list Groq and Claude both accept: starts and
+// ends with a user turn, roles strictly alternate (consecutive same-role turns
+// are merged — a failed reply on the client leaves two user turns in a row),
+// only the most recent turns are kept, and every turn is length-capped.
+// Returns null when there's no usable user question.
+function buildMessages({ query, messages }) {
+  let raw = [];
+  if (Array.isArray(messages)) {
+    raw = messages
+      .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
+      .map((m) => ({ role: m.role, content: m.content.trim().slice(0, MAX_HISTORY_LENGTH) }));
+  } else if (typeof query === "string" && query.trim()) {
+    raw = [{ role: "user", content: query.trim() }];
+  }
+  raw = raw.slice(-MAX_HISTORY_MESSAGES);
+
+  const merged = [];
+  for (const m of raw) {
+    const prev = merged[merged.length - 1];
+    if (prev && prev.role === m.role) prev.content += "\n" + m.content;
+    else merged.push({ ...m });
+  }
+  while (merged.length && merged[0].role !== "user") merged.shift();
+  while (merged.length && merged[merged.length - 1].role !== "user") merged.pop();
+  return merged.length ? merged : null;
+}
+
+async function askGroq(messages) {
   const res = await fetch(GROQ_URL, {
     method: "POST",
     headers: {
@@ -242,7 +269,7 @@ async function askGroq(query) {
       model: GROQ_MODEL,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: query },
+        ...messages,
       ],
       max_tokens: 400,
       reasoning_effort: "low",
@@ -258,13 +285,13 @@ async function askGroq(query) {
   return parsed;
 }
 
-async function askClaude(query) {
+async function askClaude(messages) {
   const client = new Anthropic();
   const response = await client.messages.create({
     model: CLAUDE_MODEL,
     max_tokens: 400,
     system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: query }],
+    messages,
   });
   const textBlock = response.content.find((b) => b.type === "text");
   if (!textBlock?.text?.trim()) throw new Error("Claude returned empty content");
@@ -278,25 +305,28 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: JSON.stringify({ error: "Method not allowed" }) };
   }
 
-  let query;
+  let body;
   try {
-    ({ query } = JSON.parse(event.body || "{}"));
+    body = JSON.parse(event.body || "{}");
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: "Invalid request body" }) };
   }
 
-  if (!query || typeof query !== "string" || !query.trim()) {
+  // Either a single `query` (the search box) or a `messages` history (the
+  // chatbot). Both end up as the same alternating user/assistant list.
+  const messages = buildMessages(body);
+  if (!messages) {
     return { statusCode: 400, body: JSON.stringify({ error: "Question required" }) };
   }
-  if (query.length > MAX_QUESTION_LENGTH) {
+  const last = messages[messages.length - 1].content;
+  if (last.length > MAX_QUESTION_LENGTH) {
     return { statusCode: 400, body: JSON.stringify({ error: "Question is too long" }) };
   }
-  const q = query.trim();
 
   let result = null;
   if (process.env.GROQ_API_KEY) {
     try {
-      result = await askGroq(q);
+      result = await askGroq(messages);
     } catch (e) {
       console.error("Groq failed, falling back to Claude:", e);
     }
@@ -304,7 +334,7 @@ exports.handler = async (event) => {
 
   if (!result && process.env.ANTHROPIC_API_KEY) {
     try {
-      result = await askClaude(q);
+      result = await askClaude(messages);
     } catch (e) {
       console.error("Claude fallback also failed:", e);
     }

@@ -1,6 +1,5 @@
 import { POSTS } from "../components/blog/posts";
 import { blockText } from "../components/blog/readingTime";
-import resumePdf from "../assets/resume.pdf";
 
 const PAGES = [
   { title: "Blog", url: "/blog", type: "page", keywords: "posts writing articles stories" },
@@ -84,7 +83,6 @@ const PAGES = [
     keywords: "travel places visited map of India trips states cities been to Assam Gogamukh Silchar Gurgaon",
   },
   { title: "Contact", url: "/contactout", type: "page", keywords: "email reach out get in touch" },
-  { title: "Resume", url: resumePdf, type: "file", keywords: "cv download pdf experience education skills" },
   {
     title: "AVSR",
     url: "/work",
