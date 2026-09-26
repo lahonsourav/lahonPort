@@ -1,6 +1,7 @@
 // Real, dated entries — pulled from actual commits, not invented copy.
 // Newest first. Add to the top when something worth mentioning ships.
 export const CHANGELOG = [
+  { date: "2026-09-26", text: "The search bar now falls back to an AI that answers as me when nothing matches, with Enter to send and a fresh box on your next click." },
   { date: "2026-09-24", text: "Shipped /travel: a zoomable India map of every place I've lived, visited, or ridden a bike to, with a pinned-photo gallery." },
   { date: "2026-08-18", text: "Added AIL, a pay-per-task AI writing assistant, as a homepage card and wrote up the build." },
   { date: "2026-08-12", text: "Fixed a white flash on mobile Safari's overscroll bounce, most noticeable on shorter pages like LazyKit and lazyperm." },
