@@ -10,32 +10,40 @@
 // only set where an `image` is (an exact date without a photo to anchor it
 // isn't worth tracking). A place visited more than once takes an array of
 // "Month Year" strings instead of a single one.
-import agraImage from "../../images/travel/agra.jpg";
-import damanImage from "../../images/travel/daman.jpg";
-import mumbaiImage from "../../images/travel/mumbai.jpg";
-import dehradunImage from "../../images/travel/dehradun.jpg";
-import delhiCjpProtestImage from "../../images/travel/delhi-cjp-protest.jpg";
-import dharamshalaImage from "../../images/travel/dharamshala.jpg";
-import mcleodGanjImage from "../../images/travel/mcleod-ganj.jpg";
-import jaipurImage from "../../images/travel/jaipur.jpg";
-import neemranaImage from "../../images/travel/neemrana.jpg";
-import toshImage from "../../images/travel/tosh.jpg";
-import kasolImage from "../../images/travel/kasol.jpg";
-import kutlaImage from "../../images/travel/kutla.jpg";
-import mandiImage from "../../images/travel/mandi.jpg";
-import rishikeshImage from "../../images/travel/rishikesh.jpg";
-import sibsagarImage from "../../images/travel/sibsagar.jpg";
-import udaipurImage from "../../images/travel/udaipur.jpg";
-import chittorgarhImage from "../../images/travel/chittorgarh.jpg";
-import ajmerImage from "../../images/travel/ajmer.jpg";
-import vrindavanImage from "../../images/travel/vrindavan.jpg";
-import varanasiImage from "../../images/travel/varanasi.jpg";
-import hyderabadImage from "../../images/travel/hyderabad.jpg";
-import likabaliImage from "../../images/travel/likabali.jpg";
-import kedarnathImage from "../../images/travel/kedarnath.jpg";
-import shimlaImage from "../../images/travel/shimla.jpg";
-import northLakhimpurImage from "../../images/travel/north-lakhimpur.jpg";
-import shillongImage from "../../images/travel/shillong.jpg";
+import agraImage from "../../images/travel/agra.webp";
+import damanImage from "../../images/travel/daman.webp";
+import mumbaiImage from "../../images/travel/mumbai.webp";
+import dehradunImage from "../../images/travel/dehradun.webp";
+import delhiCjpProtestImage from "../../images/travel/delhi-cjp-protest.webp";
+import dharamshalaImage from "../../images/travel/dharamshala.webp";
+import mcleodGanjImage from "../../images/travel/mcleod-ganj.webp";
+import jaipurImage from "../../images/travel/jaipur.webp";
+import neemranaImage from "../../images/travel/neemrana.webp";
+import toshImage from "../../images/travel/tosh.webp";
+import kasolImage from "../../images/travel/kasol.webp";
+import kutlaImage from "../../images/travel/kutla.webp";
+import mandiImage from "../../images/travel/mandi.webp";
+import rishikeshImage from "../../images/travel/rishikesh.webp";
+import sibsagarImage from "../../images/travel/sibsagar.webp";
+import udaipurImage from "../../images/travel/udaipur.webp";
+import chittorgarhImage from "../../images/travel/chittorgarh.webp";
+import ajmerImage from "../../images/travel/ajmer.webp";
+import vrindavanImage from "../../images/travel/vrindavan.webp";
+import varanasiImage from "../../images/travel/varanasi.webp";
+import hyderabadImage from "../../images/travel/hyderabad.webp";
+import gurgaonImage from "../../images/travel/gurgaon.webp";
+import silcharImage from "../../images/travel/silchar.webp";
+import delhiImage from "../../images/travel/delhi.webp";
+import tezpurImage from "../../images/travel/tezpur.webp";
+import mathuraImage from "../../images/travel/mathura.webp";
+import neelkanthImage from "../../images/travel/neelkanth-temple.webp";
+import guwahatiImage from "../../images/travel/guwahati.webp";
+import gogamukhImage from "../../images/travel/gogamukh.webp";
+import likabaliImage from "../../images/travel/likabali.webp";
+import kedarnathImage from "../../images/travel/kedarnath.webp";
+import shimlaImage from "../../images/travel/shimla.webp";
+import northLakhimpurImage from "../../images/travel/north-lakhimpur.webp";
+import shillongImage from "../../images/travel/shillong.webp";
 
 export const PLACES = [
   // ── Lived ──
@@ -45,6 +53,8 @@ export const PLACES = [
     lat: 27.33,
     lng: 94.33,
     kind: "home",
+    image: gogamukhImage,
+    visited: "Oct 2023",
     note: "Where it all started. Class I–V at Jatiya Vidyalaya.",
   },
   {
@@ -62,6 +72,8 @@ export const PLACES = [
     lat: 24.83,
     lng: 92.8,
     kind: "home",
+    image: silcharImage,
+    visited: "Aug 2024",
     note: "Four years of B.Tech CSE at NIT Silchar.",
   },
   {
@@ -70,6 +82,8 @@ export const PLACES = [
     lat: 28.46,
     lng: 77.03,
     kind: "home",
+    image: gurgaonImage,
+    visited: "Nov 2025",
     note: "Software Engineer at BlackRock.",
   },
   {
@@ -85,11 +99,11 @@ export const PLACES = [
   // ── Visited — Northeast ──
   { name: "Likabali", state: "Arunachal Pradesh", lat: 27.9, lng: 94.56, kind: "trip", image: likabaliImage, visited: "Oct 2025" },
   { name: "Shillong", state: "Meghalaya", lat: 25.57, lng: 91.88, kind: "trip", image: shillongImage, visited: "July 2022" },
-  { name: "Guwahati", state: "Assam", lat: 26.14, lng: 91.73, kind: "trip" },
+  { name: "Guwahati", state: "Assam", lat: 26.14, lng: 91.73, kind: "trip", image: guwahatiImage, visited: "May 2023" },
   { name: "Dibrugarh", state: "Assam", lat: 27.48, lng: 94.91, kind: "trip" },
   { name: "Tinsukia", state: "Assam", lat: 27.49, lng: 95.36, kind: "trip" },
   { name: "Sibsagar", state: "Assam", lat: 26.98, lng: 94.64, kind: "trip", image: sibsagarImage, visited: "April 2026" },
-  { name: "Tezpur", state: "Assam", lat: 26.63, lng: 92.8, kind: "trip" },
+  { name: "Tezpur", state: "Assam", lat: 26.63, lng: 92.8, kind: "trip", image: tezpurImage, visited: "Jan 2023" },
 
   // ── Visited — Himachal Pradesh ──
   { name: "Mandi", state: "Himachal Pradesh", lat: 31.71, lng: 76.93, kind: "trip", image: mandiImage, visited: "July 2026" },
@@ -108,10 +122,11 @@ export const PLACES = [
   // ── Visited — Uttarakhand ──
   { name: "Kedarnath - bike", state: "Uttarakhand", lat: 30.73, lng: 79.07, kind: "bike", image: kedarnathImage, visited: "Sept 2026" },
   { name: "Rishikesh - bike", state: "Uttarakhand", lat: 30.09, lng: 78.27, kind: "bike", image: rishikeshImage, visited: ["Feb 2026", "March 2026"] },
-  { name: "Neelkanth Temple", state: "Uttarakhand", lat: 30.13, lng: 78.41, kind: "trip" },
+  { name: "Neelkanth Temple", state: "Uttarakhand", lat: 30.13, lng: 78.41, kind: "trip", image: neelkanthImage, visited: "Feb 2026" },
   { name: "Dehradun", state: "Uttarakhand", lat: 30.32, lng: 78.03, kind: "trip", image: dehradunImage, visited: "July 2026" },
 
   // ── Visited — Delhi ──
+  { name: "Delhi", state: "Delhi", lat: 28.52, lng: 77.19, kind: "trip", image: delhiImage, visited: "June 2025" },
   { name: "CJP Protest", state: "Delhi", lat: 28.61, lng: 77.21, kind: "trip", image: delhiCjpProtestImage, visited: "June 2026" },
 
   // ── Visited — Rajasthan ──
@@ -125,7 +140,7 @@ export const PLACES = [
   { name: "Agra - bike", state: "Uttar Pradesh", lat: 27.18, lng: 78.02, kind: "bike", image: agraImage, visited: "Feb 2026" },
   { name: "Varanasi", state: "Uttar Pradesh", lat: 25.32, lng: 83.01, kind: "trip", image: varanasiImage, visited: "Dec 2025" },
   { name: "Vrindavan - bike", state: "Uttar Pradesh", lat: 27.58, lng: 77.7, kind: "bike", image: vrindavanImage, visited: "March 2026" },
-  { name: "Mathura", state: "Uttar Pradesh", lat: 27.49, lng: 77.67, kind: "trip" },
+  { name: "Mathura", state: "Uttar Pradesh", lat: 27.49, lng: 77.67, kind: "trip", image: mathuraImage, visited: "March 2026" },
 
   // ── Visited — West ──
   { name: "Daman", state: "Daman and Diu", lat: 20.4, lng: 72.83, kind: "trip", image: damanImage, visited: "July 2026" },

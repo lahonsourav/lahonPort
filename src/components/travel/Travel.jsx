@@ -190,6 +190,23 @@ const Travel = () => {
   // photo being shown, `prev` lingers briefly underneath so the new one can
   // fade in over it, and `glide` turns the position transition on only right
   // after the place changes (so panning/zooming the map never lags behind).
+  // Warm the browser cache for the next photo the auto-cycle will reach, so
+  // it's already downloaded by the time its card glides in (otherwise the
+  // picture pops in after the card arrives). Only the very next photo place,
+  // not all of them, so nothing heavy is fetched up front.
+  const preloadedRef = useRef(new Set());
+  useEffect(() => {
+    for (let step = 1; step <= CYCLE_ORDER.length; step += 1) {
+      const next = CYCLE_ORDER[(autoIndex + step) % CYCLE_ORDER.length];
+      if (!next.image) continue;
+      if (!preloadedRef.current.has(next.image)) {
+        preloadedRef.current.add(next.image);
+        new Image().src = next.image;
+      }
+      break;
+    }
+  }, [autoIndex]);
+
   const [photo, setPhoto] = useState({ cur: null, prev: null, n: 0 });
   const [glide, setGlide] = useState(false);
   const curPhotoRef = useRef(null);
