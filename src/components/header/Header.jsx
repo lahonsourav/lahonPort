@@ -107,6 +107,13 @@ const HeroSearch = () => {
     setOpen(false);
   };
 
+  // Clicking back into the box after an AI answer (or error) starts a fresh
+  // search instead of leaving the old question there to edit.
+  const reopen = () => {
+    if (aiAnswer || aiError) setQuery("");
+    setOpen(true);
+  };
+
   const onKeyDown = (e) => {
     // No keyword matches: the send button is showing, so Enter does the same.
     if (!results.length) {
@@ -143,7 +150,8 @@ const HeroSearch = () => {
             setQuery(e.target.value);
             setOpen(true);
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={reopen}
+          onClick={reopen}
           onKeyDown={onKeyDown}
           aria-label="Search the site"
         />
