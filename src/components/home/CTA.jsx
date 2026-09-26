@@ -14,11 +14,6 @@ const CTA = () => {
           Travel
         </div>
       </div>
-
-      <span className="cta-scroll-hint" aria-hidden="true">
-        scroll
-        <span className="cta-scroll-chevron">⌄</span>
-      </span>
     </>
   );
 };

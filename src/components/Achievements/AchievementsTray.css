@@ -1,7 +1,7 @@
 .achievements-tray {
   position: fixed;
   bottom: 1.25rem;
-  right: 1.25rem;
+  left: 1.25rem;
   z-index: var(--ds-z-fixed);
 }
 
@@ -52,7 +52,7 @@
 .achievements-tray__panel {
   position: absolute;
   bottom: calc(100% + 0.75rem);
-  right: 0;
+  left: 0;
   width: 17.5rem;
   max-height: 70vh;
   overflow-y: auto;
@@ -125,7 +125,7 @@
 .achievement-toast {
   position: fixed;
   bottom: 5.25rem;
-  right: 1.25rem;
+  left: 1.25rem;
   z-index: var(--ds-z-toast);
   display: flex;
   align-items: center;
@@ -174,7 +174,7 @@
 @media screen and (max-width: 600px) {
   .achievements-tray {
     bottom: 1rem;
-    right: 1rem;
+    left: 1rem;
   }
 
   .achievements-tray__btn {

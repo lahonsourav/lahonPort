@@ -21,7 +21,9 @@
     position: relative;
     max-width: 760px;
     margin: 0 auto;
-    padding: 2.75rem 1.5rem;
+    /* Small top padding: the "AIL" heading above already leaves its own space,
+       so a full 2.75rem here left a big gap before the badge. */
+    padding: 0.75rem 1.5rem 0.5rem;
     border-radius: var(--ds-radius-xl);
     background: transparent;
     color: var(--ds-text);
@@ -60,11 +62,16 @@
     position: relative;
 }
 
+/* Sits inside the .ail_preview_meta button. The logo's circle is the same
+   indigo as the button, so only the white mark shows — that mark has ~19%
+   of empty circle on each side, so pull the image in with a negative left
+   margin to make the visible mark line up with the button's padding. */
 .ail_logo {
-    width: 3rem;
-    height: 3rem;
-    margin: 0 auto 1rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin: 0 0 0 -0.35rem;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .ail_badge {
@@ -165,6 +172,8 @@
    .portfolio__items in sticky-mode.css, but pinned top-center since
    this card's content is centered rather than left-aligned. ── */
 html[data-mode="sticky"] .ail_preview_card {
+    /* The paper note needs its own bottom breathing room around the button. */
+    padding-bottom: 2.75rem;
     background: var(--paper-sky);
     color: var(--paper-ink);
     border: none;

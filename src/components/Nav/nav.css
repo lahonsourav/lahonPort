@@ -43,6 +43,14 @@ nav a.active {
   border-color: var(--ds-green-btn-hover);
 }
 
+/* Hidden on phones/tablets: the corner buttons and the chat button need the
+   bottom edge, and search + chat cover navigation there. */
+@media screen and (max-width: 768px) {
+  nav {
+    display: none;
+  }
+}
+
 @keyframes circle {
   from { transform: rotate(-75deg); }
   to   { transform: rotate(75deg); }

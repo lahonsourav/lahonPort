@@ -11,6 +11,12 @@ const REF_GAP = 18;
 const REF_LGAP = 12;
 const REF_LABEL_H = 12.5;
 
+// How far (px) the page has to scroll in one direction while the card is in
+// view before it flips by itself. It flips twice in total — to the back on the
+// way down, back to the front on the way up — then stays put.
+const SCROLL_FLIP_DISTANCE = 120;
+const AUTO_FLIPS = 2;
+
 const bracePath = (w, h, dir) => {
   const r = Math.min(h, w / 4);
   const c = w / 2;
@@ -26,6 +32,7 @@ const BusinessCard = () => {
   const siteRef = useRef(null);
   const [braces, setBraces] = useState(null);
   const [scale, setScale] = useState(1);
+  const autoFlips = useRef(0);
 
   const form = useRef();
   const [errors, setErrors] = useState({});
@@ -55,6 +62,68 @@ const BusinessCard = () => {
     if (document.fonts?.ready) document.fonts.ready.then(measure);
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  // While the card is on screen: scrolling DOWN past it flips it to the back,
+  // and scrolling back UP flips it to the front again — then it stays put
+  // (AUTO_FLIPS total). Tying the two flips to opposite directions is what
+  // keeps the visitor from seeing both happen in one quick scroll. It never
+  // flips under someone who is filling in the form, stops for good once the
+  // visitor flips it themselves, and is skipped for reduced-motion users.
+  useEffect(() => {
+    const scene = sceneRef.current;
+    if (!scene || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+
+    let visible = false;
+    let lastY = window.scrollY;
+    let travelled = 0; // signed: + down, - up, reset whenever direction flips
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        travelled = 0;
+        lastY = window.scrollY;
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(scene);
+
+    const formInUse = () => {
+      const f = form.current;
+      if (!f) return false;
+      if (f.contains(document.activeElement)) return true;
+      return Array.from(f.elements).some((el) => el.value && el.type !== "submit");
+    };
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY;
+      lastY = y;
+      if (!visible || !delta) return;
+      // A change of direction restarts the count.
+      travelled = Math.sign(travelled) === Math.sign(delta) ? travelled + delta : delta;
+
+      if (autoFlips.current >= AUTO_FLIPS) return; // visitor took over
+      // Flip 1 (to back) needs downward travel, flip 2 (to front) upward.
+      const wantDown = autoFlips.current === 0;
+      const enough = wantDown ? travelled >= SCROLL_FLIP_DISTANCE : travelled <= -SCROLL_FLIP_DISTANCE;
+      if (!enough || formInUse()) return;
+
+      travelled = 0;
+      autoFlips.current += 1;
+      setFlipped((f) => !f);
+      if (autoFlips.current >= AUTO_FLIPS) {
+        observer.disconnect();
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   const H = REF_H_UNIT * scale;
@@ -118,6 +187,7 @@ const BusinessCard = () => {
           className={`bcard-flip${flipped ? " bcard-flip--flipped" : ""}`}
           onClick={(e) => {
             if (e.target.closest("a, form")) return;
+            autoFlips.current = AUTO_FLIPS;
             setFlipped((f) => !f);
           }}
           role="button"

@@ -198,7 +198,7 @@ STRICT RULE: the "answer" must be written in first person ("I", "my", "me") ever
 Respond with ONLY a JSON object, no other text, in exactly this shape:
 {"answer": "your 2-4 sentence answer", "links": [{"label": "short label", "url": "/path"}]}
 
-"links" should have 0-3 entries — only pages genuinely relevant to the question, each with the EXACT "label" and "url" copied verbatim from this list (never invent a url not on this list):
+"links" should have 0-3 entries — ALWAYS include the link for any page you mention or that the visitor asks about (e.g. if they ask about or you mention the travel page, include Travel), and only pages genuinely relevant to the question, each with the EXACT "label" and "url" copied verbatim from this list (never invent a url not on this list):
 ${VALID_LINKS.map((l) => `- ${l.label} -> ${l.url}`).join("\n")}
 
 If nothing on the list is relevant, return an empty links array.
@@ -256,6 +256,37 @@ function buildMessages({ query, messages }) {
   while (merged.length && merged[0].role !== "user") merged.shift();
   while (merged.length && merged[merged.length - 1].role !== "user") merged.pop();
   return merged.length ? merged : null;
+}
+
+// Words in the visitor's question that name a page outright. If the model
+// forgets to link a page the visitor asked for by name (it sometimes answers
+// "check out the Travel page" with an empty links array), this puts the link
+// back — deterministic, and only ever uses URLs from VALID_LINKS.
+const PAGE_KEYWORDS = [
+  { url: "/travel", re: /\btravel(s|ling|ing)?\b|\btrips?\b|\bmap\b/i },
+  { url: "/blog", re: /\bblogs?\b|\bposts?\b|\barticles?\b/i },
+  { url: "/work", re: /\bwork\b|\bprojects?\b|\bportfolio\b/i },
+  { url: "/contactout", re: /\bcontact\b|\breach\b|\bemail\b|\bhire\b/i },
+  { url: "/wormhole", re: /\bwormhole\b/i },
+  { url: "/mood", re: /\binnercast\b/i },
+  { url: "/hereiam", re: /\bhere i am\b|\bhereiam\b/i },
+  { url: "/lazykit", re: /\blazykit\b/i },
+  { url: "/lazyperm", re: /\blazyperm\b/i },
+  { url: "/moksha", re: /\bmoksha\b/i },
+  { url: "/assamflood2026", re: /\bflood\b/i },
+  { url: "/blog/building-ail", re: /\bail\b|\bai lighthouse\b|\blighthouse\b/i },
+];
+
+function ensureLinks(result, question) {
+  const links = [...result.links];
+  for (const { url, re } of PAGE_KEYWORDS) {
+    if (links.length >= 3) break;
+    if (re.test(question) && !links.some((l) => l.url === url)) {
+      const known = VALID_LINKS.find((v) => v.url === url);
+      if (known) links.unshift({ label: known.label, url: known.url });
+    }
+  }
+  return { ...result, links: links.slice(0, 3) };
 }
 
 async function askGroq(messages) {
@@ -344,5 +375,5 @@ exports.handler = async (event) => {
     return { statusCode: 502, body: JSON.stringify({ error: "Couldn't get an answer right now, please try again." }) };
   }
 
-  return { statusCode: 200, body: JSON.stringify(result) };
+  return { statusCode: 200, body: JSON.stringify(ensureLinks(result, last)) };
 };

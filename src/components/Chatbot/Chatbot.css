@@ -1,7 +1,7 @@
 .chatbot__trigger {
   position: fixed;
   bottom: 1.25rem;
-  left: 1.25rem;
+  right: 1.25rem;
   z-index: var(--ds-z-fixed);
   width: 2.75rem;
   height: 2.75rem;
@@ -33,7 +33,7 @@
 .chatbot__panel {
   position: fixed;
   bottom: 4.75rem;
-  left: 1.25rem;
+  right: 1.25rem;
   z-index: var(--ds-z-fixed);
   width: min(22rem, calc(100vw - 2.5rem));
   height: min(30rem, calc(100vh - 7rem));
@@ -240,21 +240,21 @@
 }
 
 @media screen and (max-width: 768px) {
-  /* The bottom nav pill is centered and nearly full-width on phones, so lift
-     the button clear of it instead of overlapping its left edge. */
+  /* Sits alone in the bottom-right corner, same 1rem inset and 2.4rem size as
+     the trophy and guide buttons on the left. */
   .chatbot__trigger {
-    bottom: 5.5rem;
-    left: 1rem;
+    bottom: 1rem;
+    right: 1rem;
     width: 2.4rem;
     height: 2.4rem;
     font-size: 1.05rem;
   }
 
   .chatbot__panel {
-    bottom: 8.4rem;
-    left: 1rem;
+    bottom: 4.25rem;
+    right: 1rem;
     width: calc(100vw - 2rem);
-    height: min(28rem, calc(100vh - 10.5rem));
+    height: min(28rem, calc(100vh - 6.5rem));
   }
 
   /* iOS Safari auto-zooms on focus if an input's font-size is under 16px. */

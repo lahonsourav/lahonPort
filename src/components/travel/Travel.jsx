@@ -133,6 +133,14 @@ const MAX_ZOOM = 4;
 const DRAG_THRESHOLD = 6; // px of pointer movement before a tap counts as a drag
 const AUTO_CYCLE_MS = 2200;
 
+// Polaroid drawn beside the highlighted pin. Sized in real screen pixels
+// (converted to map units from the map's rendered width) so it stays readable
+// on a phone, where the whole map is only ~360px wide.
+const PHOTO_PX_DESKTOP = 150;
+const PHOTO_PX_MOBILE = 110;
+const PHOTO_ASPECT = 1.4; // height / width, incl. the polaroid's bottom margin
+const PHOTO_CAPTION_PX = 22; // height of that bottom margin, where the date is written
+
 // Clamp panning so the zoomed content always still covers the viewport.
 const clampView = (scale, tx, ty) => ({
   scale,
@@ -166,6 +174,43 @@ const Travel = () => {
   const activeStateName = active && (STATE_NAME_ALIASES[active.state] || active.state);
 
   const svgRef = useRef(null);
+
+  // Rendered width of the map in px, so the photo can be sized in screen pixels.
+  const [mapPx, setMapPx] = useState(640);
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => setMapPx(svg.getBoundingClientRect().width || 640));
+    ro.observe(svg);
+    return () => ro.disconnect();
+  }, []);
+
+  // The photo card is one persistent element that glides between dots and
+  // crossfades its picture, instead of remounting per place: `cur` is the
+  // photo being shown, `prev` lingers briefly underneath so the new one can
+  // fade in over it, and `glide` turns the position transition on only right
+  // after the place changes (so panning/zooming the map never lags behind).
+  const [photo, setPhoto] = useState({ cur: null, prev: null, n: 0 });
+  const [glide, setGlide] = useState(false);
+  const curPhotoRef = useRef(null);
+  useEffect(() => {
+    if (!active?.image || curPhotoRef.current?.name === active.name) return;
+    const prev = curPhotoRef.current;
+    curPhotoRef.current = active;
+    // Same batch as the position change, so the glide class is already on
+    // when the transform moves. The very first photo has nothing to glide from.
+    // `n` counts photo changes; the card tilts the opposite way each time.
+    setPhoto((p) => ({ cur: active, prev, n: p.n + 1 }));
+    if (prev) setGlide(true);
+  }, [active]);
+  useEffect(() => {
+    if (!photo.prev) return;
+    const t = setTimeout(() => {
+      setPhoto((p) => ({ ...p, prev: null }));
+      setGlide(false);
+    }, 800);
+    return () => clearTimeout(t);
+  }, [photo]);
   const viewRef = useRef(view);
   viewRef.current = view;
   const pointersRef = useRef(new Map()); // pointerId -> last {x, y} (client coords)
@@ -252,7 +297,8 @@ const Travel = () => {
     // resulting click (and every further pointer event) to the svg itself,
     // so a pin's own onClick never fires. Remembering which pin (if any)
     // the pointer actually started on lets onPointerUp select it manually.
-    const pinEl = e.target.closest && e.target.closest(".tr_pin");
+    // (The photo card counts as its pin — same tap-to-open behavior.)
+    const pinEl = e.target.closest && e.target.closest(".tr_pin, .tr_pin_photo");
     downPlaceRef.current = pinEl ? pinEl.dataset.place : null;
 
     e.currentTarget.setPointerCapture(e.pointerId);
@@ -422,7 +468,7 @@ const Travel = () => {
                 const anchorEnd = x > WIDTH * 0.65;
                 return (
                   <text
-                    key={active.name}
+                    key={`label-${active.name}`}
                     className={`tr_pin_label${hoverName ? "" : " tr_pin_label--auto"}`}
                     x={anchorEnd ? x - 12 : x + 12}
                     y={y + 5}
@@ -430,6 +476,91 @@ const Travel = () => {
                   >
                     {active.name}
                   </text>
+                );
+              })()}
+
+              {/* Photo of the highlighted place, pinned beside its dot. Drawn
+                  at a constant on-screen size (counter-scaled by the zoom)
+                  and kept inside the map edges; above the dot unless it's
+                  too close to the top. It fades out (instead of vanishing)
+                  when the highlighted place has no photo, and stays put at
+                  its last spot meanwhile. Clicking it opens that place's
+                  detail modal, like its pin does. */}
+              {photo.cur && (() => {
+                const shown = photo.cur;
+                const [x, y] = project(shown.lng, shown.lat);
+                const sx = x * view.scale + view.tx;
+                const sy = y * view.scale + view.ty;
+                // px -> map units at the current rendered size
+                const u = WIDTH / mapPx;
+                const PHOTO_W = (mapPx < 480 ? PHOTO_PX_MOBILE : PHOTO_PX_DESKTOP) * u;
+                const PHOTO_H = PHOTO_W * PHOTO_ASPECT;
+                const PHOTO_PAD = 6 * u;
+                const PHOTO_GAP = 14 * u; // pin -> photo
+                const above = sy >= PHOTO_H + PHOTO_GAP + 6 * u;
+                const dx = Math.min(WIDTH - 4 * u - PHOTO_W - sx, Math.max(4 * u - sx, -PHOTO_W / 2));
+                const dy = above ? -PHOTO_H - PHOTO_GAP : PHOTO_GAP;
+                const imgProps = {
+                  x: PHOTO_PAD,
+                  y: PHOTO_PAD,
+                  width: PHOTO_W - PHOTO_PAD * 2,
+                  height: PHOTO_H - PHOTO_PAD - PHOTO_CAPTION_PX * u,
+                  preserveAspectRatio: "xMidYMid slice",
+                };
+                // Month/year written in the bottom margin. Font shrinks for a
+                // long string (a place visited twice) so it stays inside the card.
+                const dateText = (p) => (p.visited ? formatVisited(p.visited) : "");
+                const captionPx = (p) => {
+                  const chars = Math.max(dateText(p).length, 1);
+                  return Math.min(9, (PHOTO_W / u - 12) / (chars * 0.56));
+                };
+                const dateProps = (p) => ({
+                  x: PHOTO_W / 2,
+                  y: PHOTO_H - PHOTO_CAPTION_PX * u * 0.34,
+                  textAnchor: "middle",
+                  style: { fontSize: `${(captionPx(p) * u).toFixed(2)}px` },
+                });
+                return (
+                  <g
+                    className={`tr_pin_photo${glide ? " tr_pin_photo--glide" : ""}`}
+                    role="button"
+                    tabIndex={active?.image ? 0 : -1}
+                    aria-label={`${displayName(shown.name)} photo — open details`}
+                    aria-hidden={active?.image ? undefined : true}
+                    data-place={shown.name}
+                    onMouseEnter={() => setHoverName(shown.name)}
+                    onMouseLeave={() => setHoverName((n) => (n === shown.name ? null : n))}
+                    onKeyDown={(e) => onPinKey(e, shown)}
+                    // Same function list every render so CSS can interpolate
+                    // between places; units are px = SVG user units.
+                    style={{
+                      transform: `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${(1 / view.scale).toFixed(4)}) translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`,
+                      opacity: active?.image ? 1 : 0,
+                      // Clickable only while it's actually showing the highlighted
+                      // place; when faded out it must not block the map.
+                      pointerEvents: active?.image ? "auto" : "none",
+                    }}
+                  >
+                    <g
+                      className="tr_pin_photo_tilt"
+                      style={{
+                        transform: `rotate(${photo.n % 2 ? -2.5 : 2.5}deg)`,
+                        transformOrigin: `${(PHOTO_W / 2).toFixed(1)}px ${(PHOTO_H / 2).toFixed(1)}px`,
+                      }}
+                    >
+                      <rect className="tr_pin_photo_card" width={PHOTO_W} height={PHOTO_H} rx={2 * u} />
+                      {photo.prev && <image key={`prev-${photo.prev.name}`} href={photo.prev.image} {...imgProps} />}
+                      <image key={`cur-${shown.name}`} className="tr_pin_photo_img" href={shown.image} {...imgProps} />
+                      {photo.prev && (
+                        <text key={`prevdate-${photo.prev.name}`} className="tr_pin_photo_date tr_pin_photo_date--out" {...dateProps(photo.prev)}>
+                          {dateText(photo.prev)}
+                        </text>
+                      )}
+                      <text key={`date-${shown.name}`} className="tr_pin_photo_date tr_pin_photo_date--in" {...dateProps(shown)}>
+                        {dateText(shown)}
+                      </text>
+                    </g>
+                  </g>
                 );
               })()}
             </g>

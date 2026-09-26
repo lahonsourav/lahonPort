@@ -1,7 +1,7 @@
 .guide-trigger {
   position: fixed;
   bottom: 1.25rem;
-  right: 4.25rem;
+  left: 4.25rem;
   z-index: var(--ds-z-fixed);
   width: 2.75rem;
   height: 2.75rem;
@@ -33,7 +33,7 @@
 @media screen and (max-width: 600px) {
   .guide-trigger {
     bottom: 1rem;
-    right: 3.65rem;
+    left: 3.65rem;
     width: 2.4rem;
     height: 2.4rem;
     font-size: 0.95rem;

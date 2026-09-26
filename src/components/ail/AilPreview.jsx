@@ -19,8 +19,6 @@ const AilPreview = () => {
       >
         <div className="ail_glow" aria-hidden="true" />
 
-        <img src={ailLogo} alt="AIL" className="ail_logo" />
-
         <span className="ail_badge">
           <span className="ail_badge_dot" />
           32 domains · desktop, mobile & CLI
@@ -42,6 +40,7 @@ const AilPreview = () => {
 
         <span className="ail_preview_actions">
           <span className="ail_preview_meta">
+            <img src={ailLogo} alt="" className="ail_logo" />
             ailighthouse.in <span className="ail_arrow">→</span>
           </span>
         </span>
