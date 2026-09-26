@@ -123,6 +123,13 @@ header::after {
   font-size: 0.78rem;
 }
 
+/* The global input:focus-visible ring (index.css) out-specifies the outline:none
+   above and draws a second border inside the pill — the box's own
+   :focus-within border is the focus indicator here. */
+.hero-search__input:focus-visible {
+  outline: none;
+}
+
 .hero-search__input::placeholder {
   color: var(--ds-text-muted);
 }
