@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MdSearch } from "react-icons/md";
+import { MdSearch, MdSend } from "react-icons/md";
 import { SEARCH_INDEX } from "../../lib/searchIndex";
 import { playClick } from "../../lib/sound";
 import { unlock } from "../../lib/achievements";
@@ -137,9 +137,24 @@ const HeroSearch = () => {
           onKeyDown={onKeyDown}
           aria-label="Search the site"
         />
+        {/* Only appears once typing has produced zero keyword matches —
+            no "no matches" text, just a quiet way to hand the question to
+            AI instead. */}
+        {query.trim() && results.length === 0 && (
+          <button
+            type="button"
+            className="hero-search__send"
+            onClick={askAi}
+            disabled={aiLoading}
+            aria-label="Ask AI"
+            title="Ask AI"
+          >
+            {aiLoading ? <span className="hero-search__spinner" /> : <MdSend />}
+          </button>
+        )}
       </div>
 
-      {open && query.trim() && (
+      {open && query.trim() && (results.length > 0 || aiAnswer || aiError) && (
         <div className="hero-search__results" role="listbox">
           {results.length > 0 ? (
             results.map((item, i) => (
@@ -179,18 +194,7 @@ const HeroSearch = () => {
               )}
             </div>
           ) : (
-            <div className="hero-search__empty">
-              <p>No matches, try "blog" or "wormhole"</p>
-              <button
-                type="button"
-                className="hero-search__ask-ai"
-                onClick={askAi}
-                disabled={aiLoading}
-              >
-                {aiLoading ? "Thinking…" : "Ask AI instead →"}
-              </button>
-              {aiError && <p className="hero-search__ai-error">{aiError}</p>}
-            </div>
+            <div className="hero-search__ai-error">{aiError}</div>
           )}
         </div>
       )}
