@@ -25,3 +25,9 @@ yarn-error.log*
 # python (ad hoc scripts, e.g. image processing)
 __pycache__/
 *.pyc
+
+# Local Netlify folder
+.netlify
+
+# local secrets (Netlify Dev function keys)
+.env

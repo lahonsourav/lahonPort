@@ -69,7 +69,10 @@ const HeroSearch = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: q }),
       });
-      const data = await res.json();
+      // A non-JSON body (e.g. the SPA's index.html when the Netlify function
+      // isn't served, like under plain `npm start`) shouldn't leak a parse error.
+      const data = await res.json().catch(() => null);
+      if (!data) throw new Error("AI search isn't available right now, please try again later.");
       if (!res.ok) throw new Error(data.error || "Something went wrong");
       setAiAnswer({ answer: data.answer, links: data.links || [] });
     } catch (e) {
