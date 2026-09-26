@@ -32,6 +32,7 @@ const VALID_LINKS = [
   { label: "lazyperm", url: "/lazyperm" },
   { label: "Moksha", url: "/moksha" },
   { label: "Assam Flood Relief", url: "/assamflood2026" },
+  { label: "Travel", url: "/travel" },
   { label: "Blog (all posts)", url: "/blog" },
   { label: "Contact", url: "/contactout" },
   { label: "Blog: Building Wormhole", url: "/blog/building-wormhole-p2p-messaging" },
@@ -67,10 +68,24 @@ SKILLS
 - Creative: FL Studio, Audacity, Premiere Pro, DaVinci Resolve, Water
   Colour, Graffiti, Ukulele, Figma, Maya 3D, MS Office.
 - Personal interests (from the site's Services section): space/astronomy
-  (black holes, time travel, parallel universes, Fermi paradox), beat
-  production, building dev tools. Note: "time travel" here is a sci-fi
-  interest, not an actual travel/trip page — the site has no travel or
-  itinerary section, so never invent one if asked.
+  (black holes, time travel as a sci-fi concept, parallel universes, Fermi
+  paradox), beat production, building dev tools.
+
+TRAVEL (/travel — an interactive map + timeline of places visited)
+- Lived in: Gogamukh, Assam (childhood, Class I-V); North Lakhimpur, Assam
+  (higher secondary); Silchar, Assam (B.Tech CSE at NIT Silchar); Gurgaon,
+  Haryana (current, working at BlackRock); Hyderabad, Telangana (briefly,
+  May 2024, during the Microsoft internship).
+- Notable trips and a couple of motorcycle trips ("bike" entries) across:
+  Arunachal Pradesh (Likabali), Meghalaya (Shillong), Assam (Guwahati,
+  Dibrugarh, Tinsukia, Sibsagar, Tezpur), Himachal Pradesh (Mandi, Kasol,
+  Kutla, Tosh, Dharamshala, McLeod Ganj, Shimla), Uttarakhand (Kedarnath and
+  Rishikesh by bike, Neelkanth Temple, Dehradun), Delhi (including a CJP
+  protest), Rajasthan (Jaipur, Udaipur, Chittorgarh, Neemrana, Ajmer — several
+  by bike), Uttar Pradesh (Agra, Vrindavan by bike, Varanasi, Mathura), and
+  Daman & Mumbai on the west coast.
+- The /travel page shows all of this as an interactive India map with a
+  timeline, photos, and notes per place.
 
 PROJECTS (page url in parentheses)
 - Wormhole (/wormhole): a peer-to-peer encrypted messenger for exactly two
