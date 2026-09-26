@@ -113,6 +113,10 @@ header::after {
   min-width: 0;
   border: none;
   outline: none;
+  /* iOS Safari draws its own inset focus ring on text inputs regardless of
+     outline/border — appearance: none is what actually suppresses it. */
+  -webkit-appearance: none;
+  appearance: none;
   background: transparent;
   color: var(--ds-text);
   font-family: var(--ds-font-mono);
