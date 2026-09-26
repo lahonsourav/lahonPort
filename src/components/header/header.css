@@ -86,7 +86,11 @@ header::after {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid var(--ds-border);
+  /* --ds-border reads as basically invisible here in the light theme (too
+     close in tone to --ds-surface) — --ds-text-muted keeps this border a
+     visible, slight dark line in both themes without touching the shared
+     --ds-border token every other bordered element still uses. */
+  border: 1px solid var(--ds-text-muted);
   padding: 0.5rem 0.9rem;
   border-radius: 100px;
   background: var(--ds-surface);
@@ -162,6 +166,71 @@ header::after {
   font-size: 0.8rem;
   color: var(--ds-text-muted);
   font-family: var(--ds-font-mono);
+}
+
+.hero-search__empty p {
+  margin: 0 0 0.5rem;
+}
+
+.hero-search__ask-ai {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--ds-font-mono);
+  font-size: 0.8rem;
+  color: var(--ds-green-btn);
+  cursor: pointer;
+}
+
+.hero-search__ask-ai:hover:not(:disabled) {
+  color: var(--ds-green-btn-hover);
+}
+
+.hero-search__ask-ai:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.hero-search__ai-answer {
+  padding: 0.75rem 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ds-text);
+}
+
+.hero-search__ai-answer p {
+  margin: 0 0 0.6rem;
+}
+
+.hero-search__ai-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hero-search__ai-link {
+  align-self: flex-start;
+  border: 1px solid var(--ds-border);
+  background: var(--ds-surface-2);
+  border-radius: var(--ds-radius);
+  padding: 0.3rem 0.6rem;
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  color: var(--ds-green-btn);
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+
+.hero-search__ai-link:hover {
+  color: var(--ds-green-btn-hover);
+  border-color: var(--ds-green-btn);
+}
+
+.hero-search__ai-error {
+  margin: 0.5rem 0 0;
+  color: var(--ds-error);
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
 }
 
 .h1 {
