@@ -1,0 +1,738 @@
+.tr_container {
+  --tr-land: var(--ds-surface);
+  --tr-land-stroke: var(--ds-border);
+  /* Lived vs. visited pins need to stay visually distinct no matter which
+     accent the user has picked. --ds-green *is* the accent token (see
+     design-system.css), so under the "blue" accent it lands on the same
+     hue as --ds-blue and the two pin kinds become indistinguishable.
+     --tr-home is a fixed hue instead, same pattern as LazyKit's brand
+     color (lazykit.css) — only light/dark follows theme. */
+  --tr-home: #7ee787;
+  --tr-trip: var(--ds-blue);
+  --tr-bike: #ffa657;
+}
+
+:root[data-theme="light"] .tr_container {
+  --tr-home: #1a7f37;
+  --tr-bike: #bc4c00;
+}
+
+.tr_container > .back-home {
+  align-self: center;
+  padding: 1.5rem 2rem 0;
+}
+
+/* ── Hero ── */
+.tr_hero {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tr_title {
+  font-size: var(--ds-text-hero);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 0.5rem;
+}
+
+.tr_tagline {
+  font-size: 1.15rem;
+  color: var(--ds-text-muted);
+  margin-bottom: 1.75rem;
+}
+
+.tr_share_btn {
+  margin-top: 1.25rem;
+}
+
+/* ── Map ── */
+.tr_map_section {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 2rem 3.5rem;
+  border-top: 1px solid var(--ds-border-subtle);
+  box-sizing: border-box;
+}
+
+.tr_map_wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.tr_map {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  margin: 0 auto;
+  /* At rest, a swipe over the map should keep scrolling the page (down to
+     the photo gallery) rather than getting stuck — only pan-y is allowed,
+     which also disables native pinch-zoom so a two-finger gesture still
+     reaches our custom pinch handler below. Once actually zoomed in,
+     .tr_map--zoomed takes over and a single-finger drag pans the map
+     instead of scrolling the page. */
+  touch-action: pan-y;
+  cursor: default;
+}
+
+.tr_map--zoomed {
+  touch-action: none;
+  cursor: grab;
+}
+
+.tr_map--zoomed:active {
+  cursor: grabbing;
+}
+
+/* ── Zoom controls ── */
+.tr_zoom_controls {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: var(--ds-z-dropdown);
+}
+
+.tr_zoom_controls button {
+  width: 2.1rem;
+  height: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  font-family: var(--ds-font);
+  color: var(--ds-text);
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-sm);
+  cursor: pointer;
+  transition: var(--ds-transition);
+}
+
+.tr_zoom_controls button:hover {
+  border-color: var(--ds-green);
+}
+
+.tr_island {
+  fill: var(--tr-land-stroke);
+}
+
+.tr_state_border {
+  /* fill is set inline per-state (STATE_FILLS in Travel.jsx) */
+  stroke: var(--tr-land-stroke);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+/* ── Pins ── */
+.tr_pin {
+  cursor: pointer;
+  outline: none;
+}
+
+.tr_pin_dot {
+  fill: var(--tr-home);
+  stroke: var(--ds-bg);
+  stroke-width: 2;
+  transition: r 0.2s ease;
+}
+
+.tr_pin--trip .tr_pin_dot {
+  fill: var(--tr-trip);
+}
+
+.tr_pin--bike .tr_pin_dot {
+  fill: var(--tr-bike);
+}
+
+.tr_pin_pulse {
+  fill: var(--tr-home);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tr_pin--trip .tr_pin_pulse {
+  fill: var(--tr-trip);
+}
+
+.tr_pin--bike .tr_pin_pulse {
+  fill: var(--tr-bike);
+}
+
+.tr_pin--active .tr_pin_pulse {
+  animation: tr-pulse 1.8s ease-out infinite;
+}
+
+.tr_pin:focus-visible .tr_pin_dot {
+  stroke: var(--ds-text);
+}
+
+@keyframes tr-pulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr_pin--active .tr_pin_pulse {
+    animation: none;
+    opacity: 0.25;
+    transform: scale(1.8);
+  }
+}
+
+.tr_pin_label {
+  font-family: var(--ds-font);
+  font-size: 15px;
+  font-weight: 600;
+  fill: var(--ds-text);
+  stroke: var(--ds-bg);
+  stroke-width: 4px;
+  paint-order: stroke;
+  pointer-events: none;
+}
+
+.tr_pin_label--auto {
+  animation: tr-label-fade 0.4s ease;
+}
+
+@keyframes tr-label-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr_pin_label--auto {
+    animation: none;
+  }
+}
+
+/* ── Legend ── */
+.tr_legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--ds-text-muted);
+}
+
+.tr_legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.tr_legend_dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tr_legend_dot--home {
+  background: var(--tr-home);
+}
+
+.tr_legend_dot--trip {
+  background: var(--tr-trip);
+}
+
+.tr_legend_dot--bike {
+  background: var(--tr-bike);
+}
+
+.tr_map_note {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ds-text-muted);
+}
+
+/* ── Photo gallery ──
+   Always the pinned-polaroid look, independent of the site's light/dark/
+   sticky-note theme toggle — a printed photo's cream border, ink caption,
+   and corkboard pin don't change with the UI chrome around it. Fixed
+   colors on purpose here rather than the --ds-* or --paper-* theme tokens. */
+.tr_gallery_section {
+  max-width: 1000px;
+  width: 100%;
+  /* .tr_container (page-shell) is a column flexbox, and flex items default
+     to min-width:auto — without this, the grid below refuses to shrink
+     past its content's natural minimum and the whole page overflows
+     horizontally on narrow screens instead of wrapping to fewer columns. */
+  min-width: 0;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 3.5rem;
+  border-top: 1px solid var(--ds-border-subtle);
+  box-sizing: border-box;
+}
+
+.tr_gallery_heading {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  margin: 0 0 1rem;
+}
+
+.tr_legend--gallery {
+  margin: 0 0 2.25rem;
+}
+
+.tr_gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 2rem 1.5rem;
+}
+
+.tr_gallery_item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 0.6rem 0.55rem;
+  border: none;
+  border-radius: 2px;
+  background: #f7f1e3;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  font: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tr_gallery_item:nth-child(4n+1) { transform: rotate(-2deg); }
+.tr_gallery_item:nth-child(4n+2) { transform: rotate(1.5deg); }
+.tr_gallery_item:nth-child(4n+3) { transform: rotate(-1deg); }
+.tr_gallery_item:nth-child(4n+4) { transform: rotate(2deg); }
+
+.tr_gallery_item:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
+}
+
+/* Corkboard pin holding the photo up, colored by lived/visited/bike-trip —
+   same fixed hues as the map pins (--tr-home / --tr-trip / --tr-bike). */
+.tr_gallery_item::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+    var(--tr-trip);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.tr_gallery_item--home::before {
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+    var(--tr-home);
+}
+
+.tr_gallery_item--bike::before {
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
+    var(--tr-bike);
+}
+
+.tr_gallery_img_wrap {
+  display: block;
+  overflow: hidden;
+}
+
+.tr_gallery_img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.tr_gallery_caption {
+  margin-top: 0.65rem;
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2b2620;
+}
+
+.tr_gallery_date {
+  margin-top: 0.15rem;
+  font-family: var(--ds-font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #6b6155;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr_gallery_item {
+    transition: none;
+  }
+}
+
+/* ── Timeline ──
+   Trips grouped by year then by month — one row per month — sorted
+   chronologically. Separate from the gallery's corkboard look since this is
+   a scan-the-years list, not a photo wall. */
+.tr_timeline_section {
+  max-width: 1000px;
+  width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 0 2rem 3.5rem;
+  box-sizing: border-box;
+}
+
+.tr_timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.tr_timeline_year_group {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.tr_timeline_year {
+  flex: 0 0 auto;
+  width: 3.5rem;
+  padding-top: 0.15rem;
+  font-family: var(--ds-font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ds-text);
+}
+
+.tr_timeline_months {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--ds-border-subtle);
+}
+
+.tr_timeline_month_row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.tr_timeline_month {
+  font-family: var(--ds-font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ds-text-muted);
+}
+
+.tr_timeline_entries {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Default: a plain chip, same idiom as .blog-tag elsewhere on the site —
+   an outline + faint tint of the entry's own color, adapting cleanly to
+   light/dark since the tint rides on `transparent` rather than a fixed
+   paper color. --pill-hue is set inline per entry (Travel.jsx) from the
+   same per-state hue the map's borders use, so a pill's color says which
+   state it's in. Under sticky-note mode this is overridden below into a
+   proper paper tag; the photo gallery above stays sticky-styled always
+   (its own fixed corkboard look, independent of this toggle). */
+.tr_timeline_entry {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid hsl(var(--pill-hue) 55% 45%);
+  border-radius: 999px;
+  background: hsl(var(--pill-hue) 65% 50% / 0.12);
+  color: var(--ds-text);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tr_timeline_entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.tr_timeline_dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tr-trip);
+}
+
+.tr_timeline_entry--home .tr_timeline_dot {
+  background: var(--tr-home);
+}
+
+.tr_timeline_entry--bike .tr_timeline_dot {
+  background: var(--tr-bike);
+}
+
+.tr_timeline_name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Sticky-note mode: same paper-tag shape as .skills__pill on the homepage
+   (kraft flag shape, small pin dot). `html[…]` is a type selector, so this
+   naturally outranks the plain-chip rules above without needing !important
+   or import-order tricks. */
+html[data-mode="sticky"] .tr_timeline_entry {
+  display: inline-block;
+  padding: 0.35rem 0.75rem 0.35rem 1.1rem;
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0 50%);
+  background: hsl(var(--pill-hue) 60% 82%);
+  color: #2b2620;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.14);
+}
+
+html[data-mode="sticky"] .tr_timeline_entry:nth-child(5n+1) { transform: rotate(-1deg); }
+html[data-mode="sticky"] .tr_timeline_entry:nth-child(5n+2) { transform: rotate(1deg); }
+html[data-mode="sticky"] .tr_timeline_entry:nth-child(5n+3) { transform: rotate(-1.5deg); }
+html[data-mode="sticky"] .tr_timeline_entry:nth-child(5n+4) { transform: rotate(1.5deg); }
+html[data-mode="sticky"] .tr_timeline_entry:nth-child(5n+5) { transform: rotate(-1deg); }
+
+html[data-mode="sticky"] .tr_timeline_entry:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+html[data-mode="sticky"] .tr_timeline_dot {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr_timeline_entry {
+    transition: none;
+  }
+}
+
+/* ── Detail modal ── */
+.tr_modal_overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.tr_modal {
+  position: relative;
+  width: min(420px, 100%);
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.tr_modal_close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--ds-transition);
+}
+
+.tr_modal_close:hover {
+  background: var(--ds-error);
+}
+
+/* Fixed aspect ratio + object-fit: cover keeps every place's photo the same
+   size in the modal regardless of the source image's own dimensions. */
+.tr_modal_image_wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--ds-surface-2);
+}
+
+.tr_modal_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tr_modal_body {
+  padding: 1.5rem 1.75rem 1.5rem;
+}
+
+.tr_detail_kind {
+  font-family: var(--ds-font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tr-trip);
+}
+
+.tr_detail_kind--home {
+  color: var(--tr-home);
+}
+
+.tr_detail_kind--bike {
+  color: var(--tr-bike);
+}
+
+.tr_detail_name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ds-text);
+  margin: 0.35rem 0 0.15rem;
+}
+
+.tr_detail_state {
+  font-size: 0.9rem;
+  color: var(--ds-text-muted);
+  margin: 0;
+}
+
+.tr_detail_note {
+  font-size: 0.93rem;
+  color: var(--ds-text);
+  line-height: 1.65;
+  margin: 0.9rem 0 0;
+}
+
+/* Hide the fixed chrome while the place modal is open, same treatment as
+   the PDF viewer (pdfModal.css). */
+body.tr-modal-open .theme-toggle,
+body.tr-modal-open .accent-picker,
+body.tr-modal-open .sound-toggle,
+body.tr-modal-open .achievements-tray,
+body.tr-modal-open .cta-scroll-hint,
+body.tr-modal-open nav {
+  display: none;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 768px) {
+  .tr_title {
+    font-size: var(--ds-text-hero-sm);
+  }
+
+  .tr_hero {
+    padding: 3rem 1.25rem 1.5rem;
+  }
+
+  .tr_map_section {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .tr_gallery_section {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .tr_timeline_section {
+    padding: 0 1rem 2.5rem;
+  }
+
+  .tr_timeline_year_group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .tr_timeline_months {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Smaller pins on mobile — the full map renders at a smaller physical
+     size there, so the same radii used on desktop look oversized and
+     crowd the closely-packed clusters even more. CSS `r` overrides the
+     radius set inline in Travel.jsx (a presentation attribute always
+     loses to a stylesheet rule). */
+  .tr_pin_dot {
+    r: 4;
+  }
+
+  .tr_pin--active .tr_pin_dot {
+    r: 5;
+  }
+
+  .tr_pin_pulse {
+    r: 5;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Smaller photo cards on small phones — the 140px minimum column size
+     was tight enough against the viewport for auto-fill's column count
+     to round up past what actually fits, pushing the grid a few px past
+     the screen edge. */
+  .tr_gallery {
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    gap: 1.5rem 0.85rem;
+  }
+}
+
+.tr_footer_ig {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 2.5rem auto 0;
+  font-family: var(--ds-font-mono);
+  font-size: 0.8rem;
+  color: var(--ds-text-muted);
+  text-decoration: none;
+  transition: var(--ds-transition);
+}
+
+.tr_footer_ig:hover {
+  color: var(--ds-green-btn);
+}
