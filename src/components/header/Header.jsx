@@ -108,7 +108,14 @@ const HeroSearch = () => {
   };
 
   const onKeyDown = (e) => {
-    if (!results.length) return;
+    // No keyword matches: the send button is showing, so Enter does the same.
+    if (!results.length) {
+      if (e.key === "Enter" && query.trim()) {
+        e.preventDefault();
+        askAi();
+      }
+      return;
+    }
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setActiveIdx((i) => (i + 1) % results.length);
