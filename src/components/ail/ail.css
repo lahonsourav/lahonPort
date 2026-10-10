@@ -168,6 +168,40 @@
     transform: translateX(3px);
 }
 
+/* ── WhatsApp button (below the card — the card is itself a link, so this
+   can't live inside it). WhatsApp's own green with dark text, fixed in
+   both themes since it's WhatsApp's brand color, not the site accent. ── */
+.ail_whatsapp_row {
+    text-align: center;
+    margin: 1rem 0 0;
+}
+
+.ail_whatsapp_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--ds-font);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #0b141a;
+    padding: 0.65rem 1.3rem;
+    background: #25d366;
+    border-radius: var(--ds-radius);
+    text-decoration: none;
+    transition: var(--ds-transition);
+}
+
+.ail_whatsapp_btn svg {
+    font-size: 1.05rem;
+}
+
+.ail_whatsapp_btn:hover {
+    background: #1ebe5b;
+    color: #0b141a;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
 /* ── Sticky note mode: a pinned paper note, same treatment as
    .portfolio__items in sticky-mode.css, but pinned top-center since
    this card's content is centered rather than left-aligned. ── */
@@ -239,12 +273,30 @@ html[data-mode="sticky"] .ail_preview_card:hover .ail_preview_meta {
     box-shadow: var(--ds-shadow-lg);
 }
 
+html[data-mode="sticky"] .ail_whatsapp_btn {
+    margin-top: 1rem;
+    background: var(--paper-mint);
+    color: var(--paper-ink);
+    border-radius: 10px 2px 10px 2px;
+    box-shadow: var(--ds-shadow-sm);
+    font-family: var(--ds-font-mono);
+    transform: rotate(-1.5deg);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+html[data-mode="sticky"] .ail_whatsapp_btn:hover {
+    color: var(--paper-ink);
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: var(--ds-shadow-lg);
+}
+
 html[data-mode="sticky"] .ail_preview_secondary {
     color: var(--paper-ink-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html[data-mode="sticky"] .ail_preview_card {
+    html[data-mode="sticky"] .ail_preview_card,
+    html[data-mode="sticky"] .ail_whatsapp_btn {
         transition: none;
     }
 }
