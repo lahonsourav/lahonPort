@@ -16,9 +16,13 @@
     border-radius: 50%;
 }
 
+/* The section is transparent, so the vine's stem (drawn behind the sections)
+   showed through the text. An opaque page-colored background on the text
+   blocks hides the stem behind them. */
 .ail_tagline {
     max-width: 520px;
     margin: 0 auto 2rem;
+    background: var(--ds-bg);
     text-align: center;
     font-size: 1rem;
     color: var(--ds-text-muted);
@@ -29,6 +33,7 @@
     margin: 0 auto;
     padding: 0;
     list-style: none;
+    background: var(--ds-bg);
 }
 
 .ail_link {
