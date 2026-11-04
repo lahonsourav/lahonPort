@@ -6,6 +6,16 @@
     margin-bottom: 0.75rem;
 }
 
+/* The Ail mark above the title: white mark on its own indigo circle, so it
+   reads the same on every background. */
+.ail_logo {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+}
+
 .ail_tagline {
     max-width: 520px;
     margin: 0 auto 2rem;

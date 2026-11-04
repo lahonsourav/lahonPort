@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 import "./ail.css";
+import ailLogo from "../../images/ail/ail-logo-circle.png";
 
 // Opens a WhatsApp chat with Ail, prefilled with "/hi" to start the bot.
 const AIL_WHATSAPP_URL = "https://wa.me/916001098923?text=%2Fhi";
@@ -19,6 +20,8 @@ const AIL_LINKS = [
 const AilPreview = () => {
   return (
     <section id="ail-preview">
+      <img data-aos="fade-down" src={ailLogo} alt="Ail" className="ail_logo" />
+
       <h5 data-aos="fade-down">Building</h5>
 
       <h2 data-aos="fade-down" data-aos-delay="100">AI Lighthouse (Ail)</h2>
