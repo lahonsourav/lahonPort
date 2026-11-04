@@ -92,7 +92,8 @@
     text-decoration: none;
 }
 
-@media (max-width: 480px) {
+/* Only on very narrow phones does the address drop under the name. */
+@media (max-width: 340px) {
     .ail_link {
         flex-direction: column;
         align-items: flex-start;

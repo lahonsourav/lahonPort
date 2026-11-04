@@ -25,11 +25,11 @@ const AilPreview = () => {
 
       <h2 data-aos="fade-down" data-aos-delay="100">AI Lighthouse (Ail)</h2>
 
-      <p data-aos="fade-up" className="ail_tagline">
+      <p data-aos="fade-up" className="ail_tagline container">
         Pay per task. Do 1 hour of work in 1 minute.
       </p>
 
-      <ul data-aos="fade-up" className="ail_links">
+      <ul data-aos="fade-up" className="ail_links container">
         {AIL_LINKS.map(({ name, label, href }) => (
           <li key={href}>
             <a className="ail_link" href={href} target="_blank" rel="noreferrer">
