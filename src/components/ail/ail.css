@@ -1,150 +1,72 @@
-/* Ail's homepage preview card. Structure/text/border follow the site's
-   own --ds-* tokens so it works in both themes, same as every other card
-   on the site — only the indigo accent is fixed as Ail's own brand hue,
-   same pattern lazyperm uses for its green (see lazykit.css). */
+/* "Building AI Lighthouse (Ail)": a title, one line, and a plain list of its
+   products (name on the left, address on the right) with a WhatsApp button
+   underneath. Text and lines follow the site's own --ds-* tokens, so it works
+   in both themes. Only the WhatsApp button keeps a fixed brand color. */
 
-/* Tighter than the site-wide `section > h2` margin-bottom (3rem): the
-   card right below already has its own top padding, so the default
-   spacing left an oversized gap before the logo. */
 #ail-preview h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
-.ail_preview_card {
-    --ail-accent: #818cf8;
-    --ail-accent-btn: #4f46e5;
-    --ail-accent-btn-hover: #6366f1;
-    --ail-accent-bg: rgba(99, 102, 241, 0.16);
-    --ail-accent-border: rgba(99, 102, 241, 0.4);
-
-    display: block;
-    position: relative;
-    max-width: 760px;
-    margin: 0 auto;
-    /* Small top padding: the "AIL" heading above already leaves its own space,
-       so a full 2.75rem here left a big gap before the badge. */
-    padding: 0.75rem 1.5rem 0.5rem;
-    border-radius: var(--ds-radius-xl);
-    background: transparent;
-    color: var(--ds-text);
-    border: none;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    transition: var(--ds-transition);
-    font-family: var(--ds-font);
-}
-
-:root[data-theme="light"] .ail_preview_card {
-    --ail-accent: #4f46e5;
-    --ail-accent-bg: rgba(79, 70, 229, 0.1);
-    --ail-accent-border: rgba(79, 70, 229, 0.3);
-}
-
-.ail_preview_card:hover {
-    transform: translateY(-2px);
-}
-
-.ail_glow {
-    position: absolute;
-    top: -6rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 480px;
-    height: 260px;
-    background: var(--ail-accent-bg);
-    border-radius: 999px;
-    filter: blur(90px);
-    pointer-events: none;
-}
-
-.ail_preview_card > *:not(.ail_glow) {
-    position: relative;
-}
-
-/* Sits inside the .ail_preview_meta button. The logo's circle is the same
-   indigo as the button, so only the white mark shows — that mark has ~19%
-   of empty circle on each side, so pull the image in with a negative left
-   margin to make the visible mark line up with the button's padding. */
-.ail_logo {
-    width: 1.75rem;
-    height: 1.75rem;
-    margin: 0 0 0 -0.35rem;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.ail_badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--ail-accent);
-    background: var(--ail-accent-bg);
-    border: 1px solid var(--ail-accent-border);
-    border-radius: 999px;
-    margin-bottom: 1.25rem;
-}
-
-.ail_badge_dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--ail-accent);
-    animation: ail-pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes ail-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
-}
-
-.ail_title {
-    font-size: clamp(1.5rem, 4.5vw, 2.1rem);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: var(--ds-text);
-    margin: 0 0 0.6rem;
-}
-
-.ail_title_accent {
-    color: var(--ail-accent);
-}
-
-.ail_description {
+.ail_tagline {
     max-width: 520px;
-    margin: 0 auto 1.5rem;
-    font-size: 0.9rem;
+    margin: 0 auto 2rem;
+    text-align: center;
+    font-size: 1rem;
     color: var(--ds-text-muted);
-    line-height: 1.65;
 }
 
-.ail_preview_actions {
+.ail_links {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+.ail_link {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-}
-
-.ail_preview_meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--ds-text-on-accent);
-    padding: 0.65rem 1.3rem;
-    background: var(--ail-accent-btn);
-    border-radius: var(--ds-radius);
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0.25rem;
+    border-bottom: 1px solid var(--ds-border);
+    color: var(--ds-text);
+    text-decoration: none;
+    font-family: var(--ds-font);
     transition: var(--ds-transition);
 }
 
-.ail_preview_card:hover .ail_preview_meta {
-    background: var(--ail-accent-btn-hover);
+.ail_links li:first-child .ail_link {
+    border-top: 1px solid var(--ds-border);
+}
+
+.ail_link_name {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.ail_link_host {
+    font-size: 0.82rem;
+    color: var(--ds-text-muted);
+    text-align: right;
+    overflow-wrap: anywhere;
+    transition: var(--ds-transition);
+}
+
+.ail_link:hover {
+    text-decoration: none;
+}
+
+.ail_link:hover .ail_link_host {
+    color: var(--ds-text);
+}
+
+.ail_arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.ail_link:hover .ail_arrow {
+    transform: translateX(3px);
 }
 
 .ail_preview_secondary {
@@ -159,21 +81,11 @@
     text-decoration: none;
 }
 
-.ail_arrow {
-    display: inline-block;
-    transition: transform 0.2s ease;
-}
-
-.ail_preview_card:hover .ail_arrow {
-    transform: translateX(3px);
-}
-
-/* ── WhatsApp button (below the card — the card is itself a link, so this
-   can't live inside it). WhatsApp's own green with dark text, fixed in
-   both themes since it's WhatsApp's brand color, not the site accent. ── */
+/* ── WhatsApp button, WhatsApp's own green with dark text, fixed in both
+   themes since it's WhatsApp's brand color, not the site accent. ── */
 .ail_whatsapp_row {
     text-align: center;
-    margin: 1rem 0 0;
+    margin: 1.75rem 0 0;
 }
 
 .ail_whatsapp_btn {
@@ -202,31 +114,37 @@
     transform: translateY(-2px);
 }
 
-/* ── Sticky note mode: a pinned paper note, same treatment as
-   .portfolio__items in sticky-mode.css, but pinned top-center since
-   this card's content is centered rather than left-aligned. ── */
-html[data-mode="sticky"] .ail_preview_card {
-    /* The paper note needs its own bottom breathing room around the button. */
-    padding-bottom: 2.75rem;
+@media (max-width: 480px) {
+    .ail_link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+    }
+
+    .ail_link_host {
+        text-align: left;
+    }
+}
+
+/* ── Sticky note mode: the list is a pinned paper note, the same treatment
+   as .portfolio__items in sticky-mode.css, pinned top-center. ── */
+html[data-mode="sticky"] .ail_links {
+    position: relative;
+    padding: 1rem 1.5rem 0.75rem;
     background: var(--paper-sky);
     color: var(--paper-ink);
-    border: none;
     border-radius: 2px 16px 4px 12px;
     box-shadow: var(--ds-shadow-sm);
     transform: rotate(-1.5deg);
     transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-html[data-mode="sticky"] .ail_preview_card:hover {
+html[data-mode="sticky"] .ail_links:hover {
     transform: rotate(0deg) translateY(-3px);
     box-shadow: var(--ds-shadow-lg);
 }
 
-html[data-mode="sticky"] .ail_preview_card .ail_glow {
-    display: none;
-}
-
-html[data-mode="sticky"] .ail_preview_card::before {
+html[data-mode="sticky"] .ail_links::before {
     content: "";
     position: absolute;
     top: -13px;
@@ -237,44 +155,28 @@ html[data-mode="sticky"] .ail_preview_card::before {
     border-radius: 50%;
     background:
         radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.75), transparent 42%),
-        var(--ail-accent-btn, #4f46e5);
+        #4f46e5;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 -3px 4px rgba(0, 0, 0, 0.25);
 }
 
-html[data-mode="sticky"] .ail_title,
-html[data-mode="sticky"] .ail_description {
+html[data-mode="sticky"] .ail_link,
+html[data-mode="sticky"] .ail_link:hover .ail_link_host {
     color: var(--paper-ink);
 }
 
-html[data-mode="sticky"] .ail_badge {
-    background: rgba(255, 255, 255, 0.6);
-    color: var(--paper-ink);
+html[data-mode="sticky"] .ail_link {
     border-color: rgba(0, 0, 0, 0.15);
 }
 
-html[data-mode="sticky"] .ail_badge_dot {
-    background: var(--paper-ink);
+html[data-mode="sticky"] .ail_links li:first-child .ail_link {
+    border-top: 0;
 }
 
-html[data-mode="sticky"] .ail_preview_meta {
-    background: var(--paper-amber);
-    color: var(--paper-ink);
-    border-radius: 2px 10px 2px 10px;
-    box-shadow: var(--ds-shadow-sm);
-    font-family: var(--ds-font-mono);
-    transform: rotate(1.5deg);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-html[data-mode="sticky"] .ail_preview_card:hover .ail_preview_meta {
-    background: var(--paper-amber);
-    color: var(--paper-ink);
-    transform: rotate(0deg) translateY(-2px);
-    box-shadow: var(--ds-shadow-lg);
+html[data-mode="sticky"] .ail_link_host {
+    color: var(--paper-ink-soft);
 }
 
 html[data-mode="sticky"] .ail_whatsapp_btn {
-    margin-top: 1rem;
     background: var(--paper-mint);
     color: var(--paper-ink);
     border-radius: 10px 2px 10px 2px;
@@ -295,7 +197,7 @@ html[data-mode="sticky"] .ail_preview_secondary {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html[data-mode="sticky"] .ail_preview_card,
+    html[data-mode="sticky"] .ail_links,
     html[data-mode="sticky"] .ail_whatsapp_btn {
         transition: none;
     }
