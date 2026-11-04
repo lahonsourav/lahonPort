@@ -1225,13 +1225,17 @@ useEffect(() => {
     title: 'Building AIL: An AI Assistant You Pay For By The Task',
     date: '2026-08-18',
     tag: 'tech',
-    excerpt: 'Every AI writing tool I tried wanted a monthly subscription for the two days a month I actually needed it. AIL is the tool I built instead: 32 specialised domains, real file generation, a prepaid token budget that never expires, and no recurring charge.',
+    excerpt: 'Every AI writing tool I tried wanted a monthly subscription for the two days a month I actually needed it. AIL is what I built instead: 31 specialised domains, real file generation, a prepaid token budget that never expires, and no recurring charge. It has since grown into a small family: files, a job tracker, business assistants and a WhatsApp number.',
     projectLabel: 'Visit ail →',
     projectUrl: 'https://ailighthouse.in',
     content: [
-      'AIL is a chat-based AI assistant, live at ailighthouse.in, built around one idea: you should pay for the task in front of you, not for a month you barely used. It runs 32 separate domains, resumes, thesis chapters, dissertations, legal review, coding rounds, government forms, and more, each with its own tuned system prompt instead of one generic chatbox pretending to be an expert at everything.',
+      { type: 'note', text: 'Updated 4 November 2026. When I first wrote this, AIL was one chat product. It is now a small family of products on one account: chat, files, a job tracker, business assistants and a WhatsApp number. The new sections below cover what was added since. The original sections are kept, with the numbers brought up to date.' },
+
+      'AIL is a chat-based AI assistant, live at ailighthouse.in, built around one idea: you should pay for the task in front of you, not for a month you barely used. It runs 31 separate domains, resumes, thesis chapters, dissertations, legal review, coding rounds, government forms, and more, each with its own tuned system prompt instead of one generic chatbox pretending to be an expert at everything.',
 
       'It is not built for one kind of user. Students and academics get thesis, research, and exam-prep domains. Professionals get resumes, interview prep, and technical writing. Content creators get social captions, bios, and podcast scripts. There are domains for careful legal, medical, and government drafting, for translation and culturally-aware writing, and for generating real office files, PowerPoint decks, PDFs, Word docs, Excel sheets, directly from a prompt. Whoever you are, the domain you land on is tuned for that specific kind of work, not a generic assistant guessing at your context.',
+
+      'The line I ended up with is: pay per task, and do one hour of work in one minute. The rest of this post is how that works, and what has been built around it since.',
 
       { type: 'h2', text: 'Why I built it' },
 
@@ -1275,13 +1279,17 @@ useEffect(() => {
           ['Tauri', 'Native Windows/Mac desktop app with auto-update, built on the same web codebase'],
           ['Razorpay', 'UPI, cards, and net banking for the Indian market'],
           ['Sentry', 'Error tracking across edge, server, and browser'],
+          ['ail-files', 'The open-source engine that turns structured data into real PowerPoint, PDF, Word and Excel files'],
+          ['Gmail API', 'Sends cold emails from the sender\'s own Gmail account, with a daily limit, and only after they connect it'],
+          ['unpdf', 'Reads the real text and the links inside PDFs, so uploaded resumes and documents are used as written'],
+          ['Netlify', 'Hosts the static landing pages for Files, JobApply, Business and the Collective'],
           ['Railway', 'Hosting, with migrations applied automatically on every deploy'],
         ],
       },
 
       { type: 'h2', text: 'What it actually does' },
 
-      'Thirty-two domains is the headline number, but the part I care more about is what happens inside a single conversation once you are in one:',
+      'Thirty-one domains is the headline number, but the part I care more about is what happens inside a single conversation once you are in one:',
 
       { type: 'list', items: [
         'Tokens never expire — a package bought in January still has its budget in July',
@@ -1297,13 +1305,74 @@ useEffect(() => {
         'Upload PDFs, Word docs, and images directly into the conversation',
         'Export any conversation to PDF or Word, or share a read-only link that expires after 24 hours',
         'A 5-response free trial on every domain, so you can judge the quality before spending anything',
+        'Memories you control: Ail only remembers what you ask it to, and every saved memory can be seen and deleted in your account',
+        'PDFs read properly: the text and the hidden links behind words are extracted, so a resume is used exactly as written',
       ] },
+
+      { type: 'h2', text: 'The rest of the family' },
+
+      'Chat was the first product. Each of the others started as something people kept asking chat to do, until it deserved a place of its own. They all work with one account.',
+
+      { type: 'table', head: ['Product', 'Address', 'What it is'],
+        rows: [
+          ['A letter', 'ailighthouse.in', 'The front page of Ail, written as a short letter'],
+          ['Ail Chat', 'chat.ailighthouse.in', 'The original: 31 task domains, pay per task'],
+          ['Ail Files', 'files.ailighthouse.in', 'PowerPoint, PDF, Word and Excel files made from a chat, with a deck editor'],
+          ['Ail JobApply', 'jobapply.ailighthouse.in', 'A job application tracker with an AI chat for every job'],
+          ['Ail Business', 'business.ailighthouse.in', 'AI assistants for a business website and WhatsApp (A4B)'],
+          ['Ail Collective', 'app.ailighthouse.in', 'One page that lists all of it'],
+          ['Ail WhatsApp', 'WhatsApp', 'Ask Ail from the chat you already have open'],
+        ],
+      },
+
+      { type: 'h2', text: 'Ail Files: real files, and an editor' },
+
+      'Asking a chat model for a PowerPoint usually gets you an outline. Ail Files does it differently: the model never draws the file. It writes the content as structured data, a set of file engines checks it and draws the real .pptx, .pdf, .docx or .xlsx, and what you download is that file.',
+
+      { type: 'list', items: [
+        'A deck editor in the browser: change a slide by hand, or ask Ail to change just that one slide',
+        'Your own pictures, logo and background pictures, which follow you to every device',
+        'Free-form slides you can arrange freely, and an exact preview for every other layout',
+        'Share a deck so other people can edit it with you',
+        'Files you upload to a file chat are deleted after 30 days',
+      ] },
+
+      'The engine that draws the files is open source. It is called ail-files, it is free under the Apache-2.0 license, and anyone can add slide layouts or themes with a pull request: github.com/lahonsourav/ail-files.',
+
+      { type: 'h2', text: 'Ail JobApply: a board for the whole job search' },
+
+      'Job hunting is a project, so it got its own board. Send a job from any site and it lands on a board with eleven stages, from new to offer, ghosted, rejected or not applied. Every job gets a free ATS keyword match against your resume the moment it is added, and its own AI chat that knows the posting and your resume.',
+
+      { type: 'list', items: [
+        'Add jobs from a Chrome extension, a pasted link, WhatsApp (text @job and a link), or from Claude or any AI app through a connector',
+        'Cold emails, follow-ups and cover letters drafted from the job and your resume, sent from your own Gmail',
+        'An interview and deadline calendar, offer comparison, referral links and a weekly digest',
+        'A job that goes quiet for 30 days in Cold emailed or Applied moves to Ghosted by itself, with a note you can undo',
+      ] },
+
+      { type: 'h3', text: 'Bulk cold mail' },
+
+      'The part of JobApply I use most. Cold emailing is a numbers game, and doing it one mail at a time is slow. Bulk cold mail collects addresses from a link, a pasted list or a file, writes one mail from your resume (or starts from a saved one), and fills in each person\'s first name and company.',
+
+      'It goes out from your own Gmail in batches of 15. It can carry on through every batch by itself, up to 60 a day, which is a limit I set to protect your Gmail account. Or you can schedule it: a server job sends the queue at 10:00 IST on weekdays, picks up where the last day stopped, and never sends on a weekend. Every person mailed moves to Cold emailed on your board, anyone you already mailed is flagged first so nobody gets the same mail twice, and the list you are building is kept on your account, so your phone and your laptop show the same one.',
+
+      { type: 'h2', text: 'Ail for Business' },
+
+      'A business that needs a chatbot should not have to hire developers. Ail for Business (A4B) lets an owner write down what customers ask, add a brochure or a price list, and get an assistant that answers on a website, on WhatsApp or on Telegram at any hour, only from what they wrote, and takes a phone number when it cannot help. It starts with free trial messages, then message packs that never expire, with no subscription. There is also a done-for-you side: we build the websites, apps and automation for small businesses.',
+
+      { type: 'h2', text: 'Ail on WhatsApp' },
+
+      'Message @ail from the chat you already have open to ask anything, or ask for a deck or a PDF and get the file back in the same chat. Text @job and a link, and the job lands on your JobApply board.',
+
+      { type: 'h2', text: 'For developers' },
+
+      'The CLI (npm install -g @slahon/ail-cli) and the developer API draw from the same token budget as the chat, so there is nothing separate to buy. JobApply also speaks MCP, so Claude or any AI app can add jobs to your board for you.',
 
       { type: 'note', text: 'The full build is documented properly, an internal engineering and business handbook covering the frontend, the API, the database schema, security, pricing, growth, and incident response, gated to admins and staff at ailighthouse.in/docs. This post is the short version.' },
 
       { type: 'h2', text: 'Where it is now' },
 
-      'AIL is live and I use it myself for exactly the bursty, task-shaped work it was built for. It is still one person\'s side project running alongside everything else on this site, which is the same honest framing every other project page here gets: built, shipped, actually used, and still evolving.',
+      'AIL is live at all of those addresses, and I use it myself for exactly the bursty, task-shaped work it was built for, mostly JobApply and Files these days. It is still one person\'s side project running alongside everything else on this site, which is the same honest framing every other project page here gets: built, shipped, actually used, and still evolving.',
     ],
   },
 ];
