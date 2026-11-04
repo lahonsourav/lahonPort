@@ -1,7 +1,7 @@
 /* "Building AI Lighthouse (Ail)": a title, one line, and a plain list of its
-   products (name on the left, address on the right) with a WhatsApp button
-   underneath. Text and lines follow the site's own --ds-* tokens, so it works
-   in both themes. Only the WhatsApp button keeps a fixed brand color. */
+   products (name on the left, address on the right), WhatsApp included. Text
+   and lines follow the site's own --ds-* tokens, so it works in both themes.
+   Only the WhatsApp icon keeps a fixed brand color. */
 
 #ail-preview h2 {
     margin-bottom: 0.75rem;
@@ -70,6 +70,8 @@
 }
 
 .ail_preview_secondary {
+    display: inline-block;
+    margin-top: 0.5rem;
     font-size: 0.82rem;
     color: var(--ds-text-muted);
     text-decoration: none;
@@ -81,37 +83,12 @@
     text-decoration: none;
 }
 
-/* ── WhatsApp button, WhatsApp's own green with dark text, fixed in both
-   themes since it's WhatsApp's brand color, not the site accent. ── */
-.ail_whatsapp_row {
-    text-align: center;
-    margin: 1.75rem 0 0;
-}
-
-.ail_whatsapp_btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: var(--ds-font);
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #0b141a;
-    padding: 0.65rem 1.3rem;
-    background: #25d366;
-    border-radius: var(--ds-radius);
-    text-decoration: none;
-    transition: var(--ds-transition);
-}
-
-.ail_whatsapp_btn svg {
-    font-size: 1.05rem;
-}
-
-.ail_whatsapp_btn:hover {
-    background: #1ebe5b;
-    color: #0b141a;
-    text-decoration: none;
-    transform: translateY(-2px);
+/* WhatsApp's own green for its icon in the list, fixed in both themes since
+   it's WhatsApp's brand color, not the site accent. */
+.ail_link_icon {
+    margin-right: 0.45rem;
+    vertical-align: -0.12em;
+    color: #25d366;
 }
 
 @media (max-width: 480px) {
@@ -176,29 +153,12 @@ html[data-mode="sticky"] .ail_link_host {
     color: var(--paper-ink-soft);
 }
 
-html[data-mode="sticky"] .ail_whatsapp_btn {
-    background: var(--paper-mint);
-    color: var(--paper-ink);
-    border-radius: 10px 2px 10px 2px;
-    box-shadow: var(--ds-shadow-sm);
-    font-family: var(--ds-font-mono);
-    transform: rotate(-1.5deg);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-html[data-mode="sticky"] .ail_whatsapp_btn:hover {
-    color: var(--paper-ink);
-    transform: rotate(0deg) translateY(-2px);
-    box-shadow: var(--ds-shadow-lg);
-}
-
 html[data-mode="sticky"] .ail_preview_secondary {
     color: var(--paper-ink-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html[data-mode="sticky"] .ail_links,
-    html[data-mode="sticky"] .ail_whatsapp_btn {
+    html[data-mode="sticky"] .ail_links {
         transition: none;
     }
 }
