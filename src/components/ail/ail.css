@@ -1,7 +1,6 @@
 /* "Building AI Lighthouse (Ail)": a title, one line, and a plain list of its
    products (name on the left, address on the right), WhatsApp included. Text
-   and lines follow the site's own --ds-* tokens, so it works in both themes.
-   Only the WhatsApp icon keeps a fixed brand color. */
+   and lines follow the site's own --ds-* tokens, so it works in both themes. */
 
 #ail-preview h2 {
     margin-bottom: 0.75rem;
@@ -83,12 +82,10 @@
     text-decoration: none;
 }
 
-/* WhatsApp's own green for its icon in the list, fixed in both themes since
-   it's WhatsApp's brand color, not the site accent. */
+/* The small WhatsApp icon in the list takes the row's own text color. */
 .ail_link_icon {
     margin-right: 0.45rem;
     vertical-align: -0.12em;
-    color: #25d366;
 }
 
 @media (max-width: 480px) {
