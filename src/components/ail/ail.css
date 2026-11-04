@@ -92,12 +92,6 @@
     text-decoration: none;
 }
 
-/* The small WhatsApp icon in the list takes the row's own text color. */
-.ail_link_icon {
-    margin-right: 0.45rem;
-    vertical-align: -0.12em;
-}
-
 @media (max-width: 480px) {
     .ail_link {
         flex-direction: column;

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaWhatsapp } from "react-icons/fa";
 import "./ail.css";
 import ailLogo from "../../images/ail/ail-logo-circle.png";
 
@@ -14,7 +13,7 @@ const AIL_LINKS = [
   { name: "Ail JobApply", label: "jobapply.ailighthouse.in", href: "https://jobapply.ailighthouse.in" },
   { name: "Ail Business", label: "business.ailighthouse.in", href: "https://business.ailighthouse.in" },
   { name: "Ail Collective", label: "app.ailighthouse.in", href: "https://app.ailighthouse.in" },
-  { name: "Ail WhatsApp", label: "Chat on WhatsApp", href: AIL_WHATSAPP_URL, whatsapp: true },
+  { name: "Ail WhatsApp", label: "Chat on WhatsApp", href: AIL_WHATSAPP_URL },
 ];
 
 const AilPreview = () => {
@@ -31,13 +30,10 @@ const AilPreview = () => {
       </p>
 
       <ul data-aos="fade-up" className="ail_links">
-        {AIL_LINKS.map(({ name, label, href, whatsapp }) => (
+        {AIL_LINKS.map(({ name, label, href }) => (
           <li key={href}>
             <a className="ail_link" href={href} target="_blank" rel="noreferrer">
-              <span className="ail_link_name">
-                {whatsapp && <FaWhatsapp className="ail_link_icon" aria-hidden="true" />}
-                {name}
-              </span>
+              <span className="ail_link_name">{name}</span>
               <span className="ail_link_host">
                 {label} <span className="ail_arrow">→</span>
               </span>
